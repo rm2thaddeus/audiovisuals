@@ -64,18 +64,25 @@ Create a working CLI that loads an audio track and generates a video with living
 - **opencv-python** (video encoding)
 - **numpy** (numerical operations)
 
-## Key Files to Create
+## Repository Structure (Aligned with Template)
 
 ```
 audiovisuals/
-├── src/
-│   ├── audio_analyzer.py      # FFT + feature extraction
-│   ├── cppn.py                 # CPPN network architecture
-│   ├── renderer.py             # Neural field rendering
-│   ├── video_encoder.py        # MP4 generation
-│   └── cli.py                  # Main CLI entry point
-├── requirements.txt            # Dependencies
-└── README.md                   # Usage instructions
+├── docs/                       # Template documentation (existing)
+│   ├── Phase0-Alignment/
+│   ├── Phase1-Ideation/
+│   └── Phase2-POC/
+│       ├── POC_PLAN.md         # This file - to be updated
+│       └── PRD.md              # Detailed implementation (to be created)
+├── Code/                       # Code artifacts
+│   └── backend/                # Python CLI backend
+│       ├── audio_analyzer.py   # FFT + feature extraction
+│       ├── cppn.py             # CPPN network architecture
+│       ├── renderer.py         # Neural field rendering
+│       ├── video_encoder.py    # MP4 generation
+│       ├── cli.py              # Main CLI entry point
+│       ├── requirements.txt    # Dependencies
+│       └── README.md           # Usage instructions
 ```
 
 ## Success Criteria

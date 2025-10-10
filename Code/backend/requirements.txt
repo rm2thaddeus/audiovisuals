@@ -1,0 +1,32 @@
+# Audio Feature Explorer - Backend Dependencies
+
+# Core ML Framework
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Audio Analysis
+librosa>=0.10.0
+soundfile>=0.12.0
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Video Encoding
+opencv-python>=4.8.0
+imageio>=2.31.0
+
+# ML Audio Models (Phase B - optional)
+# openl3>=0.4.1
+# tensorflow>=2.13.0  # For YAMNet, VGGish
+# tensorflow-hub>=0.14.0
+
+# CLI & Utilities
+tqdm>=4.65.0  # Progress bars
+argparse  # Built-in, for reference
+matplotlib>=3.7.0  # Optional: debugging visualizations
+
+# Development
+pytest>=7.4.0
+black>=23.0.0
+flake8>=6.0.0
+

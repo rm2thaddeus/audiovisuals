@@ -5,35 +5,45 @@ project: audio_feature_explorer
 owner: Aitor Patiño Diaz
 updated: 2025-01-27
 sources:
-  - Research: CPPN real-time rendering feasibility
-  - Environment: Windows 11, 15.8GB RAM, Python 3.12.0
-  - References: NeuroMV project, ProjectM MilkDrop, WebGL neural inference
+  - Research: CPPN real-time rendering feasibility, ML audio embeddings comparison
+  - Environment: Windows 11, 15.8GB RAM, Python 3.12.0, NVIDIA RTX 5070 (8GB VRAM, CUDA 13.0)
+  - References: NeuroMV project, ProjectM MilkDrop, OpenL3/YAMNet/VGGish embeddings
+  - Implementation Plan: ../../.cursor/plans/cppn-audio-visualizer-poc-f0611ed9.plan.md
 links:
   profile: ./docs/Phase0-Alignment/PROFILE.yaml
   context: ./docs/Phase0-Alignment/CONTEXT.md
   idea: ./docs/Phase1-Ideation/IDEA_NOTE.md
+  backend_agents: ../../Code/backend/AGENTS.md
 ---
 
 Feasibility Questions
-- Can we achieve real-time CPPN rendering at 60 FPS? YES - WebGL shaders can run neural networks in real-time on modern GPUs
-- What are the core dependencies? WebGL/GLSL, FFT libraries (FFTW/KISS FFT), Python ML stack (PyTorch/TensorFlow), Tauri framework
-- What is the smallest end-to-end slice? Audio file → FFT analysis → CPPN inputs → WebGL neural field renderer → visual output
+- Can we achieve real-time CPPN rendering at 60 FPS? YES - CUDA-accelerated PyTorch on RTX 5070 can render neural fields in real-time
+- What are the core dependencies? PyTorch (CUDA 13.0), librosa (audio), opencv (video), optional ML models (OpenL3/YAMNet/VGGish)
+- What is the smallest end-to-end slice? Audio file → FFT features → CPPN(x,y,audio) → frames → MP4 video
+- GPU Critical: RTX 5070 with 8GB VRAM and CUDA 13.0 enables complex CPPN networks and ML embeddings
 
-Candidate Stack
-- Frontend: Tauri (Rust) + WebGL/GLSL shaders + Svelte/React UI
-- Backend: Python sidecar (PyTorch/TensorFlow) + FFT libraries (FFTW/KISS FFT)
-- Data: Local audio files, pre-trained CPPN weights, cached analysis results
-- Infra: Cross-platform desktop app (Windows/macOS/Linux), local-first processing
-- MCP: GitHub (version control), Browser Tools (WebGL testing), Context7 (research)
+Candidate Stack (Phase 2 POC: CLI Tool)
+- Core: Python 3.12 + PyTorch 2.x (CUDA 13.0) + librosa + opencv
+- Audio Analysis: FFT (librosa) + optional ML embeddings (OpenL3/YAMNet/VGGish)
+- CPPN: PyTorch neural network (8-12 layers, sine/cosine activations)
+- Rendering: CUDA-accelerated batch processing on RTX 5070, CPU fallback
+- Video: opencv VideoWriter (H.264 codec), optional PNG frame export
+- Future (Phase 3): Tauri desktop UI with real-time preview
 
-Architecture Sketch
-- Context diagram: Audio File → Python Backend (FFT + ML) → Tauri IPC → WebGL Frontend (CPPN Renderer) → Visual Output
-- Sequence diagram (MVP slice): 
-  1. Load audio file → 2. Extract FFT features → 3. Map to CPPN inputs → 4. Render neural field → 5. Display real-time visuals
+Architecture Sketch (CLI POC)
+- Context diagram: Audio File → Audio Analyzer (FFT + ML) → CPPN (CUDA) → Renderer (GPU) → Video Encoder → MP4
+- Sequence diagram (POC slice):
+  1. Load audio → 2. Extract features @ 60Hz → 3. Initialize CPPN on GPU → 4. Batch render frames → 5. Encode to MP4 with audio
+- Phased Approach:
+  - Phase A: FFT + CPPN baseline (720p @ 30 FPS)
+  - Phase B: Add ML embeddings (OpenL3/YAMNet/VGGish benchmark)
+  - Phase C: Optimize for 1080p @ 60 FPS
 
 Spikes and Experiments
-- Spike 1: CPPN WebGL Shader Performance — Implement basic CPPN in GLSL, measure FPS on target hardware, validate 60 FPS feasibility
-- Spike 2: Audio-CPPN Integration — Create FFT → neural input mapping, test with sample audio, validate real-time responsiveness
+- Spike A1: CPPN CUDA Performance — Implement PyTorch CPPN, benchmark on RTX 5070, validate 60 FPS frame generation
+- Spike A2: Audio Feature Extraction — FFT pipeline, normalize for CPPN inputs, verify 60Hz feature rate
+- Spike B1: ML Model Benchmark — Compare OpenL3/YAMNet/VGGish inference speed and memory usage on RTX 5070
+- Spike B2: Expanded CPPN Inputs — Test CPPN with 128D-512D embeddings, evaluate visual coherence vs FFT-only
 
 UX/UI Notes
 - Personas: Audio enthusiasts seeking next-gen visualization, developers exploring neural art, artists creating AI-driven visuals
@@ -47,9 +57,31 @@ Risks and Mitigations
 
 Checklists
 - Research Checklist:
-  - [ ] Identify 3–5 comparable projects
-  - [ ] Validate licensing and constraints
-  - [ ] Prototype smallest E2E slice
+  - [x] Identify comparable projects (NeuroMV, ProjectM MilkDrop)
+  - [x] ML embeddings research (OpenL3/YAMNet/VGGish complementary to FFT)
+  - [x] GPU capabilities verified (RTX 5070, CUDA 13.0)
+  - [ ] Phase A: FFT + CPPN baseline implemented
+  - [ ] Phase B: ML model benchmarks completed
+  - [ ] Phase C: Production optimization finished
+  
+- Implementation Structure:
+  - [x] Code/backend/ folder created
+  - [x] Code/backend/AGENTS.md documented
+  - [ ] Phase A baseline: audio_analyzer.py, cppn.py, renderer.py, video_encoder.py, cli.py
+  - [ ] Phase B: models/ wrappers for OpenL3/YAMNet/VGGish
+  - [ ] Phase C: Optimization and CLI polish
+
+Research Findings: FFT vs ML Embeddings
+- **Complementary, NOT Contradictory**: FFT and ML embeddings operate at different semantic levels
+  - FFT: Real-time reactivity (bass/mid/treble, beats, spectral features)
+  - ML Embeddings: Semantic understanding (mood, genre, timbre, sound events)
+- **Hybrid Approach**: CPPN(x, y, time, fft_features, ml_embeddings) provides richest input space
+- **Performance Considerations**:
+  - FFT: Very fast, <1ms per frame
+  - OpenL3: ~10-20ms per frame (512D embeddings)
+  - YAMNet: ~5-10ms per frame (lightweight MobileNet, optimized for CPU)
+  - VGGish: ~15-20ms per frame (128D embeddings)
+- **Decision**: Start FFT-only baseline, then incrementally add ML models based on benchmarks
 
 Phase 2 Prompt Starters
 ```text
