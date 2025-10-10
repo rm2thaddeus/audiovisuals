@@ -1,0 +1,89 @@
+---
+phase: 0
+artifact: expertise_profile
+project: audio_feature_explorer
+owner: Aitor Patiño Diaz
+updated: 2025-01-27
+sources:
+  - CV: Synthetic Biologist with AI expertise, 17 GPT assistants deployed
+  - Portfolio: Data products, AI assistants, audio/video analysis frameworks
+links:
+  profile: ./docs/Phase0-Alignment/PROFILE.yaml
+  context: ./docs/Phase0-Alignment/CONTEXT.md
+---
+
+# Expertise Assessment Framework
+# Purpose: Identify specific gaps to enable targeted AI assistance
+
+## Core Assumptions
+- User has interest in coding and AI tools (prerequisite for using this template)
+- User can articulate intent but may lack specific technical knowledge
+- AI should bridge expertise gaps while preserving user agency
+
+## Technical Expertise Gaps
+programming:
+  languages: 
+    comfort_level: advanced
+    gaps: ["Rust/Tauri integration patterns", "WebGL/GLSL shader programming"]
+  frameworks:
+    comfort_level: advanced
+    gaps: ["Tauri sidecar architecture", "Cross-platform desktop app packaging"]
+  tools:
+    editor: cursor
+    version_control: git_expert
+    testing: comprehensive
+    deployment: production_ready
+
+ai_tools:
+  prompting:
+    experience: expert
+    gaps: ["Desktop app-specific prompting patterns"]
+  mcp_servers:
+    experience: advanced
+    gaps: ["Audio processing MCP integration"]
+  ai_assistance:
+    preference: collaborative
+    explanation_depth: comprehensive
+
+## Project Context Gaps
+domain_knowledge:
+  area: ai_ml
+  expertise_level: advanced
+  specific_gaps: ["Audio ML model optimization", "Real-time audio processing", "Cross-platform ML deployment"]
+
+architecture:
+  system_design: expert
+  scalability: production_focus
+  security: security_focused
+
+## Communication Preferences (Derived from Expertise)
+explanation_style:
+  when_gaps_identified: conceptual_overview
+  code_explanations: separate_docs
+  error_handling: explain_why
+
+collaboration_mode:
+  ai_initiative: collaborative
+  decision_making: collaborative
+  feedback_style: immediate
+
+## Identified Learning Path
+priority_gaps: ["Tauri-Python sidecar integration", "WebGL shader optimization", "Cross-platform ML model packaging"]
+learning_preferences:
+  - Hands-on prototyping with documentation
+  - Fast iteration cycles
+  - Deep technical understanding
+
+## AI Adaptation Strategy
+based_on_gaps:
+  explanation_depth: comprehensive
+  code_style: mixed
+  error_prevention: proactive
+  tool_recommendations: advanced
+
+notes: |
+  Expert-level AI practitioner with strong framework design background. Needs targeted assistance
+  with desktop app architecture and audio processing optimization. Prefers collaborative approach
+  with comprehensive explanations. Strong in Python/ML but needs Rust/Tauri integration guidance.
+
+
