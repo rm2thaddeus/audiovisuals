@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Video Embed Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        h1 { color: #4CAF50; }
+        .video-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: #2a2a2a;
+            border-radius: 8px;
+        }
+        video {
+            width: 100%;
+            max-width: 640px;
+            background: #000;
+            border: 2px solid #444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Embedding Test</h1>
+    
+    <div class="video-container">
+        <h2>Method 1: Standard Video Tag</h2>
+        <video width="640" height="360" controls>
+            <source src="explorations/quick_20251011_141004/start_simple.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <div class="video-container">
+        <h2>Method 2: With Preload</h2>
+        <video width="640" height="360" controls preload="auto">
+            <source src="explorations/quick_20251011_141004/start_simple.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <div class="video-container">
+        <h2>Method 3: Direct src attribute</h2>
+        <video width="640" height="360" controls src="explorations/quick_20251011_141004/start_simple.mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <div class="video-container">
+        <h2>Method 4: With explicit codecs</h2>
+        <video width="640" height="360" controls>
+            <source src="explorations/quick_20251011_141004/start_simple.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <div class="video-container">
+        <h2>File Info</h2>
+        <p>Expected: Video stream at 640x360, 24fps</p>
+        <p>If you see an audio player instead of video, the codec might not be supported.</p>
+    </div>
+</body>
+</html>
+

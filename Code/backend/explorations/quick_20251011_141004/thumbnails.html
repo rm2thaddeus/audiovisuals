@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPPN Parameter Exploration Results</title>
+    <style>
+        body {
+            background: #111;
+            color: #eee;
+            font-family: sans-serif;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .segment {
+            margin-bottom: 40px;
+        }
+        .segment h2 {
+            color: #007acc;
+            border-bottom: 2px solid #007acc;
+            padding-bottom: 10px;
+        }
+        .video-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .video-card {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);
+            text-align: center;
+            max-width: 300px;
+        }
+        .video-card h3 {
+            margin-top: 0;
+            color: #007acc;
+        }
+        .description {
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+        .thumbnail {
+            width: 280px;
+            height: 210px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255,255,255,0.2);
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
+        .download-link {
+            display: block;
+            color: #007acc;
+            text-decoration: none;
+            margin-top: 10px;
+            padding: 8px 16px;
+            border: 1px solid #007acc;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+        .download-link:hover {
+            background: #007acc;
+            color: white;
+        }
+        .params {
+            font-size: 12px;
+            color: #888;
+            margin-top: 10px;
+        }
+        .instructions {
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CPPN Parameter Exploration Results</h1>
+        <p>Generated: quick_20251011_141004</p>
+        <p>Total Videos: 12</p>
+    </div>
+    
+    <div class="instructions">
+        <h3>How to View Videos:</h3>
+        <p>Click on any thumbnail to open the video in your default player, or use the download link to save it.</p>
+        <p>Each video is 10 seconds long and shows different CPPN parameter combinations.</p>
+    </div>
+
+    <div class="segment">
+        <h2>Intense Segment</h2>
+        <div class="video-grid">
+
+            <div class="video-card">
+                <h3>Complex</h3>
+                <p class="description">Complex structures</p>
+                <img class="thumbnail" src="intense_complex.mp4" alt="complex video thumbnail" 
+                     onclick="window.open('intense_complex.mp4', '_blank')">
+                <a href="intense_complex.mp4" class="download-link" download>
+                    Download Video
+                </a>
+                <div class="params">
+                    Layers: 5, Dim: 256, Audio: 0.08, Evolve: 0.0
+                </div>
+            </div>
+
+            <div class="video-card">
+                <h3>Evolving</h3>
+                <p class="description">Living patterns</p>
+                <img class="thumbnail" src="intense_evolving.mp4" alt="evolving video thumbnail" 
+                     onclick="window.open('intense_evolving.mp4', '_blank')">
+                <a href="intense_evolving.mp4" class="download-link" download>
+                    Download Video
+                </a>
+                <div class="params">
+                    Layers: 4, Dim: 128, Audio: 0.10, Evolve: 0.02
+                </div>
+            </div>
+
+            <div class="video-card">
+                <h3>Reactive</h3>
+                <p class="description">Strong audio response</p>
+                <img class="thumbnail" src="intense_reactive.mp4" alt="reactive video thumbnail" 
+                     onclick="window.open('intense_reactive.mp4', '_blank')">
+                <a href="intense_reactive.mp4" class="download-link" download>
+                    Download Video
+                </a>
+                <div class="params">
+                    Layers: 4, Dim: 128, Audio: 0.15, Evolve: 0.0
+                </div>
+            </div>
+
+            <div class="video-card">
+                <h3>Simple</h3>
+                <p class="description">Simple patterns</p>
+                <img class="thumbnail" src="intense_simple.mp4" alt="simple video thumbnail" 
+                     onclick="window.open('intense_simple.mp4', '_blank')">
+                <a href="intense_simple.mp4" class="download-link" download>
+                    Download Video
+                </a>
+                <div class="params">
+                    Layers: 3, Dim: 128, Audio: 0.05, Evolve: 0.0
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="segment">
+        <h2>Quiet Segment</h2>
+        <div class="video-grid">
+
+            <div class="video-card">
+                <h3>Complex</h3>
+                <p class="description">Complex structures</p>
+                <img class="thumbnail" src="quiet_complex.mp4" alt="complex video thumbnail" 
+                     onclick="window.open('quiet_complex.mp4', '_blank')">
+                <a href="quiet_complex.mp4" class="download-link" download>
+                    Download Video
+                </a>
+                <div class="params">
+                    Layers: 5, Dim: 256, Audio: 0.08, Evolve: 0.0
+                </div>
+            </div>
+
+            <div class="video-card">
+                <h3>Evolving</h3>
+                <p class="description">Living patterns</p>
+                <img class="thumbnail" src="quiet_evolving.mp4" alt="evolving video thumbnail" 
+                     onclick="window.open('quiet_evolving.mp4', '_blank')">
+                <a href="quiet_evolving.mp4" class="download-link" download>
+                    Download Video
+                </a>
+                <div class="params">
+                    Layers: 4, Dim: 128, Audio: 0.10, Evolve: 0.02
+                </div>
+            </div>
+
+            <div class="video-card">
+                <h3>Reactive</h3>
+                <p class="description">Strong audio response</p>
+                <img class="thumbnail" src="quiet_reactive.mp4" alt="reactive video thumbnail" 
+                     onclick="window.open('quiet_reactive.mp4', '_blank')">
+                <a href="quiet_reactive.mp4" class="download-link" download>
+                    Download Video
+                </a>
+                <div class="params">
+                    Layers: 4, Dim: 128, Audio: 0.15, Evolve: 0.0
+                </div>
+            </div>
+
+            <div class="video-card">
+                <h3>Simple</h3>
+                <p class="description">Simple patterns</p>
+                <img class="thumbnail" src="quiet_simple.mp4" alt="simple video thumbnail" 
+                     onclick="window.open('quiet_simple.mp4', '_blank')">
+                <a href="quiet_simple.mp4" class="download-link" download>
+                    Download Video
+                </a>
+                <div class="params">
+                    Layers: 3, Dim: 128, Audio: 0.05, Evolve: 0.0
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="segment">
+        <h2>Start Segment</h2>
+        <div class="video-grid">
+
+            <div class="video-card">
+                <h3>Complex</h3>
+                <p class="description">Complex structures</p>
+                <img class="thumbnail" src="start_complex.mp4" alt="complex video thumbnail" 
+                     onclick="window.open('start_complex.mp4', '_blank')">
+                <a href="start_complex.mp4" class="download-link" download>
+                    Download Video
+                </a>
+                <div class="params">
+                    Layers: 5, Dim: 256, Audio: 0.08, Evolve: 0.0
+                </div>
+            </div>
+
+            <div class="video-card">
+                <h3>Evolving</h3>
+                <p class="description">Living patterns</p>
+                <img class="thumbnail" src="start_evolving.mp4" alt="evolving video thumbnail" 
+                     onclick="window.open('start_evolving.mp4', '_blank')">
+                <a href="start_evolving.mp4" class="download-link" download>
+                    Download Video
+                </a>
+                <div class="params">
+                    Layers: 4, Dim: 128, Audio: 0.10, Evolve: 0.02
+                </div>
+            </div>
+
+            <div class="video-card">
+                <h3>Reactive</h3>
+                <p class="description">Strong audio response</p>
+                <img class="thumbnail" src="start_reactive.mp4" alt="reactive video thumbnail" 
+                     onclick="window.open('start_reactive.mp4', '_blank')">
+                <a href="start_reactive.mp4" class="download-link" download>
+                    Download Video
+                </a>
+                <div class="params">
+                    Layers: 4, Dim: 128, Audio: 0.15, Evolve: 0.0
+                </div>
+            </div>
+
+            <div class="video-card">
+                <h3>Simple</h3>
+                <p class="description">Simple patterns</p>
+                <img class="thumbnail" src="start_simple.mp4" alt="simple video thumbnail" 
+                     onclick="window.open('start_simple.mp4', '_blank')">
+                <a href="start_simple.mp4" class="download-link" download>
+                    Download Video
+                </a>
+                <div class="params">
+                    Layers: 3, Dim: 128, Audio: 0.05, Evolve: 0.0
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
