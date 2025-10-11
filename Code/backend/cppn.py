@@ -29,7 +29,8 @@ class CPPN(nn.Module):
         hidden_dim: int = 256,
         num_layers: int = 10,
         output_dim: int = 3,  # RGB
-        device: str = 'cuda' if torch.cuda.is_available() else 'cpu'
+        device: str = 'cuda' if torch.cuda.is_available() else 'cpu',
+        use_fp16: bool = True  # Disable for CLIP optimization (needs stable gradients)
     ):
         """
         Initialize CPPN.
@@ -48,6 +49,7 @@ class CPPN(nn.Module):
         self.num_layers = num_layers
         self.output_dim = output_dim
         self.device = device
+        self.use_fp16 = use_fp16
         
         # Build network layers
         self.layers = nn.ModuleList()
@@ -84,10 +86,12 @@ class CPPN(nn.Module):
             else:
                 raise
         
-        # Enable FP16 for GPU acceleration
-        if self.device == 'cuda':
+        # Enable FP16 for GPU acceleration (if requested)
+        if self.device == 'cuda' and self.use_fp16:
             self.half()  # Convert to FP16
             print(f"  FP16 precision enabled for GPU acceleration")
+        elif self.device == 'cuda':
+            print(f"  FP32 precision (FP16 disabled for stable gradients)")
         
         print(f"CPPN running on: {self.device}")
         print(f"  Layers: {num_layers}, Hidden dim: {hidden_dim}")

@@ -118,6 +118,14 @@ Examples:
         help='Batch size for rendering (default: auto-optimized for GPU)'
     )
     
+    # CLIP-optimized weights
+    parser.add_argument(
+        '--load-weights',
+        type=str,
+        default=None,
+        help='Path to CLIP-optimized CPPN weights (.pth file from clip_optimize_cppn.py)'
+    )
+    
     # Export settings
     parser.add_argument(
         '--export-frames',
@@ -225,12 +233,66 @@ def main():
         
         # Step 2: Initialize CPPN
         print("Step 2/4: Initializing CPPN...")
-        cppn = CPPN(
-            input_dim=2 + 1 + audio_analysis['features'].shape[1],  # x, y, time + features
-            hidden_dim=args.hidden_dim,
-            num_layers=args.layers,
-            device=device
-        )
+        
+        # Load CLIP-optimized weights if provided
+        if args.load_weights:
+            weights_path = Path(args.load_weights)
+            if not weights_path.exists():
+                print(f"[ERROR] Weights file not found: {weights_path}")
+                sys.exit(1)
+            
+            print(f"[INFO] Loading CLIP-optimized weights from: {weights_path}")
+            checkpoint = torch.load(weights_path, map_location=device)
+            
+            # Handle both old-style (state_dict only) and new-style (dict with metadata)
+            if isinstance(checkpoint, dict) and 'state_dict' in checkpoint:
+                # Use architecture from checkpoint metadata
+                if 'cppn_config' in checkpoint:
+                    config = checkpoint['cppn_config']
+                    cppn = CPPN(
+                        input_dim=config['input_dim'],
+                        hidden_dim=config['hidden_dim'],
+                        num_layers=config['num_layers'],
+                        device=device
+                    )
+                    print(f"[INFO] Using architecture from checkpoint: {config['num_layers']} layers × {config['hidden_dim']} hidden dim")
+                else:
+                    # Fallback to command-line args
+                    cppn = CPPN(
+                        input_dim=2 + 1 + audio_analysis['features'].shape[1],
+                        hidden_dim=args.hidden_dim,
+                        num_layers=args.layers,
+                        device=device
+                    )
+                
+                cppn.load_state_dict(checkpoint['state_dict'])
+                
+                if 'prompt' in checkpoint:
+                    print(f"[INFO] Optimized for prompt: '{checkpoint['prompt']}'")
+                if 'best_similarity' in checkpoint:
+                    print(f"[INFO] CLIP similarity score: {checkpoint['best_similarity']:.4f}")
+            else:
+                # Old-style: just the state dict
+                cppn = CPPN(
+                    input_dim=2 + 1 + audio_analysis['features'].shape[1],
+                    hidden_dim=args.hidden_dim,
+                    num_layers=args.layers,
+                    device=device
+                )
+                cppn.load_state_dict(checkpoint)
+            
+            print("[OK] Using CLIP-optimized CPPN (not random initialization!)")
+        else:
+            # Initialize with command-line args (random weights)
+            cppn = CPPN(
+                input_dim=2 + 1 + audio_analysis['features'].shape[1],  # x, y, time + features
+                hidden_dim=args.hidden_dim,
+                num_layers=args.layers,
+                device=device
+            )
+            print("[INFO] Using random initialization (untrained CPPN)")
+            print("[TIP] Use --load-weights to load CLIP-optimized styles")
+        
         print()
         
         # Step 3: Render frames
