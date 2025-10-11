@@ -1,9 +1,9 @@
 # Audio Feature Explorer - Backend Dependencies
 
-# Core ML Framework
-torch>=2.0.0
-torchvision>=0.15.0
-torchaudio>=2.0.0
+# Core ML Framework (CUDA 12.8 with SM 120 support for RTX 5070)
+torch==2.8.0+cu128
+torchvision==0.23.0+cu128
+torchaudio==2.8.0+cu128
 
 # Audio Analysis
 librosa>=0.10.0

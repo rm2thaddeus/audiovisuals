@@ -1,0 +1,360 @@
+# Audio Feature Explorer - Git Ignore
+# Prevents large media files and test artifacts from being committed
+
+# ============================================================
+# Media Files (Audio & Video)
+# ============================================================
+
+# Audio files
+*.mp3
+*.wav
+*.flac
+*.ogg
+*.m4a
+*.aac
+
+# Video files
+*.mp4
+*.avi
+*.mkv
+*.mov
+*.webm
+*.flv
+
+# Image sequences
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.tiff
+
+# ============================================================
+# Python
+# ============================================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# ============================================================
+# Machine Learning / Data Science
+# ============================================================
+
+# Model files
+*.pth
+*.pt
+*.h5
+*.keras
+*.ckpt
+*.pb
+*.onnx
+*.safetensors
+
+# Dataset files
+*.csv
+*.tsv
+*.parquet
+*.feather
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# ============================================================
+# Backend Test & Diagnostic Artifacts
+# ============================================================
+
+# Archive directory (contains test outputs)
+Code/backend/archive/
+
+# Test outputs (pattern matching)
+Code/backend/test_*.mp4
+Code/backend/test_*.wav
+Code/backend/test_*.png
+Code/backend/output_*.mp4
+
+# Diagnostic directories
+Code/backend/diagnostic_*/
+
+# Frame exports
+Code/backend/frames/
+Code/backend/*_frames/
+
+# Temporary audio analysis
+Code/backend/*.npy
+Code/backend/*.npz
+
+# ============================================================
+# Documentation Build Artifacts
+# ============================================================
+
+# Generated docs
+docs/_build/
+docs/.build/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# ============================================================
+# IDE / Editor
+# ============================================================
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ============================================================
+# Operating System
+# ============================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================================
+# Logs
+# ============================================================
+
+*.log
+logs/
+*.log.*
+
+# ============================================================
+# Large Files (GitHub Limit Prevention)
+# ============================================================
+
+# Files over 100MB should not be committed
+# Use Git LFS if needed
+
+# ============================================================
+# Project Specific Exclusions
+# ============================================================
+
+# Generated videos in docs
+docs/Audio/phase_a/*.mp4
+docs/Audio/*.mp4
+
+# Cached features
+*.cache
+cache/
+
+# ML model downloads
+Code/backend/models/*.pth
+Code/backend/models/*.pt
+Code/backend/models/*.h5
+
+# Performance profiling
+*.prof
+*.profile
+
+# ============================================================
+# Keep These (Negations)
+# ============================================================
+
+# Keep placeholder files
+!.gitkeep
+
+# Keep example configs (if any)
+# !example_config.yaml
+
+# ============================================================
+# Project Helpers
+# ============================================================
+
+# Commit message drafts
+COMMIT_MESSAGE.txt
+
+# ============================================================
+# Notes
+# ============================================================
+
+# This .gitignore prevents:
+# 1. Audio/video files from being committed (save GitHub space)
+# 2. Test artifacts and diagnostic outputs
+# 3. Python bytecode and cache files
+# 4. IDE/editor configuration
+# 5. OS-specific files
+# 6. ML model files (download separately)
+# 7. Large generated files
+#
+# Only code, documentation, and configuration files should be tracked.
+# Media files should be stored separately (Google Drive, S3, etc.)
+
