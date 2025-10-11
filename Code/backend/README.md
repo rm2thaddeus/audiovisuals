@@ -1,7 +1,12 @@
 # Audio Feature Explorer - Backend
 
 **Status:** ✅ Phase A Complete - POC Working  
+**Organization:** ✅ Reorganized 2025-10-11 (see [ORGANIZATION.md](./ORGANIZATION.md))  
 **Note:** ⚠️ CPPN network is **untrained** (see [CURRENT_STATE.md](../../docs/Phase2-POC/backend/CURRENT_STATE.md))
+
+**Two Approaches Available:**
+1. **CPPN Pipeline** - Experimental POC for parameter exploration
+2. **Trained Model Generator** ⭐ - Production-ready beautiful patterns (see `trained_models/`)
 
 ---
 
@@ -151,29 +156,56 @@ Other:
 
 ```
 backend/
-├── cli.py                 # Main entry point
-├── audio_analyzer.py      # FFT feature extraction
-├── cppn.py                # CPPN network (untrained)
-├── renderer.py            # GPU-accelerated rendering
-├── video_encoder.py       # MP4 generation with ffmpeg
-├── requirements.txt       # Python dependencies
-├── README.md              # This file (usage guide)
+├── Core Pipeline (CPPN-based)
+│   ├── cli.py                 # Main entry point
+│   ├── audio_analyzer.py      # FFT feature extraction
+│   ├── cppn.py                # CPPN network (untrained)
+│   ├── renderer.py            # GPU-accelerated rendering
+│   └── video_encoder.py       # MP4 generation with ffmpeg
 │
-├── models/                # (Reserved for Phase B)
-├── docs/                  # (Reserved for audio samples)
+├── tools/                     # Exploration & Testing
+│   ├── quick_explore.py       # Automated parameter exploration
+│   ├── explore_parameters.py  # Batch parameter testing
+│   ├── show_video_thumbnails.py
+│   ├── regenerate_all_html.py
+│   ├── PARAMETER_EXPLORATION_GUIDE.md
+│   ├── QUICK_TESTS.md
+│   └── README.md              # Tools documentation
 │
-└── archive/               # Test/diagnostic artifacts (gitignored)
-    ├── diagnostics/       # Diagnostic runs
-    ├── test_outputs/      # Test videos
-    └── test_scripts/      # Experimental scripts
+├── trained_models/            # Production Approach ⭐
+│   ├── trained_model_generator.py  # Beautiful patterns
+│   └── README.md
+│
+├── archive/                   # Historical artifacts
+│   ├── diagnostics/           # CPPN optimization history
+│   ├── test_outputs/          # Test videos
+│   └── test_scripts/          # Experimental scripts
+│
+├── explorations/              # Parameter exploration results
+├── models/                    # (Reserved for Phase B)
+├── docs/                      # (Reserved for audio samples)
+│
+├── AGENTS.md                  # Architecture documentation
+├── README.md                  # This file (usage guide)
+└── requirements.txt           # Python dependencies
+```
 
-Documentation:
-  See ../../docs/Phase2-POC/backend/ for:
-    - CURRENT_STATE.md     # Limitations and context
-    - NEXT_STEPS.md        # Future development paths
-    - PHASE_A_COMPLETE.md  # Phase A completion report
-    - AGENTS.md            # Implementation architecture
-    - CLEANUP_SUMMARY.md   # Cleanup summary
+**Documentation:**
+
+Local (Code/backend/):
+- **README.md** - This file (usage guide)
+- **AGENTS.md** - Architecture and agent coordination
+- **tools/README.md** - Exploration tools guide
+
+Project Status (docs/Phase2-POC/):
+- **POC_PLAN.md** - Phase 2 POC plan and status tracking ⭐
+- **backend/CURRENT_STATE.md** - Limitations and context
+- **backend/NEXT_STEPS.md** - Future ML exploration paths (5 options)
+- **backend/PROJECT_STATUS.md** - Comprehensive project status
+- **backend/ORGANIZATION.md** - Directory structure guide
+- **backend/PHASE_A_COMPLETE.md** - Phase A completion report
+- **backend/REORGANIZATION_SUMMARY.md** - Documentation consolidation
+
 ```
 
 ---
@@ -198,12 +230,19 @@ Original plan was ML model integration (OpenL3/YAMNet), but:
 
 ## Documentation
 
+**Local (Code/backend/):**
 - **`README.md`** (this file) - Usage and quick start
-- **`../../docs/Phase2-POC/backend/CURRENT_STATE.md`** - Critical limitations and technical context
-- **`../../docs/Phase2-POC/backend/NEXT_STEPS.md`** - Future development paths and recommendations
-- **`../../docs/Phase2-POC/backend/PHASE_A_COMPLETE.md`** - Phase A implementation details
-- **`../../docs/Phase2-POC/backend/AGENTS.md`** - System architecture and optimization notes
-- **`../../docs/Phase2-POC/backend/CLEANUP_SUMMARY.md`** - Cleanup summary
+- **`AGENTS.md`** - System architecture and agent specifications
+- **`tools/README.md`** - Parameter exploration tools guide
+
+**Project Status (docs/Phase2-POC/):**
+- **`POC_PLAN.md`** - Phase 2 POC plan with comprehensive status tracking
+- **`backend/CURRENT_STATE.md`** - Critical limitations and technical context
+- **`backend/NEXT_STEPS.md`** - Future ML exploration paths (5 detailed options)
+- **`backend/PROJECT_STATUS.md`** - Comprehensive project status and comparison
+- **`backend/ORGANIZATION.md`** - Backend directory structure guide
+- **`backend/PHASE_A_COMPLETE.md`** - Phase A implementation details
+- **`backend/REORGANIZATION_SUMMARY.md`** - Documentation consolidation summary
 
 ---
 
