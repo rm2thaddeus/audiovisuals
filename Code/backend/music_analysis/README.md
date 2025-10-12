@@ -8,10 +8,10 @@ This module provides music-specific analysis tools that extract high-level seman
 
 - **Tempo & Beat Tracking**: BPM estimation and beat timestamps
 - **Key Detection**: Musical key identification (C major, A minor, etc.)
-- **Chord Detection**: Frame-by-frame chord recognition *(coming soon)*
-- **Structure Analysis**: Song section segmentation *(coming soon)*
+- **Chord Detection**: Frame-by-frame chord recognition
+- **Structure Analysis**: Song section segmentation
+- **Genre Classification**: Automatic genre labeling with pre-trained models
 - **Instrument Detection**: Identify instruments present *(future)*
-- **Genre Classification**: Automatic genre labeling *(future)*
 - **Mood Analysis**: Emotional content detection *(future)*
 
 Each analyzer outputs:
@@ -32,7 +32,12 @@ cd Code/backend
 
 # Optional: Install Plotly for interactive HTML charts
 pip install plotly>=5.0.0
+
+# Genre classifier (HuggingFace Transformers)
+pip install transformers>=4.38.0
 ```
+
+> First run of the genre classifier will download a ~100 MB model from HuggingFace.
 
 ### Basic Usage
 
@@ -46,10 +51,16 @@ python -m music_analysis.cli.analyze_tempo song.mp3
 python -m music_analysis.cli.analyze_key song.mp3
 ```
 
+**Genre Classification:**
+```bash
+python -m music_analysis.cli.analyze_genre song.mp3
+```
+
 **Specify Output Directory:**
 ```bash
 python -m music_analysis.cli.analyze_tempo song.mp3 --output results/
 python -m music_analysis.cli.analyze_key song.mp3 --output results/
+python -m music_analysis.cli.analyze_genre song.mp3 --output results/
 ```
 
 **JSON Only (no plots):**
@@ -232,6 +243,56 @@ python -m music_analysis.cli.analyze_structure audio.mp3 --algorithm cnmf
 **Performance:** ~1-2s for 6min audio (fallback method)
 
 **Note:** Currently using simple time-based segmentation due to MSAF compatibility issues. Full MSAF integration can be added when dependencies are resolved.
+
+---
+
+### Genre Classifier ✅
+
+Genre prediction using the pre-trained `storylinez/audio-genre-classifier` HuggingFace model.
+
+**Features:**
+- Ten-genre classifier trained on the GTZAN dataset
+- Segment-level analysis with configurable window size and overlap
+- Aggregated probability distribution with JSON, PNG, and HTML outputs
+- GPU acceleration when CUDA is available
+
+**Usage:**
+```bash
+python -m music_analysis.cli.analyze_genre audio.mp3
+python -m music_analysis.cli.analyze_genre audio.mp3 --window-seconds 45 --overlap 0.5
+```
+
+**Arguments:**
+- `audio`: Input audio file (required)
+- `--output, -o`: Output directory (default: music_analysis/outputs/)
+- `--format, -f`: Output format: json, plot, html, both (default: both)
+- `--window-seconds`: Window length in seconds (default: 30.0)
+- `--overlap`: Overlap ratio between windows (default: 0.25)
+- `--top-k`: Number of top predictions to keep (default: 5)
+- `--max-chunks`: Limit number of windows processed (optional)
+- `--device`: `auto`, `cpu`, or `cuda` (default: auto)
+- `--model`: HuggingFace model identifier (default: storylinez/audio-genre-classifier)
+
+**Output Example:**
+```json
+{
+  "predicted_genre": "rock",
+  "predicted_confidence": 0.82,
+  "predictions": [
+    {"genre": "rock", "score": 0.82, "logit": 3.42},
+    {"genre": "metal", "score": 0.09, "logit": 1.02},
+    {"genre": "pop", "score": 0.05, "logit": 0.61}
+  ],
+  "chunk_predictions": [
+    {"start": 0.0, "end": 30.0, "top_genre": "rock", "confidence": 0.79},
+    {"start": 22.5, "end": 52.5, "top_genre": "rock", "confidence": 0.86}
+  ]
+}
+```
+
+**Performance:** ~4-6s for a 3 min track on RTX 5070 (first run downloads model ~100 MB)
+
+**Note:** Requires `transformers>=4.38.0`. Model downloads are cached in the HuggingFace directory (`~/.cache/huggingface/` by default).
 
 ---
 
@@ -458,16 +519,16 @@ python -m music_analysis.cli.analyze_tempo <test_audio>
 - [x] Key detector implemented (Krumhansl-Schmuckler)
 - [x] Chord detector implemented (chroma-based)
 - [x] Structure analyzer implemented (time-based fallback)
-- [x] CLI commands for all 4 analyzers
+- [x] Genre classifier implemented (HuggingFace Transformers)
+- [x] CLI commands for all 5 analyzers
 - [x] Visualization functions (matplotlib)
-- [x] HTML report generation (Plotly)
+- [x] HTML report generation (Plotly, including genre)
 - [x] Tested with sample audio
 
-**All 4 music analyzers fully functional!**
+**All 5 music analyzers fully functional!**
 
 ---
 
-**Updated:** 2025-10-11  
+**Updated:** 2025-10-12  
 **Author:** Aitor Patiño Diaz  
 **Version:** 0.1.0
-

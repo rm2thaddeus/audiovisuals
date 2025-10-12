@@ -9,6 +9,9 @@ matplotlib>=3.7.0
 # Interactive visualization
 plotly>=5.0.0
 
+# Genre classification
+transformers>=4.38.0
+
 # Advanced chord detection (optional - requires TensorFlow)
 # crema>=0.1.0
 # tensorflow>=2.13.0

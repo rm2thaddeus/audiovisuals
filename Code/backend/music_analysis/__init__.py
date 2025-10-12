@@ -6,7 +6,8 @@ Independent CLI tools for extracting semantic music features using ML models:
 - Chord detection
 - Key detection
 - Structure analysis
-- (Future: Instruments, Genre, Mood)
+- Genre classification
+- (Future: Instruments, Mood)
 
 Each analyzer outputs JSON data, visual plots, and interactive HTML reports.
 """

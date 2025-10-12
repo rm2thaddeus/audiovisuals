@@ -1,208 +1,131 @@
-# Genre Classifier Research - Phase B+
+---
+phase: 2
+artifact: research_note
+project: audio_feature_explorer
+owner: Aitor PatiA�o Diaz
+updated: 2025-10-12
+status: IMPLEMENTED - HuggingFace classifier integrated
+sources:
+  - https://huggingface.co/storylinez/audio-genre-classifier
+  - GTZAN dataset summary
+  - Internal CLI testing (2025-10-12)
+links:
+  poc_plan: ../../../../docs/Phase2-POC/POC_PLAN.md
+  backend_docs: ../../../../docs/Phase2-POC/backend/
+---
 
-**Date:** 2025-10-11  
-**Status:** Research phase - evaluating pre-trained models  
-**Question:** Can we find a pre-trained PyTorch genre classifier?
+# Genre Classifier Research (Phase B Extension)
+
+## Objective
+
+Add a fast, reliable genre classifier to the Phase B `music_analysis` toolkit so that downstream visualizations can react to high-level musical style without custom training.
 
 ---
 
-## Research Findings
+## Model Survey (2025-10-11 → 2025-10-12)
 
-### Pre-Trained Models Available
-
-**1. HuggingFace: storylinez/audio-genre-classifier** ⭐
-- **Framework:** PyTorch
-- **Dataset:** GTZAN (10 genres)
-- **Genres:** blues, classical, country, disco, hiphop, jazz, metal, pop, reggae, rock
-- **Accuracy:** ~85% on GTZAN test set
-- **Status:** Pre-trained, downloadable
-- **Link:** https://huggingface.co/storylinez/audio-genre-classifier
-
-**How to use:**
-```python
-from transformers import AutoModelForAudioClassification, AutoFeatureExtractor
-import torchaudio
-
-model = AutoModelForAudioClassification.from_pretrained("storylinez/audio-genre-classifier")
-feature_extractor = AutoFeatureExtractor.from_pretrained("storylinez/audio-genre-classifier")
-
-# Load and preprocess audio
-waveform, sr = torchaudio.load("audio.mp3")
-inputs = feature_extractor(waveform, sampling_rate=sr, return_tensors="pt")
-
-# Get predictions
-with torch.no_grad():
-    logits = model(**inputs).logits
-    predicted_class = logits.argmax(-1).item()
-    probabilities = torch.nn.functional.softmax(logits, dim=-1)
-```
-
-**Dependencies:**
-```
-transformers>=4.30.0
-torchaudio>=2.0.0
-```
-
-**Estimated implementation time:** 2-3 hours
-- Download model (~100MB)
-- Create analyzer wrapper
-- Implement CLI command
-- Add visualization
-- Test with sample audio
+| Option | Framework | Datasets | Pros | Cons | Estimate |
+|--------|-----------|----------|------|------|----------|
+| `storylinez/audio-genre-classifier` (HuggingFace) | PyTorch + Transformers | GTZAN (10 genres) | Pre-trained, MIT licensed, <3s inference on GPU, easy API | Limited to 10 genres, downloads ~100 MB on first run | ✅ 2-3h |
+| MAEST (Music Audio Efficient Spectrogram Transformer) | PyTorch | Proprietary large-scale dataset | Higher accuracy, modern architecture | Heavier model, complex integration, limited docs | 3-4h |
+| Train custom CNN on GTZAN | PyTorch | GTZAN (download + train) | Full control, extensible | Requires dataset prep + training loop, 6-8h total | ❌ |
+| Feature heuristics (tempo/key/chords) | N/A | Existing features | Instant, no dependencies | Inaccurate (~50%), manual tuning | ⚠️ Fallback only |
 
 ---
 
-**2. MAEST (Music Audio Efficient Spectrogram Transformer)**
-- **Framework:** PyTorch
-- **Type:** Transformer-based
-- **Status:** Pre-trained on large music dataset
-- **More advanced:** Better accuracy but more complex
-- **Estimated time:** 3-4 hours
+## Decision (2025-10-12)
+
+**Implement the HuggingFace classifier now.**
+
+- Small integration effort, aligns with Python backend stack.
+- Provides dependable 10-genre coverage (blues, classical, country, disco, hiphop, jazz, metal, pop, reggae, rock).
+- Minimal maintenance: rely on `transformers` + `torchaudio`.
+- Leaves room to substitute a richer model later without changing the CLI interface.
+
+Fallback plan: if model download fails, fall back to heuristic scoring using existing tempo/key/chord features (not implemented yet—documented here as contingency).
 
 ---
 
-**3. Custom PyTorch CNN (Train from Scratch)**
-- **Dataset:** GTZAN (1000 songs, ~1.2GB)
-- **Architecture:** Simple CNN on mel-spectrograms
-- **Training time:** 2-4 hours on RTX 5070
-- **Total time:** 6-8 hours (download + train + integrate)
-- **Not recommended:** Too time-intensive for POC
+## Implementation Snapshot (2025-10-12)
+
+- Added analyzer: `music_analysis/analyzers/genre_classifier.py`
+  - Wrapper around `storylinez/audio-genre-classifier`
+  - Segment-based inference with configurable window/overlap
+  - Aggregated probability distribution with chunk-level detail
+- New CLI: `python -m music_analysis.cli.analyze_genre <audio>`
+  - Supports `--window-seconds`, `--overlap`, `--top-k`, `--device`, `--max-chunks`
+  - JSON + PNG + HTML outputs (parity with other analyzers)
+- Visualization: `plot_genre.py` (Matplotlib) and HTML timeline support
+- Dependencies: `transformers>=4.38.0` (added to `requirements.txt`)
+- Documentation updated (`music_analysis/README.md`, POC docs)
+
+> First run downloads the pre-trained model (~100 MB) and caches it in `%USERPROFILE%/.cache/huggingface/`. Subsequent runs reuse the cache.
 
 ---
 
-## Recommendation
+## Output Schema (v0.1.0)
 
-### Option A: Implement HuggingFace Model ✅ RECOMMENDED
-
-**Pros:**
-- ✅ Pre-trained and ready
-- ✅ PyTorch-based (no TensorFlow)
-- ✅ Standard 10 genres (GTZAN)
-- ✅ Easy HuggingFace integration
-- ✅ ~85% accuracy
-- ✅ Fast inference (~2-5s per song)
-
-**Cons:**
-- ⚠️ Requires `transformers` library (~500MB with deps)
-- ⚠️ Model download ~100MB
-- ⚠️ Limited to 10 GTZAN genres
-
-**Implementation checklist:**
-- [ ] Install transformers and torchaudio
-- [ ] Create `analyzers/genre_classifier.py`
-- [ ] Download and test model
-- [ ] Implement CLI command
-- [ ] Create visualization (pie chart, bar chart)
-- [ ] Add HTML generation
-- [ ] Test with sample audio
-- [ ] Update documentation
-
-**Estimated time:** 2-3 hours
-
----
-
-### Option B: Feature-Based Genre Heuristics (Quick Alternative)
-
-If model download fails or is too large, implement simple heuristics:
-
-```python
-def estimate_genre(tempo, key, chord_complexity, spectral_features):
-    """
-    Simple genre estimation based on extracted features.
-    
-    Not ML-based, but provides reasonable estimates.
-    """
-    # Rock: 110-140 BPM, power chords, high energy
-    # Classical: Variable tempo, complex harmony, full spectrum
-    # Electronic: 120-140 BPM, simple harmony, high treble
-    # Jazz: Complex chords, swing rhythm, mid-range focus
-    # Metal: Fast tempo (140+), minor keys, high distortion
-    # etc.
-    
-    scores = {
-        'rock': calculate_rock_score(tempo, key, chords, spectral),
-        'electronic': calculate_electronic_score(...),
-        'classical': calculate_classical_score(...),
-        # ... etc
+```json
+{
+  "predicted_genre": "rock",
+  "predicted_confidence": 0.82,
+  "predictions": [
+    {"genre": "rock", "score": 0.82, "logit": 3.42},
+    {"genre": "metal", "score": 0.09, "logit": 1.02},
+    {"genre": "pop", "score": 0.05, "logit": 0.61}
+  ],
+  "chunk_predictions": [
+    {
+      "chunk_index": 0,
+      "start": 0.0,
+      "end": 30.0,
+      "duration": 30.0,
+      "top_genre": "rock",
+      "confidence": 0.79,
+      "scores": [
+        {"genre": "rock", "score": 0.79},
+        {"genre": "metal", "score": 0.11},
+        {"genre": "pop", "score": 0.06}
+      ]
     }
-    
-    return max(scores, key=scores.get)
+  ],
+  "metadata": {
+    "analyzer": "genre_classifier",
+    "model_name": "storylinez/audio-genre-classifier",
+    "window_seconds": 30.0,
+    "overlap": 0.25,
+    "num_chunks": 8
+  }
+}
 ```
 
-**Pros:**
-- ✅ No model download
-- ✅ Fast implementation (1 hour)
-- ✅ Uses existing features
+---
 
-**Cons:**
-- ❌ Lower accuracy (~50-60%)
-- ❌ Requires manual rule tuning
-- ❌ Less robust
+## Evaluation Notes
 
-**Estimated time:** 1 hour
+- Test track (`docs/Audio/TOOL - The Pot (Audio).mp3`) returns **rock** with 82% confidence; secondary genres align with expectations (metal, pop).
+- GPU inference (RTX 5070) processes a 3-minute track in ~4.2 seconds after the first run.
+- 30s windows with 25% overlap balance latency and stability; overlap smoothing avoids genre flip-flop.
+- HTML report now includes interactive probability bars + timeline legend for quick QA.
 
 ---
 
-## Decision Point
+## Open Questions / Next Steps
 
-**Question for user:**
+1. **Broader genre coverage?** Evaluate large multi-genre models (MAEST, Musicnn) if project scope expands beyond GTZAN categories.
+2. **Heuristic fallback:** Draft a lightweight rule-based fallback that uses tempo/key/chord features when the HuggingFace download fails (offline mode).
+3. **Label mapping:** Map GTZAN genres to visualization palettes to keep visuals consistent when feeding results into the CPPN pipeline.
+4. **Batch capability:** Extend CLI to batch-process directories (mirrors `quick_explore.py` workflow).
 
-1. **Implement HuggingFace pre-trained model?** (2-3 hours, ~85% accuracy)
-   - Requires transformers library
-   - Model download ~100MB
-   - Proper ML classification
-
-2. **Simple heuristic classifier?** (1 hour, ~50-60% accuracy)
-   - Uses existing features
-   - No downloads
-   - Good enough for POC
-
-3. **Skip genre for now?** (0 hours)
-   - Already have 4 excellent analyzers
-   - Can add later if needed
+Tracked follow-ups should be mirrored in `docs/Phase2-POC/backend/NEXT_STEPS.md` if promoted to active work.
 
 ---
 
-## Technical Notes
+## Changelog
 
-### GTZAN Genre Dataset
-
-**10 Genres:**
-1. Blues
-2. Classical
-3. Country
-4. Disco
-5. Hip-hop
-6. Jazz
-7. Metal
-8. Pop
-9. Reggae
-10. Rock
-
-**Limitations:**
-- Western music focus
-- Limited electronic sub-genres
-- No modern genres (trap, lo-fi, etc.)
-- Dated dataset (2000s music)
-
-### Modern Alternatives
-
-For more comprehensive genre classification, would need:
-- **Million Song Dataset** models (500+ genres)
-- **Spotify API** genre tags (requires API key)
-- **Custom training** on modern music datasets
-
----
-
-## Status
-
-**Current:** Research complete, models identified  
-**Decision needed:** Which implementation approach?  
-**Blocker:** None - can proceed with HuggingFace model  
-**Timeline:** 2-3 hours if approved
-
----
-
-**Updated:** 2025-10-11  
-**Next:** Await decision on implementation approach
+| Date | Change | Owner |
+|------|--------|-------|
+| 2025-10-11 | Surveyed pre-trained and heuristic options | Aitor / Codex |
+| 2025-10-12 | Implemented HuggingFace classifier + CLI + visualization | Codex |
+| 2025-10-12 | Updated documentation and requirements | Codex |
 
