@@ -1,0 +1,18 @@
+# Output files
+outputs/
+*.json
+*.png
+*.html
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+

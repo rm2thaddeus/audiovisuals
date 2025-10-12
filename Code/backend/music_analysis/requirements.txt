@@ -1,0 +1,28 @@
+# Music Analysis Dependencies - Phase B
+
+# Core dependencies (should already be installed from main backend)
+librosa>=0.10.0
+numpy>=1.24.0
+scipy>=1.10.0
+matplotlib>=3.7.0
+
+# Interactive visualization
+plotly>=5.0.0
+
+# Advanced chord detection (optional - requires TensorFlow)
+# crema>=0.1.0
+# tensorflow>=2.13.0
+# tensorflow-hub>=0.14.0
+
+# Structure analysis (optional)
+# msaf>=0.1.80
+
+# Music theory utilities (optional)
+# music21>=9.1.0
+
+# Instrument/Genre/Mood detection (optional - can be tricky on Windows)
+# essentia>=2.1b6.dev1034
+
+# Note: Install optional dependencies only if needed
+# Some models (CREMA, MSAF, Essentia) require additional setup
+

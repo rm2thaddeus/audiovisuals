@@ -20,10 +20,13 @@ imageio>=2.31.0
 # tensorflow>=2.13.0  # For YAMNet, VGGish
 # tensorflow-hub>=0.14.0
 
+# Music Analysis (Phase B)
+plotly>=5.0.0  # Interactive HTML charts
+
 # CLI & Utilities
 tqdm>=4.65.0  # Progress bars
 argparse  # Built-in, for reference
-matplotlib>=3.7.0  # Optional: debugging visualizations
+matplotlib>=3.7.0  # Visualizations
 
 # Development
 pytest>=7.4.0

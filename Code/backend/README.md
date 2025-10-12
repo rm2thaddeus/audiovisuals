@@ -292,6 +292,58 @@ python cli.py "../../docs/Audio/TOOL - The Pot (Audio).mp3" tool_visualization.m
 
 ---
 
+## Music Analysis Tools (Phase B) 🎵
+
+**NEW**: Independent CLI tools for extracting semantic music features!
+
+Located in `music_analysis/` directory with full documentation in [music_analysis/README.md](./music_analysis/README.md).
+
+### Available Analyzers
+
+**Tempo & Beat Tracking:**
+```bash
+python -m music_analysis.cli.analyze_tempo audio.mp3
+```
+Extracts BPM, beat positions, and time signature.
+
+**Key Detection:**
+```bash
+python -m music_analysis.cli.analyze_key audio.mp3
+```
+Detects musical key (C major, A minor, etc.) with confidence scores.
+
+### Output Formats
+
+Each analyzer generates:
+- **JSON**: Structured data with all results
+- **PNG**: Matplotlib visualizations
+- **HTML**: Interactive reports with Plotly charts
+
+Outputs saved to `music_analysis/outputs/`
+
+**Chord Detection:**
+```bash
+python -m music_analysis.cli.analyze_chords audio.mp3
+```
+Detects chords using chroma features and template matching.
+
+**Structure Analysis:**
+```bash
+python -m music_analysis.cli.analyze_structure audio.mp3
+```
+Segments audio into structural sections (intro, verse, chorus, etc.).
+
+### All 4 Analyzers Available
+
+✅ Tempo & Beat Tracking  
+✅ Key Detection  
+✅ Chord Detection  
+✅ Structure Analysis
+
+See [music_analysis/README.md](./music_analysis/README.md) for complete documentation.
+
+---
+
 ## Contributing
 
 This is a POC demonstrating technical feasibility. See [NEXT_STEPS.md](../../docs/Phase2-POC/backend/NEXT_STEPS.md) for future development directions.
@@ -305,5 +357,5 @@ See project root for license information.
 ---
 
 **Updated:** 2025-10-11  
-**Version:** Phase A (POC Complete)
+**Version:** Phase A Complete, Phase B Week 1 Complete
 
