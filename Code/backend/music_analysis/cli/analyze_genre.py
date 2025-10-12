@@ -1,10 +1,10 @@
 """
-CLI command for genre classification.
+CLI command for audio event classification.
 
 Usage:
     python -m music_analysis.cli.analyze_genre audio.mp3
     python -m music_analysis.cli.analyze_genre audio.mp3 --output results/
-    python -m music_analysis.cli.analyze_genre audio.mp3 --window-seconds 45 --overlap 0.5
+    python -m music_analysis.cli.analyze_genre audio.mp3 --window-seconds 10 --overlap 0.25 --top-k 10
 """
 
 import argparse
@@ -15,24 +15,27 @@ from pathlib import Path
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from music_analysis.analyzers.genre_classifier import GenreClassifier, DEFAULT_MODEL
+from music_analysis.analyzers.genre_classifier import AudioEventClassifier, DEFAULT_MODEL
 
 
 def main() -> int:
-    """Main CLI entry point for genre classification."""
+    """Main CLI entry point for audio event classification."""
     parser = argparse.ArgumentParser(
-        description="Classify musical genre using a pre-trained model",
+        description="Detect audio events, instruments, and sound types using Audio Spectrogram Transformer",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Basic classification
+  # Basic classification (detects instruments, vocals, genres, sound types)
   python -m music_analysis.cli.analyze_genre song.mp3
 
   # Save to specific directory
   python -m music_analysis.cli.analyze_genre song.mp3 --output results/
 
-  # Increase analysis detail with longer windows and more overlap
-  python -m music_analysis.cli.analyze_genre song.mp3 --window-seconds 45 --overlap 0.5
+  # Get more audio event categories (top 15 instead of 10)
+  python -m music_analysis.cli.analyze_genre song.mp3 --top-k 15
+
+  # Shorter analysis windows for more detailed timeline
+  python -m music_analysis.cli.analyze_genre song.mp3 --window-seconds 5
 
   # Limit to first few segments for quick preview
   python -m music_analysis.cli.analyze_genre song.mp3 --max-chunks 3
@@ -65,14 +68,14 @@ Examples:
     parser.add_argument(
         "--top-k",
         type=int,
-        default=5,
-        help="Number of top genre predictions to keep (default: 5)",
+        default=10,
+        help="Number of top audio event predictions to keep (default: 10)",
     )
     parser.add_argument(
         "--window-seconds",
         type=float,
-        default=30.0,
-        help="Analysis window size in seconds (default: 30.0)",
+        default=10.0,
+        help="Analysis window size in seconds (default: 10.0, optimized for AST)",
     )
     parser.add_argument(
         "--overlap",
@@ -141,7 +144,7 @@ Examples:
         )
 
     try:
-        classifier = GenreClassifier(
+        classifier = AudioEventClassifier(
             model_name=args.model,
             device=device,
             cache_dir=args.cache_dir,
@@ -154,7 +157,7 @@ Examples:
             max_chunks=args.max_chunks,
         )
     except Exception as exc:
-        print(f"Error during genre classification: {exc}")
+        print(f"Error during audio event classification: {exc}")
         if args.verbose:
             import traceback
 
@@ -212,17 +215,18 @@ Examples:
 
                 traceback.print_exc()
 
-    top_prediction = results["predicted_genre"]
-    confidence = results["predicted_confidence"] * 100
+    top_label = results["primary_label"]
+    confidence = results["primary_confidence"] * 100
 
-    print("\n=== Genre Classification Results ===")
+    print("\n=== Audio Event Classification Results ===")
     print(f"File: {audio_path.name}")
-    print(f"Predicted Genre: {top_prediction} ({confidence:.1f}%)")
-    print("Top Predictions:")
+    print(f"Primary Event: {top_label} ({confidence:.1f}%)")
+    print(f"\nTop {args.top_k} Detected Events:")
     for entry in results["predictions"]:
-        print(f"  - {entry['genre']}: {entry['score'] * 100:.1f}%")
+        print(f"  - {entry['label']}: {entry['score'] * 100:.1f}%")
 
     print(f"\nChunks analyzed: {len(results['chunk_predictions'])}")
+    print(f"Total event classes available: {results['num_labels']}")
     print(f"Processing time: {results['processing_time']:.2f}s")
     print(f"Outputs saved to: {output_dir}")
 

@@ -1,7 +1,8 @@
 """
-Genre Classifier - Pre-trained HuggingFace model
+Audio Event Classifier - Pre-trained Audio Spectrogram Transformer
 
-Wraps `storylinez/audio-genre-classifier` to predict musical genre labels.
+Wraps `MIT/ast-finetuned-audioset-10-10-0.4593` to detect audio events, instruments, and sound types.
+Provides 527 audio classes including instruments, vocals, genres, and sound textures.
 """
 
 import time
@@ -19,20 +20,20 @@ from transformers import (
 )
 
 
-DEFAULT_MODEL = "storylinez/audio-genre-classifier"
+DEFAULT_MODEL = "MIT/ast-finetuned-audioset-10-10-0.4593"
 
 
 @dataclass
-class GenrePrediction:
+class AudioEventPrediction:
     """Container for individual prediction entries."""
 
-    genre: str
+    label: str
     score: float
     logit: float
 
 
-class GenreClassifier:
-    """Classify music genre using a pre-trained audio classification model."""
+class AudioEventClassifier:
+    """Detect audio events, instruments, and sound types using Audio Spectrogram Transformer (AST)."""
 
     def __init__(
         self,
@@ -56,12 +57,14 @@ class GenreClassifier:
         self.model = AutoModelForAudioClassification.from_pretrained(
             model_name,
             cache_dir=cache_dir,
+            trust_remote_code=True,
         ).to(self.device)
         self.model.eval()
 
         self.feature_extractor = AutoFeatureExtractor.from_pretrained(
             model_name,
             cache_dir=cache_dir,
+            trust_remote_code=True,
         )
 
         self.labels = [
@@ -71,23 +74,23 @@ class GenreClassifier:
     def analyze(
         self,
         audio_path: str,
-        top_k: int = 5,
-        window_seconds: float = 30.0,
+        top_k: int = 10,
+        window_seconds: float = 10.0,
         overlap: float = 0.25,
         max_chunks: Optional[int] = None,
     ) -> Dict:
         """
-        Analyze audio file and predict genres.
+        Analyze audio file and detect audio events.
 
         Args:
             audio_path: Path to audio file
-            top_k: Number of top predictions to keep
-            window_seconds: Analysis window size in seconds
+            top_k: Number of top predictions to keep (default 10 for richer features)
+            window_seconds: Analysis window size in seconds (default 10s for AST)
             overlap: Window overlap ratio (0.0 - 0.9)
             max_chunks: Optional maximum number of chunks to process
 
         Returns:
-            Dictionary containing genre predictions and metadata
+            Dictionary containing audio event predictions and metadata
         """
         start_time = time.time()
         audio_path = Path(audio_path)
@@ -161,11 +164,11 @@ class GenreClassifier:
                     "start": start_idx / sample_rate,
                     "end": end_idx / sample_rate,
                     "duration": (end_idx - start_idx) / sample_rate,
-                    "top_genre": self.model.config.id2label[int(indices[0])],
+                    "top_label": self.model.config.id2label[int(indices[0])],
                     "confidence": float(scores[0]),
-                    "scores": [
+                    "events": [
                         {
-                            "genre": self.model.config.id2label[int(i)],
+                            "label": self.model.config.id2label[int(i)],
                             "score": float(s),
                         }
                         for s, i in zip(scores.tolist(), indices.tolist())
@@ -177,9 +180,9 @@ class GenreClassifier:
         probabilities = torch.softmax(avg_logits, dim=-1)
         scores, indices = torch.topk(probabilities, analysis_top_k)
 
-        predictions: List[GenrePrediction] = [
-            GenrePrediction(
-                genre=self.model.config.id2label[int(index)],
+        predictions: List[AudioEventPrediction] = [
+            AudioEventPrediction(
+                label=self.model.config.id2label[int(index)],
                 score=float(score),
                 logit=float(avg_logits[int(index)]),
             )
@@ -191,11 +194,11 @@ class GenreClassifier:
         processing_time = time.time() - start_time
 
         results: Dict = {
-            "predicted_genre": primary_prediction.genre,
-            "predicted_confidence": primary_prediction.score,
+            "primary_label": primary_prediction.label,
+            "primary_confidence": primary_prediction.score,
             "predictions": [
                 {
-                    "genre": pred.genre,
+                    "label": pred.label,
                     "score": pred.score,
                     "logit": pred.logit,
                 }
@@ -203,14 +206,15 @@ class GenreClassifier:
             ],
             "chunk_predictions": chunk_predictions,
             "label_set": self.labels,
+            "num_labels": len(self.labels),
             "processing_time": round(processing_time, 3),
             "metadata": {
                 "filename": audio_path.name,
                 "filepath": str(audio_path.absolute()),
-                "analyzer": "genre_classifier",
+                "analyzer": "audio_event_classifier",
                 "version": self.version,
                 "model_name": self.model_name,
-                "model_labels": self.labels,
+                "model_labels_count": len(self.labels),
                 "device": self.device,
                 "sample_rate": sample_rate,
                 "window_seconds": window_seconds,
@@ -232,18 +236,18 @@ class GenreClassifier:
         return "cuda" if torch.cuda.is_available() else "cpu"
 
 
-def classify_genre(audio_path: str, **kwargs) -> Dict:
+def classify_audio_events(audio_path: str, **kwargs) -> Dict:
     """
-    Convenience function for genre classification.
+    Convenience function for audio event classification.
 
     Args:
         audio_path: Path to audio file
         **kwargs: Additional classifier arguments
 
     Returns:
-        Genre classification results
+        Audio event classification results
     """
-    classifier = GenreClassifier(**kwargs)
+    classifier = AudioEventClassifier(**kwargs)
     return classifier.analyze(audio_path)
 
 

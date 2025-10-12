@@ -682,7 +682,7 @@ def _generate_chords_interactive(results: Dict) -> str:
 
 
 def _generate_genre_summary(results: Dict) -> str:
-    """Generate HTML summary for genre classification."""
+    """Generate HTML summary for audio event classification."""
     predictions = results.get('predictions', [])
     chunk_predictions = results.get('chunk_predictions', [])
     primary = predictions[0] if predictions else None
@@ -697,15 +697,15 @@ def _generate_genre_summary(results: Dict) -> str:
     )
 
     prediction_items = "".join(
-        f"<li><strong>{entry['genre']}</strong> &mdash; {entry['score'] * 100:.1f}%</li>"
+        f"<li><strong>{entry['label']}</strong> &mdash; {entry['score'] * 100:.1f}%</li>"
         for entry in predictions
     )
 
     return f"""
     <div class="summary-grid">
         <div class="summary-card">
-            <h3>Predicted Genre</h3>
-            <div class="value">{primary['genre'] if primary else 'N/A'}</div>
+            <h3>Primary Audio Event</h3>
+            <div class="value">{primary['label'] if primary else 'N/A'}</div>
             <p>{primary['score'] * 100:.1f}% confidence</p>
         </div>
         <div class="summary-card secondary">
@@ -723,7 +723,7 @@ def _generate_genre_summary(results: Dict) -> str:
     </div>
     
     <div class="metadata">
-        <p><strong>Top Predictions:</strong></p>
+        <p><strong>Top Detected Events (instruments, vocals, genres, sounds):</strong></p>
         <ul>
             {prediction_items or '<li>No predictions available</li>'}
         </ul>
@@ -732,7 +732,7 @@ def _generate_genre_summary(results: Dict) -> str:
 
 
 def _generate_genre_interactive(results: Dict) -> str:
-    """Generate interactive Plotly charts for genre classification."""
+    """Generate interactive Plotly charts for audio event classification."""
     predictions = results.get('predictions', [])
     chunk_predictions = results.get('chunk_predictions', [])
 
@@ -741,23 +741,23 @@ def _generate_genre_interactive(results: Dict) -> str:
         "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf",
     ]
 
-    ordered_genres = [entry['genre'] for entry in predictions]
+    ordered_labels = [entry['label'] for entry in predictions]
     for chunk in chunk_predictions:
-        if chunk['top_genre'] not in ordered_genres:
-            ordered_genres.append(chunk['top_genre'])
+        if chunk['top_label'] not in ordered_labels:
+            ordered_labels.append(chunk['top_label'])
 
     color_map = {
-        genre: palette[idx % len(palette)]
-        for idx, genre in enumerate(ordered_genres)
+        label: palette[idx % len(palette)]
+        for idx, label in enumerate(ordered_labels)
     }
 
     bar_data = {
         "type": "bar",
         "orientation": "h",
         "x": [entry['score'] * 100 for entry in reversed(predictions)],
-        "y": [entry['genre'] for entry in reversed(predictions)],
+        "y": [entry['label'] for entry in reversed(predictions)],
         "marker": {
-            "color": [color_map[entry['genre']] for entry in reversed(predictions)],
+            "color": [color_map[entry['label']] for entry in reversed(predictions)],
             "line": {"color": "#222222", "width": 1},
         },
         "hovertemplate": "%{y}: %{x:.1f}%<extra></extra>",
@@ -774,13 +774,13 @@ def _generate_genre_interactive(results: Dict) -> str:
         "y": ["Segments"] * len(chunk_predictions),
         "marker": {
             "color": [
-                color_map.get(chunk['top_genre'], "#888888")
+                color_map.get(chunk['top_label'], "#888888")
                 for chunk in chunk_predictions
             ],
             "line": {"color": "#222222", "width": 1},
         },
         "hovertext": [
-            f"{chunk['top_genre']} ({chunk['confidence'] * 100:.1f}%)<br>"
+            f"{chunk['top_label']} ({chunk['confidence'] * 100:.1f}%)<br>"
             f"{chunk['start']:.1f}s - {chunk['end']:.1f}s"
             for chunk in chunk_predictions
         ],
@@ -789,21 +789,21 @@ def _generate_genre_interactive(results: Dict) -> str:
 
     legend_items = "".join(
         f"<li><span style='display:inline-block;width:12px;height:12px;"
-        f"background:{color_map[genre]};margin-right:8px;border-radius:2px;'></span>"
-        f"{genre}</li>"
-        for genre in ordered_genres
+        f"background:{color_map[label]};margin-right:8px;border-radius:2px;'></span>"
+        f"{label}</li>"
+        for label in ordered_labels
     )
 
     return f"""
     <section>
-        <h2>Interactive Genre Breakdown</h2>
+        <h2>Interactive Audio Event Breakdown</h2>
         <div id="genre-probabilities"></div>
     </section>
     <section>
         <h2>Segment Timeline</h2>
         <div id="genre-timeline"></div>
         <div class="metadata" style="margin-top: 10px;">
-            <p><strong>Genre Legend:</strong></p>
+            <p><strong>Detected Events Legend:</strong></p>
             <ul style="columns: 2; list-style: none; padding-left: 0;">
                 {legend_items}
             </ul>

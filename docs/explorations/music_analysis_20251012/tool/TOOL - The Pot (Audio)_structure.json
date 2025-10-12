@@ -1,0 +1,117 @@
+{
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 31.96,
+      "duration": 31.96,
+      "label": "intro",
+      "index": 0
+    },
+    {
+      "start": 31.96,
+      "end": 63.92,
+      "duration": 31.96,
+      "label": "section_1",
+      "index": 1
+    },
+    {
+      "start": 63.92,
+      "end": 95.89,
+      "duration": 31.96,
+      "label": "section_2",
+      "index": 2
+    },
+    {
+      "start": 95.89,
+      "end": 127.85,
+      "duration": 31.96,
+      "label": "section_3",
+      "index": 3
+    },
+    {
+      "start": 127.85,
+      "end": 159.81,
+      "duration": 31.96,
+      "label": "section_4",
+      "index": 4
+    },
+    {
+      "start": 159.81,
+      "end": 191.77,
+      "duration": 31.96,
+      "label": "section_5",
+      "index": 5
+    },
+    {
+      "start": 191.77,
+      "end": 223.74,
+      "duration": 31.96,
+      "label": "section_6",
+      "index": 6
+    },
+    {
+      "start": 223.74,
+      "end": 255.7,
+      "duration": 31.96,
+      "label": "section_7",
+      "index": 7
+    },
+    {
+      "start": 255.7,
+      "end": 287.66,
+      "duration": 31.96,
+      "label": "section_8",
+      "index": 8
+    },
+    {
+      "start": 287.66,
+      "end": 319.62,
+      "duration": 31.96,
+      "label": "section_9",
+      "index": 9
+    },
+    {
+      "start": 319.62,
+      "end": 351.58,
+      "duration": 31.96,
+      "label": "section_10",
+      "index": 10
+    },
+    {
+      "start": 351.58,
+      "end": 383.55,
+      "duration": 31.96,
+      "label": "outro",
+      "index": 11
+    }
+  ],
+  "num_segments": 12,
+  "boundary_times": [
+    0.0,
+    31.96,
+    63.92,
+    95.89,
+    127.85,
+    159.81,
+    191.77,
+    223.74,
+    255.7,
+    287.66,
+    319.62,
+    351.58,
+    383.55
+  ],
+  "algorithm": "cnmf",
+  "duration": 383.55,
+  "processing_time": 1.704,
+  "metadata": {
+    "filename": "TOOL - The Pot (Audio).mp3",
+    "filepath": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\..\\..\\docs\\Audio\\TOOL - The Pot (Audio).mp3",
+    "analyzer": "structure_analyzer",
+    "version": "0.1.0",
+    "model": "MSAF-cnmf",
+    "timestamp": "2025-10-12T00:05:25.561054",
+    "sample_rate": 22050,
+    "audio_duration": 383.55
+  }
+}

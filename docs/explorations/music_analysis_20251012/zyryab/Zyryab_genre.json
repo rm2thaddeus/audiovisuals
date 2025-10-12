@@ -1,0 +1,3848 @@
+{
+  "primary_label": "Music",
+  "primary_confidence": 0.5955550670623779,
+  "predictions": [
+    {
+      "label": "Music",
+      "score": 0.5955550670623779,
+      "logit": 0.8362922668457031
+    },
+    {
+      "label": "Musical instrument",
+      "score": 0.09498155862092972,
+      "logit": -0.999518871307373
+    },
+    {
+      "label": "Flamenco",
+      "score": 0.0668845847249031,
+      "logit": -1.3502329587936401
+    },
+    {
+      "label": "Guitar",
+      "score": 0.03631073236465454,
+      "logit": -1.9610880613327026
+    },
+    {
+      "label": "Bowed string instrument",
+      "score": 0.02378108724951744,
+      "logit": -2.3843109607696533
+    },
+    {
+      "label": "Plucked string instrument",
+      "score": 0.023095259442925453,
+      "logit": -2.41357421875
+    },
+    {
+      "label": "Pizzicato",
+      "score": 0.01779569312930107,
+      "logit": -2.6742451190948486
+    },
+    {
+      "label": "Violin, fiddle",
+      "score": 0.01395619660615921,
+      "logit": -2.9172780513763428
+    },
+    {
+      "label": "Acoustic guitar",
+      "score": 0.009783131070435047,
+      "logit": -3.2725422382354736
+    },
+    {
+      "label": "Music of Latin America",
+      "score": 0.007076621521264315,
+      "logit": -3.596405029296875
+    },
+    {
+      "label": "Cello",
+      "score": 0.006177394185215235,
+      "logit": -3.7323050498962402
+    },
+    {
+      "label": "Country",
+      "score": 0.006028896663337946,
+      "logit": -3.7566373348236084
+    },
+    {
+      "label": "Double bass",
+      "score": 0.0060007148422300816,
+      "logit": -3.7613227367401123
+    },
+    {
+      "label": "Strum",
+      "score": 0.005052797496318817,
+      "logit": -3.9332594871520996
+    },
+    {
+      "label": "Mandolin",
+      "score": 0.004716813564300537,
+      "logit": -4.002068042755127
+    }
+  ],
+  "chunk_predictions": [
+    {
+      "chunk_index": 0,
+      "start": 0.0,
+      "end": 10.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.5234190821647644,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.5234190821647644
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.09580854326486588
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.07162094861268997
+        },
+        {
+          "label": "Guitar",
+          "score": 0.056264884769916534
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.047410912811756134
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.047290220856666565
+        },
+        {
+          "label": "Zither",
+          "score": 0.03849058970808983
+        },
+        {
+          "label": "Strum",
+          "score": 0.02147883176803589
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.02039976231753826
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.01732397824525833
+        },
+        {
+          "label": "Harp",
+          "score": 0.010711760260164738
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.005136450752615929
+        },
+        {
+          "label": "Ukulele",
+          "score": 0.004179807845503092
+        },
+        {
+          "label": "Classical music",
+          "score": 0.0027369020972400904
+        },
+        {
+          "label": "Traditional music",
+          "score": 0.002718547126278281
+        }
+      ]
+    },
+    {
+      "chunk_index": 1,
+      "start": 7.5,
+      "end": 17.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.557715654373169,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.557715654373169
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.09816163778305054
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.07988400757312775
+        },
+        {
+          "label": "Guitar",
+          "score": 0.0668686181306839
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.05229201167821884
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.0382222905755043
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.028771808370947838
+        },
+        {
+          "label": "Zither",
+          "score": 0.016885682940483093
+        },
+        {
+          "label": "Strum",
+          "score": 0.015280344523489475
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.00915804784744978
+        },
+        {
+          "label": "Ukulele",
+          "score": 0.005546093452721834
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.004840529523789883
+        },
+        {
+          "label": "Harp",
+          "score": 0.00310037680901587
+        },
+        {
+          "label": "Classical music",
+          "score": 0.0020357349421828985
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.0016311301151290536
+        }
+      ]
+    },
+    {
+      "chunk_index": 2,
+      "start": 15.0,
+      "end": 25.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.4390545189380646,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.4390545189380646
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.16420991718769073
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.05922297388315201
+        },
+        {
+          "label": "Zither",
+          "score": 0.05687481164932251
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.042734358459711075
+        },
+        {
+          "label": "Guitar",
+          "score": 0.03729085251688957
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.02929181419312954
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.024944398552179337
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.019866500049829483
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.015361146070063114
+        },
+        {
+          "label": "Strum",
+          "score": 0.014434611424803734
+        },
+        {
+          "label": "Harp",
+          "score": 0.013895455747842789
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.003838631324470043
+        },
+        {
+          "label": "Traditional music",
+          "score": 0.0033091038931161165
+        },
+        {
+          "label": "Salsa music",
+          "score": 0.0028607607819139957
+        }
+      ]
+    },
+    {
+      "chunk_index": 3,
+      "start": 22.5,
+      "end": 32.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.5421901941299438,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.5421901941299438
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.06733770668506622
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.06328441202640533
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.05513196066021919
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.032425958663225174
+        },
+        {
+          "label": "Guitar",
+          "score": 0.03134399652481079
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.027396023273468018
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.026605656370520592
+        },
+        {
+          "label": "Zither",
+          "score": 0.024220731109380722
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.016727475449442863
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.010989061556756496
+        },
+        {
+          "label": "Harp",
+          "score": 0.010986662469804287
+        },
+        {
+          "label": "String section",
+          "score": 0.007857652381062508
+        },
+        {
+          "label": "Cello",
+          "score": 0.007831267081201077
+        },
+        {
+          "label": "Double bass",
+          "score": 0.007188619114458561
+        }
+      ]
+    },
+    {
+      "chunk_index": 4,
+      "start": 30.0,
+      "end": 40.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.4714830815792084,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.4714830815792084
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.09658263623714447
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.06285280734300613
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.04899913817644119
+        },
+        {
+          "label": "Guitar",
+          "score": 0.042412467300891876
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.041432347148656845
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.04061580449342728
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.02395566925406456
+        },
+        {
+          "label": "Cello",
+          "score": 0.01593312993645668
+        },
+        {
+          "label": "Double bass",
+          "score": 0.015186192467808723
+        },
+        {
+          "label": "String section",
+          "score": 0.013557433150708675
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.011811522766947746
+        },
+        {
+          "label": "Harp",
+          "score": 0.010504857636988163
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.007612863555550575
+        },
+        {
+          "label": "Jazz",
+          "score": 0.006623797118663788
+        }
+      ]
+    },
+    {
+      "chunk_index": 5,
+      "start": 37.5,
+      "end": 47.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.4291200637817383,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.4291200637817383
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.12710852921009064
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.04888618364930153
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.032462578266859055
+        },
+        {
+          "label": "Jazz",
+          "score": 0.03162555769085884
+        },
+        {
+          "label": "Guitar",
+          "score": 0.02422052063047886
+        },
+        {
+          "label": "Double bass",
+          "score": 0.023833591490983963
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.020105035975575447
+        },
+        {
+          "label": "Cello",
+          "score": 0.012688104063272476
+        },
+        {
+          "label": "Saxophone",
+          "score": 0.012649249285459518
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.012514164671301842
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.011837510392069817
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.011692334897816181
+        },
+        {
+          "label": "Percussion",
+          "score": 0.011375763453543186
+        },
+        {
+          "label": "Drum",
+          "score": 0.011274033226072788
+        }
+      ]
+    },
+    {
+      "chunk_index": 6,
+      "start": 45.0,
+      "end": 55.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.4126768112182617,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.4126768112182617
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.09518639743328094
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.08689974248409271
+        },
+        {
+          "label": "Guitar",
+          "score": 0.05181218311190605
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.04247454181313515
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.020876163616776466
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.02075301669538021
+        },
+        {
+          "label": "Double bass",
+          "score": 0.018524523824453354
+        },
+        {
+          "label": "Cello",
+          "score": 0.018479155376553535
+        },
+        {
+          "label": "Jazz",
+          "score": 0.017371032387018204
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.017015067860484123
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.013952632434666157
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.012959178537130356
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.011612724512815475
+        },
+        {
+          "label": "Brass instrument",
+          "score": 0.01010629441589117
+        }
+      ]
+    },
+    {
+      "chunk_index": 7,
+      "start": 52.5,
+      "end": 62.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.5207931995391846,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.5207931995391846
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.0965355932712555
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.09528712928295135
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.042949412018060684
+        },
+        {
+          "label": "Guitar",
+          "score": 0.03574833273887634
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.034208253026008606
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.017898371443152428
+        },
+        {
+          "label": "String section",
+          "score": 0.016685668379068375
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.015822257846593857
+        },
+        {
+          "label": "Cello",
+          "score": 0.014311941340565681
+        },
+        {
+          "label": "Double bass",
+          "score": 0.0093807652592659
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.00838528759777546
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.00718391640111804
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.006978399585932493
+        },
+        {
+          "label": "Classical music",
+          "score": 0.006930449046194553
+        }
+      ]
+    },
+    {
+      "chunk_index": 8,
+      "start": 60.0,
+      "end": 70.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.4482463598251343,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.4482463598251343
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.06909757107496262
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.06764040887355804
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.0625222697854042
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.04921043664216995
+        },
+        {
+          "label": "Double bass",
+          "score": 0.03540272265672684
+        },
+        {
+          "label": "Guitar",
+          "score": 0.02764733135700226
+        },
+        {
+          "label": "Zither",
+          "score": 0.024890881031751633
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.024235688149929047
+        },
+        {
+          "label": "Cello",
+          "score": 0.022816641256213188
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.01951475813984871
+        },
+        {
+          "label": "String section",
+          "score": 0.017206141725182533
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.015218066051602364
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.010199655778706074
+        },
+        {
+          "label": "Harp",
+          "score": 0.006029024254530668
+        }
+      ]
+    },
+    {
+      "chunk_index": 9,
+      "start": 67.5,
+      "end": 77.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.478039413690567,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.478039413690567
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.11265987157821655
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.07834191620349884
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.06430386751890182
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.0392436608672142
+        },
+        {
+          "label": "Cello",
+          "score": 0.027955995872616768
+        },
+        {
+          "label": "Guitar",
+          "score": 0.025318410247564316
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.016690492630004883
+        },
+        {
+          "label": "Double bass",
+          "score": 0.015536371618509293
+        },
+        {
+          "label": "String section",
+          "score": 0.012046239338815212
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.01079411432147026
+        },
+        {
+          "label": "Wedding music",
+          "score": 0.009870066307485104
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.007472853641957045
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.006711785681545734
+        },
+        {
+          "label": "Classical music",
+          "score": 0.005868802312761545
+        }
+      ]
+    },
+    {
+      "chunk_index": 10,
+      "start": 75.0,
+      "end": 85.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.43943116068840027,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.43943116068840027
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.1297285109758377
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.1259748637676239
+        },
+        {
+          "label": "Guitar",
+          "score": 0.05452347546815872
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.04528836905956268
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.041973184794187546
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.022713176906108856
+        },
+        {
+          "label": "String section",
+          "score": 0.019935576245188713
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.014041353017091751
+        },
+        {
+          "label": "Cello",
+          "score": 0.013240230269730091
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.011815031990408897
+        },
+        {
+          "label": "Country",
+          "score": 0.009071733802556992
+        },
+        {
+          "label": "Double bass",
+          "score": 0.006068974733352661
+        },
+        {
+          "label": "Wedding music",
+          "score": 0.005807960871607065
+        },
+        {
+          "label": "Classical music",
+          "score": 0.005765286274254322
+        }
+      ]
+    },
+    {
+      "chunk_index": 11,
+      "start": 82.5,
+      "end": 92.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.40505748987197876,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.40505748987197876
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.1505344659090042
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.12302742898464203
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.07099765539169312
+        },
+        {
+          "label": "Guitar",
+          "score": 0.047493498772382736
+        },
+        {
+          "label": "String section",
+          "score": 0.030381470918655396
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.023855246603488922
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.020274203270673752
+        },
+        {
+          "label": "Cello",
+          "score": 0.019209792837500572
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.012915498577058315
+        },
+        {
+          "label": "Double bass",
+          "score": 0.00966217927634716
+        },
+        {
+          "label": "Classical music",
+          "score": 0.009438627399504185
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.009412013925611973
+        },
+        {
+          "label": "Country",
+          "score": 0.006629313342273235
+        },
+        {
+          "label": "Strum",
+          "score": 0.00461793877184391
+        }
+      ]
+    },
+    {
+      "chunk_index": 12,
+      "start": 90.0,
+      "end": 100.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.4854135811328888,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.4854135811328888
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.14413326978683472
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.11232613772153854
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.03514135256409645
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.03251020237803459
+        },
+        {
+          "label": "Guitar",
+          "score": 0.030601833015680313
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.018056055530905724
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.01321717444807291
+        },
+        {
+          "label": "Country",
+          "score": 0.011555774137377739
+        },
+        {
+          "label": "String section",
+          "score": 0.008313099853694439
+        },
+        {
+          "label": "Bluegrass",
+          "score": 0.007269928231835365
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.0067216260358691216
+        },
+        {
+          "label": "Cello",
+          "score": 0.006664151791483164
+        },
+        {
+          "label": "Jazz",
+          "score": 0.006471578497439623
+        },
+        {
+          "label": "Double bass",
+          "score": 0.0055640945211052895
+        }
+      ]
+    },
+    {
+      "chunk_index": 13,
+      "start": 97.5,
+      "end": 107.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.618622362613678,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.618622362613678
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.09875048696994781
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.08608604222536087
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.02548009157180786
+        },
+        {
+          "label": "Guitar",
+          "score": 0.022582389414310455
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.020659323781728745
+        },
+        {
+          "label": "Country",
+          "score": 0.013869782909750938
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.012895557098090649
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.011188703589141369
+        },
+        {
+          "label": "Jazz",
+          "score": 0.008872703649103642
+        },
+        {
+          "label": "Bluegrass",
+          "score": 0.007687554694712162
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.003963950555771589
+        },
+        {
+          "label": "Double bass",
+          "score": 0.003909263294190168
+        },
+        {
+          "label": "Classical music",
+          "score": 0.0036152503453195095
+        },
+        {
+          "label": "Cello",
+          "score": 0.00316170253790915
+        }
+      ]
+    },
+    {
+      "chunk_index": 14,
+      "start": 105.0,
+      "end": 115.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.45736661553382874,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.45736661553382874
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.13965657353401184
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.1266789436340332
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.04615449905395508
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.041018471121788025
+        },
+        {
+          "label": "Guitar",
+          "score": 0.027737684547901154
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.01691240258514881
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.015784166753292084
+        },
+        {
+          "label": "Cello",
+          "score": 0.010355685837566853
+        },
+        {
+          "label": "String section",
+          "score": 0.009615392424166203
+        },
+        {
+          "label": "Country",
+          "score": 0.007404468022286892
+        },
+        {
+          "label": "Double bass",
+          "score": 0.006984374485909939
+        },
+        {
+          "label": "Classical music",
+          "score": 0.00680425763130188
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.005717704072594643
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.00553569570183754
+        }
+      ]
+    },
+    {
+      "chunk_index": 15,
+      "start": 112.5,
+      "end": 122.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.41731294989585876,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.41731294989585876
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.1365547627210617
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.11458306759595871
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.061773013323545456
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.04691532626748085
+        },
+        {
+          "label": "Guitar",
+          "score": 0.03750256076455116
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.01942145824432373
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.015280891209840775
+        },
+        {
+          "label": "String section",
+          "score": 0.013777066953480244
+        },
+        {
+          "label": "Cello",
+          "score": 0.012964488007128239
+        },
+        {
+          "label": "Country",
+          "score": 0.011212901212275028
+        },
+        {
+          "label": "Speech",
+          "score": 0.008217248134315014
+        },
+        {
+          "label": "Double bass",
+          "score": 0.007533886935561895
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.007525244727730751
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.006901681423187256
+        }
+      ]
+    },
+    {
+      "chunk_index": 16,
+      "start": 120.0,
+      "end": 130.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.3879702389240265,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.3879702389240265
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.16563856601715088
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.13195212185382843
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.06246648728847504
+        },
+        {
+          "label": "Guitar",
+          "score": 0.05068936198949814
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.031395018100738525
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0222280565649271
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.012853500433266163
+        },
+        {
+          "label": "String section",
+          "score": 0.010503954254090786
+        },
+        {
+          "label": "Cello",
+          "score": 0.008921508677303791
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.008342688903212547
+        },
+        {
+          "label": "Jazz",
+          "score": 0.007228398695588112
+        },
+        {
+          "label": "Double bass",
+          "score": 0.007054844405502081
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.006327399518340826
+        },
+        {
+          "label": "Strum",
+          "score": 0.006028834730386734
+        }
+      ]
+    },
+    {
+      "chunk_index": 17,
+      "start": 127.5,
+      "end": 137.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.5094903707504272,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.5094903707504272
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.13318468630313873
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.08916845917701721
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.06046722084283829
+        },
+        {
+          "label": "Double bass",
+          "score": 0.018582036718726158
+        },
+        {
+          "label": "Guitar",
+          "score": 0.014627089723944664
+        },
+        {
+          "label": "Jazz",
+          "score": 0.011796669103205204
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.010664061643183231
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.009962143376469612
+        },
+        {
+          "label": "Cello",
+          "score": 0.009839963167905807
+        },
+        {
+          "label": "Percussion",
+          "score": 0.008577375672757626
+        },
+        {
+          "label": "Drum",
+          "score": 0.007640103343874216
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.007285587955266237
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.00586197804659605
+        },
+        {
+          "label": "String section",
+          "score": 0.00457468768581748
+        }
+      ]
+    },
+    {
+      "chunk_index": 18,
+      "start": 135.0,
+      "end": 145.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.5098118782043457,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.5098118782043457
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.11102095991373062
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.08043545484542847
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.057136308401823044
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.04868339002132416
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.0282132551074028
+        },
+        {
+          "label": "Guitar",
+          "score": 0.022065982222557068
+        },
+        {
+          "label": "Cello",
+          "score": 0.01771923154592514
+        },
+        {
+          "label": "String section",
+          "score": 0.014378909952938557
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.014163588173687458
+        },
+        {
+          "label": "Double bass",
+          "score": 0.013364167883992195
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.008813448250293732
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.007246073801070452
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.00495609175413847
+        },
+        {
+          "label": "Country",
+          "score": 0.004677928518503904
+        }
+      ]
+    },
+    {
+      "chunk_index": 19,
+      "start": 142.5,
+      "end": 152.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6840239763259888,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6840239763259888
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.05825814977288246
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.04481092840433121
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.03224926441907883
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.02355533465743065
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.02067798748612404
+        },
+        {
+          "label": "String section",
+          "score": 0.013595661148428917
+        },
+        {
+          "label": "Guitar",
+          "score": 0.01216909196227789
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.011430975049734116
+        },
+        {
+          "label": "Cello",
+          "score": 0.008251423016190529
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.006337551400065422
+        },
+        {
+          "label": "Traditional music",
+          "score": 0.006160511635243893
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.005909943953156471
+        },
+        {
+          "label": "Double bass",
+          "score": 0.005633457098156214
+        },
+        {
+          "label": "Folk music",
+          "score": 0.0054608057253062725
+        }
+      ]
+    },
+    {
+      "chunk_index": 20,
+      "start": 150.0,
+      "end": 160.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6251609325408936,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6251609325408936
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.11960174143314362
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.04210582375526428
+        },
+        {
+          "label": "Guitar",
+          "score": 0.024534381926059723
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.02096402645111084
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.016860689967870712
+        },
+        {
+          "label": "Salsa music",
+          "score": 0.013495306484401226
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.01226540096104145
+        },
+        {
+          "label": "Jazz",
+          "score": 0.011696870438754559
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.007360332179814577
+        },
+        {
+          "label": "Zither",
+          "score": 0.006145428400486708
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.005717046558856964
+        },
+        {
+          "label": "Double bass",
+          "score": 0.005426493007689714
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.005047232378274202
+        },
+        {
+          "label": "Swing music",
+          "score": 0.004510749597102404
+        }
+      ]
+    },
+    {
+      "chunk_index": 21,
+      "start": 157.5,
+      "end": 167.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.452132910490036,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.452132910490036
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.3519369959831238
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.03711371868848801
+        },
+        {
+          "label": "Guitar",
+          "score": 0.030230239033699036
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.01997804455459118
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.013719876296818256
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.012598549947142601
+        },
+        {
+          "label": "Salsa music",
+          "score": 0.00557686435058713
+        },
+        {
+          "label": "Strum",
+          "score": 0.005525075364857912
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.005506690125912428
+        },
+        {
+          "label": "Country",
+          "score": 0.005292897578328848
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.0034763168077915907
+        },
+        {
+          "label": "Zither",
+          "score": 0.0033225384540855885
+        },
+        {
+          "label": "Bluegrass",
+          "score": 0.0031126514077186584
+        },
+        {
+          "label": "Jazz",
+          "score": 0.0029213922098279
+        }
+      ]
+    },
+    {
+      "chunk_index": 22,
+      "start": 165.0,
+      "end": 175.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.5212854146957397,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.5212854146957397
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.2944128215312958
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.04190429672598839
+        },
+        {
+          "label": "Guitar",
+          "score": 0.03111363761126995
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.017901381477713585
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.012938261032104492
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.00811705645173788
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.006146529223769903
+        },
+        {
+          "label": "Country",
+          "score": 0.0059956712648272514
+        },
+        {
+          "label": "Salsa music",
+          "score": 0.005531159229576588
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.004727641120553017
+        },
+        {
+          "label": "Strum",
+          "score": 0.0038311572279781103
+        },
+        {
+          "label": "Bluegrass",
+          "score": 0.003133202437311411
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.0030125160701572895
+        },
+        {
+          "label": "Folk music",
+          "score": 0.0021972001995891333
+        }
+      ]
+    },
+    {
+      "chunk_index": 23,
+      "start": 172.5,
+      "end": 182.5,
+      "duration": 10.0,
+      "top_label": "Flamenco",
+      "confidence": 0.4116973578929901,
+      "events": [
+        {
+          "label": "Flamenco",
+          "score": 0.4116973578929901
+        },
+        {
+          "label": "Music",
+          "score": 0.35478654503822327
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.05121167004108429
+        },
+        {
+          "label": "Guitar",
+          "score": 0.036824122071266174
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.02297932654619217
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.01748449169099331
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.011173492297530174
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.00980203878134489
+        },
+        {
+          "label": "Salsa music",
+          "score": 0.008518209680914879
+        },
+        {
+          "label": "Harp",
+          "score": 0.00834568589925766
+        },
+        {
+          "label": "Strum",
+          "score": 0.006586494855582714
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.005216608289629221
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.0047815944999456406
+        },
+        {
+          "label": "Zither",
+          "score": 0.0038082024548202753
+        },
+        {
+          "label": "Double bass",
+          "score": 0.0030609078239649534
+        }
+      ]
+    },
+    {
+      "chunk_index": 24,
+      "start": 180.0,
+      "end": 190.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.34925785660743713,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.34925785660743713
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.2922564744949341
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.0660044401884079
+        },
+        {
+          "label": "Guitar",
+          "score": 0.039723996073007584
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.034384481608867645
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.016453757882118225
+        },
+        {
+          "label": "Harp",
+          "score": 0.012109518051147461
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.011003385297954082
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.01074942760169506
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.010379085317254066
+        },
+        {
+          "label": "Zither",
+          "score": 0.009095476008951664
+        },
+        {
+          "label": "Country",
+          "score": 0.009059680625796318
+        },
+        {
+          "label": "Salsa music",
+          "score": 0.008644512854516506
+        },
+        {
+          "label": "Double bass",
+          "score": 0.008272133767604828
+        },
+        {
+          "label": "Strum",
+          "score": 0.00660769734531641
+        }
+      ]
+    },
+    {
+      "chunk_index": 25,
+      "start": 187.5,
+      "end": 197.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.47191473841667175,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.47191473841667175
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.22551701962947845
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.052298929542303085
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.037463657557964325
+        },
+        {
+          "label": "Guitar",
+          "score": 0.03416669741272926
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.015071604400873184
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.013142329640686512
+        },
+        {
+          "label": "Country",
+          "score": 0.012350492179393768
+        },
+        {
+          "label": "Salsa music",
+          "score": 0.011676816269755363
+        },
+        {
+          "label": "Bluegrass",
+          "score": 0.010217872448265553
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.010136754252016544
+        },
+        {
+          "label": "Speech",
+          "score": 0.007362108677625656
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.006586472038179636
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.005308222956955433
+        },
+        {
+          "label": "Strum",
+          "score": 0.004876749124377966
+        }
+      ]
+    },
+    {
+      "chunk_index": 26,
+      "start": 195.0,
+      "end": 205.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.5262020230293274,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.5262020230293274
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.18743270635604858
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.061239782720804214
+        },
+        {
+          "label": "Guitar",
+          "score": 0.045176103711128235
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.03273608162999153
+        },
+        {
+          "label": "Salsa music",
+          "score": 0.021872486919164658
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.019496416673064232
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.011525370180606842
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.007839605212211609
+        },
+        {
+          "label": "Country",
+          "score": 0.007531707640737295
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.006614907179027796
+        },
+        {
+          "label": "Bluegrass",
+          "score": 0.006098653189837933
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.0055987657979130745
+        },
+        {
+          "label": "Strum",
+          "score": 0.004638568963855505
+        },
+        {
+          "label": "Folk music",
+          "score": 0.0028534894809126854
+        }
+      ]
+    },
+    {
+      "chunk_index": 27,
+      "start": 202.5,
+      "end": 212.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.414204865694046,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.414204865694046
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.22993512451648712
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.08951766043901443
+        },
+        {
+          "label": "Guitar",
+          "score": 0.05867310240864754
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0543028861284256
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.0174309853464365
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.013854079879820347
+        },
+        {
+          "label": "Bluegrass",
+          "score": 0.010640833526849747
+        },
+        {
+          "label": "Country",
+          "score": 0.010410437360405922
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.009322640486061573
+        },
+        {
+          "label": "Salsa music",
+          "score": 0.008800704963505268
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.008281300775706768
+        },
+        {
+          "label": "Strum",
+          "score": 0.007949287071824074
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.004833015613257885
+        },
+        {
+          "label": "Jazz",
+          "score": 0.0038511331658810377
+        }
+      ]
+    },
+    {
+      "chunk_index": 28,
+      "start": 210.0,
+      "end": 220.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.3633914291858673,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.3633914291858673
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.20218956470489502
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.09133297950029373
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0411219447851181
+        },
+        {
+          "label": "Guitar",
+          "score": 0.03699907660484314
+        },
+        {
+          "label": "Salsa music",
+          "score": 0.029641861096024513
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.024055607616901398
+        },
+        {
+          "label": "Percussion",
+          "score": 0.016258105635643005
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.014919102191925049
+        },
+        {
+          "label": "Drum",
+          "score": 0.013020452111959457
+        },
+        {
+          "label": "Harp",
+          "score": 0.010965891182422638
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.00966805499047041
+        },
+        {
+          "label": "Country",
+          "score": 0.007275688927620649
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.007010896224528551
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.005830620415508747
+        }
+      ]
+    },
+    {
+      "chunk_index": 29,
+      "start": 217.5,
+      "end": 227.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.5673896670341492,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.5673896670341492
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.14810816943645477
+        },
+        {
+          "label": "Salsa music",
+          "score": 0.03585462272167206
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.03527848795056343
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.021632859483361244
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.019741777330636978
+        },
+        {
+          "label": "Guitar",
+          "score": 0.016456596553325653
+        },
+        {
+          "label": "Country",
+          "score": 0.012070467695593834
+        },
+        {
+          "label": "Percussion",
+          "score": 0.008931252174079418
+        },
+        {
+          "label": "Folk music",
+          "score": 0.008714472874999046
+        },
+        {
+          "label": "Bluegrass",
+          "score": 0.007124048192054033
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.006842259783297777
+        },
+        {
+          "label": "Speech",
+          "score": 0.00537160923704505
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.004778822418302298
+        },
+        {
+          "label": "Traditional music",
+          "score": 0.004266552627086639
+        }
+      ]
+    },
+    {
+      "chunk_index": 30,
+      "start": 225.0,
+      "end": 235.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6573256254196167,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6573256254196167
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.10151074081659317
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.03185706585645676
+        },
+        {
+          "label": "Guitar",
+          "score": 0.02092048153281212
+        },
+        {
+          "label": "Salsa music",
+          "score": 0.017786461859941483
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.015081269666552544
+        },
+        {
+          "label": "Country",
+          "score": 0.013323444873094559
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.01064714603126049
+        },
+        {
+          "label": "Bluegrass",
+          "score": 0.006544913165271282
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.006333915051072836
+        },
+        {
+          "label": "Jazz",
+          "score": 0.005511721596121788
+        },
+        {
+          "label": "Percussion",
+          "score": 0.004571208730340004
+        },
+        {
+          "label": "Happy music",
+          "score": 0.004355474375188351
+        },
+        {
+          "label": "Background music",
+          "score": 0.0042442153207957745
+        },
+        {
+          "label": "Folk music",
+          "score": 0.0041190991178154945
+        }
+      ]
+    },
+    {
+      "chunk_index": 31,
+      "start": 232.5,
+      "end": 242.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7059032320976257,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7059032320976257
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.04727083444595337
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.037732064723968506
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.01587117835879326
+        },
+        {
+          "label": "Guitar",
+          "score": 0.011894023045897484
+        },
+        {
+          "label": "Tap",
+          "score": 0.010714409872889519
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.009357688948512077
+        },
+        {
+          "label": "Computer keyboard",
+          "score": 0.009223832748830318
+        },
+        {
+          "label": "Country",
+          "score": 0.008237531408667564
+        },
+        {
+          "label": "Typing",
+          "score": 0.00801547896116972
+        },
+        {
+          "label": "Salsa music",
+          "score": 0.0070608328096568584
+        },
+        {
+          "label": "Percussion",
+          "score": 0.006313166581094265
+        },
+        {
+          "label": "Jazz",
+          "score": 0.005878850352019072
+        },
+        {
+          "label": "Speech",
+          "score": 0.005660864524543285
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.004662056919187307
+        }
+      ]
+    },
+    {
+      "chunk_index": 32,
+      "start": 240.0,
+      "end": 250.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6433169841766357,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6433169841766357
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.09126581996679306
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.05559557303786278
+        },
+        {
+          "label": "Guitar",
+          "score": 0.02731153555214405
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.026119207963347435
+        },
+        {
+          "label": "Country",
+          "score": 0.013910828158259392
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.00972756277769804
+        },
+        {
+          "label": "Bluegrass",
+          "score": 0.00783610250800848
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.007679582107812166
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.00723479688167572
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.007081499323248863
+        },
+        {
+          "label": "Percussion",
+          "score": 0.006151507142931223
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.005286461673676968
+        },
+        {
+          "label": "Tap",
+          "score": 0.005129987373948097
+        },
+        {
+          "label": "Folk music",
+          "score": 0.0036486065946519375
+        }
+      ]
+    },
+    {
+      "chunk_index": 33,
+      "start": 247.5,
+      "end": 257.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.4139716923236847,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.4139716923236847
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.11898329108953476
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.08380253612995148
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.0676049143075943
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.03664890304207802
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.034920770674943924
+        },
+        {
+          "label": "Double bass",
+          "score": 0.024025510996580124
+        },
+        {
+          "label": "Guitar",
+          "score": 0.02265380136668682
+        },
+        {
+          "label": "Cello",
+          "score": 0.021250668913125992
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.01572655700147152
+        },
+        {
+          "label": "String section",
+          "score": 0.014467110857367516
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.013067873194813728
+        },
+        {
+          "label": "Percussion",
+          "score": 0.011564495041966438
+        },
+        {
+          "label": "Drum",
+          "score": 0.009326490573585033
+        },
+        {
+          "label": "Classical music",
+          "score": 0.009200175292789936
+        }
+      ]
+    },
+    {
+      "chunk_index": 34,
+      "start": 255.0,
+      "end": 265.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.5064340829849243,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.5064340829849243
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.10521414875984192
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.07279733568429947
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.061785515397787094
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.03589451685547829
+        },
+        {
+          "label": "Cello",
+          "score": 0.03293755650520325
+        },
+        {
+          "label": "String section",
+          "score": 0.031237751245498657
+        },
+        {
+          "label": "Double bass",
+          "score": 0.025606313720345497
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.02038688212633133
+        },
+        {
+          "label": "Guitar",
+          "score": 0.012437700293958187
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.007762034423649311
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.007578562013804913
+        },
+        {
+          "label": "Classical music",
+          "score": 0.007293919567018747
+        },
+        {
+          "label": "Country",
+          "score": 0.005178567487746477
+        },
+        {
+          "label": "Jazz",
+          "score": 0.004354596603661776
+        }
+      ]
+    },
+    {
+      "chunk_index": 35,
+      "start": 262.5,
+      "end": 272.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6199086904525757,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6199086904525757
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.08004637062549591
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.04297562316060066
+        },
+        {
+          "label": "Guitar",
+          "score": 0.04231526330113411
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.023249812424182892
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.021555524319410324
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.02016742154955864
+        },
+        {
+          "label": "Country",
+          "score": 0.01528241392225027
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.014851468615233898
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.013716363348066807
+        },
+        {
+          "label": "Jazz",
+          "score": 0.009186459705233574
+        },
+        {
+          "label": "Bluegrass",
+          "score": 0.008134441450238228
+        },
+        {
+          "label": "Double bass",
+          "score": 0.007909870706498623
+        },
+        {
+          "label": "Strum",
+          "score": 0.0067179519683122635
+        },
+        {
+          "label": "Swing music",
+          "score": 0.006251750513911247
+        }
+      ]
+    },
+    {
+      "chunk_index": 36,
+      "start": 270.0,
+      "end": 280.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.440759539604187,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.440759539604187
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.14536845684051514
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.1314709484577179
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.05452277511358261
+        },
+        {
+          "label": "Guitar",
+          "score": 0.033709727227687836
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.021923212334513664
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.01952042244374752
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.018870892003178596
+        },
+        {
+          "label": "String section",
+          "score": 0.013742176815867424
+        },
+        {
+          "label": "Cello",
+          "score": 0.012562341056764126
+        },
+        {
+          "label": "Classical music",
+          "score": 0.010677644982933998
+        },
+        {
+          "label": "Double bass",
+          "score": 0.00865259487181902
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.00859604962170124
+        },
+        {
+          "label": "Country",
+          "score": 0.006726355291903019
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.003979068249464035
+        }
+      ]
+    },
+    {
+      "chunk_index": 37,
+      "start": 277.5,
+      "end": 287.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.42508208751678467,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.42508208751678467
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.11369362473487854
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.09003223478794098
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.0707436054944992
+        },
+        {
+          "label": "Guitar",
+          "score": 0.04719257354736328
+        },
+        {
+          "label": "Cello",
+          "score": 0.04213770478963852
+        },
+        {
+          "label": "Double bass",
+          "score": 0.028886819258332253
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.024817291647195816
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.02474183775484562
+        },
+        {
+          "label": "String section",
+          "score": 0.020877299830317497
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.012034261599183083
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.011138818226754665
+        },
+        {
+          "label": "Classical music",
+          "score": 0.009130153805017471
+        },
+        {
+          "label": "Country",
+          "score": 0.008807653561234474
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.005326181650161743
+        }
+      ]
+    },
+    {
+      "chunk_index": 38,
+      "start": 285.0,
+      "end": 295.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.37880682945251465,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.37880682945251465
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.1367877870798111
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.1198403462767601
+        },
+        {
+          "label": "Guitar",
+          "score": 0.07238107919692993
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.04492003098130226
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.04386364668607712
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.026026293635368347
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.019005777314305305
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.015517346560955048
+        },
+        {
+          "label": "String section",
+          "score": 0.014413833618164062
+        },
+        {
+          "label": "Double bass",
+          "score": 0.012821078300476074
+        },
+        {
+          "label": "Cello",
+          "score": 0.00938636064529419
+        },
+        {
+          "label": "Strum",
+          "score": 0.007545734290033579
+        },
+        {
+          "label": "Classical music",
+          "score": 0.00666881212964654
+        },
+        {
+          "label": "Jazz",
+          "score": 0.006587551441043615
+        }
+      ]
+    },
+    {
+      "chunk_index": 39,
+      "start": 292.5,
+      "end": 302.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.43770137429237366,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.43770137429237366
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.12871268391609192
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.09672564268112183
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.0719102993607521
+        },
+        {
+          "label": "Guitar",
+          "score": 0.05326380580663681
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.0383535772562027
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.02370985597372055
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.018567968159914017
+        },
+        {
+          "label": "String section",
+          "score": 0.016232069581747055
+        },
+        {
+          "label": "Cello",
+          "score": 0.012677948921918869
+        },
+        {
+          "label": "Double bass",
+          "score": 0.012357878498733044
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.009464723989367485
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.006736101116985083
+        },
+        {
+          "label": "Classical music",
+          "score": 0.006472465582191944
+        },
+        {
+          "label": "Traditional music",
+          "score": 0.005534638650715351
+        }
+      ]
+    },
+    {
+      "chunk_index": 40,
+      "start": 300.0,
+      "end": 310.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.5711429715156555,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.5711429715156555
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.10790517926216125
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.042524922639131546
+        },
+        {
+          "label": "Guitar",
+          "score": 0.03928716853260994
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.03164953365921974
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.028830833733081818
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.024873651564121246
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.018594739958643913
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.018365612253546715
+        },
+        {
+          "label": "Traditional music",
+          "score": 0.010801993310451508
+        },
+        {
+          "label": "Folk music",
+          "score": 0.009176376275718212
+        },
+        {
+          "label": "Country",
+          "score": 0.008313306607306004
+        },
+        {
+          "label": "Harp",
+          "score": 0.007011420093476772
+        },
+        {
+          "label": "Bluegrass",
+          "score": 0.0065740784630179405
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.00582415796816349
+        }
+      ]
+    },
+    {
+      "chunk_index": 41,
+      "start": 307.5,
+      "end": 317.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6427735686302185,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6427735686302185
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.086440809071064
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.032387927174568176
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.0269846823066473
+        },
+        {
+          "label": "Mandolin",
+          "score": 0.0216103196144104
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.019484497606754303
+        },
+        {
+          "label": "Guitar",
+          "score": 0.017839860171079636
+        },
+        {
+          "label": "Traditional music",
+          "score": 0.0174269899725914
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.017350565642118454
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.015105308964848518
+        },
+        {
+          "label": "Folk music",
+          "score": 0.01247329544275999
+        },
+        {
+          "label": "Harp",
+          "score": 0.011700073257088661
+        },
+        {
+          "label": "Country",
+          "score": 0.006452714558690786
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.005899906624108553
+        },
+        {
+          "label": "Bluegrass",
+          "score": 0.004640689119696617
+        }
+      ]
+    },
+    {
+      "chunk_index": 42,
+      "start": 315.0,
+      "end": 325.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6310988068580627,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6310988068580627
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.06826447695493698
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.0680295005440712
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.027318395674228668
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.026312213391065598
+        },
+        {
+          "label": "Guitar",
+          "score": 0.015103315003216267
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.011598985642194748
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.009758186526596546
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.009313231334090233
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.00732710026204586
+        },
+        {
+          "label": "Traditional music",
+          "score": 0.006995350122451782
+        },
+        {
+          "label": "Folk music",
+          "score": 0.00615256791934371
+        },
+        {
+          "label": "Salsa music",
+          "score": 0.005252517759799957
+        },
+        {
+          "label": "Country",
+          "score": 0.004925538785755634
+        },
+        {
+          "label": "String section",
+          "score": 0.004736076574772596
+        }
+      ]
+    },
+    {
+      "chunk_index": 43,
+      "start": 322.5,
+      "end": 332.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.5100597143173218,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.5100597143173218
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.08388964831829071
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.08203433454036713
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.03748037666082382
+        },
+        {
+          "label": "Cello",
+          "score": 0.03650052100419998
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.0336490236222744
+        },
+        {
+          "label": "Guitar",
+          "score": 0.02645046077668667
+        },
+        {
+          "label": "Double bass",
+          "score": 0.02521498315036297
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0202214103192091
+        },
+        {
+          "label": "Flamenco",
+          "score": 0.016223391517996788
+        },
+        {
+          "label": "Orchestra",
+          "score": 0.01495593786239624
+        },
+        {
+          "label": "Classical music",
+          "score": 0.010679340921342373
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.00916073564440012
+        },
+        {
+          "label": "Swing music",
+          "score": 0.008729330264031887
+        },
+        {
+          "label": "String section",
+          "score": 0.008644407615065575
+        }
+      ]
+    },
+    {
+      "chunk_index": 44,
+      "start": 330.0,
+      "end": 339.9735,
+      "duration": 9.9735,
+      "top_label": "Music",
+      "confidence": 0.71767657995224,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.71767657995224
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.0632682666182518
+        },
+        {
+          "label": "Bowed string instrument",
+          "score": 0.04149400442838669
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.020893866196274757
+        },
+        {
+          "label": "Guitar",
+          "score": 0.020199645310640335
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.01694900169968605
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.013074890710413456
+        },
+        {
+          "label": "Cello",
+          "score": 0.011087635532021523
+        },
+        {
+          "label": "Silence",
+          "score": 0.008606642484664917
+        },
+        {
+          "label": "Double bass",
+          "score": 0.0065604886040091515
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.004794005770236254
+        },
+        {
+          "label": "Classical music",
+          "score": 0.004306311719119549
+        },
+        {
+          "label": "Music of Latin America",
+          "score": 0.003757115453481674
+        },
+        {
+          "label": "Piano",
+          "score": 0.0036660467740148306
+        },
+        {
+          "label": "Harp",
+          "score": 0.003584332996979356
+        }
+      ]
+    },
+    {
+      "chunk_index": 45,
+      "start": 337.5,
+      "end": 339.9735,
+      "duration": 2.4735,
+      "top_label": "Silence",
+      "confidence": 0.8083425760269165,
+      "events": [
+        {
+          "label": "Silence",
+          "score": 0.8083425760269165
+        },
+        {
+          "label": "Music",
+          "score": 0.0858965739607811
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.005746374372392893
+        },
+        {
+          "label": "Speech",
+          "score": 0.004321034532040358
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.003716976847499609
+        },
+        {
+          "label": "Sidetone",
+          "score": 0.003488577902317047
+        },
+        {
+          "label": "Outside, rural or natural",
+          "score": 0.002308401046320796
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.001889960141852498
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0018450765637680888
+        },
+        {
+          "label": "Guitar",
+          "score": 0.0017770412378013134
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.0016835852293297648
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.001414980972185731
+        },
+        {
+          "label": "Dance music",
+          "score": 0.001181413303129375
+        },
+        {
+          "label": "Singing bowl",
+          "score": 0.0011266653891652822
+        },
+        {
+          "label": "Percussion",
+          "score": 0.0010247541358694434
+        }
+      ]
+    }
+  ],
+  "label_set": [
+    "Speech",
+    "Male speech, man speaking",
+    "Female speech, woman speaking",
+    "Child speech, kid speaking",
+    "Conversation",
+    "Narration, monologue",
+    "Babbling",
+    "Speech synthesizer",
+    "Shout",
+    "Bellow",
+    "Whoop",
+    "Yell",
+    "Battle cry",
+    "Children shouting",
+    "Screaming",
+    "Whispering",
+    "Laughter",
+    "Baby laughter",
+    "Giggle",
+    "Snicker",
+    "Belly laugh",
+    "Chuckle, chortle",
+    "Crying, sobbing",
+    "Baby cry, infant cry",
+    "Whimper",
+    "Wail, moan",
+    "Sigh",
+    "Singing",
+    "Choir",
+    "Yodeling",
+    "Chant",
+    "Mantra",
+    "Male singing",
+    "Female singing",
+    "Child singing",
+    "Synthetic singing",
+    "Rapping",
+    "Humming",
+    "Groan",
+    "Grunt",
+    "Whistling",
+    "Breathing",
+    "Wheeze",
+    "Snoring",
+    "Gasp",
+    "Pant",
+    "Snort",
+    "Cough",
+    "Throat clearing",
+    "Sneeze",
+    "Sniff",
+    "Run",
+    "Shuffle",
+    "Walk, footsteps",
+    "Chewing, mastication",
+    "Biting",
+    "Gargling",
+    "Stomach rumble",
+    "Burping, eructation",
+    "Hiccup",
+    "Fart",
+    "Hands",
+    "Finger snapping",
+    "Clapping",
+    "Heart sounds, heartbeat",
+    "Heart murmur",
+    "Cheering",
+    "Applause",
+    "Chatter",
+    "Crowd",
+    "Hubbub, speech noise, speech babble",
+    "Children playing",
+    "Animal",
+    "Domestic animals, pets",
+    "Dog",
+    "Bark",
+    "Yip",
+    "Howl",
+    "Bow-wow",
+    "Growling",
+    "Whimper (dog)",
+    "Cat",
+    "Purr",
+    "Meow",
+    "Hiss",
+    "Caterwaul",
+    "Livestock, farm animals, working animals",
+    "Horse",
+    "Clip-clop",
+    "Neigh, whinny",
+    "Cattle, bovinae",
+    "Moo",
+    "Cowbell",
+    "Pig",
+    "Oink",
+    "Goat",
+    "Bleat",
+    "Sheep",
+    "Fowl",
+    "Chicken, rooster",
+    "Cluck",
+    "Crowing, cock-a-doodle-doo",
+    "Turkey",
+    "Gobble",
+    "Duck",
+    "Quack",
+    "Goose",
+    "Honk",
+    "Wild animals",
+    "Roaring cats (lions, tigers)",
+    "Roar",
+    "Bird",
+    "Bird vocalization, bird call, bird song",
+    "Chirp, tweet",
+    "Squawk",
+    "Pigeon, dove",
+    "Coo",
+    "Crow",
+    "Caw",
+    "Owl",
+    "Hoot",
+    "Bird flight, flapping wings",
+    "Canidae, dogs, wolves",
+    "Rodents, rats, mice",
+    "Mouse",
+    "Patter",
+    "Insect",
+    "Cricket",
+    "Mosquito",
+    "Fly, housefly",
+    "Buzz",
+    "Bee, wasp, etc.",
+    "Frog",
+    "Croak",
+    "Snake",
+    "Rattle",
+    "Whale vocalization",
+    "Music",
+    "Musical instrument",
+    "Plucked string instrument",
+    "Guitar",
+    "Electric guitar",
+    "Bass guitar",
+    "Acoustic guitar",
+    "Steel guitar, slide guitar",
+    "Tapping (guitar technique)",
+    "Strum",
+    "Banjo",
+    "Sitar",
+    "Mandolin",
+    "Zither",
+    "Ukulele",
+    "Keyboard (musical)",
+    "Piano",
+    "Electric piano",
+    "Organ",
+    "Electronic organ",
+    "Hammond organ",
+    "Synthesizer",
+    "Sampler",
+    "Harpsichord",
+    "Percussion",
+    "Drum kit",
+    "Drum machine",
+    "Drum",
+    "Snare drum",
+    "Rimshot",
+    "Drum roll",
+    "Bass drum",
+    "Timpani",
+    "Tabla",
+    "Cymbal",
+    "Hi-hat",
+    "Wood block",
+    "Tambourine",
+    "Rattle (instrument)",
+    "Maraca",
+    "Gong",
+    "Tubular bells",
+    "Mallet percussion",
+    "Marimba, xylophone",
+    "Glockenspiel",
+    "Vibraphone",
+    "Steelpan",
+    "Orchestra",
+    "Brass instrument",
+    "French horn",
+    "Trumpet",
+    "Trombone",
+    "Bowed string instrument",
+    "String section",
+    "Violin, fiddle",
+    "Pizzicato",
+    "Cello",
+    "Double bass",
+    "Wind instrument, woodwind instrument",
+    "Flute",
+    "Saxophone",
+    "Clarinet",
+    "Harp",
+    "Bell",
+    "Church bell",
+    "Jingle bell",
+    "Bicycle bell",
+    "Tuning fork",
+    "Chime",
+    "Wind chime",
+    "Change ringing (campanology)",
+    "Harmonica",
+    "Accordion",
+    "Bagpipes",
+    "Didgeridoo",
+    "Shofar",
+    "Theremin",
+    "Singing bowl",
+    "Scratching (performance technique)",
+    "Pop music",
+    "Hip hop music",
+    "Beatboxing",
+    "Rock music",
+    "Heavy metal",
+    "Punk rock",
+    "Grunge",
+    "Progressive rock",
+    "Rock and roll",
+    "Psychedelic rock",
+    "Rhythm and blues",
+    "Soul music",
+    "Reggae",
+    "Country",
+    "Swing music",
+    "Bluegrass",
+    "Funk",
+    "Folk music",
+    "Middle Eastern music",
+    "Jazz",
+    "Disco",
+    "Classical music",
+    "Opera",
+    "Electronic music",
+    "House music",
+    "Techno",
+    "Dubstep",
+    "Drum and bass",
+    "Electronica",
+    "Electronic dance music",
+    "Ambient music",
+    "Trance music",
+    "Music of Latin America",
+    "Salsa music",
+    "Flamenco",
+    "Blues",
+    "Music for children",
+    "New-age music",
+    "Vocal music",
+    "A capella",
+    "Music of Africa",
+    "Afrobeat",
+    "Christian music",
+    "Gospel music",
+    "Music of Asia",
+    "Carnatic music",
+    "Music of Bollywood",
+    "Ska",
+    "Traditional music",
+    "Independent music",
+    "Song",
+    "Background music",
+    "Theme music",
+    "Jingle (music)",
+    "Soundtrack music",
+    "Lullaby",
+    "Video game music",
+    "Christmas music",
+    "Dance music",
+    "Wedding music",
+    "Happy music",
+    "Funny music",
+    "Sad music",
+    "Tender music",
+    "Exciting music",
+    "Angry music",
+    "Scary music",
+    "Wind",
+    "Rustling leaves",
+    "Wind noise (microphone)",
+    "Thunderstorm",
+    "Thunder",
+    "Water",
+    "Rain",
+    "Raindrop",
+    "Rain on surface",
+    "Stream",
+    "Waterfall",
+    "Ocean",
+    "Waves, surf",
+    "Steam",
+    "Gurgling",
+    "Fire",
+    "Crackle",
+    "Vehicle",
+    "Boat, Water vehicle",
+    "Sailboat, sailing ship",
+    "Rowboat, canoe, kayak",
+    "Motorboat, speedboat",
+    "Ship",
+    "Motor vehicle (road)",
+    "Car",
+    "Vehicle horn, car horn, honking",
+    "Toot",
+    "Car alarm",
+    "Power windows, electric windows",
+    "Skidding",
+    "Tire squeal",
+    "Car passing by",
+    "Race car, auto racing",
+    "Truck",
+    "Air brake",
+    "Air horn, truck horn",
+    "Reversing beeps",
+    "Ice cream truck, ice cream van",
+    "Bus",
+    "Emergency vehicle",
+    "Police car (siren)",
+    "Ambulance (siren)",
+    "Fire engine, fire truck (siren)",
+    "Motorcycle",
+    "Traffic noise, roadway noise",
+    "Rail transport",
+    "Train",
+    "Train whistle",
+    "Train horn",
+    "Railroad car, train wagon",
+    "Train wheels squealing",
+    "Subway, metro, underground",
+    "Aircraft",
+    "Aircraft engine",
+    "Jet engine",
+    "Propeller, airscrew",
+    "Helicopter",
+    "Fixed-wing aircraft, airplane",
+    "Bicycle",
+    "Skateboard",
+    "Engine",
+    "Light engine (high frequency)",
+    "Dental drill, dentist's drill",
+    "Lawn mower",
+    "Chainsaw",
+    "Medium engine (mid frequency)",
+    "Heavy engine (low frequency)",
+    "Engine knocking",
+    "Engine starting",
+    "Idling",
+    "Accelerating, revving, vroom",
+    "Door",
+    "Doorbell",
+    "Ding-dong",
+    "Sliding door",
+    "Slam",
+    "Knock",
+    "Tap",
+    "Squeak",
+    "Cupboard open or close",
+    "Drawer open or close",
+    "Dishes, pots, and pans",
+    "Cutlery, silverware",
+    "Chopping (food)",
+    "Frying (food)",
+    "Microwave oven",
+    "Blender",
+    "Water tap, faucet",
+    "Sink (filling or washing)",
+    "Bathtub (filling or washing)",
+    "Hair dryer",
+    "Toilet flush",
+    "Toothbrush",
+    "Electric toothbrush",
+    "Vacuum cleaner",
+    "Zipper (clothing)",
+    "Keys jangling",
+    "Coin (dropping)",
+    "Scissors",
+    "Electric shaver, electric razor",
+    "Shuffling cards",
+    "Typing",
+    "Typewriter",
+    "Computer keyboard",
+    "Writing",
+    "Alarm",
+    "Telephone",
+    "Telephone bell ringing",
+    "Ringtone",
+    "Telephone dialing, DTMF",
+    "Dial tone",
+    "Busy signal",
+    "Alarm clock",
+    "Siren",
+    "Civil defense siren",
+    "Buzzer",
+    "Smoke detector, smoke alarm",
+    "Fire alarm",
+    "Foghorn",
+    "Whistle",
+    "Steam whistle",
+    "Mechanisms",
+    "Ratchet, pawl",
+    "Clock",
+    "Tick",
+    "Tick-tock",
+    "Gears",
+    "Pulleys",
+    "Sewing machine",
+    "Mechanical fan",
+    "Air conditioning",
+    "Cash register",
+    "Printer",
+    "Camera",
+    "Single-lens reflex camera",
+    "Tools",
+    "Hammer",
+    "Jackhammer",
+    "Sawing",
+    "Filing (rasp)",
+    "Sanding",
+    "Power tool",
+    "Drill",
+    "Explosion",
+    "Gunshot, gunfire",
+    "Machine gun",
+    "Fusillade",
+    "Artillery fire",
+    "Cap gun",
+    "Fireworks",
+    "Firecracker",
+    "Burst, pop",
+    "Eruption",
+    "Boom",
+    "Wood",
+    "Chop",
+    "Splinter",
+    "Crack",
+    "Glass",
+    "Chink, clink",
+    "Shatter",
+    "Liquid",
+    "Splash, splatter",
+    "Slosh",
+    "Squish",
+    "Drip",
+    "Pour",
+    "Trickle, dribble",
+    "Gush",
+    "Fill (with liquid)",
+    "Spray",
+    "Pump (liquid)",
+    "Stir",
+    "Boiling",
+    "Sonar",
+    "Arrow",
+    "Whoosh, swoosh, swish",
+    "Thump, thud",
+    "Thunk",
+    "Electronic tuner",
+    "Effects unit",
+    "Chorus effect",
+    "Basketball bounce",
+    "Bang",
+    "Slap, smack",
+    "Whack, thwack",
+    "Smash, crash",
+    "Breaking",
+    "Bouncing",
+    "Whip",
+    "Flap",
+    "Scratch",
+    "Scrape",
+    "Rub",
+    "Roll",
+    "Crushing",
+    "Crumpling, crinkling",
+    "Tearing",
+    "Beep, bleep",
+    "Ping",
+    "Ding",
+    "Clang",
+    "Squeal",
+    "Creak",
+    "Rustle",
+    "Whir",
+    "Clatter",
+    "Sizzle",
+    "Clicking",
+    "Clickety-clack",
+    "Rumble",
+    "Plop",
+    "Jingle, tinkle",
+    "Hum",
+    "Zing",
+    "Boing",
+    "Crunch",
+    "Silence",
+    "Sine wave",
+    "Harmonic",
+    "Chirp tone",
+    "Sound effect",
+    "Pulse",
+    "Inside, small room",
+    "Inside, large room or hall",
+    "Inside, public space",
+    "Outside, urban or manmade",
+    "Outside, rural or natural",
+    "Reverberation",
+    "Echo",
+    "Noise",
+    "Environmental noise",
+    "Static",
+    "Mains hum",
+    "Distortion",
+    "Sidetone",
+    "Cacophony",
+    "White noise",
+    "Pink noise",
+    "Throbbing",
+    "Vibration",
+    "Television",
+    "Radio",
+    "Field recording"
+  ],
+  "num_labels": 527,
+  "processing_time": 2.776,
+  "metadata": {
+    "filename": "Zyryab.mp3",
+    "filepath": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\..\\..\\docs\\Audio\\Zyryab.mp3",
+    "analyzer": "audio_event_classifier",
+    "version": "0.1.0",
+    "model_name": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "model_labels_count": 527,
+    "device": "cuda",
+    "sample_rate": 16000,
+    "window_seconds": 10.0,
+    "overlap": 0.25,
+    "num_chunks": 46,
+    "timestamp": "2025-10-12T14:49:27.644128"
+  }
+}

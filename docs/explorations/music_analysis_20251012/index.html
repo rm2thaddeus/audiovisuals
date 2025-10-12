@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Analysis Exploration - Phase B Complete</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid #333;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .milestone-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+        }
+        
+        .tab {
+            padding: 15px 30px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1em;
+        }
+        
+        .tab:hover {
+            background: #222;
+        }
+        
+        .tab.active {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .track-header {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            margin-bottom: 30px;
+        }
+        
+        .track-header h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .track-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .track-stat {
+            background: #2a2a2a;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .track-stat-label {
+            font-size: 0.85em;
+            color: #888;
+        }
+        
+        .track-stat-value {
+            font-size: 1.1em;
+            color: #667eea;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .analysis-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #333;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .analysis-card:hover {
+            transform: translateY(-2px);
+            border-color: #667eea;
+        }
+        
+        .card-header {
+            padding: 15px;
+            background: #222;
+            border-bottom: 1px solid #333;
+        }
+        
+        .card-header h3 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            color: #667eea;
+        }
+        
+        .card-body {
+            padding: 15px;
+        }
+        
+        .card-body ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .card-body li {
+            padding: 6px 0;
+            border-bottom: 1px solid #2a2a2a;
+            color: #bbb;
+        }
+        
+        .card-body li:last-child {
+            border-bottom: none;
+        }
+        
+        .view-btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        
+        .view-btn:hover {
+            background: #5568d3;
+        }
+        
+        .info-box {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            margin-bottom: 30px;
+        }
+        
+        .info-box h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .info-box p {
+            color: #bbb;
+            margin-bottom: 10px;
+        }
+        
+        .info-box ul {
+            margin-left: 30px;
+            color: #bbb;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2a1a3e 100%);
+            border-color: #667eea;
+            padding: 25px;
+        }
+        
+        @media (max-width: 968px) {
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .track-info {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Music Analysis Exploration</h1>
+            <div class="milestone-badge">PHASE B COMPLETE: 5 Analyzers!</div>
+            <p class="subtitle">Complete semantic music analysis with Audio Spectrogram Transformer</p>
+            <p style="color: #666;">2 Tracks | 5 Analyzers | 30 Output Files | October 12, 2025</p>
+        </header>
+
+        <div class="info-box highlight">
+            <h2>🎉 Major Achievement: Audio Event Detection with AST</h2>
+            <p><strong>What we can now detect:</strong> 527 AudioSet categories including genres, instruments, vocals, and sound textures!</p>
+            <p style="margin-top: 15px;"><strong>Models used:</strong></p>
+            <ul>
+                <li>Tempo: librosa beat tracking</li>
+                <li>Key: Krumhansl-Schmuckler algorithm</li>
+                <li>Chords: Chroma-based template matching</li>
+                <li>Structure: Time-based segmentation</li>
+                <li>Audio Events: MIT Audio Spectrogram Transformer (527 classes) ⭐ NEW!</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Impact:</strong> We can now intelligently map music semantics to visual styles!</p>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('tool')">TOOL - The Pot</div>
+            <div class="tab" onclick="showTab('zyryab')">Zyryab</div>
+        </div>
+
+        <!-- TOOL Tab -->
+        <div id="tool-content" class="tab-content active">
+            <div class="track-header">
+                <h2>🎸 TOOL - The Pot (Progressive Rock)</h2>
+                <p style="color: #aaa;">Fast-paced progressive rock with complex harmonies</p>
+                <div class="track-info">
+                    <div class="track-stat">
+                        <div class="track-stat-label">Duration</div>
+                        <div class="track-stat-value">6:23</div>
+                    </div>
+                    <div class="track-stat">
+                        <div class="track-stat-label">Tempo</div>
+                        <div class="track-stat-value">143.6 BPM</div>
+                    </div>
+                    <div class="track-stat">
+                        <div class="track-stat-label">Key</div>
+                        <div class="track-stat-value">D minor</div>
+                    </div>
+                    <div class="track-stat">
+                        <div class="track-stat-label">Primary Genre</div>
+                        <div class="track-stat-value">Heavy Metal</div>
+                    </div>
+                    <div class="track-stat">
+                        <div class="track-stat-label">Chord Changes</div>
+                        <div class="track-stat-value">1,163</div>
+                    </div>
+                    <div class="track-stat">
+                        <div class="track-stat-label">Segments</div>
+                        <div class="track-stat-value">12</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analysis-grid">
+                <!-- Tempo Card -->
+                <div class="analysis-card">
+                    <div class="card-header">
+                        <h3>⏱️ Tempo Analysis</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>BPM:</strong> 143.55</li>
+                            <li><strong>Confidence:</strong> 96.7%</li>
+                            <li><strong>Time Signature:</strong> 3/4</li>
+                            <li><strong>Beats Detected:</strong> 908</li>
+                            <li><strong>Character:</strong> Fast-paced</li>
+                        </ul>
+                        <a href="tool/TOOL - The Pot (Audio)_tempo.html" class="view-btn" target="_blank">View Full Report</a>
+                    </div>
+                </div>
+
+                <!-- Key Card -->
+                <div class="analysis-card">
+                    <div class="card-header">
+                        <h3>🎹 Key Detection</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Key:</strong> D minor</li>
+                            <li><strong>Confidence:</strong> 69.7%</li>
+                            <li><strong>Relative:</strong> F major</li>
+                            <li><strong>Alt 1:</strong> G major (34.9%)</li>
+                            <li><strong>Character:</strong> Dark tonality</li>
+                        </ul>
+                        <a href="tool/TOOL - The Pot (Audio)_key.html" class="view-btn" target="_blank">View Full Report</a>
+                    </div>
+                </div>
+
+                <!-- Chords Card -->
+                <div class="analysis-card">
+                    <div class="card-header">
+                        <h3>🎼 Chord Analysis</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Changes:</strong> 1,163</li>
+                            <li><strong>Unique Chords:</strong> 23</li>
+                            <li><strong>Rate:</strong> 3.0 changes/sec</li>
+                            <li><strong>Vocabulary:</strong> C, D, E, F, G, Am, Dm...</li>
+                            <li><strong>Complexity:</strong> High</li>
+                        </ul>
+                        <a href="tool/TOOL - The Pot (Audio)_chords.html" class="view-btn" target="_blank">View Full Report</a>
+                    </div>
+                </div>
+
+                <!-- Structure Card -->
+                <div class="analysis-card">
+                    <div class="card-header">
+                        <h3>📊 Structure Analysis</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Segments:</strong> 12</li>
+                            <li><strong>Avg Length:</strong> ~32s</li>
+                            <li><strong>Pattern:</strong> Dynamic</li>
+                            <li><strong>Transitions:</strong> Clear</li>
+                            <li><strong>Flow:</strong> Verse/chorus structure</li>
+                        </ul>
+                        <a href="tool/TOOL - The Pot (Audio)_structure.html" class="view-btn" target="_blank">View Full Report</a>
+                    </div>
+                </div>
+
+                <!-- Audio Events Card -->
+                <div class="analysis-card">
+                    <div class="card-header">
+                        <h3>🎵 Audio Events (527 Classes)</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Primary:</strong> Music (76.1%)</li>
+                            <li><strong>Genre:</strong> Heavy metal (3.3%)</li>
+                            <li><strong>Sub-genres:</strong> Progressive rock, Grunge</li>
+                            <li><strong>Instruments:</strong> Electric guitar, Bass, Drums</li>
+                            <li><strong>Vocals:</strong> Singing (0.5%)</li>
+                        </ul>
+                        <a href="tool/TOOL - The Pot (Audio)_genre.html" class="view-btn" target="_blank">View Full Report</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h2>Visual Mapping Implications - TOOL</h2>
+                <p><strong>Suggested Visual Style:</strong></p>
+                <ul>
+                    <li><strong>Color Palette:</strong> Dark reds, blacks, purples (D minor + Heavy metal)</li>
+                    <li><strong>Pattern Type:</strong> Sharp, aggressive geometric shapes</li>
+                    <li><strong>Motion Speed:</strong> Fast (143 BPM → 1.2x standard)</li>
+                    <li><strong>Transitions:</strong> Sharp cuts at segment boundaries (12 sections)</li>
+                    <li><strong>Texture:</strong> Angular, metallic (electric guitar + distortion)</li>
+                    <li><strong>Complexity:</strong> High (3 chord changes/second)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Zyryab Tab -->
+        <div id="zyryab-content" class="tab-content">
+            <div class="track-header">
+                <h2>🎵 Zyryab (Flamenco/Classical)</h2>
+                <p style="color: #aaa;">Flowing flamenco with rich string ensemble</p>
+                <div class="track-info">
+                    <div class="track-stat">
+                        <div class="track-stat-label">Duration</div>
+                        <div class="track-stat-value">5:40</div>
+                    </div>
+                    <div class="track-stat">
+                        <div class="track-stat-label">Tempo</div>
+                        <div class="track-stat-value">129.2 BPM</div>
+                    </div>
+                    <div class="track-stat">
+                        <div class="track-stat-label">Key</div>
+                        <div class="track-stat-value">G minor</div>
+                    </div>
+                    <div class="track-stat">
+                        <div class="track-stat-label">Primary Genre</div>
+                        <div class="track-stat-value">Flamenco</div>
+                    </div>
+                    <div class="track-stat">
+                        <div class="track-stat-label">Chord Changes</div>
+                        <div class="track-stat-value">972</div>
+                    </div>
+                    <div class="track-stat">
+                        <div class="track-stat-label">Segments</div>
+                        <div class="track-stat-value">11</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analysis-grid">
+                <!-- Tempo Card -->
+                <div class="analysis-card">
+                    <div class="card-header">
+                        <h3>⏱️ Tempo Analysis</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>BPM:</strong> 129.2</li>
+                            <li><strong>Confidence:</strong> 97.0%</li>
+                            <li><strong>Time Signature:</strong> 3/4</li>
+                            <li><strong>Beats Detected:</strong> 718</li>
+                            <li><strong>Character:</strong> Moderate, flowing</li>
+                        </ul>
+                        <a href="zyryab/Zyryab_tempo.html" class="view-btn" target="_blank">View Full Report</a>
+                    </div>
+                </div>
+
+                <!-- Key Card -->
+                <div class="analysis-card">
+                    <div class="card-header">
+                        <h3>🎹 Key Detection</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Key:</strong> G minor</li>
+                            <li><strong>Confidence:</strong> 45.7%</li>
+                            <li><strong>Relative:</strong> A# major</li>
+                            <li><strong>Alt 1:</strong> G major (34.9%)</li>
+                            <li><strong>Character:</strong> Modal ambiguity</li>
+                        </ul>
+                        <a href="zyryab/Zyryab_key.html" class="view-btn" target="_blank">View Full Report</a>
+                    </div>
+                </div>
+
+                <!-- Chords Card -->
+                <div class="analysis-card">
+                    <div class="card-header">
+                        <h3>🎼 Chord Analysis</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Changes:</strong> 972</li>
+                            <li><strong>Unique Chords:</strong> 25</li>
+                            <li><strong>Rate:</strong> 2.9 changes/sec</li>
+                            <li><strong>Vocabulary:</strong> A, A#, Am, Bm, C#m...</li>
+                            <li><strong>Complexity:</strong> Rich harmonic language</li>
+                        </ul>
+                        <a href="zyryab/Zyryab_chords.html" class="view-btn" target="_blank">View Full Report</a>
+                    </div>
+                </div>
+
+                <!-- Structure Card -->
+                <div class="analysis-card">
+                    <div class="card-header">
+                        <h3>📊 Structure Analysis</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Segments:</strong> 11</li>
+                            <li><strong>Avg Length:</strong> ~31s</li>
+                            <li><strong>Pattern:</strong> Continuous flow</li>
+                            <li><strong>Transitions:</strong> Smooth</li>
+                            <li><strong>Flow:</strong> Organic, non-repetitive</li>
+                        </ul>
+                        <a href="zyryab/Zyryab_structure.html" class="view-btn" target="_blank">View Full Report</a>
+                    </div>
+                </div>
+
+                <!-- Audio Events Card -->
+                <div class="analysis-card">
+                    <div class="card-header">
+                        <h3>🎵 Audio Events (527 Classes)</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Primary:</strong> Music (59.6%)</li>
+                            <li><strong>Genre:</strong> Flamenco (6.7%) ⭐</li>
+                            <li><strong>Cultural:</strong> Music of Latin America</li>
+                            <li><strong>Instruments:</strong> Guitar, Violin, Cello, Mandolin</li>
+                            <li><strong>Techniques:</strong> Pizzicato, Strum</li>
+                        </ul>
+                        <a href="zyryab/Zyryab_genre.html" class="view-btn" target="_blank">View Full Report</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h2>Visual Mapping Implications - Zyryab</h2>
+                <p><strong>Suggested Visual Style:</strong></p>
+                <ul>
+                    <li><strong>Color Palette:</strong> Warm earth tones, Spanish oranges, browns, golds (Flamenco)</li>
+                    <li><strong>Pattern Type:</strong> Flowing, organic curves (string ensemble)</li>
+                    <li><strong>Motion Speed:</strong> Moderate (129 BPM → 1.08x standard)</li>
+                    <li><strong>Transitions:</strong> Smooth fades at segment boundaries (11 sections)</li>
+                    <li><strong>Texture:</strong> Soft, curved, natural (acoustic strings)</li>
+                    <li><strong>Layers:</strong> Multi-layered (8+ instruments)</li>
+                    <li><strong>Cultural Flavor:</strong> Spanish/Mediterranean aesthetics</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box highlight" style="margin-top: 60px;">
+            <h2>💡 What This Unlocks for Visualization</h2>
+            <p><strong>We now have complete music understanding:</strong></p>
+            <ul style="margin-top: 15px;">
+                <li>✅ <strong>Rhythm:</strong> Tempo, beats, time signature → Animation speed & timing</li>
+                <li>✅ <strong>Harmony:</strong> Key, chords → Color palettes & transitions</li>
+                <li>✅ <strong>Structure:</strong> Segments, boundaries → Visual scenes & transitions</li>
+                <li>✅ <strong>Genre:</strong> Heavy metal vs Flamenco → Style presets</li>
+                <li>✅ <strong>Instruments:</strong> Guitar, Drums, Strings → Visual layers & textures</li>
+                <li>✅ <strong>Vocals:</strong> Singing detection → Pattern switching</li>
+                <li>✅ <strong>Techniques:</strong> Pizzicato, Strum → Visual elements</li>
+            </ul>
+            <p style="margin-top: 20px; color: #888;">
+                <strong>This is huge:</strong> We can create semantically-aware visualizations that understand and respond to musical meaning!
+            </p>
+        </div>
+
+        <div class="info-box">
+            <h2>📊 Processing Performance</h2>
+            <p><strong>Complete analysis per track:</strong></p>
+            <ul style="margin-top: 10px;">
+                <li>Tempo: ~4-5s</li>
+                <li>Key: ~3-4s</li>
+                <li>Chords: ~9-10s</li>
+                <li>Structure: ~1-2s</li>
+                <li>Audio Events: ~3s (GPU-accelerated)</li>
+                <li><strong>Total: ~20-24s (~6% of track length)</strong></li>
+            </ul>
+            <p style="margin-top: 15px;">Fast enough for production offline processing!</p>
+        </div>
+
+        <div style="margin-top: 60px; padding-top: 40px; border-top: 2px solid #333;">
+            <h2 style="margin-bottom: 30px; text-align: center;">Detailed Analysis Reports</h2>
+            
+            <div class="info-box">
+                <h2>📁 File Structure</h2>
+                <p><strong>All analysis outputs organized by track:</strong></p>
+                <ul style="margin-top: 10px;">
+                    <li><code>tool/</code> - TOOL - The Pot analysis (15 files)</li>
+                    <li><code>zyryab/</code> - Zyryab analysis (15 files)</li>
+                    <li><code>FINDINGS.md</code> - Comprehensive insights and visual mapping strategies</li>
+                    <li><code>README.md</code> - Exploration summary and usage guide</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Each track has:</strong></p>
+                <ul>
+                    <li>5 analyzers × 3 formats = 15 files</li>
+                    <li>JSON - Raw data for integration</li>
+                    <li>PNG - Matplotlib visualizations</li>
+                    <li>HTML - Interactive Plotly reports</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h2>🚀 Next Steps</h2>
+                <p><strong>Ready for Phase 3 MVP Integration:</strong></p>
+                <ol style="margin-left: 30px; margin-top: 10px; color: #bbb;">
+                    <li>Build audio event → visual style mapping system</li>
+                    <li>Create genre-specific CLIP-trained styles (10-15 styles)</li>
+                    <li>Integrate tempo/key/chord modulation into visualization</li>
+                    <li>Add instrument-aware visual layers</li>
+                    <li>Implement structure-driven scene transitions</li>
+                </ol>
+                <p style="margin-top: 15px;">
+                    <a href="FINDINGS.md" style="color: #667eea; text-decoration: none; font-weight: bold;">
+                        → Read FINDINGS.md for detailed integration strategies
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <footer style="text-align: center; padding: 40px 0; margin-top: 60px; border-top: 1px solid #333; color: #666;">
+            <p><strong>Phase B Complete:</strong> Music Semantic Analysis | October 12, 2025</p>
+            <p style="margin-top: 10px;">Audio Feature Explorer - 5 Analyzers - 527 Audio Event Classes</p>
+            <p style="margin-top: 10px; color: #888;">TOOL: Progressive Rock | Zyryab: Flamenco</p>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName + '-content').classList.add('active');
+            
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
+

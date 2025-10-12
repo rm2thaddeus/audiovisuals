@@ -1,0 +1,4268 @@
+{
+  "primary_label": "Music",
+  "primary_confidence": 0.7606998682022095,
+  "predictions": [
+    {
+      "label": "Music",
+      "score": 0.7606998682022095,
+      "logit": 1.5260382890701294
+    },
+    {
+      "label": "Heavy metal",
+      "score": 0.0331026054918766,
+      "logit": -1.608588457107544
+    },
+    {
+      "label": "Rock music",
+      "score": 0.024761291220784187,
+      "logit": -1.898918867111206
+    },
+    {
+      "label": "Progressive rock",
+      "score": 0.024399150162935257,
+      "logit": -1.9136523008346558
+    },
+    {
+      "label": "Grunge",
+      "score": 0.020291123539209366,
+      "logit": -2.0980172157287598
+    },
+    {
+      "label": "Punk rock",
+      "score": 0.020028090104460716,
+      "logit": -2.111064910888672
+    },
+    {
+      "label": "Musical instrument",
+      "score": 0.018033001571893692,
+      "logit": -2.2159972190856934
+    },
+    {
+      "label": "Guitar",
+      "score": 0.013197416439652443,
+      "logit": -2.528179407119751
+    },
+    {
+      "label": "Rock and roll",
+      "score": 0.011278550140559673,
+      "logit": -2.685297966003418
+    },
+    {
+      "label": "Plucked string instrument",
+      "score": 0.0068517099134624004,
+      "logit": -3.183702230453491
+    },
+    {
+      "label": "Singing",
+      "score": 0.0054361214861273766,
+      "logit": -3.4151346683502197
+    },
+    {
+      "label": "Bass guitar",
+      "score": 0.003974489402025938,
+      "logit": -3.728304386138916
+    },
+    {
+      "label": "Drum",
+      "score": 0.0035373177379369736,
+      "logit": -3.844831705093384
+    },
+    {
+      "label": "Drum kit",
+      "score": 0.003452278207987547,
+      "logit": -3.869166135787964
+    },
+    {
+      "label": "Electric guitar",
+      "score": 0.0023842868395149708,
+      "logit": -4.239300727844238
+    }
+  ],
+  "chunk_predictions": [
+    {
+      "chunk_index": 0,
+      "start": 0.0,
+      "end": 10.0,
+      "duration": 10.0,
+      "top_label": "Humming",
+      "confidence": 0.27435439825057983,
+      "events": [
+        {
+          "label": "Humming",
+          "score": 0.27435439825057983
+        },
+        {
+          "label": "Singing",
+          "score": 0.13745255768299103
+        },
+        {
+          "label": "Chant",
+          "score": 0.06913033872842789
+        },
+        {
+          "label": "Male singing",
+          "score": 0.06497960537672043
+        },
+        {
+          "label": "A capella",
+          "score": 0.06064645200967789
+        },
+        {
+          "label": "Female singing",
+          "score": 0.04684675112366676
+        },
+        {
+          "label": "Vocal music",
+          "score": 0.0330401211977005
+        },
+        {
+          "label": "Music",
+          "score": 0.030711308121681213
+        },
+        {
+          "label": "Mantra",
+          "score": 0.029610268771648407
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.01903136819601059
+        },
+        {
+          "label": "Silence",
+          "score": 0.017087336629629135
+        },
+        {
+          "label": "Song",
+          "score": 0.016541237011551857
+        },
+        {
+          "label": "Mosquito",
+          "score": 0.012543346732854843
+        },
+        {
+          "label": "Fly, housefly",
+          "score": 0.010705404914915562
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.007288591004908085
+        }
+      ]
+    },
+    {
+      "chunk_index": 1,
+      "start": 7.5,
+      "end": 17.5,
+      "duration": 10.0,
+      "top_label": "Fly, housefly",
+      "confidence": 0.25538334250450134,
+      "events": [
+        {
+          "label": "Fly, housefly",
+          "score": 0.25538334250450134
+        },
+        {
+          "label": "Music",
+          "score": 0.23879186809062958
+        },
+        {
+          "label": "Insect",
+          "score": 0.20325617492198944
+        },
+        {
+          "label": "Mosquito",
+          "score": 0.06693863123655319
+        },
+        {
+          "label": "Singing",
+          "score": 0.04414433613419533
+        },
+        {
+          "label": "Bee, wasp, etc.",
+          "score": 0.027064034715294838
+        },
+        {
+          "label": "Humming",
+          "score": 0.01219392754137516
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.011880248785018921
+        },
+        {
+          "label": "Guitar",
+          "score": 0.011810407973825932
+        },
+        {
+          "label": "Speech",
+          "score": 0.009588325396180153
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.007682401221245527
+        },
+        {
+          "label": "Country",
+          "score": 0.006537187844514847
+        },
+        {
+          "label": "Song",
+          "score": 0.00553576834499836
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.003970070276409388
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.003273698268458247
+        }
+      ]
+    },
+    {
+      "chunk_index": 2,
+      "start": 15.0,
+      "end": 25.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.45566704869270325,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.45566704869270325
+        },
+        {
+          "label": "Singing",
+          "score": 0.04224369302392006
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.040736909955739975
+        },
+        {
+          "label": "Guitar",
+          "score": 0.040025077760219574
+        },
+        {
+          "label": "Speech",
+          "score": 0.036896687000989914
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.029954399913549423
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.028152672573924065
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.018407976254820824
+        },
+        {
+          "label": "Country",
+          "score": 0.012177255935966969
+        },
+        {
+          "label": "Blues",
+          "score": 0.011939065530896187
+        },
+        {
+          "label": "Strum",
+          "score": 0.011081461794674397
+        },
+        {
+          "label": "Song",
+          "score": 0.009913758374750614
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.009239409118890762
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.008090817369520664
+        },
+        {
+          "label": "Grunge",
+          "score": 0.00801553763449192
+        }
+      ]
+    },
+    {
+      "chunk_index": 3,
+      "start": 22.5,
+      "end": 32.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.3712007999420166,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.3712007999420166
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.09001311659812927
+        },
+        {
+          "label": "Guitar",
+          "score": 0.08651693165302277
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.05136046186089516
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.03981522098183632
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.0382256917655468
+        },
+        {
+          "label": "Distortion",
+          "score": 0.032008130103349686
+        },
+        {
+          "label": "Effects unit",
+          "score": 0.030508942902088165
+        },
+        {
+          "label": "Singing",
+          "score": 0.029057057574391365
+        },
+        {
+          "label": "Strum",
+          "score": 0.019010113552212715
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.013096064329147339
+        },
+        {
+          "label": "Grunge",
+          "score": 0.009247095324099064
+        },
+        {
+          "label": "Tapping (guitar technique)",
+          "score": 0.008903654292225838
+        },
+        {
+          "label": "Pop music",
+          "score": 0.007268091198056936
+        },
+        {
+          "label": "Rock music",
+          "score": 0.006288602016866207
+        }
+      ]
+    },
+    {
+      "chunk_index": 4,
+      "start": 30.0,
+      "end": 40.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.46959230303764343,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.46959230303764343
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.07962666451931
+        },
+        {
+          "label": "Guitar",
+          "score": 0.07812187075614929
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.041367996484041214
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.03011011891067028
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.027779756113886833
+        },
+        {
+          "label": "Rock music",
+          "score": 0.024109572172164917
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.02053658291697502
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.020278198644518852
+        },
+        {
+          "label": "Strum",
+          "score": 0.01883164420723915
+        },
+        {
+          "label": "Singing",
+          "score": 0.018090851604938507
+        },
+        {
+          "label": "Grunge",
+          "score": 0.014068512246012688
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.013263165019452572
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.00776343559846282
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.007161055225878954
+        }
+      ]
+    },
+    {
+      "chunk_index": 5,
+      "start": 37.5,
+      "end": 47.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.439680814743042,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.439680814743042
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.06379386782646179
+        },
+        {
+          "label": "Rock music",
+          "score": 0.06012410297989845
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.05950762331485748
+        },
+        {
+          "label": "Guitar",
+          "score": 0.04169747605919838
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.040347300469875336
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.029586682096123695
+        },
+        {
+          "label": "Drum",
+          "score": 0.02883576974272728
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.026936359703540802
+        },
+        {
+          "label": "Grunge",
+          "score": 0.020843708887696266
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.016073087230324745
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.013944339007139206
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0135292187333107
+        },
+        {
+          "label": "Strum",
+          "score": 0.010727589018642902
+        },
+        {
+          "label": "Singing",
+          "score": 0.009910495020449162
+        }
+      ]
+    },
+    {
+      "chunk_index": 6,
+      "start": 45.0,
+      "end": 55.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6495940685272217,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6495940685272217
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.07742157578468323
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.05623576045036316
+        },
+        {
+          "label": "Grunge",
+          "score": 0.04930757358670235
+        },
+        {
+          "label": "Rock music",
+          "score": 0.04580613598227501
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.03223345801234245
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.009247943758964539
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.008892668411135674
+        },
+        {
+          "label": "Angry music",
+          "score": 0.008030313067138195
+        },
+        {
+          "label": "Guitar",
+          "score": 0.007873071357607841
+        },
+        {
+          "label": "Drum",
+          "score": 0.005286455154418945
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.004569322802126408
+        },
+        {
+          "label": "Singing",
+          "score": 0.004043016117066145
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0038404385559260845
+        },
+        {
+          "label": "Percussion",
+          "score": 0.0022898027673363686
+        }
+      ]
+    },
+    {
+      "chunk_index": 7,
+      "start": 52.5,
+      "end": 62.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7720863223075867,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7720863223075867
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.06088891252875328
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.04050478711724281
+        },
+        {
+          "label": "Rock music",
+          "score": 0.026665570214390755
+        },
+        {
+          "label": "Grunge",
+          "score": 0.01898178644478321
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.017375031486153603
+        },
+        {
+          "label": "Angry music",
+          "score": 0.016474511474370956
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.006237661466002464
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.005191645585000515
+        },
+        {
+          "label": "Guitar",
+          "score": 0.005025539547204971
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.002977711148560047
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.002739669056609273
+        },
+        {
+          "label": "Drum",
+          "score": 0.0018008943879976869
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.0017140177078545094
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.001040525734424591
+        }
+      ]
+    },
+    {
+      "chunk_index": 8,
+      "start": 60.0,
+      "end": 70.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.779487133026123,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.779487133026123
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.04597051069140434
+        },
+        {
+          "label": "Grunge",
+          "score": 0.04297761246562004
+        },
+        {
+          "label": "Rock music",
+          "score": 0.019256452098488808
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.018540114164352417
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.014006242156028748
+        },
+        {
+          "label": "Angry music",
+          "score": 0.007800039369612932
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.007529793307185173
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.006273310631513596
+        },
+        {
+          "label": "Guitar",
+          "score": 0.005646448116749525
+        },
+        {
+          "label": "Singing",
+          "score": 0.0052368831820786
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0024438013788312674
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.002410415094345808
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.0024054893292486668
+        },
+        {
+          "label": "Psychedelic rock",
+          "score": 0.0022935441229492426
+        }
+      ]
+    },
+    {
+      "chunk_index": 9,
+      "start": 67.5,
+      "end": 77.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.8173012137413025,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.8173012137413025
+        },
+        {
+          "label": "Grunge",
+          "score": 0.0351373590528965
+        },
+        {
+          "label": "Rock music",
+          "score": 0.014950782060623169
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.014513912610709667
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.012105480767786503
+        },
+        {
+          "label": "Guitar",
+          "score": 0.010725833475589752
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.01029097381979227
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.00893324799835682
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.007194198668003082
+        },
+        {
+          "label": "Psychedelic rock",
+          "score": 0.006029884796589613
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.0053068422712385654
+        },
+        {
+          "label": "Singing",
+          "score": 0.005201105494052172
+        },
+        {
+          "label": "Funk",
+          "score": 0.0047859977930784225
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.004071954172104597
+        },
+        {
+          "label": "Independent music",
+          "score": 0.0040269410237669945
+        }
+      ]
+    },
+    {
+      "chunk_index": 10,
+      "start": 75.0,
+      "end": 85.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7037966251373291,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7037966251373291
+        },
+        {
+          "label": "Grunge",
+          "score": 0.05127551406621933
+        },
+        {
+          "label": "Psychedelic rock",
+          "score": 0.03041345439851284
+        },
+        {
+          "label": "Rock music",
+          "score": 0.026835758239030838
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.01559930294752121
+        },
+        {
+          "label": "Independent music",
+          "score": 0.015469614416360855
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.012082185596227646
+        },
+        {
+          "label": "Funk",
+          "score": 0.010915402323007584
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.009462863206863403
+        },
+        {
+          "label": "Singing",
+          "score": 0.009207583963871002
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.00905702542513609
+        },
+        {
+          "label": "Guitar",
+          "score": 0.007052794564515352
+        },
+        {
+          "label": "Ska",
+          "score": 0.006432939786463976
+        },
+        {
+          "label": "Pop music",
+          "score": 0.0061833737418055534
+        },
+        {
+          "label": "Soul music",
+          "score": 0.004153397865593433
+        }
+      ]
+    },
+    {
+      "chunk_index": 11,
+      "start": 82.5,
+      "end": 92.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7513920068740845,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7513920068740845
+        },
+        {
+          "label": "Grunge",
+          "score": 0.0385972335934639
+        },
+        {
+          "label": "Psychedelic rock",
+          "score": 0.033798228949308395
+        },
+        {
+          "label": "Rock music",
+          "score": 0.02892139181494713
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.018866505473852158
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.013829418458044529
+        },
+        {
+          "label": "Independent music",
+          "score": 0.013614230789244175
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.012220599688589573
+        },
+        {
+          "label": "Singing",
+          "score": 0.009776918217539787
+        },
+        {
+          "label": "Guitar",
+          "score": 0.006846919655799866
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.006660373881459236
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.005329940468072891
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.004503133241087198
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.004366343375295401
+        },
+        {
+          "label": "Drum",
+          "score": 0.0037983229849487543
+        }
+      ]
+    },
+    {
+      "chunk_index": 12,
+      "start": 90.0,
+      "end": 100.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7592942714691162,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7592942714691162
+        },
+        {
+          "label": "Grunge",
+          "score": 0.04492754861712456
+        },
+        {
+          "label": "Rock music",
+          "score": 0.026872776448726654
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.018644314259290695
+        },
+        {
+          "label": "Psychedelic rock",
+          "score": 0.017518021166324615
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.012499307282269001
+        },
+        {
+          "label": "Singing",
+          "score": 0.010576966218650341
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.009209941141307354
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.008747181855142117
+        },
+        {
+          "label": "Independent music",
+          "score": 0.007261710241436958
+        },
+        {
+          "label": "Pop music",
+          "score": 0.00543816015124321
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.005275567527860403
+        },
+        {
+          "label": "Guitar",
+          "score": 0.004565011709928513
+        },
+        {
+          "label": "Funk",
+          "score": 0.004153722431510687
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.0037111598066985607
+        }
+      ]
+    },
+    {
+      "chunk_index": 13,
+      "start": 97.5,
+      "end": 107.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7346216440200806,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7346216440200806
+        },
+        {
+          "label": "Grunge",
+          "score": 0.06808038800954819
+        },
+        {
+          "label": "Rock music",
+          "score": 0.02649233303964138
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.023389773443341255
+        },
+        {
+          "label": "Psychedelic rock",
+          "score": 0.0163249708712101
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.014375664293766022
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.012343182228505611
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.011474632658064365
+        },
+        {
+          "label": "Guitar",
+          "score": 0.010857764631509781
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.00908227264881134
+        },
+        {
+          "label": "Singing",
+          "score": 0.007380024064332247
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.00587622681632638
+        },
+        {
+          "label": "Independent music",
+          "score": 0.0048703718930482864
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.004712223075330257
+        },
+        {
+          "label": "Pop music",
+          "score": 0.0036263891961425543
+        }
+      ]
+    },
+    {
+      "chunk_index": 14,
+      "start": 105.0,
+      "end": 115.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6348128318786621,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6348128318786621
+        },
+        {
+          "label": "Grunge",
+          "score": 0.06259714066982269
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.05763190612196922
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.04520106688141823
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.04405209422111511
+        },
+        {
+          "label": "Rock music",
+          "score": 0.0328565277159214
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.027076030150055885
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.011925766244530678
+        },
+        {
+          "label": "Guitar",
+          "score": 0.00980907678604126
+        },
+        {
+          "label": "Singing",
+          "score": 0.008025329560041428
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.004407835658639669
+        },
+        {
+          "label": "Drum",
+          "score": 0.00393273402005434
+        },
+        {
+          "label": "Roll",
+          "score": 0.0038988091982901096
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0038101247046142817
+        },
+        {
+          "label": "Psychedelic rock",
+          "score": 0.0036907042376697063
+        }
+      ]
+    },
+    {
+      "chunk_index": 15,
+      "start": 112.5,
+      "end": 122.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.662579357624054,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.662579357624054
+        },
+        {
+          "label": "Grunge",
+          "score": 0.06102558225393295
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.05034581944346428
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.0497463196516037
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.04694405943155289
+        },
+        {
+          "label": "Rock music",
+          "score": 0.0353914238512516
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.016143381595611572
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.011656676419079304
+        },
+        {
+          "label": "Guitar",
+          "score": 0.007068566977977753
+        },
+        {
+          "label": "Singing",
+          "score": 0.006875078193843365
+        },
+        {
+          "label": "Drum",
+          "score": 0.0037534667644649744
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.003632532898336649
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0030675858724862337
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.0027900992427021265
+        },
+        {
+          "label": "Roll",
+          "score": 0.0027539655566215515
+        }
+      ]
+    },
+    {
+      "chunk_index": 16,
+      "start": 120.0,
+      "end": 130.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6670066714286804,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6670066714286804
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.0579778254032135
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.05631019175052643
+        },
+        {
+          "label": "Grunge",
+          "score": 0.04723231494426727
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.04692063853144646
+        },
+        {
+          "label": "Rock music",
+          "score": 0.03195715323090553
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.016962695866823196
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.01006363146007061
+        },
+        {
+          "label": "Guitar",
+          "score": 0.007301878184080124
+        },
+        {
+          "label": "Singing",
+          "score": 0.004889598116278648
+        },
+        {
+          "label": "Drum",
+          "score": 0.0036124654579907656
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0034387249033898115
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0033500613644719124
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.0028747820761054754
+        },
+        {
+          "label": "Roll",
+          "score": 0.002607485745102167
+        }
+      ]
+    },
+    {
+      "chunk_index": 17,
+      "start": 127.5,
+      "end": 137.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.685854971408844,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.685854971408844
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.049868714064359665
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.04973457753658295
+        },
+        {
+          "label": "Grunge",
+          "score": 0.0481865257024765
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.047987841069698334
+        },
+        {
+          "label": "Rock music",
+          "score": 0.03022020123898983
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.015043756924569607
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.007765886839479208
+        },
+        {
+          "label": "Singing",
+          "score": 0.007234220393002033
+        },
+        {
+          "label": "Angry music",
+          "score": 0.005221965257078409
+        },
+        {
+          "label": "Guitar",
+          "score": 0.004262631293386221
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.00305575761012733
+        },
+        {
+          "label": "Drum",
+          "score": 0.00273153861053288
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.002592181321233511
+        },
+        {
+          "label": "Pop music",
+          "score": 0.0020431557204574347
+        }
+      ]
+    },
+    {
+      "chunk_index": 18,
+      "start": 135.0,
+      "end": 145.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7135739326477051,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7135739326477051
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.04739876091480255
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.04350171983242035
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.032602038234472275
+        },
+        {
+          "label": "Rock music",
+          "score": 0.031843151897192
+        },
+        {
+          "label": "Grunge",
+          "score": 0.026363186538219452
+        },
+        {
+          "label": "Singing",
+          "score": 0.017048589885234833
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.014176370576024055
+        },
+        {
+          "label": "Angry music",
+          "score": 0.009900919161736965
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.009187420830130577
+        },
+        {
+          "label": "Guitar",
+          "score": 0.00470567075535655
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.003845288883894682
+        },
+        {
+          "label": "Drum",
+          "score": 0.0030004328582435846
+        },
+        {
+          "label": "Pop music",
+          "score": 0.0022636731155216694
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.002112706657499075
+        }
+      ]
+    },
+    {
+      "chunk_index": 19,
+      "start": 142.5,
+      "end": 152.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7658061385154724,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7658061385154724
+        },
+        {
+          "label": "Grunge",
+          "score": 0.0334269180893898
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.031365904957056046
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.030428968369960785
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.029126977548003197
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.024781621992588043
+        },
+        {
+          "label": "Rock music",
+          "score": 0.020392322912812233
+        },
+        {
+          "label": "Singing",
+          "score": 0.007395738270133734
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.0070935264229774475
+        },
+        {
+          "label": "Guitar",
+          "score": 0.0061692604795098305
+        },
+        {
+          "label": "Roll",
+          "score": 0.0040511274710297585
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0027293942403048277
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.0025756501127034426
+        },
+        {
+          "label": "Drum",
+          "score": 0.002574835903942585
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0023991321213543415
+        }
+      ]
+    },
+    {
+      "chunk_index": 20,
+      "start": 150.0,
+      "end": 160.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7113551497459412,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7113551497459412
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.03137588128447533
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.031041601672768593
+        },
+        {
+          "label": "Grunge",
+          "score": 0.03096468187868595
+        },
+        {
+          "label": "Rock music",
+          "score": 0.030483774840831757
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.030421292409300804
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.029018664732575417
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.015050048008561134
+        },
+        {
+          "label": "Guitar",
+          "score": 0.014673749916255474
+        },
+        {
+          "label": "Singing",
+          "score": 0.00878154207020998
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.00701972795650363
+        },
+        {
+          "label": "Roll",
+          "score": 0.005461282096803188
+        },
+        {
+          "label": "Psychedelic rock",
+          "score": 0.004032873082906008
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.0034031684044748545
+        },
+        {
+          "label": "Drum",
+          "score": 0.003101660870015621
+        }
+      ]
+    },
+    {
+      "chunk_index": 21,
+      "start": 157.5,
+      "end": 167.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.5187594890594482,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.5187594890594482
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.10616589337587357
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.07554740458726883
+        },
+        {
+          "label": "Grunge",
+          "score": 0.06635906547307968
+        },
+        {
+          "label": "Rock music",
+          "score": 0.0439833402633667
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.0375983752310276
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.019653137773275375
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.016253532841801643
+        },
+        {
+          "label": "Guitar",
+          "score": 0.015762196853756905
+        },
+        {
+          "label": "Singing",
+          "score": 0.014008192345499992
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.00791757833212614
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.005011018831282854
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.004392762668430805
+        },
+        {
+          "label": "Drum",
+          "score": 0.003976533655077219
+        },
+        {
+          "label": "Pop music",
+          "score": 0.0037475007120519876
+        }
+      ]
+    },
+    {
+      "chunk_index": 22,
+      "start": 165.0,
+      "end": 175.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.5651952624320984,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.5651952624320984
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.10199745744466782
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.05505559220910072
+        },
+        {
+          "label": "Rock music",
+          "score": 0.05214753746986389
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.04479273408651352
+        },
+        {
+          "label": "Grunge",
+          "score": 0.043144676834344864
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.02136828750371933
+        },
+        {
+          "label": "Guitar",
+          "score": 0.018597466871142387
+        },
+        {
+          "label": "Singing",
+          "score": 0.017042484134435654
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.009805738925933838
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.008440411649644375
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.006974182557314634
+        },
+        {
+          "label": "Angry music",
+          "score": 0.004201698582619429
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.003723881673067808
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.002787734381854534
+        }
+      ]
+    },
+    {
+      "chunk_index": 23,
+      "start": 172.5,
+      "end": 182.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6517221331596375,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6517221331596375
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.06426244229078293
+        },
+        {
+          "label": "Grunge",
+          "score": 0.04677993804216385
+        },
+        {
+          "label": "Rock music",
+          "score": 0.0355972945690155
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.03421223908662796
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.02793915383517742
+        },
+        {
+          "label": "Singing",
+          "score": 0.023806536570191383
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.021200483664870262
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.01074279099702835
+        },
+        {
+          "label": "Yell",
+          "score": 0.009526761248707771
+        },
+        {
+          "label": "Guitar",
+          "score": 0.006428485736250877
+        },
+        {
+          "label": "Roll",
+          "score": 0.006302184890955687
+        },
+        {
+          "label": "Pop music",
+          "score": 0.004539429675787687
+        },
+        {
+          "label": "Speech",
+          "score": 0.004236107226461172
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0035219464916735888
+        }
+      ]
+    },
+    {
+      "chunk_index": 24,
+      "start": 180.0,
+      "end": 190.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7087130546569824,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7087130546569824
+        },
+        {
+          "label": "Grunge",
+          "score": 0.054986756294965744
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.04738134890794754
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.03805255889892578
+        },
+        {
+          "label": "Rock music",
+          "score": 0.037381794303655624
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.020899102091789246
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.017884960398077965
+        },
+        {
+          "label": "Singing",
+          "score": 0.011321616359055042
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.009406725876033306
+        },
+        {
+          "label": "Guitar",
+          "score": 0.00636290293186903
+        },
+        {
+          "label": "Roll",
+          "score": 0.0052376314997673035
+        },
+        {
+          "label": "Psychedelic rock",
+          "score": 0.004386617802083492
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.002983303740620613
+        },
+        {
+          "label": "Drum",
+          "score": 0.0029417877085506916
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.002203194424510002
+        }
+      ]
+    },
+    {
+      "chunk_index": 25,
+      "start": 187.5,
+      "end": 197.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7430370450019836,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7430370450019836
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.06641911715269089
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.04270870238542557
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.03172015771269798
+        },
+        {
+          "label": "Grunge",
+          "score": 0.022824592888355255
+        },
+        {
+          "label": "Rock music",
+          "score": 0.020469054579734802
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.01658809185028076
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.008684000931680202
+        },
+        {
+          "label": "Guitar",
+          "score": 0.007387206424027681
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0031033128034323454
+        },
+        {
+          "label": "Singing",
+          "score": 0.00289901252835989
+        },
+        {
+          "label": "Drum",
+          "score": 0.0024580019526183605
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.002440048148855567
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.002186786150559783
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.002072812058031559
+        }
+      ]
+    },
+    {
+      "chunk_index": 26,
+      "start": 195.0,
+      "end": 205.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7201380133628845,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7201380133628845
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.08115153014659882
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.05658530443906784
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.022465113550424576
+        },
+        {
+          "label": "Rock music",
+          "score": 0.018585218116641045
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.013618453405797482
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.011488992720842361
+        },
+        {
+          "label": "Guitar",
+          "score": 0.011280919425189495
+        },
+        {
+          "label": "Grunge",
+          "score": 0.010822904296219349
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0064819371327757835
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.003913814201951027
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.0036660474725067616
+        },
+        {
+          "label": "Drum",
+          "score": 0.0036002658307552338
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.0033007317688316107
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.0030372985638678074
+        }
+      ]
+    },
+    {
+      "chunk_index": 27,
+      "start": 202.5,
+      "end": 212.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7141271829605103,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7141271829605103
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.049368105828762054
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.04276306554675102
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.03326478600502014
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.03264584764838219
+        },
+        {
+          "label": "Grunge",
+          "score": 0.031428370624780655
+        },
+        {
+          "label": "Rock music",
+          "score": 0.01604308746755123
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.010575676336884499
+        },
+        {
+          "label": "Guitar",
+          "score": 0.008639938198029995
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.005075043998658657
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0035762349143624306
+        },
+        {
+          "label": "Roll",
+          "score": 0.0032757199369370937
+        },
+        {
+          "label": "Drum",
+          "score": 0.003184995846822858
+        },
+        {
+          "label": "Singing",
+          "score": 0.0031138306949287653
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0030193927232176065
+        }
+      ]
+    },
+    {
+      "chunk_index": 28,
+      "start": 210.0,
+      "end": 220.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7057618498802185,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7057618498802185
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.04614093154668808
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.04448958486318588
+        },
+        {
+          "label": "Grunge",
+          "score": 0.037151314318180084
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.035510871559381485
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.03294944018125534
+        },
+        {
+          "label": "Rock music",
+          "score": 0.017298270016908646
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.008443279191851616
+        },
+        {
+          "label": "Guitar",
+          "score": 0.005796859972178936
+        },
+        {
+          "label": "Singing",
+          "score": 0.0053435019217431545
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.005079442635178566
+        },
+        {
+          "label": "Roll",
+          "score": 0.0036552457604557276
+        },
+        {
+          "label": "Pop music",
+          "score": 0.0036306523252278566
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0027965684421360493
+        },
+        {
+          "label": "Drum",
+          "score": 0.0026340470649302006
+        }
+      ]
+    },
+    {
+      "chunk_index": 29,
+      "start": 217.5,
+      "end": 227.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.5697157979011536,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.5697157979011536
+        },
+        {
+          "label": "Grunge",
+          "score": 0.11495428532361984
+        },
+        {
+          "label": "Rock music",
+          "score": 0.058538757264614105
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.05459613353013992
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.032082751393318176
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.021567417308688164
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.015976762399077415
+        },
+        {
+          "label": "Guitar",
+          "score": 0.015903279185295105
+        },
+        {
+          "label": "Psychedelic rock",
+          "score": 0.01298915222287178
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.01243015006184578
+        },
+        {
+          "label": "Effects unit",
+          "score": 0.009639186784625053
+        },
+        {
+          "label": "Distortion",
+          "score": 0.00854742806404829
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.007902262732386589
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.00467259343713522
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.004339268431067467
+        }
+      ]
+    },
+    {
+      "chunk_index": 30,
+      "start": 225.0,
+      "end": 235.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.43576300144195557,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.43576300144195557
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.08288130164146423
+        },
+        {
+          "label": "Guitar",
+          "score": 0.07057739794254303
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.05008981004357338
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.03753507137298584
+        },
+        {
+          "label": "Rock music",
+          "score": 0.03392377123236656
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.02492971159517765
+        },
+        {
+          "label": "Machine gun",
+          "score": 0.017802707850933075
+        },
+        {
+          "label": "Distortion",
+          "score": 0.017273206263780594
+        },
+        {
+          "label": "Gunshot, gunfire",
+          "score": 0.01720675826072693
+        },
+        {
+          "label": "Typewriter",
+          "score": 0.016354134306311607
+        },
+        {
+          "label": "Effects unit",
+          "score": 0.014017170295119286
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.01025078259408474
+        },
+        {
+          "label": "Chorus effect",
+          "score": 0.009023332968354225
+        },
+        {
+          "label": "Speech",
+          "score": 0.008886680006980896
+        }
+      ]
+    },
+    {
+      "chunk_index": 31,
+      "start": 232.5,
+      "end": 242.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.36424118280410767,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.36424118280410767
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.15678133070468903
+        },
+        {
+          "label": "Guitar",
+          "score": 0.14014145731925964
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.11255686730146408
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.08046130836009979
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.021747583523392677
+        },
+        {
+          "label": "Rock music",
+          "score": 0.01646040380001068
+        },
+        {
+          "label": "Strum",
+          "score": 0.014073140919208527
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.01210381556302309
+        },
+        {
+          "label": "Effects unit",
+          "score": 0.010556685738265514
+        },
+        {
+          "label": "Tapping (guitar technique)",
+          "score": 0.008229000493884087
+        },
+        {
+          "label": "Distortion",
+          "score": 0.007227925583720207
+        },
+        {
+          "label": "Speech",
+          "score": 0.005496626254171133
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.004072547424584627
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.0037076512817293406
+        }
+      ]
+    },
+    {
+      "chunk_index": 32,
+      "start": 240.0,
+      "end": 250.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.4505574405193329,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.4505574405193329
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.10053938627243042
+        },
+        {
+          "label": "Guitar",
+          "score": 0.10046245902776718
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.08842764794826508
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.06825610250234604
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.05411365255713463
+        },
+        {
+          "label": "Strum",
+          "score": 0.02850792557001114
+        },
+        {
+          "label": "Rock music",
+          "score": 0.016812538728117943
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.01663048379123211
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.008376874960958958
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.006469296291470528
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.0055360738188028336
+        },
+        {
+          "label": "Speech",
+          "score": 0.004768242593854666
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.004651369992643595
+        },
+        {
+          "label": "Drum",
+          "score": 0.003398618893697858
+        }
+      ]
+    },
+    {
+      "chunk_index": 33,
+      "start": 247.5,
+      "end": 257.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6405469179153442,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6405469179153442
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.1029231920838356
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.035370226949453354
+        },
+        {
+          "label": "Rock music",
+          "score": 0.03461376205086708
+        },
+        {
+          "label": "Grunge",
+          "score": 0.024128129705786705
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.02316472679376602
+        },
+        {
+          "label": "Angry music",
+          "score": 0.02260829322040081
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.014033813029527664
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.012704133987426758
+        },
+        {
+          "label": "Guitar",
+          "score": 0.01187936868518591
+        },
+        {
+          "label": "Singing",
+          "score": 0.008006095886230469
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.006234229076653719
+        },
+        {
+          "label": "Drum",
+          "score": 0.0038450025022029877
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.003490486415103078
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.003241834929212928
+        }
+      ]
+    },
+    {
+      "chunk_index": 34,
+      "start": 255.0,
+      "end": 265.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6901007890701294,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6901007890701294
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.05221590772271156
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.04635884240269661
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.04158029705286026
+        },
+        {
+          "label": "Grunge",
+          "score": 0.04127190634608269
+        },
+        {
+          "label": "Rock music",
+          "score": 0.023957455530762672
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.021891262382268906
+        },
+        {
+          "label": "Singing",
+          "score": 0.0071655623614788055
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.00704505480825901
+        },
+        {
+          "label": "Guitar",
+          "score": 0.006654722150415182
+        },
+        {
+          "label": "Angry music",
+          "score": 0.006514948792755604
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.0036437008529901505
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.003084530821070075
+        },
+        {
+          "label": "Roll",
+          "score": 0.0025172061286866665
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.002481224248185754
+        }
+      ]
+    },
+    {
+      "chunk_index": 35,
+      "start": 262.5,
+      "end": 272.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.8153203129768372,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.8153203129768372
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.05722446367144585
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.02600257657468319
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.023397458717226982
+        },
+        {
+          "label": "Rock music",
+          "score": 0.015128192491829395
+        },
+        {
+          "label": "Angry music",
+          "score": 0.00916094146668911
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.006553851068019867
+        },
+        {
+          "label": "Grunge",
+          "score": 0.00634602177888155
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.005618216935545206
+        },
+        {
+          "label": "Guitar",
+          "score": 0.003898807568475604
+        },
+        {
+          "label": "Drum",
+          "score": 0.0028546014800667763
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0026450306177139282
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0021019265986979008
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.00195855344645679
+        },
+        {
+          "label": "Bass drum",
+          "score": 0.0014798649353906512
+        }
+      ]
+    },
+    {
+      "chunk_index": 36,
+      "start": 270.0,
+      "end": 280.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7646818161010742,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7646818161010742
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.049366846680641174
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.024910593405365944
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.02331594005227089
+        },
+        {
+          "label": "Guitar",
+          "score": 0.021034788340330124
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.017869383096694946
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.016049886122345924
+        },
+        {
+          "label": "Rock music",
+          "score": 0.01273310650140047
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.009438484907150269
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.007506169378757477
+        },
+        {
+          "label": "Grunge",
+          "score": 0.005449674557894468
+        },
+        {
+          "label": "Strum",
+          "score": 0.00525897741317749
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.005239157006144524
+        },
+        {
+          "label": "Angry music",
+          "score": 0.0037519524339586496
+        },
+        {
+          "label": "Drum",
+          "score": 0.0027782819233834743
+        }
+      ]
+    },
+    {
+      "chunk_index": 37,
+      "start": 277.5,
+      "end": 287.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.8166709542274475,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.8166709542274475
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.058146070688962936
+        },
+        {
+          "label": "Angry music",
+          "score": 0.02647358924150467
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.015325074084103107
+        },
+        {
+          "label": "Guitar",
+          "score": 0.012206449173390865
+        },
+        {
+          "label": "Rock music",
+          "score": 0.00914242584258318
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.00856923870742321
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.007983574643731117
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.0070733483880758286
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.005145805887877941
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.003422617679461837
+        },
+        {
+          "label": "Grunge",
+          "score": 0.0023802882060408592
+        },
+        {
+          "label": "Strum",
+          "score": 0.0023682222235947847
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0021565796341747046
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.0019102911464869976
+        }
+      ]
+    },
+    {
+      "chunk_index": 38,
+      "start": 285.0,
+      "end": 295.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6875084042549133,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6875084042549133
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.12189887464046478
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.03368476405739784
+        },
+        {
+          "label": "Guitar",
+          "score": 0.029929880052804947
+        },
+        {
+          "label": "Angry music",
+          "score": 0.027557987719774246
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.02063445933163166
+        },
+        {
+          "label": "Rock music",
+          "score": 0.012264410965144634
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.00754157267510891
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.007021264638751745
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.006132696755230427
+        },
+        {
+          "label": "Strum",
+          "score": 0.006006896961480379
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.004669328685849905
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0031164514366537333
+        },
+        {
+          "label": "Drum",
+          "score": 0.002522558206692338
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.0016740632709115744
+        }
+      ]
+    },
+    {
+      "chunk_index": 39,
+      "start": 292.5,
+      "end": 302.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7422037720680237,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7422037720680237
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.11797606945037842
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.02981274574995041
+        },
+        {
+          "label": "Guitar",
+          "score": 0.0274247694760561
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.01739741675555706
+        },
+        {
+          "label": "Rock music",
+          "score": 0.010087368078529835
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.00997963547706604
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.008937271311879158
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.006358359940350056
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.004407256841659546
+        },
+        {
+          "label": "Strum",
+          "score": 0.004172882065176964
+        },
+        {
+          "label": "Angry music",
+          "score": 0.00345202861353755
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0024190181866288185
+        },
+        {
+          "label": "Drum",
+          "score": 0.0017646090127527714
+        },
+        {
+          "label": "Acoustic guitar",
+          "score": 0.0012958113802596927
+        }
+      ]
+    },
+    {
+      "chunk_index": 40,
+      "start": 300.0,
+      "end": 310.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7348430156707764,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7348430156707764
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.0719725638628006
+        },
+        {
+          "label": "Singing",
+          "score": 0.03128642216324806
+        },
+        {
+          "label": "Rock music",
+          "score": 0.023172816261649132
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.020079586654901505
+        },
+        {
+          "label": "Guitar",
+          "score": 0.014897477813065052
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.014450051821768284
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.01039827335625887
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.008156287483870983
+        },
+        {
+          "label": "Grunge",
+          "score": 0.007886379957199097
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.0042057340033352375
+        },
+        {
+          "label": "Angry music",
+          "score": 0.003545959945768118
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.003477369900792837
+        },
+        {
+          "label": "Distortion",
+          "score": 0.003057980677112937
+        },
+        {
+          "label": "Electric guitar",
+          "score": 0.002701076213270426
+        }
+      ]
+    },
+    {
+      "chunk_index": 41,
+      "start": 307.5,
+      "end": 317.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6193916201591492,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6193916201591492
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.07745038717985153
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.05870717018842697
+        },
+        {
+          "label": "Grunge",
+          "score": 0.05134115368127823
+        },
+        {
+          "label": "Rock music",
+          "score": 0.036766380071640015
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.03586661443114281
+        },
+        {
+          "label": "Singing",
+          "score": 0.019118400290608406
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.01214992068707943
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.012109064497053623
+        },
+        {
+          "label": "Guitar",
+          "score": 0.011986653320491314
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.005995753686875105
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.004519330337643623
+        },
+        {
+          "label": "Drum",
+          "score": 0.003770559560507536
+        },
+        {
+          "label": "Pop music",
+          "score": 0.0027873008511960506
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.002620512619614601
+        }
+      ]
+    },
+    {
+      "chunk_index": 42,
+      "start": 315.0,
+      "end": 325.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6464637517929077,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6464637517929077
+        },
+        {
+          "label": "Grunge",
+          "score": 0.06451486796140671
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.05429992452263832
+        },
+        {
+          "label": "Rock music",
+          "score": 0.03536170721054077
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.0290005374699831
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.028253329917788506
+        },
+        {
+          "label": "Singing",
+          "score": 0.022275831550359726
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.021568424999713898
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.011459280736744404
+        },
+        {
+          "label": "Yell",
+          "score": 0.008523914963006973
+        },
+        {
+          "label": "Roll",
+          "score": 0.007831030525267124
+        },
+        {
+          "label": "Guitar",
+          "score": 0.007351655513048172
+        },
+        {
+          "label": "Speech",
+          "score": 0.004691986367106438
+        },
+        {
+          "label": "Psychedelic rock",
+          "score": 0.0045227468945086
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.00397995300590992
+        }
+      ]
+    },
+    {
+      "chunk_index": 43,
+      "start": 322.5,
+      "end": 332.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6410673260688782,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6410673260688782
+        },
+        {
+          "label": "Grunge",
+          "score": 0.07395746558904648
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.06211516261100769
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.040831029415130615
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.03262503445148468
+        },
+        {
+          "label": "Rock music",
+          "score": 0.031188959255814552
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.020950691774487495
+        },
+        {
+          "label": "Singing",
+          "score": 0.01296356599777937
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.009777290746569633
+        },
+        {
+          "label": "Yell",
+          "score": 0.0068627228029072285
+        },
+        {
+          "label": "Speech",
+          "score": 0.005091001279652119
+        },
+        {
+          "label": "Roll",
+          "score": 0.004584014415740967
+        },
+        {
+          "label": "Guitar",
+          "score": 0.004452824126929045
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0030375702772289515
+        },
+        {
+          "label": "Psychedelic rock",
+          "score": 0.0029705462511628866
+        }
+      ]
+    },
+    {
+      "chunk_index": 44,
+      "start": 330.0,
+      "end": 340.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.649182140827179,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.649182140827179
+        },
+        {
+          "label": "Grunge",
+          "score": 0.06774914264678955
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.059461358934640884
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.043902572244405746
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.040212683379650116
+        },
+        {
+          "label": "Rock music",
+          "score": 0.028302939608693123
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.022746052592992783
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.009547961875796318
+        },
+        {
+          "label": "Speech",
+          "score": 0.005960903596132994
+        },
+        {
+          "label": "Singing",
+          "score": 0.005501728970557451
+        },
+        {
+          "label": "Guitar",
+          "score": 0.005114729516208172
+        },
+        {
+          "label": "Roll",
+          "score": 0.0038051113951951265
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.0033862795680761337
+        },
+        {
+          "label": "Drum",
+          "score": 0.0032124051358550787
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0028282743878662586
+        }
+      ]
+    },
+    {
+      "chunk_index": 45,
+      "start": 337.5,
+      "end": 347.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7966418266296387,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7966418266296387
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.03446144610643387
+        },
+        {
+          "label": "Grunge",
+          "score": 0.03270496055483818
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.028434790670871735
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.026788929477334023
+        },
+        {
+          "label": "Rock music",
+          "score": 0.01866506226360798
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.01778681017458439
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.00651512248441577
+        },
+        {
+          "label": "Guitar",
+          "score": 0.004416103474795818
+        },
+        {
+          "label": "Singing",
+          "score": 0.0036729525309056044
+        },
+        {
+          "label": "Roll",
+          "score": 0.002460511401295662
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.0020365030504763126
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0018157369922846556
+        },
+        {
+          "label": "Drum",
+          "score": 0.0017340544145554304
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.001569919753819704
+        }
+      ]
+    },
+    {
+      "chunk_index": 46,
+      "start": 345.0,
+      "end": 355.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7884012460708618,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7884012460708618
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.039193760603666306
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.03691662847995758
+        },
+        {
+          "label": "Grunge",
+          "score": 0.02581559680402279
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.024068085476756096
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.02345641702413559
+        },
+        {
+          "label": "Rock music",
+          "score": 0.0169372595846653
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.005795851815491915
+        },
+        {
+          "label": "Guitar",
+          "score": 0.00460631912574172
+        },
+        {
+          "label": "Singing",
+          "score": 0.0035020275972783566
+        },
+        {
+          "label": "Roll",
+          "score": 0.0034015350975096226
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.0022545610554516315
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.001769672497175634
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.001625583739951253
+        },
+        {
+          "label": "Drum",
+          "score": 0.001556526287458837
+        }
+      ]
+    },
+    {
+      "chunk_index": 47,
+      "start": 352.5,
+      "end": 362.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.7302836179733276,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.7302836179733276
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.07564470916986465
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.0350504033267498
+        },
+        {
+          "label": "Rock music",
+          "score": 0.025608357042074203
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.02391592040657997
+        },
+        {
+          "label": "Grunge",
+          "score": 0.016659600660204887
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.01479334942996502
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.00842110626399517
+        },
+        {
+          "label": "Singing",
+          "score": 0.007340257987380028
+        },
+        {
+          "label": "Angry music",
+          "score": 0.007152420002967119
+        },
+        {
+          "label": "Guitar",
+          "score": 0.005675674416124821
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0034234069753438234
+        },
+        {
+          "label": "Yell",
+          "score": 0.002867572708055377
+        },
+        {
+          "label": "Drum",
+          "score": 0.0026597166433930397
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0026181084103882313
+        }
+      ]
+    },
+    {
+      "chunk_index": 48,
+      "start": 360.0,
+      "end": 370.0,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.8101363778114319,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.8101363778114319
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.06468222290277481
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.02482866682112217
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.018891306594014168
+        },
+        {
+          "label": "Rock music",
+          "score": 0.016332820057868958
+        },
+        {
+          "label": "Angry music",
+          "score": 0.011743604205548763
+        },
+        {
+          "label": "Grunge",
+          "score": 0.008626299910247326
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.007992343045771122
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.005752201657742262
+        },
+        {
+          "label": "Guitar",
+          "score": 0.0042800637893378735
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0023186069447547197
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.0022647930309176445
+        },
+        {
+          "label": "Drum",
+          "score": 0.0019008542876690626
+        },
+        {
+          "label": "Bass guitar",
+          "score": 0.0018543160986155272
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.0012943071778863668
+        }
+      ]
+    },
+    {
+      "chunk_index": 49,
+      "start": 367.5,
+      "end": 377.5,
+      "duration": 10.0,
+      "top_label": "Music",
+      "confidence": 0.6656978726387024,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.6656978726387024
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.10809506475925446
+        },
+        {
+          "label": "Angry music",
+          "score": 0.04422912001609802
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.02435775101184845
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.02152165025472641
+        },
+        {
+          "label": "Rock music",
+          "score": 0.02138061635196209
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.011378949508070946
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.010896977037191391
+        },
+        {
+          "label": "Drum",
+          "score": 0.00947650894522667
+        },
+        {
+          "label": "Rock and roll",
+          "score": 0.007149603217840195
+        },
+        {
+          "label": "Grunge",
+          "score": 0.005584580823779106
+        },
+        {
+          "label": "Bass drum",
+          "score": 0.005241512320935726
+        },
+        {
+          "label": "Guitar",
+          "score": 0.005185889080166817
+        },
+        {
+          "label": "Percussion",
+          "score": 0.004653049632906914
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.004156726878136396
+        }
+      ]
+    },
+    {
+      "chunk_index": 50,
+      "start": 375.0,
+      "end": 383.54725,
+      "duration": 8.54725,
+      "top_label": "Music",
+      "confidence": 0.612022876739502,
+      "events": [
+        {
+          "label": "Music",
+          "score": 0.612022876739502
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.04911118000745773
+        },
+        {
+          "label": "Rock music",
+          "score": 0.040159955620765686
+        },
+        {
+          "label": "Heavy metal",
+          "score": 0.03889593482017517
+        },
+        {
+          "label": "Drum",
+          "score": 0.03349006921052933
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.03138053044676781
+        },
+        {
+          "label": "Cymbal",
+          "score": 0.028241945430636406
+        },
+        {
+          "label": "Snare drum",
+          "score": 0.023306118324398994
+        },
+        {
+          "label": "Hi-hat",
+          "score": 0.020638935267925262
+        },
+        {
+          "label": "Bass drum",
+          "score": 0.01905921846628189
+        },
+        {
+          "label": "Percussion",
+          "score": 0.015527012757956982
+        },
+        {
+          "label": "Progressive rock",
+          "score": 0.013761472888290882
+        },
+        {
+          "label": "Silence",
+          "score": 0.01089243870228529
+        },
+        {
+          "label": "Rimshot",
+          "score": 0.00979708693921566
+        },
+        {
+          "label": "Punk rock",
+          "score": 0.00855464581400156
+        }
+      ]
+    },
+    {
+      "chunk_index": 51,
+      "start": 382.5,
+      "end": 383.54725,
+      "duration": 1.04725,
+      "top_label": "Silence",
+      "confidence": 0.8211945295333862,
+      "events": [
+        {
+          "label": "Silence",
+          "score": 0.8211945295333862
+        },
+        {
+          "label": "Music",
+          "score": 0.07493574172258377
+        },
+        {
+          "label": "Speech",
+          "score": 0.005278053693473339
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.004174123518168926
+        },
+        {
+          "label": "Sidetone",
+          "score": 0.003845034632831812
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.0036658919416368008
+        },
+        {
+          "label": "Outside, rural or natural",
+          "score": 0.0021919391583651304
+        },
+        {
+          "label": "Plucked string instrument",
+          "score": 0.0016285162419080734
+        },
+        {
+          "label": "Guitar",
+          "score": 0.0015614564763382077
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.001417571329511702
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.0014029332669451833
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.0013543443055823445
+        },
+        {
+          "label": "Pizzicato",
+          "score": 0.001310721505433321
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.0011712319683283567
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.0011476755607873201
+        }
+      ]
+    }
+  ],
+  "label_set": [
+    "Speech",
+    "Male speech, man speaking",
+    "Female speech, woman speaking",
+    "Child speech, kid speaking",
+    "Conversation",
+    "Narration, monologue",
+    "Babbling",
+    "Speech synthesizer",
+    "Shout",
+    "Bellow",
+    "Whoop",
+    "Yell",
+    "Battle cry",
+    "Children shouting",
+    "Screaming",
+    "Whispering",
+    "Laughter",
+    "Baby laughter",
+    "Giggle",
+    "Snicker",
+    "Belly laugh",
+    "Chuckle, chortle",
+    "Crying, sobbing",
+    "Baby cry, infant cry",
+    "Whimper",
+    "Wail, moan",
+    "Sigh",
+    "Singing",
+    "Choir",
+    "Yodeling",
+    "Chant",
+    "Mantra",
+    "Male singing",
+    "Female singing",
+    "Child singing",
+    "Synthetic singing",
+    "Rapping",
+    "Humming",
+    "Groan",
+    "Grunt",
+    "Whistling",
+    "Breathing",
+    "Wheeze",
+    "Snoring",
+    "Gasp",
+    "Pant",
+    "Snort",
+    "Cough",
+    "Throat clearing",
+    "Sneeze",
+    "Sniff",
+    "Run",
+    "Shuffle",
+    "Walk, footsteps",
+    "Chewing, mastication",
+    "Biting",
+    "Gargling",
+    "Stomach rumble",
+    "Burping, eructation",
+    "Hiccup",
+    "Fart",
+    "Hands",
+    "Finger snapping",
+    "Clapping",
+    "Heart sounds, heartbeat",
+    "Heart murmur",
+    "Cheering",
+    "Applause",
+    "Chatter",
+    "Crowd",
+    "Hubbub, speech noise, speech babble",
+    "Children playing",
+    "Animal",
+    "Domestic animals, pets",
+    "Dog",
+    "Bark",
+    "Yip",
+    "Howl",
+    "Bow-wow",
+    "Growling",
+    "Whimper (dog)",
+    "Cat",
+    "Purr",
+    "Meow",
+    "Hiss",
+    "Caterwaul",
+    "Livestock, farm animals, working animals",
+    "Horse",
+    "Clip-clop",
+    "Neigh, whinny",
+    "Cattle, bovinae",
+    "Moo",
+    "Cowbell",
+    "Pig",
+    "Oink",
+    "Goat",
+    "Bleat",
+    "Sheep",
+    "Fowl",
+    "Chicken, rooster",
+    "Cluck",
+    "Crowing, cock-a-doodle-doo",
+    "Turkey",
+    "Gobble",
+    "Duck",
+    "Quack",
+    "Goose",
+    "Honk",
+    "Wild animals",
+    "Roaring cats (lions, tigers)",
+    "Roar",
+    "Bird",
+    "Bird vocalization, bird call, bird song",
+    "Chirp, tweet",
+    "Squawk",
+    "Pigeon, dove",
+    "Coo",
+    "Crow",
+    "Caw",
+    "Owl",
+    "Hoot",
+    "Bird flight, flapping wings",
+    "Canidae, dogs, wolves",
+    "Rodents, rats, mice",
+    "Mouse",
+    "Patter",
+    "Insect",
+    "Cricket",
+    "Mosquito",
+    "Fly, housefly",
+    "Buzz",
+    "Bee, wasp, etc.",
+    "Frog",
+    "Croak",
+    "Snake",
+    "Rattle",
+    "Whale vocalization",
+    "Music",
+    "Musical instrument",
+    "Plucked string instrument",
+    "Guitar",
+    "Electric guitar",
+    "Bass guitar",
+    "Acoustic guitar",
+    "Steel guitar, slide guitar",
+    "Tapping (guitar technique)",
+    "Strum",
+    "Banjo",
+    "Sitar",
+    "Mandolin",
+    "Zither",
+    "Ukulele",
+    "Keyboard (musical)",
+    "Piano",
+    "Electric piano",
+    "Organ",
+    "Electronic organ",
+    "Hammond organ",
+    "Synthesizer",
+    "Sampler",
+    "Harpsichord",
+    "Percussion",
+    "Drum kit",
+    "Drum machine",
+    "Drum",
+    "Snare drum",
+    "Rimshot",
+    "Drum roll",
+    "Bass drum",
+    "Timpani",
+    "Tabla",
+    "Cymbal",
+    "Hi-hat",
+    "Wood block",
+    "Tambourine",
+    "Rattle (instrument)",
+    "Maraca",
+    "Gong",
+    "Tubular bells",
+    "Mallet percussion",
+    "Marimba, xylophone",
+    "Glockenspiel",
+    "Vibraphone",
+    "Steelpan",
+    "Orchestra",
+    "Brass instrument",
+    "French horn",
+    "Trumpet",
+    "Trombone",
+    "Bowed string instrument",
+    "String section",
+    "Violin, fiddle",
+    "Pizzicato",
+    "Cello",
+    "Double bass",
+    "Wind instrument, woodwind instrument",
+    "Flute",
+    "Saxophone",
+    "Clarinet",
+    "Harp",
+    "Bell",
+    "Church bell",
+    "Jingle bell",
+    "Bicycle bell",
+    "Tuning fork",
+    "Chime",
+    "Wind chime",
+    "Change ringing (campanology)",
+    "Harmonica",
+    "Accordion",
+    "Bagpipes",
+    "Didgeridoo",
+    "Shofar",
+    "Theremin",
+    "Singing bowl",
+    "Scratching (performance technique)",
+    "Pop music",
+    "Hip hop music",
+    "Beatboxing",
+    "Rock music",
+    "Heavy metal",
+    "Punk rock",
+    "Grunge",
+    "Progressive rock",
+    "Rock and roll",
+    "Psychedelic rock",
+    "Rhythm and blues",
+    "Soul music",
+    "Reggae",
+    "Country",
+    "Swing music",
+    "Bluegrass",
+    "Funk",
+    "Folk music",
+    "Middle Eastern music",
+    "Jazz",
+    "Disco",
+    "Classical music",
+    "Opera",
+    "Electronic music",
+    "House music",
+    "Techno",
+    "Dubstep",
+    "Drum and bass",
+    "Electronica",
+    "Electronic dance music",
+    "Ambient music",
+    "Trance music",
+    "Music of Latin America",
+    "Salsa music",
+    "Flamenco",
+    "Blues",
+    "Music for children",
+    "New-age music",
+    "Vocal music",
+    "A capella",
+    "Music of Africa",
+    "Afrobeat",
+    "Christian music",
+    "Gospel music",
+    "Music of Asia",
+    "Carnatic music",
+    "Music of Bollywood",
+    "Ska",
+    "Traditional music",
+    "Independent music",
+    "Song",
+    "Background music",
+    "Theme music",
+    "Jingle (music)",
+    "Soundtrack music",
+    "Lullaby",
+    "Video game music",
+    "Christmas music",
+    "Dance music",
+    "Wedding music",
+    "Happy music",
+    "Funny music",
+    "Sad music",
+    "Tender music",
+    "Exciting music",
+    "Angry music",
+    "Scary music",
+    "Wind",
+    "Rustling leaves",
+    "Wind noise (microphone)",
+    "Thunderstorm",
+    "Thunder",
+    "Water",
+    "Rain",
+    "Raindrop",
+    "Rain on surface",
+    "Stream",
+    "Waterfall",
+    "Ocean",
+    "Waves, surf",
+    "Steam",
+    "Gurgling",
+    "Fire",
+    "Crackle",
+    "Vehicle",
+    "Boat, Water vehicle",
+    "Sailboat, sailing ship",
+    "Rowboat, canoe, kayak",
+    "Motorboat, speedboat",
+    "Ship",
+    "Motor vehicle (road)",
+    "Car",
+    "Vehicle horn, car horn, honking",
+    "Toot",
+    "Car alarm",
+    "Power windows, electric windows",
+    "Skidding",
+    "Tire squeal",
+    "Car passing by",
+    "Race car, auto racing",
+    "Truck",
+    "Air brake",
+    "Air horn, truck horn",
+    "Reversing beeps",
+    "Ice cream truck, ice cream van",
+    "Bus",
+    "Emergency vehicle",
+    "Police car (siren)",
+    "Ambulance (siren)",
+    "Fire engine, fire truck (siren)",
+    "Motorcycle",
+    "Traffic noise, roadway noise",
+    "Rail transport",
+    "Train",
+    "Train whistle",
+    "Train horn",
+    "Railroad car, train wagon",
+    "Train wheels squealing",
+    "Subway, metro, underground",
+    "Aircraft",
+    "Aircraft engine",
+    "Jet engine",
+    "Propeller, airscrew",
+    "Helicopter",
+    "Fixed-wing aircraft, airplane",
+    "Bicycle",
+    "Skateboard",
+    "Engine",
+    "Light engine (high frequency)",
+    "Dental drill, dentist's drill",
+    "Lawn mower",
+    "Chainsaw",
+    "Medium engine (mid frequency)",
+    "Heavy engine (low frequency)",
+    "Engine knocking",
+    "Engine starting",
+    "Idling",
+    "Accelerating, revving, vroom",
+    "Door",
+    "Doorbell",
+    "Ding-dong",
+    "Sliding door",
+    "Slam",
+    "Knock",
+    "Tap",
+    "Squeak",
+    "Cupboard open or close",
+    "Drawer open or close",
+    "Dishes, pots, and pans",
+    "Cutlery, silverware",
+    "Chopping (food)",
+    "Frying (food)",
+    "Microwave oven",
+    "Blender",
+    "Water tap, faucet",
+    "Sink (filling or washing)",
+    "Bathtub (filling or washing)",
+    "Hair dryer",
+    "Toilet flush",
+    "Toothbrush",
+    "Electric toothbrush",
+    "Vacuum cleaner",
+    "Zipper (clothing)",
+    "Keys jangling",
+    "Coin (dropping)",
+    "Scissors",
+    "Electric shaver, electric razor",
+    "Shuffling cards",
+    "Typing",
+    "Typewriter",
+    "Computer keyboard",
+    "Writing",
+    "Alarm",
+    "Telephone",
+    "Telephone bell ringing",
+    "Ringtone",
+    "Telephone dialing, DTMF",
+    "Dial tone",
+    "Busy signal",
+    "Alarm clock",
+    "Siren",
+    "Civil defense siren",
+    "Buzzer",
+    "Smoke detector, smoke alarm",
+    "Fire alarm",
+    "Foghorn",
+    "Whistle",
+    "Steam whistle",
+    "Mechanisms",
+    "Ratchet, pawl",
+    "Clock",
+    "Tick",
+    "Tick-tock",
+    "Gears",
+    "Pulleys",
+    "Sewing machine",
+    "Mechanical fan",
+    "Air conditioning",
+    "Cash register",
+    "Printer",
+    "Camera",
+    "Single-lens reflex camera",
+    "Tools",
+    "Hammer",
+    "Jackhammer",
+    "Sawing",
+    "Filing (rasp)",
+    "Sanding",
+    "Power tool",
+    "Drill",
+    "Explosion",
+    "Gunshot, gunfire",
+    "Machine gun",
+    "Fusillade",
+    "Artillery fire",
+    "Cap gun",
+    "Fireworks",
+    "Firecracker",
+    "Burst, pop",
+    "Eruption",
+    "Boom",
+    "Wood",
+    "Chop",
+    "Splinter",
+    "Crack",
+    "Glass",
+    "Chink, clink",
+    "Shatter",
+    "Liquid",
+    "Splash, splatter",
+    "Slosh",
+    "Squish",
+    "Drip",
+    "Pour",
+    "Trickle, dribble",
+    "Gush",
+    "Fill (with liquid)",
+    "Spray",
+    "Pump (liquid)",
+    "Stir",
+    "Boiling",
+    "Sonar",
+    "Arrow",
+    "Whoosh, swoosh, swish",
+    "Thump, thud",
+    "Thunk",
+    "Electronic tuner",
+    "Effects unit",
+    "Chorus effect",
+    "Basketball bounce",
+    "Bang",
+    "Slap, smack",
+    "Whack, thwack",
+    "Smash, crash",
+    "Breaking",
+    "Bouncing",
+    "Whip",
+    "Flap",
+    "Scratch",
+    "Scrape",
+    "Rub",
+    "Roll",
+    "Crushing",
+    "Crumpling, crinkling",
+    "Tearing",
+    "Beep, bleep",
+    "Ping",
+    "Ding",
+    "Clang",
+    "Squeal",
+    "Creak",
+    "Rustle",
+    "Whir",
+    "Clatter",
+    "Sizzle",
+    "Clicking",
+    "Clickety-clack",
+    "Rumble",
+    "Plop",
+    "Jingle, tinkle",
+    "Hum",
+    "Zing",
+    "Boing",
+    "Crunch",
+    "Silence",
+    "Sine wave",
+    "Harmonic",
+    "Chirp tone",
+    "Sound effect",
+    "Pulse",
+    "Inside, small room",
+    "Inside, large room or hall",
+    "Inside, public space",
+    "Outside, urban or manmade",
+    "Outside, rural or natural",
+    "Reverberation",
+    "Echo",
+    "Noise",
+    "Environmental noise",
+    "Static",
+    "Mains hum",
+    "Distortion",
+    "Sidetone",
+    "Cacophony",
+    "White noise",
+    "Pink noise",
+    "Throbbing",
+    "Vibration",
+    "Television",
+    "Radio",
+    "Field recording"
+  ],
+  "num_labels": 527,
+  "processing_time": 3.094,
+  "metadata": {
+    "filename": "TOOL - The Pot (Audio).mp3",
+    "filepath": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\..\\..\\docs\\Audio\\TOOL - The Pot (Audio).mp3",
+    "analyzer": "audio_event_classifier",
+    "version": "0.1.0",
+    "model_name": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "model_labels_count": 527,
+    "device": "cuda",
+    "sample_rate": 16000,
+    "window_seconds": 10.0,
+    "overlap": 0.25,
+    "num_chunks": 52,
+    "timestamp": "2025-10-12T14:49:09.761693"
+  }
+}

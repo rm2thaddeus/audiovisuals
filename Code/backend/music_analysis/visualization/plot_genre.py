@@ -51,7 +51,7 @@ def plot_genre(
     chunk_predictions = results.get("chunk_predictions", [])
     audio_name = Path(audio_path).name
 
-    labels = [entry["genre"] for entry in predictions]
+    labels = [entry["label"] for entry in predictions]
     scores = [entry["score"] for entry in predictions]
     colors = _genre_color_mapping(labels or results.get("label_set", []))
 
@@ -89,19 +89,19 @@ def plot_genre(
     # Timeline for chunk predictions
     ax2 = axes[1]
     if chunk_predictions:
-        unique_genres = list({chunk["top_genre"] for chunk in chunk_predictions})
-        chunk_colors = _genre_color_mapping(unique_genres)
+        unique_labels = list({chunk["top_label"] for chunk in chunk_predictions})
+        chunk_colors = _genre_color_mapping(unique_labels)
 
         for chunk in chunk_predictions:
             start = chunk["start"]
             duration = chunk["end"] - chunk["start"]
-            genre = chunk["top_genre"]
+            label = chunk["top_label"]
             confidence = chunk["confidence"] * 100
 
             ax2.broken_barh(
                 [(start, duration)],
                 (0, 1),
-                facecolors=chunk_colors.get(genre, "#999999"),
+                facecolors=chunk_colors.get(label, "#999999"),
                 edgecolor="#222222",
                 linewidth=0.8,
                 alpha=0.85,
@@ -109,7 +109,7 @@ def plot_genre(
             ax2.text(
                 start + duration / 2,
                 0.5,
-                f"{genre}\n{confidence:.0f}%",
+                f"{label}\n{confidence:.0f}%",
                 ha="center",
                 va="center",
                 fontsize=8,
@@ -133,9 +133,9 @@ def plot_genre(
                 [0],
                 color=color,
                 lw=4,
-                label=genre,
+                label=label,
             )
-            for genre, color in chunk_colors.items()
+            for label, color in chunk_colors.items()
         ]
         if handles:
             ax2.legend(
@@ -157,8 +157,8 @@ def plot_genre(
         ax2.axis("off")
 
     metadata_text = (
-        f"Predicted genre: {results.get('predicted_genre', 'N/A')} "
-        f"({results.get('predicted_confidence', 0.0) * 100:.1f}%) | "
+        f"Primary event: {results.get('primary_label', 'N/A')} "
+        f"({results.get('primary_confidence', 0.0) * 100:.1f}%) | "
         f"Chunks: {len(chunk_predictions)} | "
         f"Processing: {results.get('processing_time', 0.0):.2f}s"
     )

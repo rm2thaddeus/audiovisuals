@@ -1,0 +1,109 @@
+{
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 30.91,
+      "duration": 30.91,
+      "label": "intro",
+      "index": 0
+    },
+    {
+      "start": 30.91,
+      "end": 61.81,
+      "duration": 30.91,
+      "label": "section_1",
+      "index": 1
+    },
+    {
+      "start": 61.81,
+      "end": 92.72,
+      "duration": 30.91,
+      "label": "section_2",
+      "index": 2
+    },
+    {
+      "start": 92.72,
+      "end": 123.63,
+      "duration": 30.91,
+      "label": "section_3",
+      "index": 3
+    },
+    {
+      "start": 123.63,
+      "end": 154.53,
+      "duration": 30.91,
+      "label": "section_4",
+      "index": 4
+    },
+    {
+      "start": 154.53,
+      "end": 185.44,
+      "duration": 30.91,
+      "label": "section_5",
+      "index": 5
+    },
+    {
+      "start": 185.44,
+      "end": 216.35,
+      "duration": 30.91,
+      "label": "section_6",
+      "index": 6
+    },
+    {
+      "start": 216.35,
+      "end": 247.25,
+      "duration": 30.91,
+      "label": "section_7",
+      "index": 7
+    },
+    {
+      "start": 247.25,
+      "end": 278.16,
+      "duration": 30.91,
+      "label": "section_8",
+      "index": 8
+    },
+    {
+      "start": 278.16,
+      "end": 309.07,
+      "duration": 30.91,
+      "label": "section_9",
+      "index": 9
+    },
+    {
+      "start": 309.07,
+      "end": 339.97,
+      "duration": 30.91,
+      "label": "outro",
+      "index": 10
+    }
+  ],
+  "num_segments": 11,
+  "boundary_times": [
+    0.0,
+    30.91,
+    61.81,
+    92.72,
+    123.63,
+    154.53,
+    185.44,
+    216.35,
+    247.25,
+    278.16,
+    309.07,
+    339.97
+  ],
+  "algorithm": "cnmf",
+  "duration": 339.97,
+  "processing_time": 1.398,
+  "metadata": {
+    "filename": "Zyryab.mp3",
+    "filepath": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\..\\..\\docs\\Audio\\Zyryab.mp3",
+    "analyzer": "structure_analyzer",
+    "version": "0.1.0",
+    "model": "MSAF-cnmf",
+    "timestamp": "2025-10-12T13:50:15.074796",
+    "sample_rate": 22050,
+    "audio_duration": 339.97
+  }
+}
