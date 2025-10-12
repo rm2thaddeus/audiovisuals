@@ -1,0 +1,185 @@
+Designing Synesthetic Experiences for the GitHub Project
+Purpose and Perspective
+
+This report translates recent advances in synesthetic music research, cross‑modal correspondences, and AI‑driven colour synthesis into actionable design insights for the GitHub project. The goal is to create an experience where audio triggers vivid visual patterns through a reinforcement‑learning (RL) controlled CPPN (Compositional Pattern‑Producing Network). As an experience designer, I explore how scientific findings can inform interaction design, algorithmic prompts and potential collaborations.
+
+1. Synesthesia vs Cross‑modal Correspondences
+
+Synesthesia is a neurological condition where stimulation of one sensory channel involuntarily triggers experiences in another (e.g., hearing music and seeing colours). It is rare and idiosyncratic – mappings are stable within individuals but differ across people. Cross‑modal correspondences are universal tendencies where people map certain auditory features to visual properties (e.g., high pitch→bright colours). These correspondences are not synesthesia, but they can inform design since they reflect shared perceptual biases
+frontiersin.org
+.
+
+Concept	Characteristics	Design implications
+Synesthesia	Idiosyncratic, consistent within individuals, automatic, can involve pitch→colour, timbre→shape, pitch→spatial height.	Personalised mapping layer; allow users to configure or learn their own mappings.
+Cross‑modal correspondences	Universal biases; high pitch ↔ small/bright objects, soft timbres ↔ blue/green, harsh timbres ↔ red/yellow
+frontiersin.org
+; tonal music feels suitable for weakly saturated colours while atonal music pairs with highly saturated colours
+experimental.psychologie.uni-mainz.de
+.	Use as default mappings when personal data is unavailable; map pitch to brightness, timbre to hue/saturation, tempo to motion frequency; design visualizations that feel intuitive to most users.
+Emotion mediation	Cross‑modal associations often reflect emotional congruence; music and ambient lighting judged as matching when their valence and arousal align
+experimental.psychologie.uni-mainz.de
+.	Integrate an emotion‑classifier to modulate colour palettes; brighter/higher saturation colours for high arousal or positive valence.
+Rationale for the project
+
+Given that true synesthetic mappings vary by individual, the application should learn or allow user input for personal mappings while falling back on cross‑modal correspondences. Use RL to discover mappings that maximise user engagement and aesthetic coherence.
+
+2. Recent Studies and How to Integrate Them
+2.1. Colour‑Timbre and Pitch Associations
+
+Colour–Timbre Experiments (2024) – Participants matched musical timbres to colours and described timbre using semantic scales (e.g., soft–rough). The ratings predicted the lightness and saturation of chosen colours
+frontiersin.org
+. Soft timbres (piano/marimba) corresponded to blue/green hues, while harsh timbres (saxophone/trumpet) corresponded to red/yellow
+frontiersin.org
+.
+Integration: map spectral features (e.g., spectral centroid and roughness) to hue and saturation. Soft, mellow sounds could gently increase blue/green parameters in the CPPN, whereas bright, noisy sounds push the network toward warmer hues.
+
+Ambient Lighting & Music (2022) – Observers judged music–lighting combinations as matching when valence and arousal aligned; tonal music paired with weakly saturated colours, atonal music with highly saturated colours, and red light increased perceived musical power
+experimental.psychologie.uni-mainz.de
+.
+Integration: include an emotion classifier that maps harmonic structure and tempo to valence/arousal; use these to scale colour saturation and brightness. RL can learn to adjust saturation to reinforce congruency between audio and visual states.
+
+2.2. Synesthesia and Music Preferences
+
+A study comparing synesthetes and non‑synesthetes (2024) found that synesthetes have distinctive sound–colour associations, stronger pitch–luminance correspondences, and more active engagement with music
+researchgate.net
+.
+Integration: if personal data is available, train a model to emulate the user’s mapping consistency; emphasise luminance changes for pitch variation and adopt more dynamic visuals for users who exhibit synesthetic traits.
+
+2.3. Music2Palette: AI Mapping of Music to Colour Palettes (2025)
+
+This dataset and model pair a music encoder with a colour decoder to convert songs into 5‑colour palettes
+ar5iv.labs.arxiv.org
+. The MuCED dataset contains 2,634 music–palette pairs labelled by experts, and the model uses Russell’s valence–arousal emotion space to ensure emotional coherence
+ar5iv.labs.arxiv.org
+.
+
+Integration:
+
+Data: Use MuCED as training data for an RL agent. Reward the agent for generating palettes whose valence–arousal coordinates match those predicted by the music, giving a structured objective.
+
+Model inspiration: Adopt their two‑stage architecture (music embedding + palette decoder) as a baseline. RL can fine‑tune the palette decoder or CPPN generator to align with specific design goals (e.g., brand colours, accessibility).
+
+Emotion prompts for RL with CPPN: The MuCED design uses the emotion model as an intermediate representation. In RL, treat emotion vectors as prompts guiding CPPN parameter initialization or rewards – e.g., high valence/high arousal prompts could encourage vibrant, dynamic patterns.
+
+2.4. DNN Voice‑Evoked Colour Prediction (2025)
+
+Researchers studied a blind woman with sound–colour synesthesia. Using 136 voice features (MFCCs, Chroma vectors, energy), they trained a deep neural network that correctly predicted whether the voice induced blue or pink colours with 84 % accuracy
+pubmed.ncbi.nlm.nih.gov
+. MFCCs and Chroma were the most salient features.
+
+Integration: use similar audio descriptors (MFCCs, Chroma, spectral centroid) as input to RL/CPPN. The network can learn to map these features to colour parameters; e.g., certain harmonic profiles might trigger specific hue transitions. If training personalised mappings, ask participants to label their own associations and train a small classifier to bias the RL agent.
+
+2.5. Colour Learning Protocol for Visually Impaired (2025)
+
+A mobile app taught visually impaired users colours through music–colour associations. The study followed a systematic design: selecting colours and matching music excerpts, creating tasks, integrating accessibility features (text‑to‑speech, vibration), and verifying that users improved in recognising hue, luminance and saturation after using the app
+pmc.ncbi.nlm.nih.gov
+.
+
+Integration: incorporate multi‑sensory feedback into the GitHub project. For accessible design, complement visuals with audio and haptic cues. Use RL to adjust visual complexity or haptic intensity based on user performance, making the system adaptive for people with different sensory profiles.
+
+2.6. CoT‑VTM: Chain‑of‑Thought Visual‑to‑Music Generation (ACL 2025)
+
+CoT‑VTM uses chain‑of‑thought (CoT) reasoning to convert images to music. The framework bridges visual, musical and textual data through a CoT prompt and two‑stage training (mapping latent vectors and then generating with a diffusion model)
+aclanthology.org
+. It explicitly designs implicit relationships between visual and musical elements by referencing cross‑modal research
+aclanthology.org
+.
+
+Integration: although the GitHub project deals with sound→visual mapping, CoT‑VTM shows how to incorporate explicit reasoning about cross‑modal relationships. For RL with CPPN, embed a CoT‑like module that reasons about how audio features should influence shape, motion and colour; integrate a language model to generate descriptive prompts that guide the agent (e.g., “bright staccato passages produce angular shapes; legato strings blend smooth curves”).
+
+2.7. Sonicolour: Colour‑Controlled Sound Synthesis (NIME 2025)
+
+Sonicolour is an instrument that translates RGB sensor values into synthesiser parameters via interactive machine learning
+nime.org
+. Unlike simple pitch–height mappings, it uses spectral features and allows playful exploration. Additive synthesis provides a broad timbral palette, making it suitable for neurodivergent learners and creative exploration
+nime.org
+. The authors highlight that cross‑modal mappings may be mediated by brightness/emotion
+nime.org
+.
+
+Integration: this instrument suggests a bi‑directional pipeline. The GitHub project could let users paint colours to affect audio as well as the reverse. RL could learn policies where visual adjustments by the user modify audio parameters, enabling a co‑creative loop. For neurodivergent or educational contexts, emphasise clear feedback and accessible controls.
+
+2.8. Cautionary Findings
+
+A high‑school science experiment (2021) tested claims like “major chords are yellow; minor chords are blue” and found no perceptual congruence, implying that some colour–music associations may be cognitive rather than innate
+researchgate.net
+.
+Implication: avoid assuming that all associations are perceptually driven; gather user feedback and allow flexible mappings.
+
+3. Designing the Application Experience
+3.1. Architecture
+
+Audio Analysis Layer: Extract pitch, timbre descriptors (spectral centroid, roughness, MFCCs, Chroma), tempo, and harmonic tension. Use a lightweight neural network to classify valence–arousal and optionally to detect synthetic emotional cues (e.g., tension, dissonance).
+
+Mapping Module: Apply a cross‑modal mapping function that converts audio features into colour parameters (hue, saturation, brightness) and structural cues for the CPPN. Implement separate profiles:
+
+Universal mapping based on cross‑modal correspondences (e.g., high pitch → high luminance, rough timbre → warmer hues).
+
+Personal mapping learned from user inputs or small labelled sets (similar to the voice‑evoked colour study).
+
+CPPN Generator with RL: Use a CPPN to generate dynamic patterns. The RL agent’s state is the current audio analysis and mapping outputs; actions modify the CPPN’s weights or parameters; rewards measure user engagement, aesthetic coherence (via emotion alignment from Music2Palette), and diversity of patterns. RL can also adapt to accessibility metrics (e.g., ease of recognition for visually impaired users).
+
+Interactive Interface: Provide control sliders for users to adjust mapping sensitivity, colour schemes, or to “paint” on the CPPN canvas (inspired by Sonicolour). Offer haptic or audio feedback for accessibility.
+
+Feedback and Adaptation: Track user interactions, adjust RL rewards, and allow the system to learn personal preferences. Provide options to save and recall user‑specific mappings.
+
+3.2. RL Prompt Ideas Derived from Research
+
+Emotion‑guided reward: Use valence–arousal predictions from the audio to set a target colour palette. Reward the RL agent when the generated visuals’ emotion (via palette matching) aligns with the audio’s predicted emotion
+ar5iv.labs.arxiv.org
+.
+
+Feature‑specific mapping prompts: For each audio frame, generate prompts like “soft timbre, low roughness → emphasise cool hues with low saturation” or “harsh, high spectral centroid → increase warm hues and saturation”
+frontiersin.org
+. The RL agent learns to adjust CPPN parameters to satisfy these prompts.
+
+User‑provided associations: Ask users to assign colours to a few sample sounds; use a classifier to infer patterns and feed these as prompts to the RL agent, similar to the DNN voice study
+pubmed.ncbi.nlm.nih.gov
+.
+
+Bi‑directional co‑creation: Reward loops where user brush strokes (colour changes) influence audio synthesis (pitch shifts or timbre changes) and vice versa, inspired by Sonicolour
+nime.org
+.
+
+Chain‑of‑thought prompts: Use a small language model to generate descriptive mapping statements (e.g., “rapid tempo means faster pattern motion”; “minor key implies desaturated colours”). These textual prompts can guide the RL agent or help debug decisions, echoing CoT‑VTM’s use of textual reasoning
+aclanthology.org
+.
+
+4. Proposing Collaborations with Research Groups
+
+Engaging with researchers can elevate the project’s scientific grounding and provide access to datasets and expertise. Here are potential collaborators and ways to contact them:
+
+Research group / Institution	Relevant work	Collaboration ideas
+Nanjing University & Chinese Academy of Sciences (Music2Palette authors)	Created the MuCED dataset and cross‑modal representation model
+ar5iv.labs.arxiv.org
+.	Seek permission to use or extend MuCED; propose integrating MuCED with RL experiments and contribute new data collected via the application; invite collaboration on adding dynamic visualisation modules to their research.
+University of Sussex – Synesthesia Research Group	Studies synesthesia and runs the Synesthesia Battery; collects sound–colour data
+researchgate.net
+.	Offer to share anonymised user data to enhance their database; invite joint studies on adaptive visualisation for synesthetes; collaborate on user testing and validation of the app’s personalised mapping features.
+University of Zurich (Voice–colour DNN study)	Developed methods to classify colours evoked by sound using voice features
+pubmed.ncbi.nlm.nih.gov
+.	Collaborate on expanding classification models beyond voices; co‑author a paper on machine learning for personalised synesthetic mapping; cross‑validate models using data collected from the app.
+Crossmodal Research Laboratory (Oxford)	Extensive work on cross‑modal correspondences and ambient lighting experiments
+experimental.psychologie.uni-mainz.de
+.	Jointly design experiments within the app to test how cross‑modal correspondences influence user engagement; implement psychological protocols to evaluate perceptions; co‑develop new cross‑modal metrics for RL rewards.
+NIME community / Sonicolour developers	Innovators of the colour‑controlled synthesiser
+nime.org
+.	Exchange knowledge on bi‑directional mapping and interactive machine learning; integrate sound synthesis into the visual app; present collaborative works at the NIME conference.
+Educational technology researchers	Developed colour learning protocol for visually impaired users
+pmc.ncbi.nlm.nih.gov
+.	Work together to adapt the app for accessibility; evaluate how synesthetic visualisations aid learning; integrate haptic and auditory feedback modules.
+ACL researchers (CoT‑VTM)	Proposed chain‑of‑thought visual–music generation
+aclanthology.org
+.	Explore how language models can articulate cross‑modal rules for RL; co‑develop prompts or internal reasoning modules; share cross‑modal reasoning frameworks.
+
+Outreach tips:
+
+Prepare a concise project proposal highlighting the novelty (RL‑driven generative synesthetic interface), the existing research you draw upon, and potential benefits to their work.
+
+Provide ethical assurances about data privacy; emphasise that user data can be anonymised and used under appropriate consent.
+
+Offer mutual benefits: access to your platform for experiments, visualisation tools, and co‑authorship on resulting publications.
+
+Conclusion and Next Steps
+
+Synesthetic music visualisation is not only a fertile ground for artistic exploration but also a robust avenue for studying perception and designing inclusive experiences. By combining cross‑modal research, emotion models, personalised mapping, and reinforcement learning, the GitHub project can create a dynamic system where music drives captivating visuals, and users can co‑create through intuitive controls. Establishing collaborations with leading research groups will ensure scientific rigor, access to datasets, and opportunities to contribute to the broader understanding of multisensory perception.
