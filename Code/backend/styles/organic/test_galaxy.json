@@ -1,0 +1,1206 @@
+{
+  "prompt": "spinning cosmic galaxy with swirling nebula",
+  "best_similarity": 0.1734619140625,
+  "history": [
+    {
+      "resolution": 256,
+      "iteration": 0,
+      "similarity": 0.1534423828125,
+      "loss": -0.1534423828125
+    },
+    {
+      "resolution": 256,
+      "iteration": 1,
+      "similarity": 0.1595458984375,
+      "loss": -0.1595458984375
+    },
+    {
+      "resolution": 256,
+      "iteration": 2,
+      "similarity": 0.1552734375,
+      "loss": -0.1552734375
+    },
+    {
+      "resolution": 256,
+      "iteration": 3,
+      "similarity": 0.16015625,
+      "loss": -0.16015625
+    },
+    {
+      "resolution": 256,
+      "iteration": 4,
+      "similarity": 0.1585693359375,
+      "loss": -0.1585693359375
+    },
+    {
+      "resolution": 256,
+      "iteration": 5,
+      "similarity": 0.1588134765625,
+      "loss": -0.1588134765625
+    },
+    {
+      "resolution": 256,
+      "iteration": 6,
+      "similarity": 0.1556396484375,
+      "loss": -0.1556396484375
+    },
+    {
+      "resolution": 256,
+      "iteration": 7,
+      "similarity": 0.1561279296875,
+      "loss": -0.1561279296875
+    },
+    {
+      "resolution": 256,
+      "iteration": 8,
+      "similarity": 0.15869140625,
+      "loss": -0.15869140625
+    },
+    {
+      "resolution": 256,
+      "iteration": 9,
+      "similarity": 0.159423828125,
+      "loss": -0.159423828125
+    },
+    {
+      "resolution": 256,
+      "iteration": 10,
+      "similarity": 0.1571044921875,
+      "loss": -0.1571044921875
+    },
+    {
+      "resolution": 256,
+      "iteration": 11,
+      "similarity": 0.162353515625,
+      "loss": -0.162353515625
+    },
+    {
+      "resolution": 256,
+      "iteration": 12,
+      "similarity": 0.1572265625,
+      "loss": -0.1572265625
+    },
+    {
+      "resolution": 256,
+      "iteration": 13,
+      "similarity": 0.154541015625,
+      "loss": -0.154541015625
+    },
+    {
+      "resolution": 256,
+      "iteration": 14,
+      "similarity": 0.1597900390625,
+      "loss": -0.1597900390625
+    },
+    {
+      "resolution": 256,
+      "iteration": 15,
+      "similarity": 0.1539306640625,
+      "loss": -0.1539306640625
+    },
+    {
+      "resolution": 256,
+      "iteration": 16,
+      "similarity": 0.15771484375,
+      "loss": -0.15771484375
+    },
+    {
+      "resolution": 256,
+      "iteration": 17,
+      "similarity": 0.161376953125,
+      "loss": -0.161376953125
+    },
+    {
+      "resolution": 256,
+      "iteration": 18,
+      "similarity": 0.160888671875,
+      "loss": -0.160888671875
+    },
+    {
+      "resolution": 256,
+      "iteration": 19,
+      "similarity": 0.1566162109375,
+      "loss": -0.1566162109375
+    },
+    {
+      "resolution": 256,
+      "iteration": 20,
+      "similarity": 0.1575927734375,
+      "loss": -0.1575927734375
+    },
+    {
+      "resolution": 256,
+      "iteration": 21,
+      "similarity": 0.1612548828125,
+      "loss": -0.1612548828125
+    },
+    {
+      "resolution": 256,
+      "iteration": 22,
+      "similarity": 0.160888671875,
+      "loss": -0.160888671875
+    },
+    {
+      "resolution": 256,
+      "iteration": 23,
+      "similarity": 0.15478515625,
+      "loss": -0.15478515625
+    },
+    {
+      "resolution": 256,
+      "iteration": 24,
+      "similarity": 0.1624755859375,
+      "loss": -0.1624755859375
+    },
+    {
+      "resolution": 256,
+      "iteration": 25,
+      "similarity": 0.155029296875,
+      "loss": -0.155029296875
+    },
+    {
+      "resolution": 256,
+      "iteration": 26,
+      "similarity": 0.155029296875,
+      "loss": -0.155029296875
+    },
+    {
+      "resolution": 256,
+      "iteration": 27,
+      "similarity": 0.15869140625,
+      "loss": -0.15869140625
+    },
+    {
+      "resolution": 256,
+      "iteration": 28,
+      "similarity": 0.157958984375,
+      "loss": -0.157958984375
+    },
+    {
+      "resolution": 256,
+      "iteration": 29,
+      "similarity": 0.1629638671875,
+      "loss": -0.1629638671875
+    },
+    {
+      "resolution": 256,
+      "iteration": 30,
+      "similarity": 0.159423828125,
+      "loss": -0.159423828125
+    },
+    {
+      "resolution": 256,
+      "iteration": 31,
+      "similarity": 0.1622314453125,
+      "loss": -0.1622314453125
+    },
+    {
+      "resolution": 256,
+      "iteration": 32,
+      "similarity": 0.158935546875,
+      "loss": -0.158935546875
+    },
+    {
+      "resolution": 256,
+      "iteration": 33,
+      "similarity": 0.16064453125,
+      "loss": -0.16064453125
+    },
+    {
+      "resolution": 256,
+      "iteration": 34,
+      "similarity": 0.1605224609375,
+      "loss": -0.1605224609375
+    },
+    {
+      "resolution": 256,
+      "iteration": 35,
+      "similarity": 0.155029296875,
+      "loss": -0.155029296875
+    },
+    {
+      "resolution": 256,
+      "iteration": 36,
+      "similarity": 0.1571044921875,
+      "loss": -0.1571044921875
+    },
+    {
+      "resolution": 256,
+      "iteration": 37,
+      "similarity": 0.1611328125,
+      "loss": -0.1611328125
+    },
+    {
+      "resolution": 256,
+      "iteration": 38,
+      "similarity": 0.154541015625,
+      "loss": -0.154541015625
+    },
+    {
+      "resolution": 256,
+      "iteration": 39,
+      "similarity": 0.1590576171875,
+      "loss": -0.1590576171875
+    },
+    {
+      "resolution": 256,
+      "iteration": 40,
+      "similarity": 0.159912109375,
+      "loss": -0.159912109375
+    },
+    {
+      "resolution": 256,
+      "iteration": 41,
+      "similarity": 0.1568603515625,
+      "loss": -0.1568603515625
+    },
+    {
+      "resolution": 256,
+      "iteration": 42,
+      "similarity": 0.161865234375,
+      "loss": -0.161865234375
+    },
+    {
+      "resolution": 256,
+      "iteration": 43,
+      "similarity": 0.1575927734375,
+      "loss": -0.1575927734375
+    },
+    {
+      "resolution": 256,
+      "iteration": 44,
+      "similarity": 0.1588134765625,
+      "loss": -0.1588134765625
+    },
+    {
+      "resolution": 256,
+      "iteration": 45,
+      "similarity": 0.15673828125,
+      "loss": -0.15673828125
+    },
+    {
+      "resolution": 256,
+      "iteration": 46,
+      "similarity": 0.16064453125,
+      "loss": -0.16064453125
+    },
+    {
+      "resolution": 256,
+      "iteration": 47,
+      "similarity": 0.1617431640625,
+      "loss": -0.1617431640625
+    },
+    {
+      "resolution": 256,
+      "iteration": 48,
+      "similarity": 0.1583251953125,
+      "loss": -0.1583251953125
+    },
+    {
+      "resolution": 256,
+      "iteration": 49,
+      "similarity": 0.158203125,
+      "loss": -0.158203125
+    },
+    {
+      "resolution": 256,
+      "iteration": 50,
+      "similarity": 0.1634521484375,
+      "loss": -0.1634521484375
+    },
+    {
+      "resolution": 256,
+      "iteration": 51,
+      "similarity": 0.1583251953125,
+      "loss": -0.1583251953125
+    },
+    {
+      "resolution": 256,
+      "iteration": 52,
+      "similarity": 0.1605224609375,
+      "loss": -0.1605224609375
+    },
+    {
+      "resolution": 256,
+      "iteration": 53,
+      "similarity": 0.162353515625,
+      "loss": -0.162353515625
+    },
+    {
+      "resolution": 256,
+      "iteration": 54,
+      "similarity": 0.1619873046875,
+      "loss": -0.1619873046875
+    },
+    {
+      "resolution": 256,
+      "iteration": 55,
+      "similarity": 0.1597900390625,
+      "loss": -0.1597900390625
+    },
+    {
+      "resolution": 256,
+      "iteration": 56,
+      "similarity": 0.161376953125,
+      "loss": -0.161376953125
+    },
+    {
+      "resolution": 256,
+      "iteration": 57,
+      "similarity": 0.1573486328125,
+      "loss": -0.1573486328125
+    },
+    {
+      "resolution": 256,
+      "iteration": 58,
+      "similarity": 0.1544189453125,
+      "loss": -0.1544189453125
+    },
+    {
+      "resolution": 256,
+      "iteration": 59,
+      "similarity": 0.1622314453125,
+      "loss": -0.1622314453125
+    },
+    {
+      "resolution": 256,
+      "iteration": 60,
+      "similarity": 0.15966796875,
+      "loss": -0.15966796875
+    },
+    {
+      "resolution": 256,
+      "iteration": 61,
+      "similarity": 0.1539306640625,
+      "loss": -0.1539306640625
+    },
+    {
+      "resolution": 256,
+      "iteration": 62,
+      "similarity": 0.1641845703125,
+      "loss": -0.1641845703125
+    },
+    {
+      "resolution": 256,
+      "iteration": 63,
+      "similarity": 0.1636962890625,
+      "loss": -0.1636962890625
+    },
+    {
+      "resolution": 256,
+      "iteration": 64,
+      "similarity": 0.1588134765625,
+      "loss": -0.1588134765625
+    },
+    {
+      "resolution": 256,
+      "iteration": 65,
+      "similarity": 0.15966796875,
+      "loss": -0.15966796875
+    },
+    {
+      "resolution": 256,
+      "iteration": 66,
+      "similarity": 0.15771484375,
+      "loss": -0.15771484375
+    },
+    {
+      "resolution": 256,
+      "iteration": 67,
+      "similarity": 0.1630859375,
+      "loss": -0.1630859375
+    },
+    {
+      "resolution": 256,
+      "iteration": 68,
+      "similarity": 0.163818359375,
+      "loss": -0.163818359375
+    },
+    {
+      "resolution": 256,
+      "iteration": 69,
+      "similarity": 0.1614990234375,
+      "loss": -0.1614990234375
+    },
+    {
+      "resolution": 256,
+      "iteration": 70,
+      "similarity": 0.1619873046875,
+      "loss": -0.1619873046875
+    },
+    {
+      "resolution": 256,
+      "iteration": 71,
+      "similarity": 0.1590576171875,
+      "loss": -0.1590576171875
+    },
+    {
+      "resolution": 256,
+      "iteration": 72,
+      "similarity": 0.1593017578125,
+      "loss": -0.1593017578125
+    },
+    {
+      "resolution": 256,
+      "iteration": 73,
+      "similarity": 0.1595458984375,
+      "loss": -0.1595458984375
+    },
+    {
+      "resolution": 256,
+      "iteration": 74,
+      "similarity": 0.162841796875,
+      "loss": -0.162841796875
+    },
+    {
+      "resolution": 256,
+      "iteration": 75,
+      "similarity": 0.15966796875,
+      "loss": -0.15966796875
+    },
+    {
+      "resolution": 256,
+      "iteration": 76,
+      "similarity": 0.167724609375,
+      "loss": -0.167724609375
+    },
+    {
+      "resolution": 256,
+      "iteration": 77,
+      "similarity": 0.15673828125,
+      "loss": -0.15673828125
+    },
+    {
+      "resolution": 256,
+      "iteration": 78,
+      "similarity": 0.1605224609375,
+      "loss": -0.1605224609375
+    },
+    {
+      "resolution": 256,
+      "iteration": 79,
+      "similarity": 0.1646728515625,
+      "loss": -0.1646728515625
+    },
+    {
+      "resolution": 256,
+      "iteration": 80,
+      "similarity": 0.1629638671875,
+      "loss": -0.1629638671875
+    },
+    {
+      "resolution": 256,
+      "iteration": 81,
+      "similarity": 0.1639404296875,
+      "loss": -0.1639404296875
+    },
+    {
+      "resolution": 256,
+      "iteration": 82,
+      "similarity": 0.163818359375,
+      "loss": -0.163818359375
+    },
+    {
+      "resolution": 256,
+      "iteration": 83,
+      "similarity": 0.1644287109375,
+      "loss": -0.1644287109375
+    },
+    {
+      "resolution": 256,
+      "iteration": 84,
+      "similarity": 0.16552734375,
+      "loss": -0.16552734375
+    },
+    {
+      "resolution": 256,
+      "iteration": 85,
+      "similarity": 0.15771484375,
+      "loss": -0.15771484375
+    },
+    {
+      "resolution": 256,
+      "iteration": 86,
+      "similarity": 0.1654052734375,
+      "loss": -0.1654052734375
+    },
+    {
+      "resolution": 256,
+      "iteration": 87,
+      "similarity": 0.1602783203125,
+      "loss": -0.1602783203125
+    },
+    {
+      "resolution": 256,
+      "iteration": 88,
+      "similarity": 0.1680908203125,
+      "loss": -0.1680908203125
+    },
+    {
+      "resolution": 256,
+      "iteration": 89,
+      "similarity": 0.1622314453125,
+      "loss": -0.1622314453125
+    },
+    {
+      "resolution": 256,
+      "iteration": 90,
+      "similarity": 0.1624755859375,
+      "loss": -0.1624755859375
+    },
+    {
+      "resolution": 256,
+      "iteration": 91,
+      "similarity": 0.1650390625,
+      "loss": -0.1650390625
+    },
+    {
+      "resolution": 256,
+      "iteration": 92,
+      "similarity": 0.157958984375,
+      "loss": -0.157958984375
+    },
+    {
+      "resolution": 256,
+      "iteration": 93,
+      "similarity": 0.158935546875,
+      "loss": -0.158935546875
+    },
+    {
+      "resolution": 256,
+      "iteration": 94,
+      "similarity": 0.160888671875,
+      "loss": -0.160888671875
+    },
+    {
+      "resolution": 256,
+      "iteration": 95,
+      "similarity": 0.1571044921875,
+      "loss": -0.1571044921875
+    },
+    {
+      "resolution": 256,
+      "iteration": 96,
+      "similarity": 0.168212890625,
+      "loss": -0.168212890625
+    },
+    {
+      "resolution": 256,
+      "iteration": 97,
+      "similarity": 0.1646728515625,
+      "loss": -0.1646728515625
+    },
+    {
+      "resolution": 256,
+      "iteration": 98,
+      "similarity": 0.160400390625,
+      "loss": -0.160400390625
+    },
+    {
+      "resolution": 256,
+      "iteration": 99,
+      "similarity": 0.15869140625,
+      "loss": -0.15869140625
+    },
+    {
+      "resolution": 512,
+      "iteration": 0,
+      "similarity": 0.162841796875,
+      "loss": -0.162841796875
+    },
+    {
+      "resolution": 512,
+      "iteration": 1,
+      "similarity": 0.1683349609375,
+      "loss": -0.1683349609375
+    },
+    {
+      "resolution": 512,
+      "iteration": 2,
+      "similarity": 0.156494140625,
+      "loss": -0.156494140625
+    },
+    {
+      "resolution": 512,
+      "iteration": 3,
+      "similarity": 0.16552734375,
+      "loss": -0.16552734375
+    },
+    {
+      "resolution": 512,
+      "iteration": 4,
+      "similarity": 0.15380859375,
+      "loss": -0.15380859375
+    },
+    {
+      "resolution": 512,
+      "iteration": 5,
+      "similarity": 0.1630859375,
+      "loss": -0.1630859375
+    },
+    {
+      "resolution": 512,
+      "iteration": 6,
+      "similarity": 0.1614990234375,
+      "loss": -0.1614990234375
+    },
+    {
+      "resolution": 512,
+      "iteration": 7,
+      "similarity": 0.165771484375,
+      "loss": -0.165771484375
+    },
+    {
+      "resolution": 512,
+      "iteration": 8,
+      "similarity": 0.1671142578125,
+      "loss": -0.1671142578125
+    },
+    {
+      "resolution": 512,
+      "iteration": 9,
+      "similarity": 0.163330078125,
+      "loss": -0.163330078125
+    },
+    {
+      "resolution": 512,
+      "iteration": 10,
+      "similarity": 0.160888671875,
+      "loss": -0.160888671875
+    },
+    {
+      "resolution": 512,
+      "iteration": 11,
+      "similarity": 0.165283203125,
+      "loss": -0.165283203125
+    },
+    {
+      "resolution": 512,
+      "iteration": 12,
+      "similarity": 0.16162109375,
+      "loss": -0.16162109375
+    },
+    {
+      "resolution": 512,
+      "iteration": 13,
+      "similarity": 0.1650390625,
+      "loss": -0.1650390625
+    },
+    {
+      "resolution": 512,
+      "iteration": 14,
+      "similarity": 0.1651611328125,
+      "loss": -0.1651611328125
+    },
+    {
+      "resolution": 512,
+      "iteration": 15,
+      "similarity": 0.163330078125,
+      "loss": -0.163330078125
+    },
+    {
+      "resolution": 512,
+      "iteration": 16,
+      "similarity": 0.1597900390625,
+      "loss": -0.1597900390625
+    },
+    {
+      "resolution": 512,
+      "iteration": 17,
+      "similarity": 0.159423828125,
+      "loss": -0.159423828125
+    },
+    {
+      "resolution": 512,
+      "iteration": 18,
+      "similarity": 0.162841796875,
+      "loss": -0.162841796875
+    },
+    {
+      "resolution": 512,
+      "iteration": 19,
+      "similarity": 0.1683349609375,
+      "loss": -0.1683349609375
+    },
+    {
+      "resolution": 512,
+      "iteration": 20,
+      "similarity": 0.16162109375,
+      "loss": -0.16162109375
+    },
+    {
+      "resolution": 512,
+      "iteration": 21,
+      "similarity": 0.1656494140625,
+      "loss": -0.1656494140625
+    },
+    {
+      "resolution": 512,
+      "iteration": 22,
+      "similarity": 0.16650390625,
+      "loss": -0.16650390625
+    },
+    {
+      "resolution": 512,
+      "iteration": 23,
+      "similarity": 0.16455078125,
+      "loss": -0.16455078125
+    },
+    {
+      "resolution": 512,
+      "iteration": 24,
+      "similarity": 0.1644287109375,
+      "loss": -0.1644287109375
+    },
+    {
+      "resolution": 512,
+      "iteration": 25,
+      "similarity": 0.1636962890625,
+      "loss": -0.1636962890625
+    },
+    {
+      "resolution": 512,
+      "iteration": 26,
+      "similarity": 0.163818359375,
+      "loss": -0.163818359375
+    },
+    {
+      "resolution": 512,
+      "iteration": 27,
+      "similarity": 0.1668701171875,
+      "loss": -0.1668701171875
+    },
+    {
+      "resolution": 512,
+      "iteration": 28,
+      "similarity": 0.1590576171875,
+      "loss": -0.1590576171875
+    },
+    {
+      "resolution": 512,
+      "iteration": 29,
+      "similarity": 0.1685791015625,
+      "loss": -0.1685791015625
+    },
+    {
+      "resolution": 512,
+      "iteration": 30,
+      "similarity": 0.16015625,
+      "loss": -0.16015625
+    },
+    {
+      "resolution": 512,
+      "iteration": 31,
+      "similarity": 0.164306640625,
+      "loss": -0.164306640625
+    },
+    {
+      "resolution": 512,
+      "iteration": 32,
+      "similarity": 0.1661376953125,
+      "loss": -0.1661376953125
+    },
+    {
+      "resolution": 512,
+      "iteration": 33,
+      "similarity": 0.1697998046875,
+      "loss": -0.1697998046875
+    },
+    {
+      "resolution": 512,
+      "iteration": 34,
+      "similarity": 0.165283203125,
+      "loss": -0.165283203125
+    },
+    {
+      "resolution": 512,
+      "iteration": 35,
+      "similarity": 0.1641845703125,
+      "loss": -0.1641845703125
+    },
+    {
+      "resolution": 512,
+      "iteration": 36,
+      "similarity": 0.1634521484375,
+      "loss": -0.1634521484375
+    },
+    {
+      "resolution": 512,
+      "iteration": 37,
+      "similarity": 0.165283203125,
+      "loss": -0.165283203125
+    },
+    {
+      "resolution": 512,
+      "iteration": 38,
+      "similarity": 0.16943359375,
+      "loss": -0.16943359375
+    },
+    {
+      "resolution": 512,
+      "iteration": 39,
+      "similarity": 0.16455078125,
+      "loss": -0.16455078125
+    },
+    {
+      "resolution": 512,
+      "iteration": 40,
+      "similarity": 0.163330078125,
+      "loss": -0.163330078125
+    },
+    {
+      "resolution": 512,
+      "iteration": 41,
+      "similarity": 0.16845703125,
+      "loss": -0.16845703125
+    },
+    {
+      "resolution": 512,
+      "iteration": 42,
+      "similarity": 0.1683349609375,
+      "loss": -0.1683349609375
+    },
+    {
+      "resolution": 512,
+      "iteration": 43,
+      "similarity": 0.167724609375,
+      "loss": -0.167724609375
+    },
+    {
+      "resolution": 512,
+      "iteration": 44,
+      "similarity": 0.1611328125,
+      "loss": -0.1611328125
+    },
+    {
+      "resolution": 512,
+      "iteration": 45,
+      "similarity": 0.1666259765625,
+      "loss": -0.1666259765625
+    },
+    {
+      "resolution": 512,
+      "iteration": 46,
+      "similarity": 0.1666259765625,
+      "loss": -0.1666259765625
+    },
+    {
+      "resolution": 512,
+      "iteration": 47,
+      "similarity": 0.1632080078125,
+      "loss": -0.1632080078125
+    },
+    {
+      "resolution": 512,
+      "iteration": 48,
+      "similarity": 0.1683349609375,
+      "loss": -0.1683349609375
+    },
+    {
+      "resolution": 512,
+      "iteration": 49,
+      "similarity": 0.161865234375,
+      "loss": -0.161865234375
+    },
+    {
+      "resolution": 512,
+      "iteration": 50,
+      "similarity": 0.1646728515625,
+      "loss": -0.1646728515625
+    },
+    {
+      "resolution": 512,
+      "iteration": 51,
+      "similarity": 0.166015625,
+      "loss": -0.166015625
+    },
+    {
+      "resolution": 512,
+      "iteration": 52,
+      "similarity": 0.166015625,
+      "loss": -0.166015625
+    },
+    {
+      "resolution": 512,
+      "iteration": 53,
+      "similarity": 0.165771484375,
+      "loss": -0.165771484375
+    },
+    {
+      "resolution": 512,
+      "iteration": 54,
+      "similarity": 0.166748046875,
+      "loss": -0.166748046875
+    },
+    {
+      "resolution": 512,
+      "iteration": 55,
+      "similarity": 0.1617431640625,
+      "loss": -0.1617431640625
+    },
+    {
+      "resolution": 512,
+      "iteration": 56,
+      "similarity": 0.1630859375,
+      "loss": -0.1630859375
+    },
+    {
+      "resolution": 512,
+      "iteration": 57,
+      "similarity": 0.166748046875,
+      "loss": -0.166748046875
+    },
+    {
+      "resolution": 512,
+      "iteration": 58,
+      "similarity": 0.161865234375,
+      "loss": -0.161865234375
+    },
+    {
+      "resolution": 512,
+      "iteration": 59,
+      "similarity": 0.1611328125,
+      "loss": -0.1611328125
+    },
+    {
+      "resolution": 512,
+      "iteration": 60,
+      "similarity": 0.1666259765625,
+      "loss": -0.1666259765625
+    },
+    {
+      "resolution": 512,
+      "iteration": 61,
+      "similarity": 0.1683349609375,
+      "loss": -0.1683349609375
+    },
+    {
+      "resolution": 512,
+      "iteration": 62,
+      "similarity": 0.166259765625,
+      "loss": -0.166259765625
+    },
+    {
+      "resolution": 512,
+      "iteration": 63,
+      "similarity": 0.159423828125,
+      "loss": -0.159423828125
+    },
+    {
+      "resolution": 512,
+      "iteration": 64,
+      "similarity": 0.1632080078125,
+      "loss": -0.1632080078125
+    },
+    {
+      "resolution": 512,
+      "iteration": 65,
+      "similarity": 0.1641845703125,
+      "loss": -0.1641845703125
+    },
+    {
+      "resolution": 512,
+      "iteration": 66,
+      "similarity": 0.161865234375,
+      "loss": -0.161865234375
+    },
+    {
+      "resolution": 512,
+      "iteration": 67,
+      "similarity": 0.16357421875,
+      "loss": -0.16357421875
+    },
+    {
+      "resolution": 512,
+      "iteration": 68,
+      "similarity": 0.16162109375,
+      "loss": -0.16162109375
+    },
+    {
+      "resolution": 512,
+      "iteration": 69,
+      "similarity": 0.1680908203125,
+      "loss": -0.1680908203125
+    },
+    {
+      "resolution": 512,
+      "iteration": 70,
+      "similarity": 0.1612548828125,
+      "loss": -0.1612548828125
+    },
+    {
+      "resolution": 512,
+      "iteration": 71,
+      "similarity": 0.1685791015625,
+      "loss": -0.1685791015625
+    },
+    {
+      "resolution": 512,
+      "iteration": 72,
+      "similarity": 0.1644287109375,
+      "loss": -0.1644287109375
+    },
+    {
+      "resolution": 512,
+      "iteration": 73,
+      "similarity": 0.1673583984375,
+      "loss": -0.1673583984375
+    },
+    {
+      "resolution": 512,
+      "iteration": 74,
+      "similarity": 0.165283203125,
+      "loss": -0.165283203125
+    },
+    {
+      "resolution": 512,
+      "iteration": 75,
+      "similarity": 0.169189453125,
+      "loss": -0.169189453125
+    },
+    {
+      "resolution": 512,
+      "iteration": 76,
+      "similarity": 0.17138671875,
+      "loss": -0.17138671875
+    },
+    {
+      "resolution": 512,
+      "iteration": 77,
+      "similarity": 0.1624755859375,
+      "loss": -0.1624755859375
+    },
+    {
+      "resolution": 512,
+      "iteration": 78,
+      "similarity": 0.16357421875,
+      "loss": -0.16357421875
+    },
+    {
+      "resolution": 512,
+      "iteration": 79,
+      "similarity": 0.166748046875,
+      "loss": -0.166748046875
+    },
+    {
+      "resolution": 512,
+      "iteration": 80,
+      "similarity": 0.1651611328125,
+      "loss": -0.1651611328125
+    },
+    {
+      "resolution": 512,
+      "iteration": 81,
+      "similarity": 0.170654296875,
+      "loss": -0.170654296875
+    },
+    {
+      "resolution": 512,
+      "iteration": 82,
+      "similarity": 0.1668701171875,
+      "loss": -0.1668701171875
+    },
+    {
+      "resolution": 512,
+      "iteration": 83,
+      "similarity": 0.17138671875,
+      "loss": -0.17138671875
+    },
+    {
+      "resolution": 512,
+      "iteration": 84,
+      "similarity": 0.1646728515625,
+      "loss": -0.1646728515625
+    },
+    {
+      "resolution": 512,
+      "iteration": 85,
+      "similarity": 0.1658935546875,
+      "loss": -0.1658935546875
+    },
+    {
+      "resolution": 512,
+      "iteration": 86,
+      "similarity": 0.164306640625,
+      "loss": -0.164306640625
+    },
+    {
+      "resolution": 512,
+      "iteration": 87,
+      "similarity": 0.164306640625,
+      "loss": -0.164306640625
+    },
+    {
+      "resolution": 512,
+      "iteration": 88,
+      "similarity": 0.16943359375,
+      "loss": -0.16943359375
+    },
+    {
+      "resolution": 512,
+      "iteration": 89,
+      "similarity": 0.1663818359375,
+      "loss": -0.1663818359375
+    },
+    {
+      "resolution": 512,
+      "iteration": 90,
+      "similarity": 0.1666259765625,
+      "loss": -0.1666259765625
+    },
+    {
+      "resolution": 512,
+      "iteration": 91,
+      "similarity": 0.1617431640625,
+      "loss": -0.1617431640625
+    },
+    {
+      "resolution": 512,
+      "iteration": 92,
+      "similarity": 0.164306640625,
+      "loss": -0.164306640625
+    },
+    {
+      "resolution": 512,
+      "iteration": 93,
+      "similarity": 0.1673583984375,
+      "loss": -0.1673583984375
+    },
+    {
+      "resolution": 512,
+      "iteration": 94,
+      "similarity": 0.1719970703125,
+      "loss": -0.1719970703125
+    },
+    {
+      "resolution": 512,
+      "iteration": 95,
+      "similarity": 0.1639404296875,
+      "loss": -0.1639404296875
+    },
+    {
+      "resolution": 512,
+      "iteration": 96,
+      "similarity": 0.1734619140625,
+      "loss": -0.1734619140625
+    },
+    {
+      "resolution": 512,
+      "iteration": 97,
+      "similarity": 0.1673583984375,
+      "loss": -0.1673583984375
+    },
+    {
+      "resolution": 512,
+      "iteration": 98,
+      "similarity": 0.1685791015625,
+      "loss": -0.1685791015625
+    },
+    {
+      "resolution": 512,
+      "iteration": 99,
+      "similarity": 0.1671142578125,
+      "loss": -0.1671142578125
+    }
+  ]
+}

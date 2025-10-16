@@ -35,13 +35,14 @@ class AudioAnalyzer:
         self.sr = sr
         self.hop_length = hop_length
         
-    def analyze(self, audio_path: str, fps: int = 60) -> Dict:
+    def analyze(self, audio_path: str, fps: int = 60, duration: int = None) -> Dict:
         """
         Analyze audio file and extract features.
         
         Args:
             audio_path: Path to audio file (MP3, WAV, etc.)
             fps: Target frames per second for feature extraction
+            duration: Optional duration in seconds to process (None = full audio)
             
         Returns:
             Dictionary containing:
@@ -59,10 +60,18 @@ class AudioAnalyzer:
         print(f"Loading audio: {audio_path.name}")
         
         # Load audio
-        audio, sr = librosa.load(audio_path, sr=self.sr, mono=True)
-        duration = len(audio) / sr
+        if duration is not None:
+            # Load only specified duration
+            audio, sr = librosa.load(audio_path, sr=self.sr, mono=True, duration=duration)
+        else:
+            audio, sr = librosa.load(audio_path, sr=self.sr, mono=True)
         
-        print(f"Duration: {duration:.2f}s, Sample rate: {sr}Hz")
+        actual_duration = len(audio) / sr
+        
+        if duration is not None:
+            print(f"Duration: {actual_duration:.2f}s (trimmed from full audio), Sample rate: {sr}Hz")
+        else:
+            print(f"Duration: {actual_duration:.2f}s, Sample rate: {sr}Hz")
         
         # Calculate hop length for target FPS
         hop_length_fps = sr // fps
@@ -76,7 +85,7 @@ class AudioAnalyzer:
         spectral_features = self._extract_spectral_features(audio, sr, hop_length_fps)
         
         # Extract temporal features
-        temporal_features = self._extract_temporal_features(audio, sr, hop_length_fps, duration)
+        temporal_features = self._extract_temporal_features(audio, sr, hop_length_fps, actual_duration)
         
         # Combine all features
         features = np.concatenate([
@@ -93,7 +102,7 @@ class AudioAnalyzer:
         return {
             'audio': audio,
             'sr': sr,
-            'duration': duration,
+            'duration': actual_duration,  # Return actual duration, not input parameter
             'features': features,
             'fps': fps,
             'num_frames': num_frames,

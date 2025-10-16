@@ -102,6 +102,12 @@ Examples:
         default=0.05,
         help='Audio feature scaling factor to prevent saturation (default: 0.05, range: 0.01-0.3)'
     )
+    parser.add_argument(
+        '--seed',
+        type=int,
+        default=None,
+        help='Random seed for reproducible CPPN initialization (default: random)'
+    )
     
     # Processing settings
     parser.add_argument(
@@ -110,6 +116,12 @@ Examples:
         default='auto',
         choices=['auto', 'cuda', 'cpu'],
         help='Device to use (default: auto)'
+    )
+    parser.add_argument(
+        '--duration',
+        type=int,
+        default=None,
+        help='Duration in seconds to process (default: full audio length)'
     )
     parser.add_argument(
         '--batch-size', '-b',
@@ -137,6 +149,12 @@ Examples:
         type=str,
         default=None,
         help='Directory for exported frames (default: auto)'
+    )
+    parser.add_argument(
+        '--text-overlay',
+        type=str,
+        default=None,
+        help='Text to overlay on video frames (e.g., architecture parameters)'
     )
     
     # Misc
@@ -191,6 +209,12 @@ def main():
     print(f"Device: {device}")
     print()
     
+    # Set random seed if provided
+    if args.seed is not None:
+        torch.manual_seed(args.seed)
+        np.random.seed(args.seed)
+        print(f"Random seed: {args.seed}")
+    
     # Get resolution
     resolution = RESOLUTIONS[args.resolution]
     print(f"Settings:")
@@ -199,6 +223,10 @@ def main():
     print(f"  CPPN layers: {args.layers}")
     print(f"  Hidden dim: {args.hidden_dim}")
     print(f"  Evolution rate: {args.evolve}")
+    if args.seed is not None:
+        print(f"  Seed: {args.seed}")
+    if args.duration is not None:
+        print(f"  Duration: {args.duration}s (trimmed)")
     print()
     
     # Start timer
@@ -208,7 +236,7 @@ def main():
         # Step 1: Analyze audio
         print("Step 1/4: Analyzing audio...")
         analyzer = AudioAnalyzer()
-        audio_analysis = analyzer.analyze(str(input_path), fps=args.fps)
+        audio_analysis = analyzer.analyze(str(input_path), fps=args.fps, duration=args.duration)
         
         # Normalize features
         audio_analysis['features'] = analyzer.normalize_features(
@@ -300,7 +328,8 @@ def main():
         renderer = Renderer(
             cppn,
             resolution=resolution,
-            batch_size=None  # Let renderer auto-optimize batch size
+            batch_size=None,  # Let renderer auto-optimize batch size
+            text_overlay=args.text_overlay
         )
         
         # Estimate memory

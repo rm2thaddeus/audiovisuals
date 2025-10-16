@@ -1,0 +1,456 @@
+{
+  "timestamp": "2025-10-15T21:46:32.883450",
+  "matrix": {
+    "layers": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "hidden_dims": [
+      32,
+      64,
+      128
+    ],
+    "seeds": [
+      42,
+      123,
+      456
+    ]
+  },
+  "total_configs": 36,
+  "results": [
+    {
+      "config": {
+        "id": 0,
+        "layers": 2,
+        "hidden_dim": 32,
+        "seed": 42,
+        "params": 1571
+      },
+      "success": true,
+      "file_size": 2660240,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_2L_32D_seed42.mp4"
+    },
+    {
+      "config": {
+        "id": 1,
+        "layers": 2,
+        "hidden_dim": 32,
+        "seed": 123,
+        "params": 1571
+      },
+      "success": true,
+      "file_size": 3140933,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_2L_32D_seed123.mp4"
+    },
+    {
+      "config": {
+        "id": 2,
+        "layers": 2,
+        "hidden_dim": 32,
+        "seed": 456,
+        "params": 1571
+      },
+      "success": true,
+      "file_size": 3265113,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_2L_32D_seed456.mp4"
+    },
+    {
+      "config": {
+        "id": 3,
+        "layers": 2,
+        "hidden_dim": 64,
+        "seed": 42,
+        "params": 5187
+      },
+      "success": true,
+      "file_size": 2865158,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_2L_64D_seed42.mp4"
+    },
+    {
+      "config": {
+        "id": 4,
+        "layers": 2,
+        "hidden_dim": 64,
+        "seed": 123,
+        "params": 5187
+      },
+      "success": true,
+      "file_size": 2886449,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_2L_64D_seed123.mp4"
+    },
+    {
+      "config": {
+        "id": 5,
+        "layers": 2,
+        "hidden_dim": 64,
+        "seed": 456,
+        "params": 5187
+      },
+      "success": true,
+      "file_size": 2817791,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_2L_64D_seed456.mp4"
+    },
+    {
+      "config": {
+        "id": 6,
+        "layers": 2,
+        "hidden_dim": 128,
+        "seed": 42,
+        "params": 18563
+      },
+      "success": true,
+      "file_size": 2814141,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_2L_128D_seed42.mp4"
+    },
+    {
+      "config": {
+        "id": 7,
+        "layers": 2,
+        "hidden_dim": 128,
+        "seed": 123,
+        "params": 18563
+      },
+      "success": true,
+      "file_size": 2637206,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_2L_128D_seed123.mp4"
+    },
+    {
+      "config": {
+        "id": 8,
+        "layers": 2,
+        "hidden_dim": 128,
+        "seed": 456,
+        "params": 18563
+      },
+      "success": true,
+      "file_size": 2810684,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_2L_128D_seed456.mp4"
+    },
+    {
+      "config": {
+        "id": 9,
+        "layers": 3,
+        "hidden_dim": 32,
+        "seed": 42,
+        "params": 2627
+      },
+      "success": true,
+      "file_size": 4000176,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_3L_32D_seed42.mp4"
+    },
+    {
+      "config": {
+        "id": 10,
+        "layers": 3,
+        "hidden_dim": 32,
+        "seed": 123,
+        "params": 2627
+      },
+      "success": true,
+      "file_size": 4281450,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_3L_32D_seed123.mp4"
+    },
+    {
+      "config": {
+        "id": 11,
+        "layers": 3,
+        "hidden_dim": 32,
+        "seed": 456,
+        "params": 2627
+      },
+      "success": true,
+      "file_size": 4477404,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_3L_32D_seed456.mp4"
+    },
+    {
+      "config": {
+        "id": 12,
+        "layers": 3,
+        "hidden_dim": 64,
+        "seed": 42,
+        "params": 9347
+      },
+      "success": true,
+      "file_size": 4020406,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_3L_64D_seed42.mp4"
+    },
+    {
+      "config": {
+        "id": 13,
+        "layers": 3,
+        "hidden_dim": 64,
+        "seed": 123,
+        "params": 9347
+      },
+      "success": true,
+      "file_size": 3994705,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_3L_64D_seed123.mp4"
+    },
+    {
+      "config": {
+        "id": 14,
+        "layers": 3,
+        "hidden_dim": 64,
+        "seed": 456,
+        "params": 9347
+      },
+      "success": true,
+      "file_size": 4158104,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_3L_64D_seed456.mp4"
+    },
+    {
+      "config": {
+        "id": 15,
+        "layers": 3,
+        "hidden_dim": 128,
+        "seed": 42,
+        "params": 35075
+      },
+      "success": true,
+      "file_size": 3463133,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_3L_128D_seed42.mp4"
+    },
+    {
+      "config": {
+        "id": 16,
+        "layers": 3,
+        "hidden_dim": 128,
+        "seed": 123,
+        "params": 35075
+      },
+      "success": true,
+      "file_size": 3445581,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_3L_128D_seed123.mp4"
+    },
+    {
+      "config": {
+        "id": 17,
+        "layers": 3,
+        "hidden_dim": 128,
+        "seed": 456,
+        "params": 35075
+      },
+      "success": true,
+      "file_size": 3436644,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_3L_128D_seed456.mp4"
+    },
+    {
+      "config": {
+        "id": 18,
+        "layers": 4,
+        "hidden_dim": 32,
+        "seed": 42,
+        "params": 3683
+      },
+      "success": true,
+      "file_size": 6848857,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_4L_32D_seed42.mp4"
+    },
+    {
+      "config": {
+        "id": 19,
+        "layers": 4,
+        "hidden_dim": 32,
+        "seed": 123,
+        "params": 3683
+      },
+      "success": true,
+      "file_size": 6319751,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_4L_32D_seed123.mp4"
+    },
+    {
+      "config": {
+        "id": 20,
+        "layers": 4,
+        "hidden_dim": 32,
+        "seed": 456,
+        "params": 3683
+      },
+      "success": true,
+      "file_size": 7424762,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_4L_32D_seed456.mp4"
+    },
+    {
+      "config": {
+        "id": 21,
+        "layers": 4,
+        "hidden_dim": 64,
+        "seed": 42,
+        "params": 13507
+      },
+      "success": true,
+      "file_size": 5859449,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_4L_64D_seed42.mp4"
+    },
+    {
+      "config": {
+        "id": 22,
+        "layers": 4,
+        "hidden_dim": 64,
+        "seed": 123,
+        "params": 13507
+      },
+      "success": true,
+      "file_size": 6393414,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_4L_64D_seed123.mp4"
+    },
+    {
+      "config": {
+        "id": 23,
+        "layers": 4,
+        "hidden_dim": 64,
+        "seed": 456,
+        "params": 13507
+      },
+      "success": true,
+      "file_size": 6760215,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_4L_64D_seed456.mp4"
+    },
+    {
+      "config": {
+        "id": 24,
+        "layers": 4,
+        "hidden_dim": 128,
+        "seed": 42,
+        "params": 51587
+      },
+      "success": true,
+      "file_size": 5642975,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_4L_128D_seed42.mp4"
+    },
+    {
+      "config": {
+        "id": 25,
+        "layers": 4,
+        "hidden_dim": 128,
+        "seed": 123,
+        "params": 51587
+      },
+      "success": true,
+      "file_size": 5709430,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_4L_128D_seed123.mp4"
+    },
+    {
+      "config": {
+        "id": 26,
+        "layers": 4,
+        "hidden_dim": 128,
+        "seed": 456,
+        "params": 51587
+      },
+      "success": true,
+      "file_size": 5698673,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_4L_128D_seed456.mp4"
+    },
+    {
+      "config": {
+        "id": 27,
+        "layers": 5,
+        "hidden_dim": 32,
+        "seed": 42,
+        "params": 4739
+      },
+      "success": true,
+      "file_size": 18637902,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_5L_32D_seed42.mp4"
+    },
+    {
+      "config": {
+        "id": 28,
+        "layers": 5,
+        "hidden_dim": 32,
+        "seed": 123,
+        "params": 4739
+      },
+      "success": true,
+      "file_size": 17504242,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_5L_32D_seed123.mp4"
+    },
+    {
+      "config": {
+        "id": 29,
+        "layers": 5,
+        "hidden_dim": 32,
+        "seed": 456,
+        "params": 4739
+      },
+      "success": true,
+      "file_size": 17109234,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_5L_32D_seed456.mp4"
+    },
+    {
+      "config": {
+        "id": 30,
+        "layers": 5,
+        "hidden_dim": 64,
+        "seed": 42,
+        "params": 17667
+      },
+      "success": true,
+      "file_size": 13094481,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_5L_64D_seed42.mp4"
+    },
+    {
+      "config": {
+        "id": 31,
+        "layers": 5,
+        "hidden_dim": 64,
+        "seed": 123,
+        "params": 17667
+      },
+      "success": true,
+      "file_size": 13457044,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_5L_64D_seed123.mp4"
+    },
+    {
+      "config": {
+        "id": 32,
+        "layers": 5,
+        "hidden_dim": 64,
+        "seed": 456,
+        "params": 17667
+      },
+      "success": true,
+      "file_size": 14059116,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_5L_64D_seed456.mp4"
+    },
+    {
+      "config": {
+        "id": 33,
+        "layers": 5,
+        "hidden_dim": 128,
+        "seed": 42,
+        "params": 68099
+      },
+      "success": true,
+      "file_size": 12312360,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_5L_128D_seed42.mp4"
+    },
+    {
+      "config": {
+        "id": 34,
+        "layers": 5,
+        "hidden_dim": 128,
+        "seed": 123,
+        "params": 68099
+      },
+      "success": true,
+      "file_size": 12470047,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_5L_128D_seed123.mp4"
+    },
+    {
+      "config": {
+        "id": 35,
+        "layers": 5,
+        "hidden_dim": 128,
+        "seed": 456,
+        "params": 68099
+      },
+      "success": true,
+      "file_size": 11931730,
+      "output_path": "..\\explorations\\architecture_matrix\\20251015_213644\\arch_5L_128D_seed456.mp4"
+    }
+  ]
+}

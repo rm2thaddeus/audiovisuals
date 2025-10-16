@@ -1,0 +1,415 @@
+{
+  "ratings": [
+    {
+      "video": "arch_2L_4D_seed123.mp4",
+      "architecture": {
+        "layers": 2,
+        "hidden_dim": 4,
+        "seed": 123
+      },
+      "ratings": {
+        "organic_quality": 4,
+        "coherence": 5,
+        "audio_reactivity": 5,
+        "aesthetic_appeal": 4,
+        "overall": 4.5
+      },
+      "notes": null
+    },
+    {
+      "video": "arch_2L_4D_seed42.mp4",
+      "architecture": {
+        "layers": 2,
+        "hidden_dim": 4,
+        "seed": 42
+      },
+      "ratings": {
+        "organic_quality": 5,
+        "coherence": 5,
+        "audio_reactivity": 5,
+        "aesthetic_appeal": 5,
+        "overall": 5.0
+      },
+      "notes": null
+    },
+    {
+      "video": "arch_2L_4D_seed456.mp4",
+      "architecture": {
+        "layers": 2,
+        "hidden_dim": 4,
+        "seed": 456
+      },
+      "ratings": {
+        "organic_quality": 3,
+        "coherence": 3,
+        "audio_reactivity": 3,
+        "aesthetic_appeal": 3,
+        "overall": 3.0
+      },
+      "notes": null
+    },
+    {
+      "video": "arch_2L_6D_seed123.mp4",
+      "architecture": {
+        "layers": 2,
+        "hidden_dim": 6,
+        "seed": 123
+      },
+      "ratings": {
+        "organic_quality": 4,
+        "coherence": 2,
+        "audio_reactivity": 3,
+        "aesthetic_appeal": 3,
+        "overall": 3.0
+      },
+      "notes": null
+    },
+    {
+      "video": "arch_2L_6D_seed42.mp4",
+      "architecture": {
+        "layers": 2,
+        "hidden_dim": 6,
+        "seed": 42
+      },
+      "ratings": {
+        "organic_quality": 4,
+        "coherence": 3,
+        "audio_reactivity": 4,
+        "aesthetic_appeal": 3,
+        "overall": 3.5
+      },
+      "notes": null
+    },
+    {
+      "video": "arch_2L_6D_seed456.mp4",
+      "architecture": {
+        "layers": 2,
+        "hidden_dim": 6,
+        "seed": 456
+      },
+      "ratings": {
+        "organic_quality": 4,
+        "coherence": 4,
+        "audio_reactivity": 3,
+        "aesthetic_appeal": 5,
+        "overall": 4.0
+      },
+      "notes": "colors saturate"
+    },
+    {
+      "video": "arch_2L_8D_seed123.mp4",
+      "architecture": {
+        "layers": 2,
+        "hidden_dim": 8,
+        "seed": 123
+      },
+      "ratings": {
+        "organic_quality": 5,
+        "coherence": 3,
+        "audio_reactivity": 4,
+        "aesthetic_appeal": 4,
+        "overall": 4.0
+      },
+      "notes": null
+    },
+    {
+      "video": "arch_2L_8D_seed42.mp4",
+      "architecture": {
+        "layers": 2,
+        "hidden_dim": 8,
+        "seed": 42
+      },
+      "ratings": {
+        "organic_quality": 4,
+        "coherence": 3,
+        "audio_reactivity": 3,
+        "aesthetic_appeal": 3,
+        "overall": 3.25
+      },
+      "notes": null
+    },
+    {
+      "video": "arch_2L_8D_seed456.mp4",
+      "architecture": {
+        "layers": 2,
+        "hidden_dim": 8,
+        "seed": 456
+      },
+      "ratings": {
+        "organic_quality": 3,
+        "coherence": 3,
+        "audio_reactivity": 3,
+        "aesthetic_appeal": 2,
+        "overall": 2.75
+      },
+      "notes": null
+    },
+    {
+      "video": "arch_3L_4D_seed123.mp4",
+      "architecture": {
+        "layers": 3,
+        "hidden_dim": 4,
+        "seed": 123
+      },
+      "ratings": {
+        "organic_quality": 5,
+        "coherence": 5,
+        "audio_reactivity": 5,
+        "aesthetic_appeal": 5,
+        "overall": 5.0
+      },
+      "notes": "these are tendrils, looping around with a few colors"
+    },
+    {
+      "video": "arch_3L_4D_seed42.mp4",
+      "architecture": {
+        "layers": 3,
+        "hidden_dim": 4,
+        "seed": 42
+      },
+      "ratings": {
+        "organic_quality": 5,
+        "coherence": 3,
+        "audio_reactivity": 4,
+        "aesthetic_appeal": 2,
+        "overall": 3.5
+      },
+      "notes": null
+    },
+    {
+      "video": "arch_3L_4D_seed456.mp4",
+      "architecture": {
+        "layers": 3,
+        "hidden_dim": 4,
+        "seed": 456
+      },
+      "ratings": {
+        "organic_quality": 5,
+        "coherence": 5,
+        "audio_reactivity": 5,
+        "aesthetic_appeal": 4,
+        "overall": 4.75
+      },
+      "notes": "colors off"
+    },
+    {
+      "video": "arch_3L_6D_seed123.mp4",
+      "architecture": {
+        "layers": 3,
+        "hidden_dim": 6,
+        "seed": 123
+      },
+      "ratings": {
+        "organic_quality": 5,
+        "coherence": 3,
+        "audio_reactivity": 5,
+        "aesthetic_appeal": 2,
+        "overall": 3.75
+      },
+      "notes": "fractal crazy very quick"
+    },
+    {
+      "video": "arch_3L_6D_seed42.mp4",
+      "architecture": {
+        "layers": 3,
+        "hidden_dim": 6,
+        "seed": 42
+      },
+      "ratings": {
+        "organic_quality": 5,
+        "coherence": 3,
+        "audio_reactivity": 5,
+        "aesthetic_appeal": 2,
+        "overall": 3.75
+      },
+      "notes": null
+    },
+    {
+      "video": "arch_3L_6D_seed456.mp4",
+      "architecture": {
+        "layers": 3,
+        "hidden_dim": 6,
+        "seed": 456
+      },
+      "ratings": {
+        "organic_quality": 5,
+        "coherence": 4,
+        "audio_reactivity": 3,
+        "aesthetic_appeal": 4,
+        "overall": 4.0
+      },
+      "notes": null
+    },
+    {
+      "video": "arch_3L_8D_seed123.mp4",
+      "architecture": {
+        "layers": 3,
+        "hidden_dim": 8,
+        "seed": 123
+      },
+      "ratings": {
+        "organic_quality": 5,
+        "coherence": 4,
+        "audio_reactivity": 5,
+        "aesthetic_appeal": 2,
+        "overall": 4.0
+      },
+      "notes": "too much"
+    },
+    {
+      "video": "arch_3L_8D_seed42.mp4",
+      "architecture": {
+        "layers": 3,
+        "hidden_dim": 8,
+        "seed": 42
+      },
+      "ratings": {
+        "organic_quality": 5,
+        "coherence": 4,
+        "audio_reactivity": 5,
+        "aesthetic_appeal": 4,
+        "overall": 4.5
+      },
+      "notes": null
+    },
+    {
+      "video": "arch_3L_8D_seed456.mp4",
+      "architecture": {
+        "layers": 3,
+        "hidden_dim": 8,
+        "seed": 456
+      },
+      "ratings": {
+        "organic_quality": 5,
+        "coherence": 4,
+        "audio_reactivity": 5,
+        "aesthetic_appeal": 3,
+        "overall": 4.25
+      },
+      "notes": null
+    }
+  ],
+  "summary": {
+    "total_rated": 18,
+    "architectures_tested": 6,
+    "architecture_averages": {
+      "2L_4D": {
+        "count": 3,
+        "averages": {
+          "organic_quality": 4.0,
+          "coherence": 4.33,
+          "audio_reactivity": 4.33,
+          "aesthetic_appeal": 4.0,
+          "overall": 4.17
+        }
+      },
+      "2L_6D": {
+        "count": 3,
+        "averages": {
+          "organic_quality": 4.0,
+          "coherence": 3.0,
+          "audio_reactivity": 3.33,
+          "aesthetic_appeal": 3.67,
+          "overall": 3.5
+        }
+      },
+      "2L_8D": {
+        "count": 3,
+        "averages": {
+          "organic_quality": 4.0,
+          "coherence": 3.0,
+          "audio_reactivity": 3.33,
+          "aesthetic_appeal": 3.0,
+          "overall": 3.33
+        }
+      },
+      "3L_4D": {
+        "count": 3,
+        "averages": {
+          "organic_quality": 5.0,
+          "coherence": 4.33,
+          "audio_reactivity": 4.67,
+          "aesthetic_appeal": 3.67,
+          "overall": 4.42
+        }
+      },
+      "3L_6D": {
+        "count": 3,
+        "averages": {
+          "organic_quality": 5.0,
+          "coherence": 3.33,
+          "audio_reactivity": 4.33,
+          "aesthetic_appeal": 2.67,
+          "overall": 3.83
+        }
+      },
+      "3L_8D": {
+        "count": 3,
+        "averages": {
+          "organic_quality": 5.0,
+          "coherence": 4.0,
+          "audio_reactivity": 5.0,
+          "aesthetic_appeal": 3.0,
+          "overall": 4.25
+        }
+      }
+    },
+    "top_5_overall": [
+      {
+        "architecture": "3L_4D",
+        "count": 3,
+        "averages": {
+          "organic_quality": 5.0,
+          "coherence": 4.33,
+          "audio_reactivity": 4.67,
+          "aesthetic_appeal": 3.67,
+          "overall": 4.42
+        }
+      },
+      {
+        "architecture": "3L_8D",
+        "count": 3,
+        "averages": {
+          "organic_quality": 5.0,
+          "coherence": 4.0,
+          "audio_reactivity": 5.0,
+          "aesthetic_appeal": 3.0,
+          "overall": 4.25
+        }
+      },
+      {
+        "architecture": "2L_4D",
+        "count": 3,
+        "averages": {
+          "organic_quality": 4.0,
+          "coherence": 4.33,
+          "audio_reactivity": 4.33,
+          "aesthetic_appeal": 4.0,
+          "overall": 4.17
+        }
+      },
+      {
+        "architecture": "3L_6D",
+        "count": 3,
+        "averages": {
+          "organic_quality": 5.0,
+          "coherence": 3.33,
+          "audio_reactivity": 4.33,
+          "aesthetic_appeal": 2.67,
+          "overall": 3.83
+        }
+      },
+      {
+        "architecture": "2L_6D",
+        "count": 3,
+        "averages": {
+          "organic_quality": 4.0,
+          "coherence": 3.0,
+          "audio_reactivity": 3.33,
+          "aesthetic_appeal": 3.67,
+          "overall": 3.5
+        }
+      }
+    ]
+  }
+}

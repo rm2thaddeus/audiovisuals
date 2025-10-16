@@ -1,9 +1,10 @@
 ---
 phase: 2
 artifact: agents
-project: <project_name>
-owner: <user_or_team>
-updated: <YYYY-MM-DD>
+project: audio_feature_explorer
+owner: Aitor Patiño Diaz
+updated: 2025-10-13
+status: Phase 2 Complete - Transitioning to Phase 3
 sources: []
 links:
   profile: ./docs/Phase0-Alignment/PROFILE.yaml

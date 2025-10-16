@@ -1,0 +1,3605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPPN Architecture Exploration Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e4e4e4;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #a0a0a0;
+            font-size: 1.2em;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-label {
+            color: #a0a0a0;
+            margin-top: 5px;
+        }
+        
+        .controls {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .control-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .control-group label {
+            color: #c0c0c0;
+            font-weight: 500;
+        }
+        
+        select, input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #e4e4e4;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        select:hover, input:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .video-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+        
+        .video-preview {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            overflow: hidden;
+        }
+        
+        .video-preview video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(102, 126, 234, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .video-card:hover .play-overlay {
+            opacity: 1;
+        }
+        
+        .play-overlay::after {
+            content: '▶';
+            color: white;
+            font-size: 24px;
+            margin-left: 4px;
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .config-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .config-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .detail {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+        
+        .detail-label {
+            color: #a0a0a0;
+            font-size: 0.85em;
+            margin-bottom: 3px;
+        }
+        
+        .detail-value {
+            color: #fff;
+            font-weight: 600;
+        }
+        
+        .run-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-top: 10px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            background: #1a1a2e;
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .modal video {
+            width: 100%;
+            max-height: 70vh;
+            border-radius: 10px;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 60px;
+            color: #a0a0a0;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CPPN Architecture Exploration</h1>
+        <p class="subtitle">Audio-Reactive Neural Field Visualizations</p>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">90</div>
+                <div class="stat-label">Configurations</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">5</div>
+                <div class="stat-label">Exploration Runs</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">4</div>
+                <div class="stat-label">Layer Counts</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">8</div>
+                <div class="stat-label">Hidden Dimensions</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <div class="control-group">
+            <label>
+                Layers:
+                <select id="layerFilter">
+                    <option value="all">All</option>
+                    <option value="2">2L</option>
+                    <option value="3">3L</option>
+                    <option value="4">4L</option>
+                    <option value="5">5L</option>
+                </select>
+            </label>
+            
+            <label>
+                Hidden Dim:
+                <select id="dimFilter">
+                    <option value="all">All</option>
+                    <option value="4">4D</option>
+                    <option value="6">6D</option>
+                    <option value="8">8D</option>
+                    <option value="16">16D</option>
+                    <option value="24">24D</option>
+                    <option value="32">32D</option>
+                    <option value="64">64D</option>
+                    <option value="128">128D</option>
+                </select>
+            </label>
+            
+            <label>
+                Seed:
+                <select id="seedFilter">
+                    <option value="all">All</option>
+                    <option value="42">Seed 42</option>
+                    <option value="123">Seed 123</option>
+                    <option value="456">Seed 456</option>
+                </select>
+            </label>
+            
+            <label>
+                Sort by:
+                <select id="sortBy">
+                    <option value="params">Parameters</option>
+                    <option value="layers">Layers</option>
+                    <option value="hidden_dim">Hidden Dim</option>
+                    <option value="file_size">File Size</option>
+                    <option value="run">Run (Newest First)</option>
+                </select>
+            </label>
+        </div>
+    </div>
+    
+    <div class="gallery" id="gallery">
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="4" 
+             data-seed="42"
+             data-params="87"
+             data-size="3.12"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_2L_4D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_2L_4D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_4D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">87</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.1 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="4" 
+             data-seed="123"
+             data-params="87"
+             data-size="2.77"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_2L_4D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_2L_4D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_4D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">87</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">2.8 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="4" 
+             data-seed="456"
+             data-params="87"
+             data-size="2.87"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_2L_4D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_2L_4D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_4D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">87</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">2.9 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="6" 
+             data-seed="42"
+             data-params="141"
+             data-size="3.37"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_2L_6D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_2L_6D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_6D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">6</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">141</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.4 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="6" 
+             data-seed="123"
+             data-params="141"
+             data-size="2.88"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_2L_6D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_2L_6D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_6D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">6</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">141</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">2.9 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="6" 
+             data-seed="456"
+             data-params="141"
+             data-size="3.19"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_2L_6D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_2L_6D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_6D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">6</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">141</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.2 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="8" 
+             data-seed="42"
+             data-params="203"
+             data-size="3.28"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_2L_8D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_2L_8D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_8D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">203</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="8" 
+             data-seed="123"
+             data-params="203"
+             data-size="3.22"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_2L_8D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_2L_8D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_8D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">203</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.2 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="8" 
+             data-seed="456"
+             data-params="203"
+             data-size="3.62"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_2L_8D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_2L_8D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_8D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">203</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.6 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="4" 
+             data-seed="42"
+             data-params="107"
+             data-size="2.16"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_3L_4D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_3L_4D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_4D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">107</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">2.2 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="4" 
+             data-seed="123"
+             data-params="107"
+             data-size="2.89"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_3L_4D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_3L_4D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_4D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">107</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">2.9 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="4" 
+             data-seed="456"
+             data-params="107"
+             data-size="2.30"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_3L_4D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_3L_4D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_4D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">107</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">2.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="6" 
+             data-seed="42"
+             data-params="183"
+             data-size="3.47"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_3L_6D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_3L_6D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_6D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">6</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">183</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.5 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="6" 
+             data-seed="123"
+             data-params="183"
+             data-size="3.50"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_3L_6D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_3L_6D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_6D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">6</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">183</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.5 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="6" 
+             data-seed="456"
+             data-params="183"
+             data-size="3.89"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_3L_6D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_3L_6D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_6D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">6</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">183</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.9 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="8" 
+             data-seed="42"
+             data-params="275"
+             data-size="3.66"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_3L_8D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_3L_8D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_8D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">275</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.7 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="8" 
+             data-seed="123"
+             data-params="275"
+             data-size="3.79"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_3L_8D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_3L_8D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_8D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">275</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.8 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="8" 
+             data-seed="456"
+             data-params="275"
+             data-size="4.29"
+             data-run="20251015_222033"
+             onclick="openModal('20251015_222033\arch_3L_8D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_222033\arch_3L_8D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_8D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">275</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">4.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_222033</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="8" 
+             data-seed="42"
+             data-params="203"
+             data-size="3.28"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_2L_8D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_2L_8D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_8D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">203</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="8" 
+             data-seed="123"
+             data-params="203"
+             data-size="3.22"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_2L_8D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_2L_8D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_8D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">203</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.2 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="8" 
+             data-seed="456"
+             data-params="203"
+             data-size="3.62"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_2L_8D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_2L_8D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_8D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">203</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.6 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="16" 
+             data-seed="42"
+             data-params="531"
+             data-size="3.16"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_2L_16D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_2L_16D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_16D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">16</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">531</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.2 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="16" 
+             data-seed="123"
+             data-params="531"
+             data-size="3.30"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_2L_16D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_2L_16D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_16D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">16</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">531</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="16" 
+             data-seed="456"
+             data-params="531"
+             data-size="3.12"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_2L_16D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_2L_16D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_16D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">16</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">531</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.1 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="24" 
+             data-seed="42"
+             data-params="987"
+             data-size="3.13"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_2L_24D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_2L_24D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_24D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">24</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">987</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.1 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="24" 
+             data-seed="123"
+             data-params="987"
+             data-size="3.27"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_2L_24D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_2L_24D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_24D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">24</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">987</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="24" 
+             data-seed="456"
+             data-params="987"
+             data-size="3.10"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_2L_24D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_2L_24D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_24D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">24</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">987</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.1 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="32" 
+             data-seed="42"
+             data-params="1571"
+             data-size="2.86"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_2L_32D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_2L_32D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_32D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">1,571</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">2.9 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="32" 
+             data-seed="123"
+             data-params="1571"
+             data-size="3.23"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_2L_32D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_2L_32D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_32D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">1,571</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.2 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="32" 
+             data-seed="456"
+             data-params="1571"
+             data-size="3.31"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_2L_32D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_2L_32D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_32D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">1,571</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="8" 
+             data-seed="42"
+             data-params="275"
+             data-size="3.66"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_3L_8D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_3L_8D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_8D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">275</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.7 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="8" 
+             data-seed="123"
+             data-params="275"
+             data-size="3.79"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_3L_8D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_3L_8D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_8D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">275</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.8 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="8" 
+             data-seed="456"
+             data-params="275"
+             data-size="4.29"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_3L_8D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_3L_8D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_8D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">275</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">4.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="16" 
+             data-seed="42"
+             data-params="803"
+             data-size="4.42"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_3L_16D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_3L_16D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_16D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">16</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">803</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">4.4 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="16" 
+             data-seed="123"
+             data-params="803"
+             data-size="4.74"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_3L_16D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_3L_16D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_16D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">16</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">803</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">4.7 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="16" 
+             data-seed="456"
+             data-params="803"
+             data-size="3.94"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_3L_16D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_3L_16D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_16D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">16</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">803</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.9 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="24" 
+             data-seed="42"
+             data-params="1587"
+             data-size="4.10"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_3L_24D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_3L_24D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_24D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">24</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">1,587</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">4.1 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="24" 
+             data-seed="123"
+             data-params="1587"
+             data-size="4.36"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_3L_24D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_3L_24D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_24D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">24</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">1,587</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">4.4 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="24" 
+             data-seed="456"
+             data-params="1587"
+             data-size="4.34"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_3L_24D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_3L_24D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_24D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">24</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">1,587</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">4.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="32" 
+             data-seed="42"
+             data-params="2627"
+             data-size="3.98"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_3L_32D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_3L_32D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_32D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">2,627</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">4.0 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="32" 
+             data-seed="123"
+             data-params="2627"
+             data-size="4.24"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_3L_32D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_3L_32D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_32D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">2,627</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">4.2 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="32" 
+             data-seed="456"
+             data-params="2627"
+             data-size="4.43"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_3L_32D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_3L_32D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_32D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">2,627</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">4.4 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="8" 
+             data-seed="42"
+             data-params="347"
+             data-size="6.68"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_4L_8D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_4L_8D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_8D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">347</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">6.7 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="8" 
+             data-seed="123"
+             data-params="347"
+             data-size="6.11"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_4L_8D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_4L_8D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_8D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">347</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">6.1 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="8" 
+             data-seed="456"
+             data-params="347"
+             data-size="6.14"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_4L_8D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_4L_8D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_8D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">8</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">347</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">6.1 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="16" 
+             data-seed="42"
+             data-params="1075"
+             data-size="6.09"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_4L_16D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_4L_16D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_16D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">16</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">1,075</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">6.1 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="16" 
+             data-seed="123"
+             data-params="1075"
+             data-size="6.84"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_4L_16D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_4L_16D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_16D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">16</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">1,075</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">6.8 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="16" 
+             data-seed="456"
+             data-params="1075"
+             data-size="6.24"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_4L_16D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_4L_16D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_16D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">16</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">1,075</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">6.2 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="24" 
+             data-seed="42"
+             data-params="2187"
+             data-size="6.54"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_4L_24D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_4L_24D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_24D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">24</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">2,187</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">6.5 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="24" 
+             data-seed="123"
+             data-params="2187"
+             data-size="6.95"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_4L_24D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_4L_24D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_24D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">24</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">2,187</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">7.0 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="24" 
+             data-seed="456"
+             data-params="2187"
+             data-size="7.09"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_4L_24D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_4L_24D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_24D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">24</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">2,187</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">7.1 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="32" 
+             data-seed="42"
+             data-params="3683"
+             data-size="6.80"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_4L_32D_seed42.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_4L_32D_seed42_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_32D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">3,683</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">6.8 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="32" 
+             data-seed="123"
+             data-params="3683"
+             data-size="6.24"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_4L_32D_seed123.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_4L_32D_seed123_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_32D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">3,683</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">6.2 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="32" 
+             data-seed="456"
+             data-params="3683"
+             data-size="7.32"
+             data-run="20251015_220527"
+             onclick="openModal('20251015_220527\arch_4L_32D_seed456.mp4')">
+            <div class="video-preview">
+                <img src="20251015_220527\arch_4L_32D_seed456_frame.png" alt="Preview">
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_32D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">3,683</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">7.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_220527</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="32" 
+             data-seed="42"
+             data-params="1571"
+             data-size="2.54"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_2L_32D_seed42.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_32D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">1,571</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">2.5 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="32" 
+             data-seed="123"
+             data-params="1571"
+             data-size="3.00"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_2L_32D_seed123.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_32D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">1,571</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.0 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="32" 
+             data-seed="456"
+             data-params="1571"
+             data-size="3.11"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_2L_32D_seed456.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_32D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">1,571</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.1 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="64" 
+             data-seed="42"
+             data-params="5187"
+             data-size="2.73"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_2L_64D_seed42.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_64D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">64</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">5,187</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">2.7 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="64" 
+             data-seed="123"
+             data-params="5187"
+             data-size="2.75"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_2L_64D_seed123.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_64D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">64</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">5,187</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">2.8 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="64" 
+             data-seed="456"
+             data-params="5187"
+             data-size="2.69"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_2L_64D_seed456.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_64D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">64</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">5,187</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">2.7 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="128" 
+             data-seed="42"
+             data-params="18563"
+             data-size="2.68"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_2L_128D_seed42.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_128D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">128</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">18,563</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">2.7 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="128" 
+             data-seed="123"
+             data-params="18563"
+             data-size="2.52"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_2L_128D_seed123.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_128D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">128</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">18,563</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">2.5 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="2" 
+             data-dim="128" 
+             data-seed="456"
+             data-params="18563"
+             data-size="2.68"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_2L_128D_seed456.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">2L_128D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">2</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">128</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">18,563</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">2.7 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="32" 
+             data-seed="42"
+             data-params="2627"
+             data-size="3.81"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_3L_32D_seed42.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_32D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">2,627</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.8 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="32" 
+             data-seed="123"
+             data-params="2627"
+             data-size="4.08"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_3L_32D_seed123.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_32D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">2,627</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">4.1 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="32" 
+             data-seed="456"
+             data-params="2627"
+             data-size="4.27"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_3L_32D_seed456.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_32D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">2,627</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">4.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="64" 
+             data-seed="42"
+             data-params="9347"
+             data-size="3.83"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_3L_64D_seed42.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_64D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">64</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">9,347</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.8 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="64" 
+             data-seed="123"
+             data-params="9347"
+             data-size="3.81"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_3L_64D_seed123.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_64D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">64</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">9,347</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.8 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="64" 
+             data-seed="456"
+             data-params="9347"
+             data-size="3.97"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_3L_64D_seed456.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_64D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">64</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">9,347</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">4.0 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="128" 
+             data-seed="42"
+             data-params="35075"
+             data-size="3.30"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_3L_128D_seed42.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_128D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">128</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">35,075</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="128" 
+             data-seed="123"
+             data-params="35075"
+             data-size="3.29"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_3L_128D_seed123.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_128D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">128</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">35,075</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="3" 
+             data-dim="128" 
+             data-seed="456"
+             data-params="35075"
+             data-size="3.28"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_3L_128D_seed456.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">3L_128D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">3</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">128</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">35,075</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">3.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="32" 
+             data-seed="42"
+             data-params="3683"
+             data-size="6.53"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_4L_32D_seed42.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_32D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">3,683</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">6.5 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="32" 
+             data-seed="123"
+             data-params="3683"
+             data-size="6.03"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_4L_32D_seed123.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_32D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">3,683</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">6.0 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="32" 
+             data-seed="456"
+             data-params="3683"
+             data-size="7.08"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_4L_32D_seed456.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_32D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">3,683</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">7.1 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="64" 
+             data-seed="42"
+             data-params="13507"
+             data-size="5.59"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_4L_64D_seed42.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_64D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">64</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">13,507</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">5.6 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="64" 
+             data-seed="123"
+             data-params="13507"
+             data-size="6.10"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_4L_64D_seed123.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_64D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">64</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">13,507</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">6.1 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="64" 
+             data-seed="456"
+             data-params="13507"
+             data-size="6.45"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_4L_64D_seed456.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_64D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">64</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">13,507</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">6.4 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="128" 
+             data-seed="42"
+             data-params="51587"
+             data-size="5.38"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_4L_128D_seed42.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_128D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">128</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">51,587</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">5.4 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="128" 
+             data-seed="123"
+             data-params="51587"
+             data-size="5.44"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_4L_128D_seed123.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_128D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">128</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">51,587</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">5.4 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="4" 
+             data-dim="128" 
+             data-seed="456"
+             data-params="51587"
+             data-size="5.43"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_4L_128D_seed456.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">4L_128D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">4</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">128</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">51,587</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">5.4 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="5" 
+             data-dim="32" 
+             data-seed="42"
+             data-params="4739"
+             data-size="17.77"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_5L_32D_seed42.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">5L_32D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">5</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">4,739</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">17.8 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="5" 
+             data-dim="32" 
+             data-seed="123"
+             data-params="4739"
+             data-size="16.69"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_5L_32D_seed123.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">5L_32D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">5</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">4,739</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">16.7 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="5" 
+             data-dim="32" 
+             data-seed="456"
+             data-params="4739"
+             data-size="16.32"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_5L_32D_seed456.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">5L_32D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">5</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">32</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">4,739</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">16.3 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="5" 
+             data-dim="64" 
+             data-seed="42"
+             data-params="17667"
+             data-size="12.49"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_5L_64D_seed42.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">5L_64D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">5</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">64</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">17,667</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">12.5 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="5" 
+             data-dim="64" 
+             data-seed="123"
+             data-params="17667"
+             data-size="12.83"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_5L_64D_seed123.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">5L_64D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">5</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">64</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">17,667</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">12.8 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="5" 
+             data-dim="64" 
+             data-seed="456"
+             data-params="17667"
+             data-size="13.41"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_5L_64D_seed456.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">5L_64D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">5</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">64</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">17,667</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">13.4 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="5" 
+             data-dim="128" 
+             data-seed="42"
+             data-params="68099"
+             data-size="11.74"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_5L_128D_seed42.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">5L_128D_seed42</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">5</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">128</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">68,099</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">11.7 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="5" 
+             data-dim="128" 
+             data-seed="123"
+             data-params="68099"
+             data-size="11.89"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_5L_128D_seed123.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">5L_128D_seed123</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">5</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">128</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">68,099</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">11.9 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+        <div class="video-card" 
+             data-layers="5" 
+             data-dim="128" 
+             data-seed="456"
+             data-params="68099"
+             data-size="11.38"
+             data-run="20251015_213644"
+             onclick="openModal('explorations\architecture_matrix\20251015_213644\arch_5L_128D_seed456.mp4')">
+            <div class="video-preview">
+                <div style="background: #000; width: 100%; height: 100%;"></div>
+                <div class="play-overlay"></div>
+            </div>
+            <div class="video-info">
+                <div class="config-title">5L_128D_seed456</div>
+                <div class="config-details">
+                    <div class="detail">
+                        <div class="detail-label">Layers</div>
+                        <div class="detail-value">5</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Hidden Dim</div>
+                        <div class="detail-value">128</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">Parameters</div>
+                        <div class="detail-value">68,099</div>
+                    </div>
+                    <div class="detail">
+                        <div class="detail-label">File Size</div>
+                        <div class="detail-value">11.4 MB</div>
+                    </div>
+                </div>
+                <span class="run-badge">20251015_213644</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <video id="modalVideo" controls autoplay loop>
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    
+    <script>
+        const gallery = document.getElementById('gallery');
+        const layerFilter = document.getElementById('layerFilter');
+        const dimFilter = document.getElementById('dimFilter');
+        const seedFilter = document.getElementById('seedFilter');
+        const sortBy = document.getElementById('sortBy');
+        
+        function filterAndSort() {
+            const cards = Array.from(gallery.querySelectorAll('.video-card'));
+            
+            // Filter
+            cards.forEach(card => {
+                const layerMatch = layerFilter.value === 'all' || card.dataset.layers === layerFilter.value;
+                const dimMatch = dimFilter.value === 'all' || card.dataset.dim === dimFilter.value;
+                const seedMatch = seedFilter.value === 'all' || card.dataset.seed === seedFilter.value;
+                
+                if (layerMatch && dimMatch && seedMatch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Sort visible cards
+            const visibleCards = cards.filter(card => card.style.display !== 'none');
+            const sortKey = sortBy.value;
+            
+            visibleCards.sort((a, b) => {
+                let aVal, bVal;
+                
+                if (sortKey === 'run') {
+                    return b.dataset.run.localeCompare(a.dataset.run);
+                } else {
+                    aVal = parseFloat(a.dataset[sortKey]);
+                    bVal = parseFloat(b.dataset[sortKey]);
+                    return aVal - bVal;
+                }
+            });
+            
+            // Reorder in DOM
+            visibleCards.forEach(card => gallery.appendChild(card));
+        }
+        
+        layerFilter.addEventListener('change', filterAndSort);
+        dimFilter.addEventListener('change', filterAndSort);
+        seedFilter.addEventListener('change', filterAndSort);
+        sortBy.addEventListener('change', filterAndSort);
+        
+        function openModal(videoSrc) {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            video.src = videoSrc;
+            modal.classList.add('active');
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            video.pause();
+            modal.classList.remove('active');
+        }
+        
+        // Close modal on background click
+        document.getElementById('videoModal').addEventListener('click', (e) => {
+            if (e.target.id === 'videoModal') {
+                closeModal();
+            }
+        });
+        
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Initial sort
+        filterAndSort();
+    </script>
+</body>
+</html>

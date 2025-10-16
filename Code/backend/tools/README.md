@@ -4,6 +4,28 @@
 
 ---
 
+## 🔬 Phase C: Architecture Exploration (NEW!)
+
+**Systematic research into optimal network architectures for organic biological patterns**
+
+See **[ARCHITECTURE_EXPLORATION_README.md](./ARCHITECTURE_EXPLORATION_README.md)** for complete guide.
+
+**Quick Start:**
+```bash
+# Week 1: Generate test videos (36 configurations)
+python explore_architectures.py
+
+# Week 2: Rate visual quality
+python rate_architectures.py
+
+# Week 3: Use existing CLIP training on winners
+# (See ARCHITECTURE_EXPLORATION_README.md)
+```
+
+**Goal:** Discover optimal 2-5 layer architectures for spirals, cells, droplets, fluid forms.
+
+---
+
 ## Quick Start
 
 ### Automated Exploration (Recommended)
@@ -371,5 +393,7 @@ explorations/quick_TIMESTAMP/
 
 **Updated:** 2025-10-11  
 **Status:** Tools organized and documented
+
+
 
 

@@ -1,0 +1,492 @@
+{
+  "timestamp": "2025-10-15T22:10:50.679960",
+  "matrix": {
+    "layers": [
+      2,
+      3,
+      4
+    ],
+    "hidden_dims": [
+      8,
+      16,
+      24,
+      32
+    ],
+    "seeds": [
+      42,
+      123,
+      456
+    ]
+  },
+  "total_configs": 36,
+  "results": [
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_8D_seed42.mp4",
+      "file_size": 3442404,
+      "stdout": "audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_8D_seed42.mp4\n  Frames encoded: 241\n  Size: 3.28 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_8D_seed42.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.9s\n  Speed: 1.44x realtime\n============================================================\n",
+      "config": {
+        "id": 0,
+        "layers": 2,
+        "hidden_dim": 8,
+        "seed": 42,
+        "params": 203
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_8D_seed123.mp4",
+      "file_size": 3375066,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_8D_seed123.mp4\n  Frames encoded: 241\n  Size: 3.22 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_8D_seed123.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.4s\n  Speed: 1.56x realtime\n============================================================\n",
+      "config": {
+        "id": 1,
+        "layers": 2,
+        "hidden_dim": 8,
+        "seed": 123,
+        "params": 203
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_8D_seed456.mp4",
+      "file_size": 3795073,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_8D_seed456.mp4\n  Frames encoded: 241\n  Size: 3.62 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_8D_seed456.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 5.9s\n  Speed: 1.69x realtime\n============================================================\n",
+      "config": {
+        "id": 2,
+        "layers": 2,
+        "hidden_dim": 8,
+        "seed": 456,
+        "params": 203
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_16D_seed42.mp4",
+      "file_size": 3308398,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_16D_seed42.mp4\n  Frames encoded: 241\n  Size: 3.16 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_16D_seed42.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 5.8s\n  Speed: 1.73x realtime\n============================================================\n",
+      "config": {
+        "id": 3,
+        "layers": 2,
+        "hidden_dim": 16,
+        "seed": 42,
+        "params": 531
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_16D_seed123.mp4",
+      "file_size": 3458331,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_16D_seed123.mp4\n  Frames encoded: 241\n  Size: 3.30 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_16D_seed123.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 5.8s\n  Speed: 1.73x realtime\n============================================================\n",
+      "config": {
+        "id": 4,
+        "layers": 2,
+        "hidden_dim": 16,
+        "seed": 123,
+        "params": 531
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_16D_seed456.mp4",
+      "file_size": 3267147,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_16D_seed456.mp4\n  Frames encoded: 241\n  Size: 3.12 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_16D_seed456.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 5.7s\n  Speed: 1.75x realtime\n============================================================\n",
+      "config": {
+        "id": 5,
+        "layers": 2,
+        "hidden_dim": 16,
+        "seed": 456,
+        "params": 531
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_24D_seed42.mp4",
+      "file_size": 3286652,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_24D_seed42.mp4\n  Frames encoded: 241\n  Size: 3.13 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_24D_seed42.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 5.9s\n  Speed: 1.70x realtime\n============================================================\n",
+      "config": {
+        "id": 6,
+        "layers": 2,
+        "hidden_dim": 24,
+        "seed": 42,
+        "params": 987
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_24D_seed123.mp4",
+      "file_size": 3432315,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_24D_seed123.mp4\n  Frames encoded: 241\n  Size: 3.27 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_24D_seed123.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 5.9s\n  Speed: 1.69x realtime\n============================================================\n",
+      "config": {
+        "id": 7,
+        "layers": 2,
+        "hidden_dim": 24,
+        "seed": 123,
+        "params": 987
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_24D_seed456.mp4",
+      "file_size": 3247786,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_24D_seed456.mp4\n  Frames encoded: 241\n  Size: 3.10 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_24D_seed456.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 5.9s\n  Speed: 1.70x realtime\n============================================================\n",
+      "config": {
+        "id": 8,
+        "layers": 2,
+        "hidden_dim": 24,
+        "seed": 456,
+        "params": 987
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_32D_seed42.mp4",
+      "file_size": 3000476,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_32D_seed42.mp4\n  Frames encoded: 241\n  Size: 2.86 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_32D_seed42.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.0s\n  Speed: 1.66x realtime\n============================================================\n",
+      "config": {
+        "id": 9,
+        "layers": 2,
+        "hidden_dim": 32,
+        "seed": 42,
+        "params": 1571
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_32D_seed123.mp4",
+      "file_size": 3385853,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_32D_seed123.mp4\n  Frames encoded: 241\n  Size: 3.23 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_32D_seed123.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 5.9s\n  Speed: 1.69x realtime\n============================================================\n",
+      "config": {
+        "id": 10,
+        "layers": 2,
+        "hidden_dim": 32,
+        "seed": 123,
+        "params": 1571
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_32D_seed456.mp4",
+      "file_size": 3471233,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_32D_seed456.mp4\n  Frames encoded: 241\n  Size: 3.31 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_2L_32D_seed456.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.0s\n  Speed: 1.66x realtime\n============================================================\n",
+      "config": {
+        "id": 11,
+        "layers": 2,
+        "hidden_dim": 32,
+        "seed": 456,
+        "params": 1571
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_8D_seed42.mp4",
+      "file_size": 3833462,
+      "stdout": "audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_8D_seed42.mp4\n  Frames encoded: 241\n  Size: 3.66 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_8D_seed42.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.0s\n  Speed: 1.66x realtime\n============================================================\n",
+      "config": {
+        "id": 12,
+        "layers": 3,
+        "hidden_dim": 8,
+        "seed": 42,
+        "params": 275
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_8D_seed123.mp4",
+      "file_size": 3969336,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_8D_seed123.mp4\n  Frames encoded: 241\n  Size: 3.79 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_8D_seed123.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.0s\n  Speed: 1.68x realtime\n============================================================\n",
+      "config": {
+        "id": 13,
+        "layers": 3,
+        "hidden_dim": 8,
+        "seed": 123,
+        "params": 275
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_8D_seed456.mp4",
+      "file_size": 4498478,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_8D_seed456.mp4\n  Frames encoded: 241\n  Size: 4.29 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_8D_seed456.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 5.9s\n  Speed: 1.69x realtime\n============================================================\n",
+      "config": {
+        "id": 14,
+        "layers": 3,
+        "hidden_dim": 8,
+        "seed": 456,
+        "params": 275
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_16D_seed42.mp4",
+      "file_size": 4629958,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_16D_seed42.mp4\n  Frames encoded: 241\n  Size: 4.42 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_16D_seed42.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.0s\n  Speed: 1.68x realtime\n============================================================\n",
+      "config": {
+        "id": 15,
+        "layers": 3,
+        "hidden_dim": 16,
+        "seed": 42,
+        "params": 803
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_16D_seed123.mp4",
+      "file_size": 4967670,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_16D_seed123.mp4\n  Frames encoded: 241\n  Size: 4.74 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_16D_seed123.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.1s\n  Speed: 1.64x realtime\n============================================================\n",
+      "config": {
+        "id": 16,
+        "layers": 3,
+        "hidden_dim": 16,
+        "seed": 123,
+        "params": 803
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_16D_seed456.mp4",
+      "file_size": 4133538,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_16D_seed456.mp4\n  Frames encoded: 241\n  Size: 3.94 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_16D_seed456.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.2s\n  Speed: 1.62x realtime\n============================================================\n",
+      "config": {
+        "id": 17,
+        "layers": 3,
+        "hidden_dim": 16,
+        "seed": 456,
+        "params": 803
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_24D_seed42.mp4",
+      "file_size": 4300473,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_24D_seed42.mp4\n  Frames encoded: 241\n  Size: 4.10 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_24D_seed42.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.1s\n  Speed: 1.65x realtime\n============================================================\n",
+      "config": {
+        "id": 18,
+        "layers": 3,
+        "hidden_dim": 24,
+        "seed": 42,
+        "params": 1587
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_24D_seed123.mp4",
+      "file_size": 4571888,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_24D_seed123.mp4\n  Frames encoded: 241\n  Size: 4.36 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_24D_seed123.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.1s\n  Speed: 1.64x realtime\n============================================================\n",
+      "config": {
+        "id": 19,
+        "layers": 3,
+        "hidden_dim": 24,
+        "seed": 123,
+        "params": 1587
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_24D_seed456.mp4",
+      "file_size": 4553863,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_24D_seed456.mp4\n  Frames encoded: 241\n  Size: 4.34 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_24D_seed456.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.1s\n  Speed: 1.65x realtime\n============================================================\n",
+      "config": {
+        "id": 20,
+        "layers": 3,
+        "hidden_dim": 24,
+        "seed": 456,
+        "params": 1587
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_32D_seed42.mp4",
+      "file_size": 4170190,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_32D_seed42.mp4\n  Frames encoded: 241\n  Size: 3.98 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_32D_seed42.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.1s\n  Speed: 1.65x realtime\n============================================================\n",
+      "config": {
+        "id": 21,
+        "layers": 3,
+        "hidden_dim": 32,
+        "seed": 42,
+        "params": 2627
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_32D_seed123.mp4",
+      "file_size": 4447847,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_32D_seed123.mp4\n  Frames encoded: 241\n  Size: 4.24 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_32D_seed123.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.1s\n  Speed: 1.65x realtime\n============================================================\n",
+      "config": {
+        "id": 22,
+        "layers": 3,
+        "hidden_dim": 32,
+        "seed": 123,
+        "params": 2627
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_32D_seed456.mp4",
+      "file_size": 4650427,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_32D_seed456.mp4\n  Frames encoded: 241\n  Size: 4.43 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_3L_32D_seed456.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.1s\n  Speed: 1.63x realtime\n============================================================\n",
+      "config": {
+        "id": 23,
+        "layers": 3,
+        "hidden_dim": 32,
+        "seed": 456,
+        "params": 2627
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_8D_seed42.mp4",
+      "file_size": 7004605,
+      "stdout": "audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_8D_seed42.mp4\n  Frames encoded: 241\n  Size: 6.68 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_8D_seed42.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.2s\n  Speed: 1.61x realtime\n============================================================\n",
+      "config": {
+        "id": 24,
+        "layers": 4,
+        "hidden_dim": 8,
+        "seed": 42,
+        "params": 347
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_8D_seed123.mp4",
+      "file_size": 6404063,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_8D_seed123.mp4\n  Frames encoded: 241\n  Size: 6.11 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_8D_seed123.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.3s\n  Speed: 1.58x realtime\n============================================================\n",
+      "config": {
+        "id": 25,
+        "layers": 4,
+        "hidden_dim": 8,
+        "seed": 123,
+        "params": 347
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_8D_seed456.mp4",
+      "file_size": 6442873,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_8D_seed456.mp4\n  Frames encoded: 241\n  Size: 6.14 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_8D_seed456.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.4s\n  Speed: 1.57x realtime\n============================================================\n",
+      "config": {
+        "id": 26,
+        "layers": 4,
+        "hidden_dim": 8,
+        "seed": 456,
+        "params": 347
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_16D_seed42.mp4",
+      "file_size": 6381604,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_16D_seed42.mp4\n  Frames encoded: 241\n  Size: 6.09 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_16D_seed42.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.4s\n  Speed: 1.56x realtime\n============================================================\n",
+      "config": {
+        "id": 27,
+        "layers": 4,
+        "hidden_dim": 16,
+        "seed": 42,
+        "params": 1075
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_16D_seed123.mp4",
+      "file_size": 7174059,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_16D_seed123.mp4\n  Frames encoded: 241\n  Size: 6.84 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_16D_seed123.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.3s\n  Speed: 1.58x realtime\n============================================================\n",
+      "config": {
+        "id": 28,
+        "layers": 4,
+        "hidden_dim": 16,
+        "seed": 123,
+        "params": 1075
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_16D_seed456.mp4",
+      "file_size": 6544367,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_16D_seed456.mp4\n  Frames encoded: 241\n  Size: 6.24 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_16D_seed456.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.2s\n  Speed: 1.61x realtime\n============================================================\n",
+      "config": {
+        "id": 29,
+        "layers": 4,
+        "hidden_dim": 16,
+        "seed": 456,
+        "params": 1075
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_24D_seed42.mp4",
+      "file_size": 6860139,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_24D_seed42.mp4\n  Frames encoded: 241\n  Size: 6.54 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_24D_seed42.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.2s\n  Speed: 1.62x realtime\n============================================================\n",
+      "config": {
+        "id": 30,
+        "layers": 4,
+        "hidden_dim": 24,
+        "seed": 42,
+        "params": 2187
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_24D_seed123.mp4",
+      "file_size": 7290223,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_24D_seed123.mp4\n  Frames encoded: 241\n  Size: 6.95 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_24D_seed123.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.2s\n  Speed: 1.61x realtime\n============================================================\n",
+      "config": {
+        "id": 31,
+        "layers": 4,
+        "hidden_dim": 24,
+        "seed": 123,
+        "params": 2187
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_24D_seed456.mp4",
+      "file_size": 7438311,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_24D_seed456.mp4\n  Frames encoded: 241\n  Size: 7.09 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_24D_seed456.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.2s\n  Speed: 1.61x realtime\n============================================================\n",
+      "config": {
+        "id": 32,
+        "layers": 4,
+        "hidden_dim": 24,
+        "seed": 456,
+        "params": 2187
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_32D_seed42.mp4",
+      "file_size": 7134687,
+      "stdout": "diovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_32D_seed42.mp4\n  Frames encoded: 241\n  Size: 6.80 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_32D_seed42.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.4s\n  Speed: 1.57x realtime\n============================================================\n",
+      "config": {
+        "id": 33,
+        "layers": 4,
+        "hidden_dim": 32,
+        "seed": 42,
+        "params": 3683
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_32D_seed123.mp4",
+      "file_size": 6538486,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_32D_seed123.mp4\n  Frames encoded: 241\n  Size: 6.24 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_32D_seed123.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.2s\n  Speed: 1.62x realtime\n============================================================\n",
+      "config": {
+        "id": 34,
+        "layers": 4,
+        "hidden_dim": 32,
+        "seed": 123,
+        "params": 3683
+      }
+    },
+    {
+      "success": true,
+      "output_path": "C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_32D_seed456.mp4",
+      "file_size": 7676642,
+      "stdout": "ovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_32D_seed456.mp4\n  Frames encoded: 241\n  Size: 7.32 MB\n\n============================================================\n[OK] Complete!\n  Output: C:\\Users\\aitor\\audiovisual\\audiovisuals\\Code\\backend\\explorations\\architecture_matrix\\20251015_220527\\arch_4L_32D_seed456.mp4\n  Duration: 10.00s\n  Frames: 241\n  Processing time: 6.3s\n  Speed: 1.58x realtime\n============================================================\n",
+      "config": {
+        "id": 35,
+        "layers": 4,
+        "hidden_dim": 32,
+        "seed": 456,
+        "params": 3683
+      }
+    }
+  ]
+}

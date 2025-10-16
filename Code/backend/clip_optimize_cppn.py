@@ -34,6 +34,7 @@ def optimize_cppn_with_clip(
     log_interval: int = 20,
     clip_model_name: str = "RN50",
     hidden_dim: int = 256,
+    num_layers: int = 4,
     verbose: bool = True
 ) -> dict:
     """
@@ -49,6 +50,8 @@ def optimize_cppn_with_clip(
         learning_rate: Adam learning rate
         log_interval: Print progress every N iterations
         clip_model_name: CLIP model to use ("RN50", "RN101", "ViT-B/32", "ViT-B/16")
+        hidden_dim: Hidden layer dimension (default: 256)
+        num_layers: Number of CPPN layers (default: 4)
         verbose: Print progress messages
         
     Returns:
@@ -81,12 +84,12 @@ def optimize_cppn_with_clip(
         print("Initializing CPPN...")
     # Input: x, y (2) + time (1) + audio features (9) = 12 dimensions
     # Disable FP16 for CLIP optimization - needs stable gradients
-    cppn = CPPN(input_dim=12, hidden_dim=hidden_dim, num_layers=4, device=device, use_fp16=False).to(device)
+    cppn = CPPN(input_dim=12, hidden_dim=hidden_dim, num_layers=num_layers, device=device, use_fp16=False).to(device)
     
     # Calculate and display parameter count
     num_params = sum(p.numel() for p in cppn.parameters())
     if verbose:
-        print(f"CPPN Architecture: 4 layers × {hidden_dim} hidden dim = {num_params:,} parameters")
+        print(f"CPPN Architecture: {num_layers} layers × {hidden_dim} hidden dim = {num_params:,} parameters")
     
     # Extract representative audio features (from middle of track)
     if verbose:
@@ -95,8 +98,8 @@ def optimize_cppn_with_clip(
     analysis = analyzer.analyze(audio_file, fps=30)
     
     # Get features from 25% into the track (usually has good dynamics)
-    duration = analysis['duration']
-    representative_time = duration * 0.25
+    audio_duration = analysis['duration']
+    representative_time = audio_duration * 0.25
     frame_idx = int(representative_time * analysis['fps'])
     frame_idx = min(frame_idx, analysis['num_frames'] - 1)
     
@@ -104,7 +107,7 @@ def optimize_cppn_with_clip(
     audio_tensor = torch.tensor(audio_features, dtype=torch.float32, device=device)
     
     if verbose:
-        print(f"Audio duration: {duration:.2f}s")
+        print(f"Audio duration: {audio_duration:.2f}s")
         print(f"Representative frame: {frame_idx} @ {representative_time:.2f}s")
         print(f"Audio features shape: {audio_tensor.shape}")
         print()
@@ -239,7 +242,7 @@ def optimize_cppn_with_clip(
         'cppn_config': {
             'input_dim': 12,
             'hidden_dim': hidden_dim,
-            'num_layers': 4
+            'num_layers': num_layers  # Use actual number of layers
         }
     }
     torch.save(save_data, output_path)
@@ -346,6 +349,12 @@ def main():
         help='Hidden layer dimension (default: 256, try 128 for simpler network)'
     )
     parser.add_argument(
+        '--layers',
+        type=int,
+        default=4,
+        help='Number of CPPN layers (default: 4, try 2-3 for organic patterns)'
+    )
+    parser.add_argument(
         '--device',
         type=str,
         default='auto',
@@ -371,6 +380,7 @@ def main():
         learning_rate=args.lr,
         clip_model_name=args.clip_model,
         hidden_dim=args.hidden_dim,
+        num_layers=args.layers,
         verbose=not args.quiet
     )
     
@@ -380,8 +390,9 @@ def main():
     print(f"   Weights: {result['output_path']}")
     print(f"   Preview: {result['preview_path']}")
     print(f"   History: {result['history_path']}")
-    print(f"\n🎨 Next step: Generate a video!")
-    print(f"   python cli.py {args.audio} output.mp4 --load-weights {result['output_path']}")
+    print("\nNext step: Generate a video!")
+    print(f"   python cli.py {{audio}} output.mp4 --load-weights {result['output_path']} --layers {args.layers} --hidden-dim {args.hidden_dim}")
+    print("\n" + "=" * 60)
 
 
 if __name__ == "__main__":

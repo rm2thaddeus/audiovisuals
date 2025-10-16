@@ -12,6 +12,7 @@ Usage:
 
 import numpy as np
 import torch
+import cv2
 from tqdm import tqdm
 from typing import Iterator, List, Tuple, Optional
 
@@ -23,7 +24,8 @@ class Renderer:
         self,
         cppn,
         resolution: Tuple[int, int] = (1280, 720),
-        batch_size: int = None
+        batch_size: int = None,
+        text_overlay: Optional[str] = None
     ):
         """
         Initialize renderer.
@@ -32,8 +34,10 @@ class Renderer:
             cppn: CPPN network instance
             resolution: (width, height) in pixels
             batch_size: Number of pixels to process per batch
+            text_overlay: Optional text to overlay on each frame
         """
         self.cppn = cppn
+        self.text_overlay = text_overlay
         self.width, self.height = resolution
         self.total_pixels = self.width * self.height
         self.device = cppn.device
@@ -93,6 +97,48 @@ class Renderer:
         self.y_flat = y_flat
         
         print(f"  Coordinate grid prepared: {len(x_flat):,} points on {self.device}")
+    
+    def _add_text_overlay(self, frame: np.ndarray) -> np.ndarray:
+        """
+        Add text overlay to frame.
+        
+        Args:
+            frame: RGB frame (H, W, 3) as uint8
+            
+        Returns:
+            Frame with text overlay
+        """
+        # Calculate text properties based on resolution
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        font_scale = max(0.4, self.height / 1080)  # Scale with resolution
+        thickness = max(1, int(self.height / 540))
+        
+        # Get text size
+        (text_width, text_height), baseline = cv2.getTextSize(
+            self.text_overlay, font, font_scale, thickness
+        )
+        
+        # Position text at top-left with padding
+        padding = max(10, int(self.height / 72))
+        x = padding
+        y = padding + text_height
+        
+        # Add semi-transparent background for better readability
+        bg_x1 = x - padding // 2
+        bg_y1 = y - text_height - padding // 2
+        bg_x2 = x + text_width + padding // 2
+        bg_y2 = y + baseline + padding // 2
+        
+        # Create overlay with semi-transparent background
+        overlay = frame.copy()
+        cv2.rectangle(overlay, (bg_x1, bg_y1), (bg_x2, bg_y2), (0, 0, 0), -1)
+        frame = cv2.addWeighted(overlay, 0.6, frame, 0.4, 0)
+        
+        # Add white text
+        cv2.putText(frame, self.text_overlay, (x, y), font, 
+                   font_scale, (255, 255, 255), thickness, cv2.LINE_AA)
+        
+        return frame
     
     def render_frame(
         self,
@@ -160,6 +206,10 @@ class Renderer:
         
         # Convert to uint8
         rgb_image = (rgb_image * 255).astype(np.uint8)
+        
+        # Add text overlay if specified
+        if self.text_overlay:
+            rgb_image = self._add_text_overlay(rgb_image)
         
         return rgb_image
     

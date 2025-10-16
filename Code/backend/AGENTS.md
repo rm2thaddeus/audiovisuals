@@ -3,8 +3,8 @@ phase: 2
 artifact: backend_agents
 project: audio_feature_explorer
 owner: Aitor Patiño Diaz
-updated: 2025-10-11
-status: Phase A Complete, Dual Approach Available
+updated: 2025-10-15
+status: Phase C Complete - 3L×4D Architecture Discovered
 sources:
   - POC Plan: ../../docs/Phase2-POC/POC_PLAN.md
   - Current State: ../../docs/Phase2-POC/backend/CURRENT_STATE.md
@@ -474,6 +474,7 @@ See `../../docs/Phase2-POC/backend/NEXT_STEPS.md` for detailed options.
 - Document performance metrics for each spike
 - Keep GPU/CPU paths clearly separated for maintainability
 - Profile bottlenecks before optimizing
+- **CRITICAL:** NEVER use emojis in Python scripts that output to console - Windows cmd/PowerShell fail with UnicodeEncodeError on cp1252 encoding
 
 ### Usage Recommendations
 
