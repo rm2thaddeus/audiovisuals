@@ -1,21 +1,40 @@
 # Phase 3 - MVP Development
 
-**Status:** 🚀 Planning Complete - Ready to Begin  
+**Status:** 🔧 Setup Phase - Ready to Install & Build  
 **Timeline:** 12 weeks to MVP  
-**Updated:** 2025-10-13
+**Updated:** 2025-10-17
 
 ---
 
 ## Purpose
 
 Build a desktop application with intuitive GUI for:
-- Audio-reactive video generation (Synesthesia)
+- Audio-reactive video generation (Synesthesia) using 3L×4D optimal architecture
 - Music semantic analysis (5 analyzers)
 - Visual style library management
-- Parameter space exploration
-- Project and file management
+- Parameter space exploration (post-MVP)
+- Project and file management (post-MVP)
 
 **Goal:** Make Phase 2 CLI tools accessible to non-technical users
+
+---
+
+## 🚀 Quick Start
+
+**Choose your path:**
+
+### Option 1: Fast Start (If tools installed)
+📄 **[QUICK_START.md](./QUICK_START.md)** - 5 minutes to running app
+
+### Option 2: Full Setup (First time)
+📘 **[SETUP_GUIDE.md](./SETUP_GUIDE.md)** - Complete installation guide
+
+### Option 3: Understanding First
+📖 Read documentation in this order:
+1. **[PRD.md](./PRD.md)** - What we're building
+2. **[UX_RESEARCH.md](./UX_RESEARCH.md)** - User interface design  
+3. **[TECHNICAL_SPEC.md](./TECHNICAL_SPEC.md)** - How it works
+4. **[IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md)** - 12-week timeline
 
 ---
 
