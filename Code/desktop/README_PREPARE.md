@@ -1,8 +1,8 @@
-# Desktop App - Preparation Checklist
+# Audio Feature Explorer - Desktop App
 
-**Purpose:** This file prepares the structure for the Tauri desktop app  
-**Location:** `Code/desktop/` (to be created)  
-**Status:** Awaiting tool installation
+**Purpose:** Desktop GUI for synesthesia generation and music analysis  
+**Tech Stack:** Tauri 2 + React 18 + TypeScript + Tailwind CSS  
+**Status:** ✅ Setup Complete - Ready for Development
 
 ---
 

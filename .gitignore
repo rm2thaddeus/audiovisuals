@@ -336,6 +336,23 @@ Code/backend/models/*.h5
 # !example_config.yaml
 
 # ============================================================
+# Node.js / JavaScript
+# ============================================================
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+dist/
+.next/
+out/
+
+# Tauri
+Code/desktop/src-tauri/target/
+Code/desktop/src-tauri/WixTools/
+
+# ============================================================
 # Project Helpers
 # ============================================================
 
