@@ -1,134 +1,119 @@
-// NOTE: This file handles Windows Python process spawning. All paths use backslash (\) or forward slash (/)
-// Both work in Rust on Windows. Paths are provided by Tauri's sandboxed file system.
-
-use std::process::{Command, Stdio, Child, ChildStdout, ChildStderr};
+use serde::{Deserialize, Serialize};
 use std::io::{BufRead, BufReader};
-use std::sync::{Arc, Mutex};
+use std::process::{Child, Command, Stdio};
 use std::thread;
 use tauri::Window;
-use serde::{Serialize, Deserialize};
 
-/// Progress event emitted during Python process execution
+/// Progress update emitted from Python stdout.
 #[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct ProgressEvent {
     pub progress: f32,
     pub message: String,
 }
 
-/// Represents a running Python process
+/// Minimal wrapper around a spawned Python child process.
 pub struct PythonProcess {
     child: Option<Child>,
     window: Window,
 }
 
 impl PythonProcess {
-    /// Create a new Python process manager
     pub fn new(window: Window) -> Self {
         Self { child: None, window }
     }
 
-    /// Spawn a Python process with the given script and arguments
-    /// 
-    /// NOTE: On Windows, use "python" directly (not /usr/bin/python - that doesn't exist)
-    /// Paths can use either backslash or forward slash
-    pub fn spawn(
-        &mut self,
-        script: &str,
-        args: Vec<&str>,
-    ) -> Result<(), String> {
-        // ✅ CORRECT: On Windows, "python" resolves from PATH
-        // Command { python } → C:\Users\...\Python312\python.exe (automatically resolved)
-        let mut cmd = Command::new("python");
-        cmd.arg(script)
+    /// Spawn `python` with the supplied script/command and arguments.
+    pub fn spawn(&mut self, script_or_flag: &str, args: Vec<&str>) -> Result<(), String> {
+        let mut command = Command::new("python");
+        command
+            .arg(script_or_flag)
             .args(args)
             .stdout(Stdio::piped())
             .stderr(Stdio::piped());
 
-        match cmd.spawn() {
-            Ok(mut child) => {
-                // Spawn thread to read stdout
-                if let Some(stdout) = child.stdout.take() {
-                    let window = self.window.clone();
-                    thread::spawn(move || {
-                        let reader = BufReader::new(stdout);
-                        for line in reader.lines() {
-                            if let Ok(line) = line {
-                                // Emit progress event for each line
-                                if let Some(progress) = parse_progress_line(&line) {
-                                    let _ = window.emit("python-progress", ProgressEvent {
-                                        progress,
-                                        message: line.clone(),
-                                    });
-                                } else {
-                                    // Non-progress output
-                                    let _ = window.emit("python-output", line);
-                                }
-                            }
-                        }
-                    });
-                }
+        let mut child = command
+            .spawn()
+            .map_err(|err| format!("Failed to spawn Python process: {err}"))?;
 
-                self.child = Some(child);
-                Ok(())
-            }
-            Err(e) => Err(format!("Failed to spawn Python process: {}", e)),
+        if let Some(stdout) = child.stdout.take() {
+            let window = self.window.clone();
+            thread::spawn(move || {
+                let reader = BufReader::new(stdout);
+                for line in reader.lines().flatten() {
+                    if let Some(progress) = parse_progress_line(&line) {
+                        let _ = window.emit(
+                            "python-progress",
+                            ProgressEvent {
+                                progress,
+                                message: line.clone(),
+                            },
+                        );
+                    } else {
+                        let _ = window.emit("python-output", line.clone());
+                    }
+                }
+            });
         }
+
+        if let Some(stderr) = child.stderr.take() {
+            let window = self.window.clone();
+            thread::spawn(move || {
+                let reader = BufReader::new(stderr);
+                for line in reader.lines().flatten() {
+                    let _ = window.emit("python-error", line);
+                }
+            });
+        }
+
+        self.child = Some(child);
+        Ok(())
     }
 
-    /// Wait for the process to complete and return the exit code
+    /// Wait for the child to exit and return the OS status code.
     pub fn wait(&mut self) -> Result<i32, String> {
         if let Some(mut child) = self.child.take() {
-            match child.wait() {
-                Ok(status) => Ok(status.code().unwrap_or(-1)),
-                Err(e) => Err(format!("Failed to wait for process: {}", e)),
-            }
+            let status = child
+                .wait()
+                .map_err(|err| format!("Failed to wait for process: {err}"))?;
+            Ok(status.code().unwrap_or(-1))
         } else {
-            Err("No process running".to_string())
+            Err(String::from("No process running"))
         }
     }
 
-    /// Kill the process immediately
+    /// Forcefully terminate the process if it is still running.
     pub fn kill(&mut self) -> Result<(), String> {
         if let Some(mut child) = self.child.take() {
-            child.kill().map_err(|e| format!("Failed to kill process: {}", e))?;
+            child
+                .kill()
+                .map_err(|err| format!("Failed to kill process: {err}"))?;
         }
         Ok(())
     }
 }
 
-/// Parse progress percentage from output line
-/// 
-/// Looks for patterns like:
-/// - "Progress: 65%"
-/// - "[Progress] 45%"
-/// - "65% complete"
+/// Attempt to parse a percentage from free-form output text.
 fn parse_progress_line(line: &str) -> Option<f32> {
-    // Look for percentage pattern
-    if let Some(pos) = line.find('%') {
-        // Find the last number before %
-        let before = &line[..pos];
-        let num_str = before
+    line.find('%').and_then(|percent_index| {
+        let number_str = line[..percent_index]
             .split_whitespace()
             .last()
             .unwrap_or("")
-            .trim_start_matches('[')
-            .trim_start_matches('(');
-        
-        num_str.parse::<f32>().ok()
-    } else {
-        None
-    }
+            .trim_start_matches(['[', '(']);
+        number_str.parse::<f32>().ok()
+    })
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use super::parse_progress_line;
 
     #[test]
-    fn test_parse_progress() {
+    fn parses_percentages() {
         assert_eq!(parse_progress_line("Progress: 65%"), Some(65.0));
         assert_eq!(parse_progress_line("65% complete"), Some(65.0));
         assert_eq!(parse_progress_line("[45%]"), Some(45.0));
         assert_eq!(parse_progress_line("No progress here"), None);
     }
 }
+

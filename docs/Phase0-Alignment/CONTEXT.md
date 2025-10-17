@@ -2,8 +2,8 @@
 phase: 0
 artifact: project_context
 project: audio_feature_explorer
-owner: Aitor Patiño Diaz
-updated: 2025-01-27
+owner: Aitor Patino Diaz
+updated: 2025-10-17
 sources:
   - Research Proposal: Audio Feature Explorer (Local Desktop Edition)
   - CV: AI framework designer with audio/video analysis experience
@@ -39,12 +39,13 @@ Assumptions and Risks
   - Tauri sidecar architecture can efficiently bridge Python ML backend with WebView frontend
   - Audio ML models can run locally with acceptable performance on modern desktop hardware
   - WebGL shaders can achieve real-time fractal visualization at 30+ FPS
-  - PyInstaller can package Python dependencies into standalone executable
+  - PyInstaller can package Python dependencies into a standalone executable
 - Risks:
   - Library conflicts between Python ML frameworks and Rust/Tauri integration
   - Performance bottlenecks in IPC communication between Python backend and frontend
   - Cross-platform packaging complexity with ML model dependencies
   - Real-time visualization lag due to computation or communication delays
+  - Local desktop environment currently missing Node.js and Rust CLIs in PATH, blocking npm/cargo commands until resolved
 
 Phase 0 Prompt Starters
 ```text
@@ -65,5 +66,4 @@ For comprehensive projects, proceed to Level 3:
 - Understand security requirements and integration patterns.
 - Establish long-term learning objectives.
 ```
-
 
