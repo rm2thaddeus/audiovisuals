@@ -13,3 +13,7 @@ pub fn run() {
         .expect("error while running tauri application");
 }
 
+// NOTE: Windows-compatible exports for Tauri desktop app
+
+pub mod python;
+

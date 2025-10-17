@@ -1,195 +1,260 @@
 # Audio Feature Explorer - Desktop App
 
-**Phase 3 MVP Development**  
-**Tech Stack:** Tauri 2.0 + React 18 + TypeScript + Tailwind CSS
+**Status:** ✅ **Week 1 Foundation Setup Ready**  
+**Tech Stack:** Tauri 2 + React 18 + TypeScript + Tailwind CSS + Rust  
+**Phase:** Phase 3 MVP  
+**Target:** Complete by Week 12  
 
 ---
 
-## Quick Start
+## 🎯 Quick Start
 
-### Start Development Server
-```powershell
-npm run tauri:dev
-```
+### Prerequisites
+Before you start, install:
+- ✅ Node.js (v20+)
+- ✅ Rust (1.75+)
+- ✅ Python 3.12 (already installed)
 
-**First run:** Rust compilation takes ~60 seconds  
-**Subsequent runs:** Starts in ~5 seconds with hot reload
+See [../../docs/Phase3-MVP/SETUP_GUIDE.md](../../docs/Phase3-MVP/SETUP_GUIDE.md) for setup instructions.
 
-### Build for Production
-```powershell
-npm run tauri:build
-```
-
-Output: `src-tauri/target/release/audiovisuals-desktop.exe`
-
----
-
-## Project Structure
-
-```
-desktop/
-├── src/                    # React frontend
-├── src-tauri/              # Rust backend
-├── package.json            # Dependencies
-├── tsconfig.json           # TypeScript config
-├── vite.config.ts          # Build config
-├── tailwind.config.js      # CSS config
-└── SETUP_COMPLETE.md       # Installation guide
-```
-
----
-
-## What's Included
-
-### System Tools
-- ✅ Rust 1.90.0
-- ✅ Node.js v22.20.0
-- ✅ Tauri CLI 2.8.4
-- ✅ VS Build Tools 2022
-
-### Frontend Stack
-- ✅ React 18.3.1 + TypeScript
-- ✅ Vite (fast bundler)
-- ✅ Tailwind CSS (utility-first)
-- ✅ Zustand (state management)
-- ✅ React-Plotly.js (charts)
-- ✅ Video.js (video player)
-- ✅ Lucide React (icons)
-
-### Backend (Tauri/Rust)
-- ✅ Tauri 2.8.4
-- ✅ Shell plugin (for Python CLI)
-- ✅ IPC commands ready
-
----
-
-## Phase 3 Roadmap
-
-### ✅ Week 1: Foundation (Complete!)
-- [x] Install Rust, Node.js, Tauri
-- [x] Create React + TypeScript project
-- [x] Configure Tailwind CSS
-- [x] Install dependencies
-- [x] Test development environment
-
-### Week 2: Tab Navigation Shell
-- [ ] Create 5-tab layout
-- [ ] Set up routing
-- [ ] Design UI components
-- [ ] Implement state management
-
-### Weeks 3-4: Synesthesia Tab
-- [ ] Python CLI wrapper (Rust)
-- [ ] File picker
-- [ ] Style selector
-- [ ] Video generation
-- [ ] Progress tracking
-
-### Weeks 5-6: Analysis Tab
-- [ ] Multi-analyzer UI
-- [ ] Plotly chart integration
-- [ ] Export functionality
-
-### Weeks 7-8: Styles Tab
-- [ ] Library browser
-- [ ] CLIP training wizard
-- [ ] Style management
-
-### Weeks 9-10: Explorer & Projects
-- [ ] Parameter exploration
-- [ ] Preset management
-- [ ] File browser
-
-### Weeks 11-12: Polish & Testing
-- [ ] Error handling
-- [ ] Performance optimization
-- [ ] User testing
-
----
-
-## Documentation
-
-### Setup & Installation
-- [SETUP_COMPLETE.md](./SETUP_COMPLETE.md) - Complete installation guide
-
-### Phase 3 Planning
-- [Phase 3 Kickoff](../../docs/Phase3-MVP/PHASE_3_KICKOFF.md)
-- [UX Research](../../docs/Phase3-MVP/UX_RESEARCH.md)
-- [Technical Spec](../../docs/Phase3-MVP/TECHNICAL_SPEC.md)
-- [Implementation Plan](../../docs/Phase3-MVP/IMPLEMENTATION_PLAN.md)
-
-### Phase 2 Backend (Python CLI)
-- [Backend README](../backend/README.md)
-- [Quick Start](../backend/QUICK_START_AITOR.md)
-- [Music Analysis](../backend/music_analysis/README.md)
-
----
-
-## Development Commands
+### Run Development Server
 
 ```powershell
+# ✅ CORRECT PowerShell commands
+
+Set-Location Code\desktop
+npm run tauri dev
+
+# Expected: App window opens with 5 tabs
+# Hot reload: Edit src/App.tsx and save to see changes
+```
+
+---
+
+## 📁 Directory Structure
+
+```
+Code/desktop/
+├── src/                          # React frontend
+│   ├── components/
+│   │   ├── tabs/                # Tab pages (5 tabs)
+│   │   ├── common/              # Reusable components
+│   │   └── charts/              # Data visualization
+│   ├── store/                   # Zustand state management
+│   ├── hooks/                   # Custom React hooks
+│   ├── types/                   # TypeScript types
+│   ├── App.tsx                  # Main component (tab navigation)
+│   └── main.tsx                 # Entry point
+│
+├── src-tauri/                   # Rust backend
+│   └── src/
+│       ├── main.rs             # Tauri entry point
+│       ├── python.rs           # Python process wrapper ✅
+│       ├── commands.rs         # IPC command handlers ✅
+│       └── lib.rs              # Module exports
+│
+├── AGENTS.md                    # Agent coordination guide
+├── WEEK_1_SETUP.md             # Detailed setup instructions
+└── README.md                    # This file
+```
+
+---
+
+## 📅 Development Timeline
+
+### ✅ Week 1: Foundation (CURRENT)
+- ✅ React Tab Navigation
+- ✅ Zustand state management
+- ✅ Rust Python wrapper (python.rs)
+- ✅ IPC command system
+- ✅ Integration tests
+
+**Files Ready:**
+- `src/App.tsx` - 5-tab navigation ✅
+- `src/components/tabs/*.tsx` - Tab stubs ✅
+- `src-tauri/src/python.rs` - Process spawning ✅
+- `Code/desktop/WEEK_1_SETUP.md` - Complete guide ✅
+
+### Week 2-3: Synesthesia Tab
+- File picker (drag & drop)
+- Style selector
+- Video generation workflow
+- Progress tracking UI
+- Video preview player
+
+### Week 4-6: Analysis Tab
+- Audio file selector
+- 5-analyzer selection
+- Plotly charts integration
+- Data export
+- Results caching
+
+### Week 7-8: Styles Tab
+- Style library browser
+- Style metadata viewing
+- Custom style training UI
+- Style export/import
+
+### Week 9-10: Explorer Tab (Post-MVP)
+- Parameter space visualization
+- Preset management
+- Real-time preview
+
+### Week 11-12: Projects Tab (Post-MVP)
+- File management
+- Project organization
+- Quick actions
+
+---
+
+## 🔧 For Developers
+
+### PowerShell Command Reference
+
+```powershell
+# NOTE: Use PowerShell syntax on Windows (not bash!)
+
 # Development
-npm run dev              # Frontend only (Vite)
-npm run tauri:dev        # Full app (Tauri + React)
+npm run tauri dev          # Start dev server with hot reload
+npm run build              # Build production app
+cargo build                # Compile Rust backend
+cargo test                 # Run Rust unit tests
 
-# Build
-npm run build            # Frontend build
-npm run tauri:build      # Full app build
+# File operations (NOT bash equivalents!)
+New-Item -ItemType Directory -Path "src/components" -Force
+Remove-Item -Path "file.txt" -Force
+Copy-Item -Path "src" -Destination "src-backup"
+Move-Item -Path "old" -Destination "new"
 
-# Preview
-npm run preview          # Preview production build
+# Paths (both work)
+"Code\desktop"             # Backslash (Windows native)
+"Code/desktop"             # Forward slash (also works)
+```
 
-# Tauri CLI
-npx tauri info           # System information
-npx tauri dev            # Start development
-npx tauri build          # Build for production
-npx tauri --help         # All commands
+### React Development
+
+**Hot Reload:** Automatically reloads when you edit files in `src/`
+
+**Debugging:**
+1. Press `F12` in the app window to open DevTools
+2. Check Console for errors
+3. React DevTools extension recommended
+
+**TypeScript:** Full type safety in components
+
+**Tailwind CSS:** Dark theme pre-configured in `tailwind.config.js`
+
+### Rust Development
+
+**IPC Commands:** Add new commands in `src-tauri/src/commands.rs`
+
+```rust
+#[tauri::command]
+pub async fn my_new_command(window: Window) -> Result<String, String> {
+    // Implementation
+    Ok("Success".to_string())
+}
+```
+
+Then register in `main.rs`:
+```rust
+.invoke_handler(tauri::generate_handler![my_new_command])
+```
+
+**Python Integration:** Use `python.rs` PythonProcess struct:
+
+```rust
+let mut process = PythonProcess::new(window);
+process.spawn("Code\\backend\\cli.py", vec!["--help"])?;
+let exit_code = process.wait()?;
 ```
 
 ---
 
-## Troubleshooting
+## 📖 Documentation
 
-### Dev Server Won't Start
-1. Restart terminal after installing Build Tools
-2. Check Rust: `rustc --version`
-3. Check Node: `node --version`
-4. Reinstall dependencies: `npm install`
+**Project Level:**
+- [AGENTS.md](./AGENTS.md) - Agent coordination roles
+- [WEEK_1_SETUP.md](./WEEK_1_SETUP.md) - Week 1 detailed guide
 
-### Rust Compilation Slow
-- First compilation: 30-60 seconds (normal)
-- Subsequent: < 5 seconds
-- Restart computer if >5 minutes
+**Phase 3 Level:**
+- [../../docs/Phase3-MVP/TECHNICAL_SPEC.md](../../docs/Phase3-MVP/TECHNICAL_SPEC.md) - Architecture details
+- [../../docs/Phase3-MVP/IMPLEMENTATION_PLAN.md](../../docs/Phase3-MVP/IMPLEMENTATION_PLAN.md) - Full 12-week plan
+- [../../docs/Phase3-MVP/UX_RESEARCH.md](../../docs/Phase3-MVP/UX_RESEARCH.md) - UI mockups and flows
 
-### Hot Reload Not Working
-- Check Vite terminal output
-- Close app and restart dev server
-- Delete `node_modules/.vite` cache
+**Backend (Python):**
+- [../backend/README.md](../backend/README.md) - Python CLI docs
+- [../backend/QUICK_START_AITOR.md](../backend/QUICK_START_AITOR.md) - CLI quick start
 
 ---
 
-## Integration with Python Backend
+## ✨ Key Features (Week 1 Foundation)
 
-The desktop app will call Python CLI tools in `Code/backend/`:
-- `cli.py` - Video generation
-- `music_analysis/` - Semantic analysis
-- `clip_optimize_cppn.py` - Style training
+### ✅ Completed
+- Tab navigation system
+- State management (Zustand)
+- Python process integration (Rust)
+- Type-safe IPC communication
+- Hot reload development
+- Dark theme UI
 
-**Integration:** Week 3 (Rust wrapper + IPC bridge)
+### 🚀 Coming (Week 3-4)
+- Video generation from audio
+- Real-time progress tracking
+- Style library browser
+- Output video preview
+
+### 🔮 Future (Week 5-12)
+- Music semantic analysis (5 analyzers)
+- Interactive Plotly visualizations
+- Parameter exploration
+- Project management
 
 ---
 
-## Resources
+## 🐛 Troubleshooting
 
-- [Tauri Docs](https://tauri.app/)
-- [React Docs](https://react.dev/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Zustand](https://github.com/pmndrs/zustand)
-- [Plotly React](https://plotly.com/javascript/react/)
+**npm: not found**
+```powershell
+# Node.js not installed or not in PATH
+# Solution: Restart terminal after installation
+# Or reinstall Node.js from https://nodejs.org/
+```
+
+**Rust compile errors**
+```powershell
+cargo clean
+cargo build
+```
+
+**Hot reload not working**
+```powershell
+# Stop server: Ctrl+C
+# Restart: npm run tauri dev
+```
+
+**IPC communication fails**
+1. Open DevTools: F12 in app window
+2. Check Console for error messages
+3. Verify command is registered in main.rs
+4. Check Tauri logs in terminal
+
+See [WEEK_1_SETUP.md](./WEEK_1_SETUP.md) for more troubleshooting.
 
 ---
 
-**Status:** ✅ Ready for Phase 3 MVP Development  
-**Next:** Review [UX Research](../../docs/Phase3-MVP/UX_RESEARCH.md) and start Week 2 tasks  
-**Updated:** October 17, 2025
+## 🤝 Contributing
+
+Follow patterns in [AGENTS.md](./AGENTS.md):
+- Small, reviewable changes
+- Comment non-obvious code
+- Test before commit
+- Use proper PowerShell commands (not bash)
+- Update this README if adding major features
+
+---
+
+**Phase 3 MVP • Week 1 Foundation Setup Complete**  
+**Ready for development** ✅  
+**Next Step:** Follow [WEEK_1_SETUP.md](./WEEK_1_SETUP.md)
 
