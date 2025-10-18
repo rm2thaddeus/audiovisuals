@@ -9,43 +9,72 @@ export function useVideoGeneration() {
   const [unlistenProgress, setUnlistenProgress] = useState<(() => void) | null>(null);
 
   const generateVideo = useCallback(
-    async (outputPath: string): Promise<GenerateVideoResult> => {
+    async (
+      audioPath: string,
+      styleName: string,
+      settings: any
+    ): Promise<GenerateVideoResult | null> => {
       try {
         // Validate inputs
-        if (!store.selectedAudioFile) {
+        if (!audioPath) {
           throw new Error('Please select an audio file');
         }
 
-        if (!store.selectedStyle) {
+        if (!styleName) {
           throw new Error('Please select a style');
         }
 
-        if (!store.generationSettings) {
+        if (!settings) {
           throw new Error('Settings not initialized');
         }
+
+        // Generate output path in Documents
+        const timestamp = new Date().getTime();
+        const outputPath = `${timestamp}_output.mp4`;
 
         // Set generating state
         store.setIsGenerating(true);
         store.setGenerationError(null);
-        store.setGenerationProgress(null);
+        store.setGenerationProgress({
+          percentage: 0,
+          phase: 'analyzing',
+          elapsedTime: 0,
+          estimatedTimeRemaining: 0,
+        });
 
-        // Listen for progress events
-        const unlisten = await listen<ProgressState>(
+        // Listen for progress events from Python
+        const unlisten = await listen<any>(
           'python-progress',
           (event) => {
-            store.setGenerationProgress(event.payload);
+            // Parse progress from the event
+            const progress = event.payload.progress || 0;
+            const message = event.payload.message || '';
+            
+            // Determine phase based on message
+            let phase: 'analyzing' | 'rendering' | 'encoding' | 'complete' = 'analyzing';
+            if (message.includes('Rendering')) phase = 'rendering';
+            else if (message.includes('Encoding')) phase = 'encoding';
+            
+            store.setGenerationProgress({
+              percentage: progress,
+              phase,
+              elapsedTime: 0,
+              estimatedTimeRemaining: 0,
+            });
           }
         );
         setUnlistenProgress(() => unlisten);
 
         // Invoke Rust command
         const result = await invoke<GenerateVideoResult>('generate_video', {
-          audioPath: store.selectedAudioFile.path,
-          outputPath,
-          styleName: store.selectedStyle.name,
-          resolution: store.generationSettings.resolution,
-          fps: store.generationSettings.fps,
-          quality: store.generationSettings.quality,
+          audio_path: audioPath,
+          output_path: outputPath,
+          style_name: styleName,
+          resolution: settings.resolution,
+          fps: settings.fps,
+          quality: settings.quality,
+          layers: settings.layers,
+          hidden_dim: settings.hidden_dim,
         });
 
         if (!result.success) {
@@ -63,12 +92,12 @@ export function useVideoGeneration() {
         // Save to recent generations if data available
         if (result.data) {
           const generation = {
-            id: '', // Will be generated in Rust
-            filename: store.selectedAudioFile.name.replace(/\.[^/.]+$/, '.mp4'),
-            audioPath: store.selectedAudioFile.path,
+            id: `gen_${Date.now()}`,
+            filename: audioPath.split('/').pop()?.replace(/\.[^/.]+$/, '.mp4') || 'output.mp4',
+            audioPath,
             videoPath: result.data.videoPath,
             outputPath,
-            settings: store.generationSettings,
+            settings,
             createdAt: new Date().toISOString(),
             duration: result.data.duration,
             fileSize: result.data.size,
@@ -76,16 +105,16 @@ export function useVideoGeneration() {
           };
 
           try {
-            await invoke('save_generation', { generation });
+            await invoke('save_generation', { metadata: generation });
             // Reload recent generations
-            const recent = await invoke('load_recent_generations');
+            const recent = await invoke<any>('load_recent_generations');
             store.setRecentGenerations(recent);
           } catch (err) {
             console.error('Failed to save generation:', err);
           }
         }
 
-        return result;
+        return result.data || null;
       } catch (error) {
         const errorMsg =
           error instanceof Error ? error.message : 'Video generation failed';

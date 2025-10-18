@@ -103,6 +103,14 @@ export interface ProgressState {
   speed?: string;
 }
 
+export interface ProgressEventData {
+  percentage: number;
+  phase: 'analyzing' | 'rendering' | 'encoding' | 'complete';
+  elapsedTime?: number;
+  estimatedTimeRemaining?: number;
+  speed?: string;
+}
+
 // Feature 7: Video Player Types
 export interface VideoPlayerProps {
   src: string;
