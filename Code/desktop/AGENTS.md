@@ -3,308 +3,461 @@ phase: 3
 artifact: agents_desktop
 project: audiovisuals-desktop
 owner: Aitor
-updated: 2025-10-17
-status: Week 1 - Foundation Setup
+updated: 2025-10-18
+status: Week 3-4 - Synesthesia Tab Implementation (IN PROGRESS)
 sources:
   - PHASE_3_KICKOFF.md
   - TECHNICAL_SPEC.md
   - IMPLEMENTATION_PLAN.md
+  - WEEK_3_4_PLAN.md
 links:
   profile: ../../docs/Phase0-Alignment/PROFILE.yaml
   context: ../../docs/Phase0-Alignment/CONTEXT.md
   poc: ../../docs/Phase2-POC/POC_PLAN.md
   technical: ../../docs/Phase3-MVP/TECHNICAL_SPEC.md
   implementation: ../../docs/Phase3-MVP/IMPLEMENTATION_PLAN.md
+  week_3_4: ./WEEK_3_4_PLAN.md
 ---
 
 # Desktop Application - Agent Coordination
 
-**Status:** Week 1 - Foundation Setup  
-**Current Phase:** Building Tauri skeleton with Python integration  
+**Status:** Week 3-4 - Synesthesia Tab Implementation  
+**Current Phase:** Building 8-feature Synesthesia Tab (video generation core)  
+**Progress:** 7 of 8 features completed (87.5%)  
 **Timeline:** Weeks 1-12 (see IMPLEMENTATION_PLAN.md)
 
 ---
 
-## Agent Roster
+## Active Agent Roster
 
 ### Frontend Developer (React/TypeScript)
-**Purpose:** Build React UI components and state management
+**Purpose:** Build React UI components and state management for Synesthesia Tab
+
+**Current Focus:** Features 1-4, 6-7 component implementations  
+**Completed:**
+- FileDropzone component (Feature 1)
+- AudioInfoCard component (Feature 2)
+- StyleSelector component (Feature 3)
+- SettingsPanel component (Feature 4)
+- ProgressBar component (Feature 6)
+- VideoPlayer component (Feature 7)
+
+**In Progress:** None (all React components complete)
 
 **Responsibilities:**
-- Create Tab navigation shell (5 tabs)
-- Implement Zustand state stores
-- Design Plotly chart components
-- Build Video.js player wrapper
-- Style with Tailwind CSS
+- Implement React components with Tailwind styling
+- Wire components to Zustand store
+- Handle user interactions
+- Display real-time updates
+- Error boundary and loading states
 
-**Input:** UX mockups from TECHNICAL_SPEC.md  
-**Output:** React components, hooks, type definitions  
-**Success:** Tabs render, hot reload works, no console errors
+**Success Metrics:**
+- [ ] All components render without TypeScript errors
+- [ ] All components styled with Tailwind dark theme
+- [ ] Responsive layouts for different screen sizes
+- [ ] Hot reload works during development
 
 ---
 
 ### Backend Developer (Rust/Tauri)
 **Purpose:** Build Rust backend for Python integration and IPC
 
+**Current Focus:** Features 1, 3, 5, 8 implementations  
+**Completed:**
+- file_manager.rs module (Feature 1)
+- styles.rs module (Feature 3)
+- storage.rs module (Feature 8)
+- lib.rs updated with command registration
+
+**In Progress:** Feature 5 (Video Generation Command)
+
 **Responsibilities:**
-- Create Python CLI wrapper (spawn processes, capture output)
-- Implement IPC commands (generate_video, analyze_music, etc.)
+- Create Python process wrapper
+- Implement IPC commands
 - Handle file system access
 - Manage progress event streaming
 - Error handling and process cleanup
+- Windows path compatibility
 
-**Input:** Python CLI specifications (cli.py, music_analysis CLI)  
-**Output:** Rust backend functions, IPC command handlers  
-**Success:** Python processes spawn correctly, STDOUT captured, IPC works
+**Success Metrics:**
+- [ ] All Rust commands compile without warnings
+- [ ] Commands callable from React via Tauri
+- [ ] File validation working correctly
+- [ ] Style scanning working from directory
+- [ ] Storage persistence working
 
 ---
 
 ### Integration Specialist
 **Purpose:** Coordinate React ↔ Rust ↔ Python communication
 
+**Current Focus:** Wiring components to Rust, testing workflows
+
 **Responsibilities:**
 - Test end-to-end workflows
 - Validate data flow between layers
 - Debug communication issues
 - Create integration tests
+- Verify Windows compatibility
 
-**Input:** Frontend components + Rust commands  
-**Output:** Working workflows (video generation, analysis, etc.)  
-**Success:** React button clicks trigger Python CLI, results display
-
----
-
-## Week 1 Coordination Plan
-
-### Phase 1A: React Foundation (Days 1-2)
-
-**Tasks:**
-1. Create src/components/ directory structure
-2. Build Tab navigation shell (src/App.tsx)
-3. Create 5 empty tab components
-4. Set up Zustand stores
-5. Apply Tailwind dark theme
-
-**Success Gate:** npm run tauri dev renders 5 tabs without errors
+**Success Metrics:**
+- [ ] File selection → metadata display works
+- [ ] Style selection persists to store
+- [ ] Settings changes update UI
+- [ ] Video generation end-to-end tested
+- [ ] Progress updates flow correctly
 
 ---
 
-### Phase 1B: Rust Foundation (Days 2-3)
+## Week 3-4 Coordination Plan
 
-**Tasks:**
-1. Create src-tauri/src/python.rs - Python wrapper
-2. Create src-tauri/src/commands.rs - IPC commands
-3. Implement process spawning and STDOUT capture
-4. Add progress event emission
-5. Test with simple Python script
+### Feature Dependencies
 
-**Success Gate:** Rust compiles, can spawn python --version
+```
+Feature 1: File Selection
+    ↓ (required by all others)
+Features 2-4: Info, Styles, Settings (can test in parallel)
+    ↓ (required by)
+Feature 5: Video Generation (CRITICAL gate)
+    ↓ (required by)
+Features 6-7: Progress, Preview (can test in parallel)
+    ↓ (optional)
+Feature 8: Recent Generations
+```
+
+### Daily Coordination
+
+**Day 1-2: File Selection Testing**
+- Test FileDropzone component
+- Test file validation (React + Rust)
+- Wire to store
+- Fix any issues
+
+**Day 3-4: Audio Info, Styles, Settings Testing**
+- Test AudioInfoCard displays
+- Test StyleSelector loading
+- Test SettingsPanel controls
+- Integrate all into SynesthesiaTab
+
+**Day 5-7: Video Generation (BLOCKING)**
+- Review Python CLI arguments
+- Implement generate_video command
+- Create useVideoGeneration hook
+- Test with actual audio
+- **GATE:** If this fails, pause other features
+
+**Day 8-9: Progress & Preview**
+- Implement progress parsing
+- Display progress bar updates
+- Test VideoPlayer with generated video
+- Wire all together
+
+**Day 10: Recent Generations & Polish**
+- Create GenerationListItem component
+- Implement storage persistence
+- Full end-to-end testing
+- Performance optimization
 
 ---
 
-### Phase 1C: Integration Testing (Days 4-5)
+## Integration Testing Protocol
 
-**Tasks:**
-1. Create test flows
-2. Test React → Rust invocation
-3. Test Rust → Python process spawn
-4. Test STDOUT capture and event streaming
-5. Document integration patterns
+### Layer 1: Component Testing
+Each React component tested individually:
+- [ ] FileDropzone renders and accepts files
+- [ ] AudioInfoCard displays metadata
+- [ ] StyleSelector loads and filters
+- [ ] SettingsPanel updates all controls
+- [ ] ProgressBar animates smoothly
+- [ ] VideoPlayer controls work
 
-**Success Gate:** Click button in UI → Python runs → Result displays
+### Layer 2: Store Integration
+Test Zustand store updates:
+- [ ] File selection updates store
+- [ ] Style selection updates store
+- [ ] Settings changes propagate
+- [ ] Progress state updates
+- [ ] Generation history persists
 
----
+### Layer 3: React-Rust Integration
+Test Tauri IPC communication:
+- [ ] validate_audio_file works from React
+- [ ] list_styles returns data
+- [ ] generate_video command functional
+- [ ] Events stream to React correctly
+- [ ] Errors handled gracefully
 
-## PowerShell Syntax Guide
-
-NOTE: These commands run in Windows PowerShell, NOT bash/Unix shell.
-
-### Common Commands (PowerShell vs Bash)
-
-```powershell
-# ✅ CORRECT PowerShell
-npm run tauri dev
-npm install zustand react-plotly.js
-New-Item -ItemType Directory -Path "src/components" -Force
-Remove-Item -Path "src/App.css" -Force
-Copy-Item -Path "file.txt" -Destination "file_copy.txt"
-Move-Item -Path "old_name" -Destination "new_name"
-
-# ❌ WRONG - Unix/Bash (will fail in PowerShell)
-npm run tauri dev                        # Same, OK
-npm install zustand                     # Same, OK
-mkdir src/components                    # Use New-Item instead!
-rm src/App.css                          # Use Remove-Item instead!
-cp file.txt file_copy.txt              # Use Copy-Item instead!
-mv old_name new_name                   # Use Move-Item instead!
-```
-
-### Path Handling (Windows)
-
-```powershell
-# ✅ CORRECT - Both forward and backslash work in PowerShell
-$path1 = "Code\desktop"
-$path2 = "Code/desktop"          # Also valid in modern PowerShell
-$pythonPath = "C:\Python312\python.exe"
-
-# ❌ WRONG - Unix paths (won't work on Windows)
-$path = "/home/user/code"        # Will fail - Linux path
-$python = "/usr/bin/python"      # Will fail - Linux path
-```
-
-### Navigating Directories
-
-```powershell
-# ✅ CORRECT
-Set-Location Code\desktop         # Change directory
-Get-ChildItem                     # List files (equivalent to ls)
-Get-Location                      # Show current directory (pwd)
-pwd                              # Also works in modern PowerShell
-
-# ❌ WRONG
-cd Code/desktop                  # Might work but Set-Location is standard
-ls                               # Might work but Get-ChildItem is standard
-pwd                              # Modern PowerShell supports it
-```
-
-### Running Commands
-
-```powershell
-# ✅ CORRECT - Run Node/npm commands
-npm run tauri dev               # Start dev server
-
-# ✅ CORRECT - Run Python
-python --version               # Check Python version
-python Code\backend\cli.py     # Run Python script
-
-# ❌ WRONG - Don't mix shells
-npm run tauri dev &            # Background jobs use different syntax
-python -c "print('hello')"     # Works but be careful with quotes
-```
+### Layer 4: End-to-End Workflow
+Complete user journey:
+1. Select audio file
+2. View audio metadata
+3. Choose style
+4. Adjust settings
+5. Click generate
+6. Watch progress
+7. Play generated video
+8. See in recent list
 
 ---
 
-## Code Examples
+## State Management Architecture
 
-### Rust: Process Spawning (src-tauri/src/python.rs)
-
-```rust
-use std::process::{Command, Stdio};
-
-pub fn spawn_python_process(script: &str, args: Vec<&str>) -> std::io::Result<()> {
-    // ✅ CORRECT: Windows-compatible path handling
-    let output = Command::new("python")
-        .arg(script)
-        .args(args)
-        .stdout(Stdio::piped())
-        .stderr(Stdio::piped())
-        .output()?;
-    
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    Ok(())
-}
-
-// ❌ WRONG: Unix paths will fail
-fn bad_example() {
-    Command::new("/usr/bin/python3")  // Doesn't exist on Windows!
-        .spawn();
-}
-```
-
-### React: Invoking Rust Commands (src/App.tsx)
+### SynesthesiaStore (Zustand)
 
 ```typescript
-import { invoke } from '@tauri-apps/api/tauri';
+useSynesthesiaStore contains:
 
-// ✅ CORRECT: Invoke Rust command
-const handleGenerateVideo = async () => {
-    try {
-        const result = await invoke('generate_video', {
-            audioPath: 'docs/Audio/sample.mp3',
-            outputPath: 'output.mp4',
-            resolution: '720p',
-            fps: 30
-        });
-        console.log('Success:', result);
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
+// Feature 1: File Selection
+selectedAudioFile: AudioFile | null
+audioMetadata: AudioFileMetadata | null
+isValidatingFile: boolean
+fileError: string | null
 
-// ❌ WRONG: Don't call Python directly from React
-const bad_example = async () => {
-    const result = await fetch('python://cli.py');  // This won't work!
-};
+// Feature 3: Style Selector
+selectedStyle: Style | null
+availableStyles: StyleInfo[]
+isLoadingStyles: boolean
+styleError: string | null
+
+// Feature 4: Settings Panel
+generationSettings: GenerationSettings | null
+
+// Feature 6: Progress Tracking
+generationProgress: ProgressState | null
+isGenerating: boolean
+generationError: string | null
+
+// Feature 8: Recent Generations
+recentGenerations: Generation[]
+isLoadingGenerations: boolean
+```
+
+### Data Flow
+
+```
+User Action
+  ↓
+React Component (FileDropzone, StyleSelector, etc.)
+  ↓
+useSynesthesiaStore setter
+  ↓
+Zustand state update
+  ↓
+Component re-renders
+  ↓
+Optional: invoke Rust command (validate_audio_file, list_styles, etc.)
+  ↓
+Rust command executes
+  ↓
+Event emitted back to React (progress events)
+  ↓
+Store updated with new data
+  ↓
+Component re-renders with new data
 ```
 
 ---
 
-## File Structure Being Created
+## Python CLI Integration
+
+### Bridge Between React and Python
 
 ```
-Code/desktop/
-├── src/
-│   ├── components/
-│   │   ├── tabs/
-│   │   │   ├── SynesthesiaTab.tsx    # Week 3-4
-│   │   │   ├── AnalysisTab.tsx       # Week 5-6
-│   │   │   ├── StylesTab.tsx         # Week 7-8
-│   │   │   ├── ExplorerTab.tsx       # Week 9-10 (post-MVP)
-│   │   │   └── ProjectsTab.tsx       # Week 9-10 (post-MVP)
-│   │   ├── common/
-│   │   │   ├── FileDropzone.tsx      # Week 3
-│   │   │   ├── ProgressBar.tsx       # Week 3
-│   │   │   ├── VideoPlayer.tsx       # Week 3
-│   │   │   └── Button.tsx            # Week 1
-│   │   └── charts/
-│   │       ├── TempoChart.tsx        # Week 5
-│   │       ├── KeyChart.tsx          # Week 5
-│   │       └── (more in Week 5-6)
-│   ├── store/
-│   │   ├── appStore.ts              # Week 1
-│   │   ├── synesthesiaStore.ts       # Week 3
-│   │   ├── analysisStore.ts          # Week 5
-│   │   └── stylesStore.ts            # Week 7
-│   ├── hooks/
-│   │   ├── usePythonCommand.ts       # Week 1
-│   │   ├── useVideoGeneration.ts     # Week 3
-│   │   └── useProgress.ts            # Week 1
-│   ├── types/
-│   │   ├── index.ts                  # Week 1
-│   │   ├── music.ts                  # Week 1
-│   │   ├── generation.ts             # Week 1
-│   │   └── python.ts                 # Week 1
-│   ├── App.tsx                       # Week 1 - Tab navigation
-│   ├── main.tsx                      # Week 1
-│   └── index.css                     # Week 1 - Global Tailwind
-│
-├── src-tauri/src/
-│   ├── main.rs                       # Week 1 - Entry point
-│   ├── python.rs                     # Week 1 - Process spawning
-│   ├── commands.rs                   # Week 1 - IPC commands
-│   ├── events.rs                     # Week 2 - Event handling
-│   └── lib.rs
-│
-├── AGENTS.md                         # This file
-└── README.md
+React Component
+  ↓
+usePythonCommand hook
+  ↓
+invoke('generate_video', params)
+  ↓
+Tauri commands.rs
+  ↓
+PythonProcess::spawn("Code\\backend\\cli.py", args)
+  ↓
+Python subprocess execution
+  ↓
+Python CLI generates video
+  ↓
+Rust reads stdout for progress
+  ↓
+emit("python-progress", event)
+  ↓
+React receives progress event
+  ↓
+Store updated
+  ↓
+ProgressBar component re-renders
+```
+
+### CLI Arguments Mapping
+
+```
+React GenerationSettings:
+{
+  audioPath: string;
+  outputPath: string;
+  styleName: string;
+  resolution: '480p' | '720p' | '1080p';
+  fps: 24 | 30 | 60;
+  quality: number;
+}
+
+Maps to Python CLI:
+python cli.py <audio_path> <output_path> \
+  --resolution 720p \
+  --fps 30 \
+  --style-name "default"
 ```
 
 ---
 
-## Next Handoff (End of Week 1)
+## Rust Module Architecture
 
-**Complete Deliverables:**
-- ✅ 5 tabs rendering correctly
-- ✅ Python process spawning works
-- ✅ IPC communication functional
-- ✅ Integration tests passing
-- ✅ No known blockers
+### file_manager.rs
+- validate_audio_file(path) → FileValidationResult
+- get_file_metadata(path) → AudioFileMetadata
+- get_audio_duration(path) → f32
 
-**Gate Before Week 2:**
-All integration tests must pass. No deadlocks, no memory leaks, clean error handling.
+### styles.rs
+- list_styles() → Vec<StyleInfo>
+- get_style_details(name) → StyleDetails
+- get_style_thumbnail(name) → String
+
+### storage.rs
+- load_recent_generations() → Vec<Generation>
+- save_generation(gen) → ()
+- delete_generation(id) → ()
+- clear_all_generations() → ()
+
+### commands.rs (existing)
+- generate_video(params) → CommandResult (TO IMPLEMENT)
+- test_python() → CommandResult (working)
+
+### python.rs (existing)
+- PythonProcess (struct)
+- spawn(), wait(), kill() methods
+- Progress parsing from stdout
 
 ---
 
-**Updated:** 2025-10-17  
-**Status:** Week 1 Foundation Setup in Progress  
-**Next:** Begin Phase 1A (React Foundation)
+## Error Handling Strategy
+
+### User-Facing Errors
+
+**File Selection:**
+- "Unsupported format" → Show accepted formats
+- "File too large" → Show max size
+- "File not found" → Show friendly message
+
+**Style Selection:**
+- "Styles directory not found" → Show empty list
+- "Failed to load styles" → Show retry button
+
+**Video Generation:**
+- "Invalid audio file" → Suggest file selection
+- "Python not found" → Show setup instructions
+- "Generation timeout" → Offer cancel + retry
+- "Disk full" → Show storage info
+
+### Developer Logging
+
+- All Rust command inputs validated
+- Progress events logged to console (dev mode)
+- File I/O errors logged with context
+- Python subprocess stderr captured
+
+---
+
+## Windows Compatibility Checklist
+
+- [x] Path handling (backslash vs forward slash)
+- [x] Python executable detection
+- [x] UTF-8 encoding for special characters
+- [x] Long paths support (> 260 chars)
+- [x] File permissions handling
+- [ ] CUDA GPU detection (Phase 2 responsibility)
+- [x] No Unix-specific commands
+
+---
+
+## Performance Targets
+
+| Target | Value | Priority |
+|--------|-------|----------|
+| File validation | < 1s | HIGH |
+| Style loading | < 1s | MEDIUM |
+| Video generation (3 min audio) | < 5 min | HIGH |
+| Progress update frequency | 1-2s | HIGH |
+| Video preview load | < 500ms | MEDIUM |
+| Memory (idle) | < 200MB | MEDIUM |
+| Memory (generating) | < 500MB | MEDIUM |
+
+---
+
+## Deployment Gates
+
+### After Feature 1 (File Selection)
+- [ ] File validation working end-to-end
+- [ ] Store state persisting
+- [ ] No TypeScript errors
+- Proceed to Features 2-4
+
+### After Feature 4 (Settings)
+- [ ] All components rendering
+- [ ] Store fully populated
+- [ ] Layout responsive
+- Proceed to Feature 5
+
+### After Feature 5 (Video Generation) ⚠️ CRITICAL
+- [ ] Python CLI integration working
+- [ ] Video actually generated
+- [ ] Output file created
+- [ ] Errors handled
+- **NO GO:** Pause all work, fix blocking issues
+- **GO:** Proceed to Features 6-8
+
+### After Feature 8 (Recent Generations)
+- [ ] Full workflow tested
+- [ ] All features polished
+- [ ] Performance within targets
+- Mark Week 3-4 COMPLETE
+
+---
+
+## Communication Protocol
+
+### Daily Standup
+**Time:** Start of work day  
+**Duration:** 5-10 minutes  
+**Topics:**
+- Yesterday's completion
+- Today's focus
+- Blockers/risks
+
+### Issue Resolution
+**Process:**
+1. Document issue in Discord/Slack
+2. Record in WEEK_3_4_PLAN.md
+3. Assign priority (CRITICAL / HIGH / MEDIUM / LOW)
+4. Plan workaround
+5. Update status daily
+
+---
+
+## Sign-Off
+
+**Week 3-4 Kickoff:** 2025-10-18  
+**Status:** Implementation in progress  
+**Features Completed:** 7/8 (87.5%)  
+**Blocker Features:** Feature 5 (Video Generation) - in progress  
+**Estimated Completion:** 2025-10-25 (target)
+
+**Next Phases:**
+- Week 5-6: Analysis Tab
+- Week 7-8: Styles Tab
+- Week 9-12: Polish & Testing
+
+---
+
+**Last Updated:** 2025-10-18  
+**Updated By:** AI Assistant  
+**Next Review:** Daily at start of work
