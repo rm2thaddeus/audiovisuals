@@ -1,4 +1,3 @@
-import React from 'react';
 import type { AudioFile, AudioFileMetadata } from '../../types';
 
 interface AudioInfoCardProps {
@@ -89,7 +88,7 @@ export function AudioInfoCard({
                 <div className="h-5 bg-slate-700 rounded animate-pulse mt-1" />
               ) : (
                 <p className="text-slate-100 font-medium">
-                  {metadata?.sample_rate ? `${metadata.sample_rate} Hz` : 'N/A'}
+                  {metadata?.sampleRate ? `${metadata.sampleRate} Hz` : 'N/A'}
                 </p>
               )}
             </div>

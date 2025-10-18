@@ -3,12 +3,14 @@ use std::fs;
 use std::path::Path;
 
 #[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct FileValidationResult {
     pub valid: bool,
     pub error: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct AudioFileMetadata {
     pub path: String,
     pub duration: f32,
@@ -81,7 +83,7 @@ pub async fn get_file_metadata(path: String) -> Result<AudioFileMetadata, String
     // This would call the Python CLI to extract metadata
     // For now, return placeholder values
     // TODO: Implement actual metadata extraction via Python CLI
-    
+
     if !Path::new(&path).exists() {
         return Err("File not found".to_string());
     }
@@ -105,4 +107,3 @@ pub async fn get_audio_duration(path: String) -> Result<f32, String> {
     // TODO: Implement actual duration extraction via Python CLI or ffprobe
     Ok(0.0)
 }
-

@@ -1,19 +1,22 @@
 import { useState, useCallback } from 'react';
-import { invoke } from '@tauri-apps/api/tauri';
+import { invoke } from '@tauri-apps/api/core';
 import { listen } from '@tauri-apps/api/event';
+import { appDataDir, join } from '@tauri-apps/api/path';
 import { useSynesthesiaStore } from '../store/synesthesiaStore';
-import type { GenerateVideoResult, ProgressState } from '../types';
+import type { GenerateVideoResult, GenerationSettings } from '../types';
+
+type VideoGenerationData = NonNullable<GenerateVideoResult['data']>;
 
 export function useVideoGeneration() {
   const store = useSynesthesiaStore();
-  const [unlistenProgress, setUnlistenProgress] = useState<(() => void) | null>(null);
+  const [, setUnlistenProgress] = useState<(() => void) | null>(null);
 
   const generateVideo = useCallback(
     async (
       audioPath: string,
       styleName: string,
-      settings: any
-    ): Promise<GenerateVideoResult | null> => {
+      settings: GenerationSettings
+    ): Promise<VideoGenerationData | null> => {
       try {
         // Validate inputs
         if (!audioPath) {
@@ -28,9 +31,12 @@ export function useVideoGeneration() {
           throw new Error('Settings not initialized');
         }
 
-        // Generate output path in Documents
-        const timestamp = new Date().getTime();
-        const outputPath = `${timestamp}_output.mp4`;
+        const dataDir = await appDataDir();
+        const generationsDir = await join(dataDir, 'generations');
+
+        const timestamp = Date.now();
+        const outputFilename = `${timestamp}_output.mp4`;
+        const outputPath = await join(generationsDir, outputFilename);
 
         // Set generating state
         store.setIsGenerating(true);
@@ -66,19 +72,21 @@ export function useVideoGeneration() {
         setUnlistenProgress(() => unlisten);
 
         // Invoke Rust command
-        const result = await invoke<GenerateVideoResult>('generate_video', {
-          audio_path: audioPath,
-          output_path: outputPath,
-          style_name: styleName,
-          resolution: settings.resolution,
-          fps: settings.fps,
-          quality: settings.quality,
-          layers: settings.layers,
-          hidden_dim: settings.hidden_dim,
+        const response = await invoke<GenerateVideoResult>('generate_video', {
+          params: {
+            audio_path: audioPath,
+            output_path: outputPath,
+            style_name: styleName,
+            resolution: settings.resolution,
+            fps: settings.fps,
+            quality: settings.quality,
+            layers: settings.layers,
+            hidden_dim: settings.hiddenDim,
+          },
         });
 
-        if (!result.success) {
-          throw new Error(result.message);
+        if (!response.success) {
+          throw new Error(response.message);
         }
 
         // Mark progress as complete
@@ -90,22 +98,22 @@ export function useVideoGeneration() {
         });
 
         // Save to recent generations if data available
-        if (result.data) {
+        if (response.data) {
           const generation = {
             id: `gen_${Date.now()}`,
-            filename: audioPath.split('/').pop()?.replace(/\.[^/.]+$/, '.mp4') || 'output.mp4',
+            filename: audioPath.split(/[\\/]/).pop()?.replace(/\.[^/.]+$/, '.mp4') || 'output.mp4',
             audioPath,
-            videoPath: result.data.videoPath,
+            videoPath: response.data.videoPath,
             outputPath,
             settings,
             createdAt: new Date().toISOString(),
-            duration: result.data.duration,
-            fileSize: result.data.size,
+            duration: response.data.duration,
+            fileSize: response.data.size,
             thumbnail: undefined,
           };
 
           try {
-            await invoke('save_generation', { metadata: generation });
+            await invoke('save_generation', { generation });
             // Reload recent generations
             const recent = await invoke<any>('load_recent_generations');
             store.setRecentGenerations(recent);
@@ -114,7 +122,7 @@ export function useVideoGeneration() {
           }
         }
 
-        return result.data || null;
+        return response.data || null;
       } catch (error) {
         const errorMsg =
           error instanceof Error ? error.message : 'Video generation failed';
@@ -123,10 +131,12 @@ export function useVideoGeneration() {
         throw error;
       } finally {
         store.setIsGenerating(false);
-        if (unlistenProgress) {
-          unlistenProgress();
-          setUnlistenProgress(null);
-        }
+        setUnlistenProgress((cleanup) => {
+          if (cleanup) {
+            cleanup();
+          }
+          return null;
+        });
       }
     },
     [store]

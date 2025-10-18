@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { invoke } from '@tauri-apps/api/tauri';
+import { useState, useEffect } from 'react';
+import { invoke } from '@tauri-apps/api/core';
 import type { StyleInfo } from '../../types';
 
 interface StyleSelectorProps {
@@ -37,7 +37,7 @@ export function StyleSelector({
   };
 
   const filteredStyles = styles.filter((style) =>
-    style.display_name.toLowerCase().includes(searchQuery.toLowerCase())
+    style.displayName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -56,7 +56,7 @@ export function StyleSelector({
           <span>
             {isLoading
               ? 'Loading styles...'
-              : selectedStyle?.display_name || 'Select a style'}
+              : selectedStyle?.displayName || 'Select a style'}
           </span>
           <svg
             className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
@@ -108,7 +108,7 @@ export function StyleSelector({
                   >
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-medium">{style.display_name}</p>
+                        <p className="font-medium">{style.displayName}</p>
                         <p className="text-xs text-slate-400 mt-1">
                           Created: {style.created}
                         </p>

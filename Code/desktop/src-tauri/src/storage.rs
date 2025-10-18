@@ -3,6 +3,7 @@ use std::fs;
 use std::path::Path;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
 pub struct Generation {
     pub id: String,
     pub filename: String,
@@ -17,6 +18,7 @@ pub struct Generation {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
 pub struct GenerationSettings {
     pub resolution: String,
     pub fps: u32,
@@ -36,12 +38,10 @@ pub async fn load_recent_generations() -> Result<Vec<Generation>, String> {
     }
 
     match fs::read_to_string(GENERATIONS_FILE) {
-        Ok(content) => {
-            match serde_json::from_str::<Vec<Generation>>(&content) {
-                Ok(generations) => Ok(generations),
-                Err(e) => Err(format!("Failed to parse generations: {}", e)),
-            }
-        }
+        Ok(content) => match serde_json::from_str::<Vec<Generation>>(&content) {
+            Ok(generations) => Ok(generations),
+            Err(e) => Err(format!("Failed to parse generations: {}", e)),
+        },
         Err(e) => Err(format!("Failed to read generations file: {}", e)),
     }
 }
@@ -55,7 +55,7 @@ pub async fn save_generation(mut generation: Generation) -> Result<(), String> {
     }
 
     // Load existing generations
-    let mut generations = load_recent_generations().unwrap_or_default();
+    let mut generations = load_recent_generations().await.unwrap_or_default();
 
     // Add new generation at the beginning
     generations.insert(0, generation);
@@ -65,12 +65,10 @@ pub async fn save_generation(mut generation: Generation) -> Result<(), String> {
 
     // Save to file
     match serde_json::to_string_pretty(&generations) {
-        Ok(json) => {
-            match fs::write(GENERATIONS_FILE, json) {
-                Ok(_) => Ok(()),
-                Err(e) => Err(format!("Failed to write generations file: {}", e)),
-            }
-        }
+        Ok(json) => match fs::write(GENERATIONS_FILE, json) {
+            Ok(_) => Ok(()),
+            Err(e) => Err(format!("Failed to write generations file: {}", e)),
+        },
         Err(e) => Err(format!("Failed to serialize generations: {}", e)),
     }
 }
@@ -78,19 +76,17 @@ pub async fn save_generation(mut generation: Generation) -> Result<(), String> {
 /// Delete a generation from storage
 #[tauri::command]
 pub async fn delete_generation(id: String) -> Result<(), String> {
-    let mut generations = load_recent_generations()?;
+    let mut generations = load_recent_generations().await?;
 
     // Find and remove the generation
     generations.retain(|g| g.id != id);
 
     // Save back to file
     match serde_json::to_string_pretty(&generations) {
-        Ok(json) => {
-            match fs::write(GENERATIONS_FILE, json) {
-                Ok(_) => Ok(()),
-                Err(e) => Err(format!("Failed to write generations file: {}", e)),
-            }
-        }
+        Ok(json) => match fs::write(GENERATIONS_FILE, json) {
+            Ok(_) => Ok(()),
+            Err(e) => Err(format!("Failed to write generations file: {}", e)),
+        },
         Err(e) => Err(format!("Failed to serialize generations: {}", e)),
     }
 }
@@ -103,4 +99,3 @@ pub async fn clear_all_generations() -> Result<(), String> {
         Err(e) => Err(format!("Failed to clear generations: {}", e)),
     }
 }
-

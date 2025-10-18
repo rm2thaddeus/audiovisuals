@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Resolution, FPS } from '../../types';
 
 interface SettingsPanelProps {

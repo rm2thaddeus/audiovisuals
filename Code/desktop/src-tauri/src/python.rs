@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 use std::io::{BufRead, BufReader};
 use std::process::{Child, Command, Stdio};
 use std::thread;
-use tauri::Window;
+use tauri::{Emitter, Window};
 
 /// Progress update emitted from Python stdout.
 #[derive(Clone, Serialize, Deserialize, Debug)]
@@ -19,7 +19,10 @@ pub struct PythonProcess {
 
 impl PythonProcess {
     pub fn new(window: Window) -> Self {
-        Self { child: None, window }
+        Self {
+            child: None,
+            window,
+        }
     }
 
     /// Spawn `python` with the supplied script/command and arguments.
@@ -116,4 +119,3 @@ mod tests {
         assert_eq!(parse_progress_line("No progress here"), None);
     }
 }
-

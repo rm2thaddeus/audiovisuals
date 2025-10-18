@@ -3,6 +3,7 @@ use std::fs;
 use std::path::Path;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
 pub struct StyleInfo {
     pub name: String,
     pub display_name: String,
@@ -11,6 +12,7 @@ pub struct StyleInfo {
 }
 
 #[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct StyleDetails {
     pub name: String,
     pub display_name: String,
@@ -25,7 +27,7 @@ pub struct StyleDetails {
 pub async fn list_styles() -> Result<Vec<StyleInfo>, String> {
     // Check if styles directory exists
     let styles_dir = "styles";
-    
+
     if !Path::new(styles_dir).exists() {
         // Return empty list if styles directory doesn't exist yet
         return Ok(vec![]);
@@ -59,9 +61,7 @@ pub async fn list_styles() -> Result<Vec<StyleInfo>, String> {
                                     .collect::<Vec<_>>()
                                     .join(" "),
                                 thumbnail: String::new(), // TODO: Generate thumbnails
-                                created: chrono::Local::now()
-                                    .format("%Y-%m-%d")
-                                    .to_string(),
+                                created: chrono::Local::now().format("%Y-%m-%d").to_string(),
                             });
                         }
                     }
@@ -81,9 +81,7 @@ pub async fn list_styles() -> Result<Vec<StyleInfo>, String> {
         name: "default".to_string(),
         display_name: "Default".to_string(),
         thumbnail: String::new(),
-        created: chrono::Local::now()
-            .format("%Y-%m-%d")
-            .to_string(),
+        created: chrono::Local::now().format("%Y-%m-%d").to_string(),
     }];
     result.extend(styles);
 
@@ -98,9 +96,7 @@ pub async fn get_style_details(name: String) -> Result<StyleDetails, String> {
             name: "default".to_string(),
             display_name: "Default".to_string(),
             thumbnail: String::new(),
-            created: chrono::Local::now()
-                .format("%Y-%m-%d")
-                .to_string(),
+            created: chrono::Local::now().format("%Y-%m-%d").to_string(),
             parameters: std::collections::HashMap::new(),
             description: Some("Default CPPN configuration".to_string()),
         });
@@ -127,9 +123,7 @@ pub async fn get_style_details(name: String) -> Result<StyleDetails, String> {
             .collect::<Vec<_>>()
             .join(" "),
         thumbnail: String::new(),
-        created: chrono::Local::now()
-            .format("%Y-%m-%d")
-            .to_string(),
+        created: chrono::Local::now().format("%Y-%m-%d").to_string(),
         parameters: std::collections::HashMap::new(),
         description: None,
     })
@@ -137,9 +131,8 @@ pub async fn get_style_details(name: String) -> Result<StyleDetails, String> {
 
 /// Get thumbnail image for a style
 #[tauri::command]
-pub async fn get_style_thumbnail(name: String) -> Result<String, String> {
+pub async fn get_style_thumbnail(_name: String) -> Result<String, String> {
     // TODO: Generate or retrieve thumbnail image
     // For now, return empty string
     Ok(String::new())
 }
-

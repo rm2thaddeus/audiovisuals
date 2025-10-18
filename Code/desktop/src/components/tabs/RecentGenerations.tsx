@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { invoke } from '@tauri-apps/api/tauri';
+import { useEffect, useState } from 'react';
+import { invoke } from '@tauri-apps/api/core';
 import { useSynesthesiaStore } from '../../store/synesthesiaStore';
 import { GenerationListItem } from '../common/GenerationListItem';
 import { VideoPlayer } from '../common/VideoPlayer';

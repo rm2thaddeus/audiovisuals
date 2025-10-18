@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { convertFileSrc } from '@tauri-apps/api/core';
 
 interface VideoPlayerProps {
   src: string;
@@ -25,6 +26,21 @@ export function VideoPlayer({
   const [volume, setVolume] = useState(1);
   const [isMuted, setIsMuted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const resolvedSrc = useMemo(() => {
+    if (!src) {
+      return src;
+    }
+
+    if (src.startsWith('http://') || src.startsWith('https://') || src.startsWith('data:')) {
+      return src;
+    }
+
+    try {
+      return convertFileSrc(src);
+    } catch {
+      return src;
+    }
+  }, [src]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -155,7 +171,7 @@ export function VideoPlayer({
           {/* Video Element */}
           <video
             ref={videoRef}
-            src={src}
+            src={resolvedSrc}
             width={width}
             height={height}
             autoPlay={autoplay}

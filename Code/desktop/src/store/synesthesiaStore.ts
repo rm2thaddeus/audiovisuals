@@ -1,12 +1,11 @@
 import { create } from 'zustand';
-import type { 
-  AudioFile, 
-  AudioFileMetadata, 
-  Style, 
-  StyleInfo, 
+import type {
+  AudioFile,
+  AudioFileMetadata,
+  StyleInfo,
   GenerationSettings,
   ProgressState,
-  Generation 
+  Generation,
 } from '../types';
 
 export interface SynesthesiaState {
@@ -17,7 +16,7 @@ export interface SynesthesiaState {
   fileError: string | null;
 
   // Feature 3: Style Selector
-  selectedStyle: Style | null;
+  selectedStyle: StyleInfo | null;
   availableStyles: StyleInfo[];
   isLoadingStyles: boolean;
   styleError: string | null;
@@ -41,7 +40,7 @@ export interface SynesthesiaState {
   setFileError: (error: string | null) => void;
 
   // Setters for Feature 3
-  setSelectedStyle: (style: Style | null) => void;
+  setSelectedStyle: (style: StyleInfo | null) => void;
   setAvailableStyles: (styles: StyleInfo[]) => void;
   setIsLoadingStyles: (loading: boolean) => void;
   setStyleError: (error: string | null) => void;
@@ -70,6 +69,8 @@ const initialSettings: GenerationSettings = {
   quality: 80,
   audioPath: '',
   styleName: '',
+  layers: 3,
+  hiddenDim: 4,
 };
 
 export const useSynesthesiaStore = create<SynesthesiaState>((set) => ({

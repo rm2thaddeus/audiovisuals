@@ -1,7 +1,7 @@
 use crate::python::PythonProcess;
 use serde::{Deserialize, Serialize};
+use std::path::{Path, PathBuf};
 use tauri::{async_runtime, Window};
-use std::path::Path;
 
 #[derive(Deserialize)]
 pub struct GenerateVideoParams {
@@ -23,6 +23,7 @@ pub struct CommandResult<T = ()> {
 }
 
 #[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct GenerateVideoResult {
     pub video_path: String,
     pub duration: f32,
@@ -36,7 +37,7 @@ fn normalize_path_for_cli(path: &str) -> String {
     {
         path.replace('\\', "/")
     }
-    
+
     #[cfg(not(target_os = "windows"))]
     {
         path.to_string()
@@ -48,7 +49,7 @@ fn validate_input_file(path: &str) -> Result<(), String> {
     if !Path::new(path).exists() {
         return Err(format!("Input file not found: {}", path));
     }
-    
+
     // Check if it's a readable file
     match std::fs::metadata(path) {
         Ok(metadata) => {
@@ -72,92 +73,150 @@ fn validate_output_path(path: &str) -> Result<(), String> {
     Ok(())
 }
 
+fn resolve_cli_script() -> Result<PathBuf, String> {
+    let manifest_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+    let mut candidates = vec![manifest_dir
+        .join("..")
+        .join("..")
+        .join("backend")
+        .join("cli.py")];
+
+    if let Ok(current_dir) = std::env::current_dir() {
+        candidates.push(current_dir.join("..").join("backend").join("cli.py"));
+        candidates.push(current_dir.join("backend").join("cli.py"));
+    }
+
+    candidates
+        .into_iter()
+        .find(|path| path.exists())
+        .ok_or_else(|| "Unable to locate backend CLI script (cli.py)".to_string())
+}
+
+fn find_style_weights(style_name: &str, cli_dir: &Path) -> Option<PathBuf> {
+    let base_dir = cli_dir.join("styles");
+    if !base_dir.exists() {
+        return None;
+    }
+
+    let filename = format!("{style_name}.pth");
+
+    let direct_candidate = base_dir.join(&filename);
+    if direct_candidate.exists() {
+        return Some(direct_candidate);
+    }
+
+    if let Ok(entries) = std::fs::read_dir(&base_dir) {
+        for entry in entries.flatten() {
+            let path = entry.path();
+            if path.is_dir() {
+                let candidate = path.join(&filename);
+                if candidate.exists() {
+                    return Some(candidate);
+                }
+            }
+        }
+    }
+
+    None
+}
+
 #[tauri::command]
 pub async fn generate_video(
     params: GenerateVideoParams,
     window: Window,
 ) -> Result<CommandResult<GenerateVideoResult>, String> {
     async_runtime::spawn_blocking(move || {
-        // Validate inputs
-        validate_input_file(&params.audio_path)?;
-        validate_output_path(&params.output_path)?;
-        
-        // Normalize paths for Windows compatibility
-        let audio_path = normalize_path_for_cli(&params.audio_path);
-        let output_path = normalize_path_for_cli(&params.output_path);
-        
-        // Build CLI arguments
-        let mut args: Vec<&str> = vec![];
-        
-        // Positional arguments
-        args.push(&audio_path);
-        args.push(&output_path);
-        
-        // Optional arguments based on parameters
-        args.push("--resolution");
-        args.push(&params.resolution);
-        
-        args.push("--fps");
-        // fps as string since we need to pass it to CLI
-        let fps_str = params.fps.to_string();
-        args.push(&fps_str);
-        
-        // Optional: layers
-        let layers_str;
-        if let Some(layers) = params.layers {
-            layers_str = layers.to_string();
-            args.push("--layers");
-            args.push(&layers_str);
+        let GenerateVideoParams {
+            audio_path,
+            output_path,
+            resolution,
+            fps,
+            style_name,
+            quality,
+            layers,
+            hidden_dim,
+        } = params;
+
+        validate_input_file(&audio_path)?;
+        validate_output_path(&output_path)?;
+
+        let script_path = resolve_cli_script()?;
+        let cli_dir = script_path
+            .parent()
+            .ok_or_else(|| "Invalid CLI script path".to_string())?;
+        let audio_path_cli = normalize_path_for_cli(&audio_path);
+        let output_path_cli = normalize_path_for_cli(&output_path);
+
+        let mut args: Vec<String> = vec![
+            audio_path_cli,
+            output_path_cli.clone(),
+            "--resolution".into(),
+            resolution.clone(),
+            "--fps".into(),
+            fps.to_string(),
+        ];
+
+        if let Some(layers) = layers {
+            args.push("--layers".into());
+            args.push(layers.to_string());
         }
-        
-        // Optional: hidden dimension
-        let hidden_dim_str;
-        if let Some(hidden_dim) = params.hidden_dim {
-            hidden_dim_str = hidden_dim.to_string();
-            args.push("--hidden-dim");
-            args.push(&hidden_dim_str);
+
+        if let Some(hidden_dim) = hidden_dim {
+            args.push("--hidden-dim".into());
+            args.push(hidden_dim.to_string());
         }
-        
-        // Optional: quality/audio scale (map 0-100 quality to 0.0-1.0 scale)
-        let audio_scale_str;
-        if let Some(quality) = params.quality {
+
+        if let Some(quality) = quality {
             let audio_scale = (quality as f32) / 100.0;
-            audio_scale_str = format!("{:.2}", audio_scale);
-            args.push("--audio-scale");
-            args.push(&audio_scale_str);
+            args.push("--audio-scale".into());
+            args.push(format!("{:.2}", audio_scale));
         }
-        
-        // Convert String args to &str for the process
-        let args_str: Vec<&str> = args.iter().map(|s| *s).collect();
-        
-        // Spawn the Python process
+
+        if let Some(style_name) = style_name {
+            if !style_name.is_empty() && style_name != "default" {
+                if let Some(weights_path) = find_style_weights(&style_name, cli_dir) {
+                    if let Some(path_str) = weights_path.to_str() {
+                        args.push("--load-weights".into());
+                        args.push(path_str.replace('\\', "/"));
+                    }
+                }
+            }
+        }
+
+        let arg_refs: Vec<&str> = args.iter().map(|s| s.as_str()).collect();
+
+        let script_str = script_path
+            .to_str()
+            .ok_or_else(|| "Failed to convert CLI script path".to_string())?;
+
         let mut process = PythonProcess::new(window.clone());
-        process.spawn("Code/backend/cli.py", args_str)
+        process
+            .spawn(script_str, arg_refs)
             .map_err(|e| format!("Failed to start video generation: {}", e))?;
-        
-        // Wait for process to complete
-        let exit_code = process.wait()
+
+        let exit_code = process
+            .wait()
             .map_err(|e| format!("Process failed: {}", e))?;
-        
+
         if exit_code != 0 {
-            return Err(format!("Video generation failed with exit code {}", exit_code));
+            return Err(format!(
+                "Video generation failed with exit code {}",
+                exit_code
+            ));
         }
-        
-        // Get output file info
+
         let output_metadata = std::fs::metadata(&output_path)
             .map_err(|e| format!("Failed to get output file info: {}", e))?;
-        
+
         let size = output_metadata.len();
-        
-        // Try to estimate duration (would need proper video parsing in production)
-        // For now, use a placeholder calculation
-        let duration = 0.0; // This would be parsed from video metadata in production
-        
+
+        let duration = 0.0;
+
         Ok(CommandResult {
             success: true,
             message: String::from("Video generated successfully"),
             data: Some(GenerateVideoResult {
-                video_path: output_path,
+                video_path: output_path_cli,
                 duration,
                 size,
             }),

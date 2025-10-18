@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { invoke } from '@tauri-apps/api/tauri';
+import { useRef, useState } from 'react';
+import { invoke } from '@tauri-apps/api/core';
 import type { AudioFile, FileValidationResult } from '../../types';
 
 interface FileDropzoneProps {
@@ -61,7 +61,7 @@ export function FileDropzone({ onFileSelected, onError }: FileDropzoneProps) {
       // Validate with backend
       const backendValidation = await invoke<FileValidationResult>(
         'validate_audio_file',
-        { path: file.path || file.name }
+        { path: (file as unknown as { path?: string }).path || file.name }
       );
 
       if (!backendValidation.valid) {
@@ -73,7 +73,7 @@ export function FileDropzone({ onFileSelected, onError }: FileDropzoneProps) {
 
       // File accepted
       const audioFile: AudioFile = {
-        path: file.path || file.name,
+        path: (file as unknown as { path?: string }).path || file.name,
         name: file.name,
         size: file.size,
         format: file.name.split('.').pop()?.toLowerCase() || 'unknown',
@@ -194,4 +194,3 @@ export function FileDropzone({ onFileSelected, onError }: FileDropzoneProps) {
     </div>
   );
 }
-

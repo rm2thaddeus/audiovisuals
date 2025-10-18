@@ -83,6 +83,8 @@ export interface GenerationSettings {
   quality: number;
   audioPath: string;
   styleName: string;
+  layers?: number;
+  hiddenDim?: number;
 }
 
 // Feature 5: Video Generation Types
@@ -137,4 +139,3 @@ export interface Generation {
 export interface GenerationMetadata extends Omit<Generation, 'id'> {
   // For saving new generations
 }
-

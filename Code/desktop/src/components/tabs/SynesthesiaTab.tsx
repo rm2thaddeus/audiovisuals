@@ -1,28 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import FileDropzone from '../common/FileDropzone';
-import AudioInfoCard from '../common/AudioInfoCard';
-import StyleSelector from '../common/StyleSelector';
-import SettingsPanel from '../common/SettingsPanel';
-import ProgressBar from '../common/ProgressBar';
-import VideoPlayer from '../common/VideoPlayer';
-import GenerationListItem from '../common/GenerationListItem';
+import { useState } from 'react';
+import { FileDropzone } from '../common/FileDropzone';
+import { AudioInfoCard } from '../common/AudioInfoCard';
+import { StyleSelector } from '../common/StyleSelector';
+import { SettingsPanel } from '../common/SettingsPanel';
+import { ProgressBar } from '../common/ProgressBar';
+import { VideoPlayer } from '../common/VideoPlayer';
+import { GenerationListItem } from '../common/GenerationListItem';
 import { useSynesthesiaStore } from '../../store/synesthesiaStore';
 import { useVideoGeneration } from '../../hooks/useVideoGeneration';
+import type { GenerationSettings } from '../../types';
 
 export const SynesthesiaTab: React.FC = () => {
   const store = useSynesthesiaStore();
   const { generateVideo, isGenerating, error: generationError } = useVideoGeneration();
   
-  const [generationComplete, setGenerationComplete] = useState(false);
   const [generatedVideoPath, setGeneratedVideoPath] = useState<string | null>(null);
-
-  // Listen for generation completion
-  useEffect(() => {
-    if (store.generationProgress?.phase === 'complete') {
-      setGenerationComplete(true);
-      // Video path would be available in store after successful generation
-    }
-  }, [store.generationProgress]);
 
   const handleGenerate = async () => {
     if (!store.selectedAudioFile) {
@@ -35,11 +27,22 @@ export const SynesthesiaTab: React.FC = () => {
     }
 
     try {
-      setGenerationComplete(false);
+      const settings: GenerationSettings = {
+        resolution: store.generationSettings?.resolution ?? '720p',
+        fps: store.generationSettings?.fps ?? 30,
+        quality: store.generationSettings?.quality ?? 80,
+        audioPath: store.selectedAudioFile.path,
+        styleName: store.selectedStyle.name,
+        layers: store.generationSettings?.layers ?? 3,
+        hiddenDim: store.generationSettings?.hiddenDim ?? 4,
+      };
+
+      store.setGenerationSettings(settings);
+
       const result = await generateVideo(
         store.selectedAudioFile.path,
         store.selectedStyle.name,
-        store.generationSettings
+        settings
       );
       
       if (result) {
@@ -64,27 +67,49 @@ export const SynesthesiaTab: React.FC = () => {
           {/* Feature 1: File Selection */}
           <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
             <h2 className="text-lg font-semibold text-white mb-4">1. Select Audio</h2>
-            <FileDropzone />
+            <FileDropzone 
+              onFileSelected={store.setSelectedAudioFile}
+              onError={store.setFileError}
+            />
           </div>
 
           {/* Feature 2: Audio Info */}
           {store.selectedAudioFile && (
             <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
               <h2 className="text-lg font-semibold text-white mb-4">2. Audio Details</h2>
-              <AudioInfoCard file={store.selectedAudioFile} />
+              <AudioInfoCard 
+                audioFile={store.selectedAudioFile}
+                metadata={store.audioMetadata}
+              />
             </div>
           )}
 
           {/* Feature 3: Style Selection */}
           <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
             <h2 className="text-lg font-semibold text-white mb-4">3. Choose Style</h2>
-            <StyleSelector />
+            <StyleSelector 
+              selectedStyle={store.selectedStyle}
+              onStyleSelect={store.setSelectedStyle}
+              onError={store.setStyleError}
+            />
           </div>
 
           {/* Feature 4: Settings */}
           <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
             <h2 className="text-lg font-semibold text-white mb-4">4. Settings</h2>
-            <SettingsPanel />
+            <SettingsPanel 
+              resolution={store.generationSettings?.resolution || '720p'}
+              fps={store.generationSettings?.fps || 30}
+              quality={store.generationSettings?.quality || 80}
+              onResolutionChange={(res) => store.setGenerationSettings({ resolution: res })}
+              onFpsChange={(fps) => store.setGenerationSettings({ fps })}
+              onQualityChange={(quality) => store.setGenerationSettings({ quality })}
+              onReset={() => store.setGenerationSettings({
+                resolution: '720p',
+                fps: 30,
+                quality: 80,
+              })}
+            />
           </div>
 
           {/* Generate Button */}

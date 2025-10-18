@@ -4,4 +4,3 @@
 fn main() {
     audiovisuals_desktop::run();
 }
-
