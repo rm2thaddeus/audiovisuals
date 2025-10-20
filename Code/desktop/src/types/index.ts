@@ -35,11 +35,17 @@ export interface AudioFile {
   size: number;
   duration?: number;
   format: string;
+  bitrate?: number;
+  sampleRate?: number;
+  channels?: number;
 }
 
 export interface FileValidationResult {
   valid: boolean;
   error?: string;
+  canonicalPath?: string;
+  size?: number;
+  format?: string;
 }
 
 export interface AudioFileMetadata {
@@ -47,6 +53,9 @@ export interface AudioFileMetadata {
   duration: number;
   bitrate: number;
   sampleRate: number;
+  channels: number;
+  format: string;
+  fileSize: number;
 }
 
 // Feature 3: Style Selector Types

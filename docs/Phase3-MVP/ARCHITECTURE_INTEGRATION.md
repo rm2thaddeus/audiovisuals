@@ -1,6 +1,6 @@
 # 3L_4D Architecture - MVP Integration Plan
 
-**Date:** 2025-10-15  
+**Date:** 2025-10-19  
 **Status:** 🏆 Ready for MVP Integration  
 **Discovery:** 3 layers × 4 hidden dimensions = Optimal architecture
 
@@ -300,6 +300,62 @@ pub async fn generate_video(
 - Week 3-4: Reference 3L_4D as default
 - Add preset system to Synesthesia tab tasks
 - Update performance targets (real-time now achievable)
+
+---
+
+## Desktop Integration Fixes (P0/P1)
+
+Goal: Restore end-to-end flow for file selection → metadata → generation using Tauri-native APIs with robust logging.
+
+- Enable native file dialog (Tauri v2)
+  - Rust: add plugin and init
+    - `src-tauri/Cargo.toml`: `tauri-plugin-dialog = "2"`
+    - `src-tauri/src/lib.rs`: `tauri::Builder::default().plugin(tauri_plugin_dialog::init())`
+  - Frontend: use `@tauri-apps/plugin-dialog`
+    - `npm i @tauri-apps/plugin-dialog`
+    - Example:
+      ```ts
+      import { open } from '@tauri-apps/plugin-dialog'
+      const selected = await open({ multiple: false, filters: [{ name: 'Audio', extensions: ['mp3','wav','flac','aiff','m4a'] }] })
+      ```
+  - Reference: github.com/tauri-apps/tauri-plugin-dialog (v2 README)
+
+- Remove HTML file input and pass absolute paths end-to-end
+  - Replace `<input type="file">` usage with the dialog result (absolute path string)
+  - Ensure Rust `validate_audio_file` receives the full path (`PathBuf`)
+
+- Implement real metadata extraction (two viable options)
+  - Option A: ffprobe (FFmpeg)
+    - Command: `ffprobe -v quiet -of json -show_format -show_streams <audio>`
+    - Spawn via `tauri-plugin-shell` (v2): add `tauri-plugin-shell = "2"`, `.plugin(tauri_plugin_shell::init())`
+    - Parse JSON for duration, bitrate, sample_rate, channels, codec
+    - Reference: ffmpeg.org/ffprobe.html (JSON writer, show_format/streams)
+  - Option B: Pure Rust (Symphonia)
+    - Crate: `symphonia` (+ format/codec features)
+    - Read container → stream → decoder → derive duration/sample rate/channels
+    - References: crates.io/crates/symphonia, docs.rs/symphonia, README examples
+
+- Wire Python CLI with full path
+  - Build args in Rust using validated absolute `audio_path`
+  - Keep current spawn wrapper; ensure stderr surfaced to UI
+  - For process spawning from JS, prefer Rust side via commands (do not run Python directly from frontend)
+
+- Add visible error logging (frontend + backend)
+  - Add `tauri-plugin-log = "2"`, init with `TargetKind::Webview | Stdout | LogDir`
+  - Frontend: `@tauri-apps/plugin-log` with `attachConsole()` to mirror logs in DevTools
+  - Reference: github.com/tauri-apps/tauri-plugin-log (v2 README)
+
+- Optional: Drag-and-drop file support
+  - Handle file drop on the window (Rust `WindowEvent::FileDrop`) or use frontend drop handlers that marshal to backend for validation
+  - Reference: Tauri window events (FileDrop) in core docs/issues
+
+Implementation order (fastest unblock):
+1) Dialog plugin on (remove prompt() and duplicate buttons)
+2) Absolute path validation + pass-through to Python
+3) Metadata via ffprobe or Symphonia
+4) Log plugin + hook failure points
+
+See also: `docs/Phase3-MVP/DESKTOP_INTEGRATION_FIXES.md`
 
 ### Phase 2 Documents
 

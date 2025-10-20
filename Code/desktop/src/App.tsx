@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 import { SynesthesiaTab } from './components/tabs/SynesthesiaTab';
 import { AnalysisTab } from './components/tabs/AnalysisTab';
@@ -5,11 +6,23 @@ import { StylesTab } from './components/tabs/StylesTab';
 import { ExplorerTab } from './components/tabs/ExplorerTab';
 import { ProjectsTab } from './components/tabs/ProjectsTab';
 import { TestIntegration } from './components/TestIntegration';
+import { Console } from './components/debug/Console';
 import { useAppStore, AppTab } from './store/appStore';
+import { log } from './utils/logger';
 import './App.css';
 
 function App() {
   const { activeTab, setActiveTab, error, setError } = useAppStore();
+  const [isConsoleOpen, setIsConsoleOpen] = useState(false);
+
+  // Initialize logging
+  useEffect(() => {
+    log.info('App initialized', {
+      component: 'App',
+      action: 'app_start',
+      metadata: { activeTab },
+    });
+  }, []);
 
   return (
     <div className="flex h-screen flex-col bg-slate-900 text-slate-100">
@@ -41,6 +54,12 @@ function App() {
                   ? 'border-purple-500 text-purple-300'
                   : 'border-transparent text-slate-400 hover:text-slate-200'
               }`}
+              onClick={() => {
+                log.userAction('tab_change', 'App', { 
+                  fromTab: activeTab, 
+                  toTab: value as AppTab 
+                });
+              }}
             >
               {label}
             </Tabs.Trigger>
@@ -76,14 +95,25 @@ function App() {
       <footer className="bg-slate-800 border-t border-slate-700 px-6 py-3 text-xs text-slate-400">
         <div className="flex items-center justify-between">
           <p>Phase 3 MVP - Week 1 Foundation</p>
-          {error && (
-            <button onClick={() => setError(null)} className="text-rose-300 hover:text-rose-200 transition-colors">
-              Clear error
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={() => setIsConsoleOpen(!isConsoleOpen)}
+              className="text-slate-400 hover:text-white transition-colors"
+              title="Toggle Debug Console"
+            >
+              Console
             </button>
-          )}
+            {error && (
+              <button onClick={() => setError(null)} className="text-rose-300 hover:text-rose-200 transition-colors">
+                Clear error
+              </button>
+            )}
+          </div>
         </div>
         {error && <p className="mt-1 text-rose-300">{error}</p>}
       </footer>
+
+      <Console isOpen={isConsoleOpen} onToggle={() => setIsConsoleOpen(!isConsoleOpen)} />
     </div>
   );
 }

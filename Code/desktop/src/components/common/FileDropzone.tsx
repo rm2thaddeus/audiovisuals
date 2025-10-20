@@ -1,120 +1,186 @@
-import { useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { invoke } from '@tauri-apps/api/core';
-import type { AudioFile, FileValidationResult } from '../../types';
+import { log } from '../../utils/logger';
+import { TauriFileDialog } from './TauriFileDialog';
+import type {
+  AudioFile,
+  AudioFileMetadata,
+  FileValidationResult,
+} from '../../types';
 
 interface FileDropzoneProps {
   onFileSelected: (file: AudioFile) => void;
+  onMetadataLoaded?: (metadata: AudioFileMetadata) => void;
   onError?: (error: string) => void;
 }
 
 const ACCEPTED_FORMATS = ['.mp3', '.wav', '.flac', '.aiff', '.m4a'];
 const MAX_FILE_SIZE = 500 * 1024 * 1024; // 500MB
 
-export function FileDropzone({ onFileSelected, onError }: FileDropzoneProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
+const formatFileSize = (bytes: number): string => {
+  if (!bytes) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const i = Math.min(Math.floor(Math.log(bytes) / Math.log(k)), sizes.length - 1);
+  return `${Math.round((bytes / Math.pow(k, i)) * 100) / 100} ${sizes[i]}`;
+};
+
+const getFileName = (path: string): string => path.split(/[\\/]/).pop() || path;
+
+const getExtensionFromPath = (path: string): string =>
+  `.${getFileName(path).split('.').pop()?.toLowerCase() ?? ''}`;
+
+export function FileDropzone({
+  onFileSelected,
+  onMetadataLoaded,
+  onError,
+}: FileDropzoneProps) {
   const [isDragActive, setIsDragActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const formatFileSize = (bytes: number): string => {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
+  const emitError = useCallback(async (message: string) => {
+    setError(message);
+    onError?.(message);
+    await log.error(message, {
+      component: 'FileDropzone',
+      action: 'file_error',
+    });
+  }, [onError]);
+
+  const validateFrontendConstraints = (size?: number, extension?: string): string | null => {
+    if (extension && !ACCEPTED_FORMATS.includes(extension)) {
+      return `Unsupported format. Accepted: ${ACCEPTED_FORMATS.join(', ')}`;
+    }
+    if (size && size > MAX_FILE_SIZE) {
+      return `File too large. Maximum size: ${formatFileSize(MAX_FILE_SIZE)}`;
+    }
+    return null;
   };
 
-  const validateFile = (file: File): { valid: boolean; error?: string } => {
-    const extension = '.' + file.name.split('.').pop()?.toLowerCase();
-    
-    if (!ACCEPTED_FORMATS.includes(extension)) {
-      return {
-        valid: false,
-        error: `Unsupported format. Accepted: ${ACCEPTED_FORMATS.join(', ')}`,
-      };
-    }
-
-    if (file.size > MAX_FILE_SIZE) {
-      return {
-        valid: false,
-        error: `File too large. Maximum size: ${formatFileSize(MAX_FILE_SIZE)}`,
-      };
-    }
-
-    return { valid: true };
-  };
-
-  const handleFileSelect = async (file: File) => {
+  const handleValidatedSelection = async (
+    filePath: string,
+    options: { sizeHint?: number; nameHint?: string } = {},
+  ) => {
     setError(null);
-    const validation = validateFile(file);
-
-    if (!validation.valid) {
-      const errorMsg = validation.error || 'Invalid file';
-      setError(errorMsg);
-      onError?.(errorMsg);
-      return;
-    }
+    setIsLoading(true);
 
     try {
-      setIsLoading(true);
+      const validation = await invoke<FileValidationResult>('validate_audio_file', {
+        path: filePath,
+      });
 
-      // Validate with backend
-      const backendValidation = await invoke<FileValidationResult>(
-        'validate_audio_file',
-        { path: (file as unknown as { path?: string }).path || file.name }
-      );
-
-      if (!backendValidation.valid) {
-        const errorMsg = backendValidation.error || 'File validation failed';
-        setError(errorMsg);
-        onError?.(errorMsg);
+      if (!validation.valid) {
+        const backendError = validation.error || 'File validation failed';
+        await emitError(backendError);
         return;
       }
 
-      // File accepted
+      const canonicalPath = validation.canonicalPath || filePath;
+      const metadata = await invoke<AudioFileMetadata>('get_file_metadata', {
+        path: canonicalPath,
+      });
+
       const audioFile: AudioFile = {
-        path: (file as unknown as { path?: string }).path || file.name,
-        name: file.name,
-        size: file.size,
-        format: file.name.split('.').pop()?.toLowerCase() || 'unknown',
+        path: metadata.path,
+        name: options.nameHint ?? getFileName(metadata.path),
+        size: metadata.fileSize ?? options.sizeHint ?? 0,
+        duration: metadata.duration,
+        format: metadata.format || getExtensionFromPath(metadata.path).slice(1),
+        bitrate: metadata.bitrate,
+        sampleRate: metadata.sampleRate,
+        channels: metadata.channels,
       };
 
+      onMetadataLoaded?.(metadata);
       onFileSelected(audioFile);
-      setError(null);
+
+      await log.info('File selected successfully', {
+        component: 'FileDropzone',
+        action: 'file_selected',
+        metadata: {
+          path: audioFile.path,
+          name: audioFile.name,
+          size: audioFile.size,
+          format: audioFile.format,
+        },
+      });
     } catch (err) {
-      const errorMsg =
-        err instanceof Error ? err.message : 'Failed to validate file';
-      setError(errorMsg);
-      onError?.(errorMsg);
+      const message = err instanceof Error ? err.message : 'Failed to process file';
+      await log.logError(err as Error, {
+        component: 'FileDropzone',
+        action: 'file_validation_error',
+        metadata: { path: filePath },
+      });
+      await emitError(message);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.type === 'dragenter' || e.type === 'dragover') {
-      setIsDragActive(true);
-    } else if (e.type === 'dragleave') {
+  const handleDialogSelection = useCallback(
+    async (path: string) => {
+      await log.userAction('file_select_attempt', 'FileDropzone', { filePath: path });
+
+      const extension = getExtensionFromPath(path);
+      const frontError = validateFrontendConstraints(undefined, extension);
+      if (frontError) {
+        await emitError(frontError);
+        return;
+      }
+
+      await handleValidatedSelection(path, { nameHint: getFileName(path) });
+    },
+    [emitError],
+  );
+
+  const handleDrop = useCallback(
+    async (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      event.stopPropagation();
       setIsDragActive(false);
-    }
-  };
 
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragActive(false);
+      const files = event.dataTransfer.files;
+      if (!files || files.length === 0) {
+        return;
+      }
 
-    const files = e.dataTransfer.files;
-    if (files && files.length > 0) {
-      handleFileSelect(files[0]);
-    }
-  };
+      const file = files[0];
+      const droppedPath = (file as unknown as { path?: string }).path;
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      handleFileSelect(e.target.files[0]);
+      if (!droppedPath) {
+        await emitError('Drag-and-drop path not available. Please use Select Audio File.');
+        return;
+      }
+
+      await log.userAction('file_drag_drop', 'FileDropzone', {
+        filePath: droppedPath,
+        fileSize: file.size,
+      });
+
+      const extension = getExtensionFromPath(droppedPath);
+      const frontError = validateFrontendConstraints(file.size, extension);
+      if (frontError) {
+        await emitError(frontError);
+        return;
+      }
+
+      await handleValidatedSelection(droppedPath, {
+        sizeHint: file.size,
+        nameHint: file.name,
+      });
+    },
+    [emitError],
+  );
+
+  const handleDrag = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (event.type === 'dragenter' || event.type === 'dragover') {
+      setIsDragActive(true);
+    } else if (event.type === 'dragleave') {
+      setIsDragActive(false);
     }
   };
 
@@ -131,15 +197,6 @@ export function FileDropzone({ onFileSelected, onError }: FileDropzoneProps) {
             : 'border-slate-600 bg-slate-800/50 hover:border-purple-400'
         } ${isLoading ? 'opacity-50 pointer-events-none' : ''}`}
       >
-        <input
-          ref={inputRef}
-          type="file"
-          accept={ACCEPTED_FORMATS.join(',')}
-          onChange={handleInputChange}
-          className="hidden"
-          disabled={isLoading}
-        />
-
         <div className="flex flex-col items-center gap-3">
           {isLoading ? (
             <>
@@ -161,25 +218,16 @@ export function FileDropzone({ onFileSelected, onError }: FileDropzoneProps) {
                   d="M12 18.75a6 6 0 006-6v-1.5m0-6a6 6 0 00-6 6v1.5m0 0a6 6 0 01-6-6v-1.5m0 6a6 6 0 006 6v1.5"
                 />
               </svg>
-              <div>
-                <p className="text-lg font-medium text-slate-200">
-                  Drag your audio file here
-                </p>
-                <p className="text-sm text-slate-400 mt-1">
-                  or{' '}
-                  <button
-                    type="button"
-                    onClick={() => inputRef.current?.click()}
-                    className="text-purple-400 hover:text-purple-300 underline"
-                    disabled={isLoading}
-                  >
-                    browse files
-                  </button>
-                </p>
+              <div className="text-slate-200">
+                <p className="text-lg font-medium">Drag your audio file here</p>
+                <p className="text-sm text-slate-400 mt-1">or use the button below</p>
+              </div>
+
+              <div className="mt-4 w-full">
+                <TauriFileDialog onPathSelected={handleDialogSelection} onError={emitError} />
               </div>
               <p className="text-xs text-slate-500 mt-4">
-                Supported formats: {ACCEPTED_FORMATS.join(', ')} (Max:{' '}
-                {formatFileSize(MAX_FILE_SIZE)})
+                Supported formats: {ACCEPTED_FORMATS.join(', ')} (Max: {formatFileSize(MAX_FILE_SIZE)})
               </p>
             </>
           )}

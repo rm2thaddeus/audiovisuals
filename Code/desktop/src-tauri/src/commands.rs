@@ -226,6 +226,35 @@ pub async fn generate_video(
     .map_err(|err| err.to_string())?
 }
 
+#[derive(Serialize, Deserialize)]
+pub struct LogEntry {
+    pub level: String,
+    pub message: String,
+    pub context: Option<String>,
+}
+
+#[tauri::command]
+pub async fn log_message(level: String, message: String, context: Option<String>) -> Result<(), String> {
+    let context_suffix = context
+        .as_deref()
+        .filter(|s| !s.is_empty())
+        .map(|ctx| format!(" | context={ctx}"))
+        .unwrap_or_default();
+
+    let formatted = format!("{message}{context_suffix}");
+
+    match level.as_str() {
+        "trace" => log::trace!("{formatted}"),
+        "debug" => log::debug!("{formatted}"),
+        "info" => log::info!("{formatted}"),
+        "warn" => log::warn!("{formatted}"),
+        "error" => log::error!("{formatted}"),
+        _ => log::info!("{formatted}"),
+    }
+
+    Ok(())
+}
+
 #[tauri::command]
 pub async fn test_python(window: Window) -> Result<CommandResult, String> {
     async_runtime::spawn_blocking(move || {

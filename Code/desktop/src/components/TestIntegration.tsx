@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useAppStore } from '../store/appStore';
 import { usePythonCommand } from '../hooks/usePythonCommand';
+import { log } from '../utils/logger';
 import type { CommandResult } from '../types';
 
 export function TestIntegration() {
@@ -10,14 +11,36 @@ export function TestIntegration() {
 
   const handleTest = useCallback(async () => {
     try {
+      await log.userAction('integration_test_start', 'TestIntegration');
+      
       reset();
       setResult(null);
+      
+      await log.debug('Starting Python integration test', {
+        component: 'TestIntegration',
+        action: 'python_test_start',
+      });
+      
       const outcome = await runCommand('test_python');
       setResult(outcome);
       setError(outcome.success ? null : outcome.message);
+      
+      await log.info('Python integration test completed', {
+        component: 'TestIntegration',
+        action: 'python_test_complete',
+        metadata: {
+          success: outcome.success,
+          message: outcome.message,
+        },
+      });
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       setError(message);
+      
+      await log.logError(err as Error, {
+        component: 'TestIntegration',
+        action: 'python_test_error',
+      });
     }
   }, [reset, runCommand, setError]);
 

@@ -69,6 +69,7 @@ export const SynesthesiaTab: React.FC = () => {
             <h2 className="text-lg font-semibold text-white mb-4">1. Select Audio</h2>
             <FileDropzone 
               onFileSelected={store.setSelectedAudioFile}
+              onMetadataLoaded={store.setAudioMetadata}
               onError={store.setFileError}
             />
           </div>

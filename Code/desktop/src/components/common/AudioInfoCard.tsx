@@ -61,7 +61,7 @@ export function AudioInfoCard({
 
         {/* Metadata (if available) */}
         {metadata || isLoading ? (
-          <div className="grid grid-cols-3 gap-4 pt-2 border-t border-slate-700">
+          <div className="grid grid-cols-4 gap-4 pt-2 border-t border-slate-700">
             <div>
               <p className="text-xs text-slate-500 uppercase tracking-wide">Duration</p>
               {isLoading ? (
@@ -89,6 +89,16 @@ export function AudioInfoCard({
               ) : (
                 <p className="text-slate-100 font-medium">
                   {metadata?.sampleRate ? `${metadata.sampleRate} Hz` : 'N/A'}
+                </p>
+              )}
+            </div>
+            <div>
+              <p className="text-xs text-slate-500 uppercase tracking-wide">Channels</p>
+              {isLoading ? (
+                <div className="h-5 bg-slate-700 rounded animate-pulse mt-1" />
+              ) : (
+                <p className="text-slate-100 font-medium">
+                  {metadata?.channels ? `${metadata.channels}` : 'N/A'}
                 </p>
               )}
             </div>

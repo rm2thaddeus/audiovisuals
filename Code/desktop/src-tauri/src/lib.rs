@@ -4,19 +4,31 @@ pub mod python;
 pub mod storage;
 pub mod styles;
 
-use commands::{generate_video, test_python};
+use commands::{generate_video, log_message, test_python};
 use file_manager::{get_audio_duration, get_file_metadata, validate_audio_file};
 use storage::{clear_all_generations, delete_generation, load_recent_generations, save_generation};
 use styles::{get_style_details, get_style_thumbnail, list_styles};
+use tauri_plugin_log::{Target, TargetKind};
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(
+            tauri_plugin_log::Builder::new()
+                .targets([
+                    Target::new(TargetKind::Stdout),
+                    Target::new(TargetKind::LogDir { file_name: None }),
+                    Target::new(TargetKind::Webview),
+                ])
+                .build(),
+        )
         .plugin(tauri_plugin_shell::init())
+        .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
             generate_video,
             test_python,
             validate_audio_file,
+            log_message,
             get_file_metadata,
             get_audio_duration,
             list_styles,

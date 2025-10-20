@@ -1,6 +1,6 @@
 # Phase 3 MVP - Technical Specification
 
-**Date:** 2025-10-13  
+**Date:** 2025-10-19  
 **Status:** 📐 Planning  
 **Architecture:** Tauri 2.0 Desktop Application
 
@@ -47,6 +47,11 @@
 - Multi-window support
 - System tray integration
 
+**Plugins (v2):**
+- `tauri-plugin-dialog` — native file dialogs (open/save, message)
+- `tauri-plugin-shell` — spawn `ffprobe`/helpers safely
+- `tauri-plugin-log` — forward backend logs to Webview/file/stdout
+
 **Python Integration:**
 - Process spawning via Rust std::process
 - STDOUT/STDERR streaming
@@ -56,6 +61,9 @@
 - Tauri FS API (sandboxed)
 - Native file dialogs
 - Watch for file changes
+
+**Capabilities (v2):**
+- Ensure capabilities JSON grants `log:default`, `core:default` to main window
 
 **IPC (Inter-Process Communication):**
 - Tauri's invoke/emit system
