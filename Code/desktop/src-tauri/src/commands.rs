@@ -13,6 +13,13 @@ pub struct GenerateVideoParams {
     pub quality: Option<u32>,
     pub layers: Option<u32>,
     pub hidden_dim: Option<u32>,
+    pub engine: Option<String>,
+    pub prompt: Option<String>,
+    pub clip_model: Option<String>,
+    pub weights_path: Option<String>,
+    pub depth: Option<u32>,
+    pub width: Option<u32>,
+    pub w0_time: Option<f32>,
 }
 
 #[derive(Serialize)]
@@ -73,17 +80,23 @@ fn validate_output_path(path: &str) -> Result<(), String> {
     Ok(())
 }
 
-fn resolve_cli_script() -> Result<PathBuf, String> {
+fn resolve_cli_script(engine: &str) -> Result<PathBuf, String> {
     let manifest_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+    let filename = if engine == "siren" {
+        "siren_cli.py"
+    } else {
+        "cli.py"
+    };
+
     let mut candidates = vec![manifest_dir
         .join("..")
         .join("..")
         .join("backend")
-        .join("cli.py")];
+        .join(filename)];
 
     if let Ok(current_dir) = std::env::current_dir() {
-        candidates.push(current_dir.join("..").join("backend").join("cli.py"));
-        candidates.push(current_dir.join("backend").join("cli.py"));
+        candidates.push(current_dir.join("..").join("backend").join(filename));
+        candidates.push(current_dir.join("backend").join(filename));
     }
 
     candidates
@@ -135,49 +148,98 @@ pub async fn generate_video(
             quality,
             layers,
             hidden_dim,
+            engine,
+            prompt,
+            clip_model,
+            weights_path,
+            depth,
+            width,
+            w0_time,
         } = params;
 
         validate_input_file(&audio_path)?;
         validate_output_path(&output_path)?;
 
-        let script_path = resolve_cli_script()?;
+        let selected_engine = engine.unwrap_or_else(|| "cppn".to_string());
+        let script_path = resolve_cli_script(&selected_engine)?;
         let cli_dir = script_path
             .parent()
             .ok_or_else(|| "Invalid CLI script path".to_string())?;
         let audio_path_cli = normalize_path_for_cli(&audio_path);
         let output_path_cli = normalize_path_for_cli(&output_path);
 
-        let mut args: Vec<String> = vec![
-            audio_path_cli,
-            output_path_cli.clone(),
-            "--resolution".into(),
-            resolution.clone(),
-            "--fps".into(),
-            fps.to_string(),
-        ];
+        let mut args: Vec<String> = Vec::new();
 
-        if let Some(layers) = layers {
-            args.push("--layers".into());
-            args.push(layers.to_string());
-        }
+        if selected_engine == "siren" {
+            let prompt_val = prompt.unwrap_or_else(|| "".to_string());
+            if prompt_val.is_empty() {
+                return Err("SIREN engine requires a prompt".to_string());
+            }
 
-        if let Some(hidden_dim) = hidden_dim {
-            args.push("--hidden-dim".into());
-            args.push(hidden_dim.to_string());
-        }
+            let weights = weights_path.ok_or_else(|| "SIREN engine requires --weights-path".to_string())?;
 
-        if let Some(quality) = quality {
-            let audio_scale = (quality as f32) / 100.0;
-            args.push("--audio-scale".into());
-            args.push(format!("{:.2}", audio_scale));
-        }
+            args.extend_from_slice(&[
+                audio_path_cli.clone(),
+                output_path_cli.clone(),
+                "--prompt".into(),
+                prompt_val,
+                "--resolution".into(),
+                resolution.clone(),
+                "--fps".into(),
+                fps.to_string(),
+                "--load-weights".into(),
+                weights,
+            ]);
 
-        if let Some(style_name) = style_name {
-            if !style_name.is_empty() && style_name != "default" {
-                if let Some(weights_path) = find_style_weights(&style_name, cli_dir) {
-                    if let Some(path_str) = weights_path.to_str() {
-                        args.push("--load-weights".into());
-                        args.push(path_str.replace('\\', "/"));
+            if let Some(cm) = clip_model {
+                args.push("--clip-model".into());
+                args.push(cm);
+            }
+            if let Some(d) = depth.or(layers) {
+                args.push("--depth".into());
+                args.push(d.to_string());
+            }
+            if let Some(w) = width.or(hidden_dim) {
+                args.push("--width".into());
+                args.push(w.to_string());
+            }
+            if let Some(wt) = w0_time {
+                args.push("--w0-time".into());
+                args.push(format!("{:.3}", wt));
+            }
+        } else {
+            args.extend_from_slice(&[
+                audio_path_cli.clone(),
+                output_path_cli.clone(),
+                "--resolution".into(),
+                resolution.clone(),
+                "--fps".into(),
+                fps.to_string(),
+            ]);
+
+            if let Some(layers) = layers {
+                args.push("--layers".into());
+                args.push(layers.to_string());
+            }
+
+            if let Some(hidden_dim) = hidden_dim {
+                args.push("--hidden-dim".into());
+                args.push(hidden_dim.to_string());
+            }
+
+            if let Some(quality) = quality {
+                let audio_scale = (quality as f32) / 100.0;
+                args.push("--audio-scale".into());
+                args.push(format!("{:.2}", audio_scale));
+            }
+
+            if let Some(style_name) = style_name {
+                if !style_name.is_empty() && style_name != "default" {
+                    if let Some(weights_path) = find_style_weights(&style_name, cli_dir) {
+                        if let Some(path_str) = weights_path.to_str() {
+                            args.push("--load-weights".into());
+                            args.push(path_str.replace('\\', "/"));
+                        }
                     }
                 }
             }

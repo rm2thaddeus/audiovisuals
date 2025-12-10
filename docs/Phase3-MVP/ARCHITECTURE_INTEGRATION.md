@@ -18,6 +18,14 @@
 
 ---
 
+## SIREN INR Update (2025-12-10)
+- Added SIREN + FiLM backend: `Code/backend/siren_inr.py`, `clip_optimize_siren.py`, `siren_cli.py`.
+- Search/eval harness under `Code/backend/experiments/siren_search/` (grid runner, flicker, CLIP score).
+- Desktop Tauri command supports `engine="siren"` (prompt + weights + clip_model) in addition to existing CPPN.
+- Detailed usage and commands: see `docs/Phase3-MVP/SIREN_NOTES.md`.
+
+---
+
 ## MVP Synesthesia Tab Integration
 
 ### Updated UI Design
