@@ -1,0 +1,78 @@
+{
+  "run_name": "cell_zyryab_preview",
+  "prompt": "cell division organic membranes, flowing biology",
+  "best_similarity": 0.255859375,
+  "history": [
+    {
+      "step": 50,
+      "clip_loss": -0.2418212890625,
+      "temp_loss": 0.0007540399674326181,
+      "tv_loss": 0.00571441650390625,
+      "range_loss": 0.0,
+      "similarity": 0.2418212890625,
+      "best_similarity": 0.245361328125
+    },
+    {
+      "step": 100,
+      "clip_loss": -0.243408203125,
+      "temp_loss": 0.009048517793416977,
+      "tv_loss": 0.0079193115234375,
+      "range_loss": 0.0,
+      "similarity": 0.243408203125,
+      "best_similarity": 0.2484130859375
+    },
+    {
+      "step": 150,
+      "clip_loss": -0.247314453125,
+      "temp_loss": 0.004770785104483366,
+      "tv_loss": 0.0082244873046875,
+      "range_loss": 0.0,
+      "similarity": 0.247314453125,
+      "best_similarity": 0.251953125
+    },
+    {
+      "step": 200,
+      "clip_loss": -0.252685546875,
+      "temp_loss": 0.004663712345063686,
+      "tv_loss": 0.0096588134765625,
+      "range_loss": 0.0,
+      "similarity": 0.252685546875,
+      "best_similarity": 0.255859375
+    }
+  ],
+  "config": {
+    "prompt": "cell division organic membranes, flowing biology",
+    "audio": "docs/Audio/Zyryab.mp3",
+    "output_dir": "Code/backend/experiments/siren_search",
+    "run_name": "cell_zyryab_preview",
+    "depth": 3,
+    "width": 8,
+    "w0_first": 30.0,
+    "w0_hidden": 1.0,
+    "w0_time": null,
+    "film_hidden": 64,
+    "output_activation": "tanh",
+    "no_bias": false,
+    "steps": 200,
+    "train_resolution": 256,
+    "lr": 0.0001,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "amp": true,
+    "device": "cuda",
+    "fps": 30,
+    "duration": 0.0,
+    "audio_scale": 0.05,
+    "clip_weight": 1.0,
+    "temp_weight": 0.25,
+    "tv_weight": 0.0001,
+    "range_weight": 0.0005,
+    "num_crops": 6,
+    "crop_min_scale": 0.5,
+    "crop_max_scale": 1.0,
+    "temporal_delta_min": 0.041666666666666664,
+    "temporal_delta_max": 0.08333333333333333,
+    "clip_model": "ViT-B/32",
+    "log_interval": 50
+  }
+}

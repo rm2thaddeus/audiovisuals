@@ -1,0 +1,78 @@
+{
+  "run_name": "cosmic_pot_preview",
+  "prompt": "cosmic galaxy swirling nebula, organic patterns",
+  "best_similarity": 0.255126953125,
+  "history": [
+    {
+      "step": 50,
+      "clip_loss": -0.2364501953125,
+      "temp_loss": 0.001764878979884088,
+      "tv_loss": 0.00707244873046875,
+      "range_loss": 0.0,
+      "similarity": 0.2364501953125,
+      "best_similarity": 0.2425537109375
+    },
+    {
+      "step": 100,
+      "clip_loss": -0.239990234375,
+      "temp_loss": 0.001688472693786025,
+      "tv_loss": 0.0081329345703125,
+      "range_loss": 0.0,
+      "similarity": 0.239990234375,
+      "best_similarity": 0.2474365234375
+    },
+    {
+      "step": 150,
+      "clip_loss": -0.250244140625,
+      "temp_loss": 0.003490698290988803,
+      "tv_loss": 0.007843017578125,
+      "range_loss": 0.0,
+      "similarity": 0.250244140625,
+      "best_similarity": 0.2509765625
+    },
+    {
+      "step": 200,
+      "clip_loss": -0.2548828125,
+      "temp_loss": 0.0036476990208029747,
+      "tv_loss": 0.00861358642578125,
+      "range_loss": 0.0,
+      "similarity": 0.2548828125,
+      "best_similarity": 0.255126953125
+    }
+  ],
+  "config": {
+    "prompt": "cosmic galaxy swirling nebula, organic patterns",
+    "audio": "docs/Audio/TOOL - The Pot (Audio).mp3",
+    "output_dir": "Code/backend/experiments/siren_search",
+    "run_name": "cosmic_pot_preview",
+    "depth": 3,
+    "width": 8,
+    "w0_first": 30.0,
+    "w0_hidden": 1.0,
+    "w0_time": null,
+    "film_hidden": 64,
+    "output_activation": "tanh",
+    "no_bias": false,
+    "steps": 200,
+    "train_resolution": 256,
+    "lr": 0.0001,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "amp": true,
+    "device": "cuda",
+    "fps": 30,
+    "duration": 0.0,
+    "audio_scale": 0.05,
+    "clip_weight": 1.0,
+    "temp_weight": 0.25,
+    "tv_weight": 0.0001,
+    "range_weight": 0.0005,
+    "num_crops": 6,
+    "crop_min_scale": 0.5,
+    "crop_max_scale": 1.0,
+    "temporal_delta_min": 0.041666666666666664,
+    "temporal_delta_max": 0.08333333333333333,
+    "clip_model": "ViT-B/32",
+    "log_interval": 50
+  }
+}

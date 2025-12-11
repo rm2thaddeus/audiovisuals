@@ -12,12 +12,13 @@ import math
 import random
 import time
 from pathlib import Path
-from typing import Dict, Tuple
+from typing import Dict, Optional, Tuple
 
 import clip
 import numpy as np
 import torch
 import torch.nn.functional as F
+import torch.nn as nn
 
 from audio_analyzer import AudioAnalyzer
 from siren_inr import SirenINR
@@ -70,6 +71,26 @@ def select_audio_feature(audio_analysis: Dict, t01: float, scale: float, device:
     return torch.tensor(feat, device=device, dtype=torch.float32)
 
 
+class AudioFiLM(nn.Module):
+    """Small MLP to produce additive FiLM params from audio only."""
+
+    def __init__(self, audio_dim: int, hidden: int, num_layers: int, siren_hidden: int) -> None:
+        super().__init__()
+        self.num_layers = num_layers
+        self.siren_hidden = siren_hidden
+        self.net = nn.Sequential(
+            nn.Linear(audio_dim, hidden),
+            nn.ReLU(inplace=True),
+            nn.Linear(hidden, num_layers * siren_hidden * 2),
+        )
+
+    def forward(self, audio_feat: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+        params = self.net(audio_feat)
+        params = params.view(audio_feat.shape[0], self.num_layers, self.siren_hidden * 2)
+        gammas, betas = params.split(self.siren_hidden, dim=-1)
+        return gammas, betas
+
+
 def train_siren(
     args: argparse.Namespace,
 ) -> Dict:
@@ -113,8 +134,20 @@ def train_siren(
         use_bias=not args.no_bias,
     ).to(device)
 
+    audio_film: Optional[AudioFiLM] = None
+    if args.enable_audio_film:
+        audio_film = AudioFiLM(
+            audio_dim=audio_dim,
+            hidden=args.audio_film_hidden,
+            num_layers=args.depth,
+            siren_hidden=args.width,
+        ).to(device)
+
+    params = list(model.parameters())
+    if audio_film is not None:
+        params += list(audio_film.parameters())
     optimizer = torch.optim.Adam(
-        model.parameters(),
+        params,
         lr=args.lr,
         betas=(0.9, 0.999),
         weight_decay=args.weight_decay,
@@ -124,6 +157,7 @@ def train_siren(
 
     best_similarity = -1.0
     best_state = None
+    best_audio_state = None
     history = []
 
     coords_cache = {}
@@ -134,10 +168,24 @@ def train_siren(
             coords_cache[key] = build_grid(args.train_resolution, t_val * 2.0 - 1.0, device)
         return coords_cache[key]
 
-    def build_cond(t_val: float) -> torch.Tensor:
+    def build_cond(t_val: float) -> Tuple[torch.Tensor, Optional[Tuple[torch.Tensor, torch.Tensor]], Optional[torch.Tensor]]:
         audio_feat = select_audio_feature(audio_analysis, t_val, args.audio_scale, device)
         cond = torch.cat([text_features[0], audio_feat], dim=0)
-        return cond.unsqueeze(0)  # (1, cond_dim)
+
+        extra_film: Optional[Tuple[torch.Tensor, torch.Tensor]] = None
+        if audio_film is not None:
+            extra_gamma, extra_beta = audio_film(audio_feat.unsqueeze(0))
+            if args.audio_film_scale != 1.0:
+                extra_gamma = extra_gamma * args.audio_film_scale
+                extra_beta = extra_beta * args.audio_film_scale
+            extra_film = (extra_gamma, extra_beta)
+
+        gamma_gate: Optional[torch.Tensor] = None
+        if args.enable_audio_gate:
+            gate = audio_feat.abs().mean() * args.audio_gate_scale
+            gamma_gate = gate.clamp(min=0.0).view(1)
+
+        return cond.unsqueeze(0), extra_film, gamma_gate  # (1, cond_dim), optional FiLM/gate
 
     for step in range(1, args.steps + 1):
         model.train()
@@ -151,13 +199,17 @@ def train_siren(
         coords0 = get_coords(t0)
         coords1 = get_coords(t1)
 
-        cond0 = build_cond(t0)
-        cond1 = build_cond(t1)
+        cond0, extra0, gate0 = build_cond(t0)
+        cond1, extra1, gate1 = build_cond(t1)
 
         with torch.cuda.amp.autocast(enabled=args.amp and device.type == "cuda"):
             # Forward passes
-            img0 = model(coords0, cond0).view(args.train_resolution, args.train_resolution, 3)
-            img1 = model(coords1, cond1).view(args.train_resolution, args.train_resolution, 3)
+            img0 = model(coords0, cond0, extra_film=extra0, gamma_gate=gate0).view(
+                args.train_resolution, args.train_resolution, 3
+            )
+            img1 = model(coords1, cond1, extra_film=extra1, gamma_gate=gate1).view(
+                args.train_resolution, args.train_resolution, 3
+            )
 
             # Move to CHW in [-1,1]
             img0_chw = img0.permute(2, 0, 1)
@@ -205,6 +257,8 @@ def train_siren(
         if sim_value > best_similarity:
             best_similarity = sim_value
             best_state = {k: v.detach().cpu() for k, v in model.state_dict().items()}
+            if audio_film is not None:
+                best_audio_state = {k: v.detach().cpu() for k, v in audio_film.state_dict().items()}
 
         if step % args.log_interval == 0 or step == args.steps:
             entry = {
@@ -226,10 +280,13 @@ def train_siren(
 
     if best_state is None:
         best_state = {k: v.detach().cpu() for k, v in model.state_dict().items()}
+    if audio_film is not None and best_audio_state is None:
+        best_audio_state = {k: v.detach().cpu() for k, v in audio_film.state_dict().items()}
 
     return {
         "best_similarity": best_similarity,
         "best_state": best_state,
+        "best_audio_state": best_audio_state,
         "history": history,
         "audio_dim": audio_dim,
         "clip_dim": clip_dim,
@@ -243,6 +300,8 @@ def train_siren(
             "output_activation": args.output_activation,
             "use_bias": not args.no_bias,
         },
+        "audio_film_enabled": args.enable_audio_film,
+        "audio_gate_enabled": args.enable_audio_gate,
     }
 
 
@@ -257,6 +316,7 @@ def save_artifacts(
 
     save_data = {
         "state_dict": train_result["best_state"],
+        "audio_film_state": train_result["best_audio_state"],
         "prompt": args.prompt,
         "best_similarity": train_result["best_similarity"],
         "clip_model": args.clip_model,
@@ -266,6 +326,8 @@ def save_artifacts(
         "siren_config": train_result["model_config"],
         "cond_dim": train_result["clip_dim"] + train_result["audio_dim"],
         "audio_dim": train_result["audio_dim"],
+        "audio_film_enabled": train_result.get("audio_film_enabled", False),
+        "audio_gate_enabled": train_result.get("audio_gate_enabled", False),
     }
     torch.save(save_data, checkpoint_path)
 
@@ -342,6 +404,24 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--crop-max-scale", type=float, default=1.0, help="Max crop scale relative to image")
     parser.add_argument("--temporal-delta-min", type=float, default=1 / 24, help="Min temporal delta (seconds)")
     parser.add_argument("--temporal-delta-max", type=float, default=1 / 12, help="Max temporal delta (seconds)")
+
+    # Audio FiLM / gate
+    parser.add_argument("--enable-audio-film", action="store_true", help="Add audio-only FiLM branch (additive)")
+    parser.add_argument("--audio-film-hidden", type=int, default=32, help="Hidden width for audio FiLM MLP")
+    parser.add_argument(
+        "--audio-film-scale",
+        dest="audio_film_scale",
+        type=float,
+        default=1.0,
+        help="Scale for audio FiLM outputs",
+    )
+    parser.add_argument("--enable-audio-gate", action="store_true", help="Gate FiLM gamma by audio envelope")
+    parser.add_argument(
+        "--audio-gate-scale",
+        type=float,
+        default=1.0,
+        help="Scale factor applied to mean-abs audio envelope for gamma gating",
+    )
 
     # CLIP
     parser.add_argument(

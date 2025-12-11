@@ -155,11 +155,15 @@ class SirenINR(nn.Module):
         self,
         coords: torch.Tensor,
         cond: torch.Tensor,
+        extra_film: Optional[Tuple[torch.Tensor, torch.Tensor]] = None,
+        gamma_gate: Optional[torch.Tensor] = None,
     ) -> torch.Tensor:
         """
         Args:
             coords: (batch, coord_dim) normalized to [-1, 1]
             cond: (batch, cond_dim) conditioning vector (text [+ audio])
+            extra_film: optional (gamma, beta) to add to FiLM outputs (batch, num_layers, hidden_dim)
+            gamma_gate: optional (batch,) or (batch, 1, 1) scalar gate applied to gammas
         Returns:
             rgb: (batch, out_dim) in [-1, 1] if tanh, else [0, 1] if sigmoid
         """
@@ -168,6 +172,13 @@ class SirenINR(nn.Module):
             coords[:, 2] = coords[:, 2] * self.w0_time
 
         gammas, betas = self.conditioner(cond)
+        if extra_film is not None:
+            extra_gamma, extra_beta = extra_film
+            gammas = gammas + extra_gamma
+            betas = betas + extra_beta
+        if gamma_gate is not None:
+            gate = gamma_gate.view(gamma_gate.shape[0], 1, 1)
+            gammas = gammas * gate
 
         x = coords
         for idx, layer in enumerate(self.layers):

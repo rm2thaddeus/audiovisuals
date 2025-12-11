@@ -1,0 +1,41 @@
+{
+  "baseline": {
+    "depth": 3,
+    "width": 12,
+    "w0_first": 40.0,
+    "w0_hidden": 6.0,
+    "w0_time": 3.0,
+    "steps": 400,
+    "train_resolution": 256,
+    "clip_model": "ViT-B/16",
+    "num_crops": 8,
+    "clip_weight": 1.6,
+    "temp_weight": 0.5,
+    "tv_weight": 5e-5,
+    "range_weight": 2e-4,
+    "audio_scale": 0.05,
+    "enable_audio_film": false,
+    "enable_audio_gate": false
+  },
+  "audio_boosted": {
+    "depth": 3,
+    "width": 12,
+    "w0_first": 40.0,
+    "w0_hidden": 6.0,
+    "w0_time": 3.0,
+    "steps": 400,
+    "train_resolution": 256,
+    "clip_model": "ViT-B/16",
+    "num_crops": 8,
+    "clip_weight": 1.6,
+    "temp_weight": 0.5,
+    "tv_weight": 5e-5,
+    "range_weight": 2e-4,
+    "audio_scale": 0.15,
+    "enable_audio_film": true,
+    "audio_film_hidden": 32,
+    "audio_film_scale": 1.0,
+    "enable_audio_gate": true,
+    "audio_gate_scale": 1.0
+  }
+}

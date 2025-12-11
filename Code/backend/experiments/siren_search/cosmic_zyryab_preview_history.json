@@ -1,0 +1,78 @@
+{
+  "run_name": "cosmic_zyryab_preview",
+  "prompt": "cosmic galaxy swirling nebula, organic patterns",
+  "best_similarity": 0.2568359375,
+  "history": [
+    {
+      "step": 50,
+      "clip_loss": -0.244140625,
+      "temp_loss": 0.0024595754221081734,
+      "tv_loss": 0.00846099853515625,
+      "range_loss": 0.0,
+      "similarity": 0.244140625,
+      "best_similarity": 0.244140625
+    },
+    {
+      "step": 100,
+      "clip_loss": -0.2498779296875,
+      "temp_loss": 0.0019586123526096344,
+      "tv_loss": 0.0065460205078125,
+      "range_loss": 0.0,
+      "similarity": 0.2498779296875,
+      "best_similarity": 0.251708984375
+    },
+    {
+      "step": 150,
+      "clip_loss": -0.25048828125,
+      "temp_loss": 0.0036098435521125793,
+      "tv_loss": 0.00780487060546875,
+      "range_loss": 0.0,
+      "similarity": 0.25048828125,
+      "best_similarity": 0.25537109375
+    },
+    {
+      "step": 200,
+      "clip_loss": -0.25244140625,
+      "temp_loss": 0.0006967679946683347,
+      "tv_loss": 0.00711822509765625,
+      "range_loss": 0.0,
+      "similarity": 0.25244140625,
+      "best_similarity": 0.2568359375
+    }
+  ],
+  "config": {
+    "prompt": "cosmic galaxy swirling nebula, organic patterns",
+    "audio": "docs/Audio/Zyryab.mp3",
+    "output_dir": "Code/backend/experiments/siren_search",
+    "run_name": "cosmic_zyryab_preview",
+    "depth": 3,
+    "width": 8,
+    "w0_first": 30.0,
+    "w0_hidden": 1.0,
+    "w0_time": null,
+    "film_hidden": 64,
+    "output_activation": "tanh",
+    "no_bias": false,
+    "steps": 200,
+    "train_resolution": 256,
+    "lr": 0.0001,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "amp": true,
+    "device": "cuda",
+    "fps": 30,
+    "duration": 0.0,
+    "audio_scale": 0.05,
+    "clip_weight": 1.0,
+    "temp_weight": 0.25,
+    "tv_weight": 0.0001,
+    "range_weight": 0.0005,
+    "num_crops": 6,
+    "crop_min_scale": 0.5,
+    "crop_max_scale": 1.0,
+    "temporal_delta_min": 0.041666666666666664,
+    "temporal_delta_max": 0.08333333333333333,
+    "clip_model": "ViT-B/32",
+    "log_interval": 50
+  }
+}
