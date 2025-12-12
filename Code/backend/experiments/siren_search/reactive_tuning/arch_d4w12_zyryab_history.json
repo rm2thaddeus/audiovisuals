@@ -1,0 +1,110 @@
+{
+  "run_name": "arch_d4w12_zyryab",
+  "prompt": "galaxy filled with dense points, starfield particles, high particle count",
+  "best_similarity": 0.297119140625,
+  "history": [
+    {
+      "step": 50,
+      "clip_loss": -0.2529296875,
+      "temp_loss": 0.007144390605390072,
+      "tv_loss": 0.004903229884803295,
+      "range_loss": 0.0,
+      "similarity": 0.2529296875,
+      "best_similarity": 0.2548828125
+    },
+    {
+      "step": 100,
+      "clip_loss": -0.24609375,
+      "temp_loss": 0.0009075665730051696,
+      "tv_loss": 0.0057962192222476006,
+      "range_loss": 0.0,
+      "similarity": 0.24609375,
+      "best_similarity": 0.25732421875
+    },
+    {
+      "step": 150,
+      "clip_loss": -0.262451171875,
+      "temp_loss": 0.0024241539649665356,
+      "tv_loss": 0.004568478092551231,
+      "range_loss": 0.0,
+      "similarity": 0.262451171875,
+      "best_similarity": 0.263916015625
+    },
+    {
+      "step": 200,
+      "clip_loss": -0.263916015625,
+      "temp_loss": 0.0007251794449985027,
+      "tv_loss": 0.006831028964370489,
+      "range_loss": 0.0,
+      "similarity": 0.263916015625,
+      "best_similarity": 0.273193359375
+    },
+    {
+      "step": 250,
+      "clip_loss": -0.28662109375,
+      "temp_loss": 0.0009429982164874673,
+      "tv_loss": 0.0066060395911335945,
+      "range_loss": 0.0,
+      "similarity": 0.28662109375,
+      "best_similarity": 0.287353515625
+    },
+    {
+      "step": 300,
+      "clip_loss": -0.2900390625,
+      "temp_loss": 0.0005575153045356274,
+      "tv_loss": 0.007218869868665934,
+      "range_loss": 0.0,
+      "similarity": 0.2900390625,
+      "best_similarity": 0.297119140625
+    },
+    {
+      "step": 320,
+      "clip_loss": -0.285888671875,
+      "temp_loss": 0.0006836722604930401,
+      "tv_loss": 0.007173635996878147,
+      "range_loss": 0.0,
+      "similarity": 0.285888671875,
+      "best_similarity": 0.297119140625
+    }
+  ],
+  "config": {
+    "prompt": "galaxy filled with dense points, starfield particles, high particle count",
+    "audio": "docs/Audio/Zyryab.mp3",
+    "output_dir": "Code/backend/experiments/siren_search/reactive_tuning",
+    "run_name": "arch_d4w12_zyryab",
+    "depth": 4,
+    "width": 12,
+    "w0_first": 50.0,
+    "w0_hidden": 5.0,
+    "w0_time": 2.5,
+    "film_hidden": 64,
+    "output_activation": "tanh",
+    "no_bias": false,
+    "steps": 320,
+    "train_resolution": 256,
+    "lr": 0.0001,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "amp": false,
+    "device": "cuda",
+    "fps": 30,
+    "duration": 0.0,
+    "audio_scale": 0.05,
+    "clip_weight": 1.6,
+    "temp_weight": 0.5,
+    "tv_weight": 5e-05,
+    "range_weight": 0.0002,
+    "num_crops": 8,
+    "crop_min_scale": 0.5,
+    "crop_max_scale": 1.0,
+    "temporal_delta_min": 0.041666666666666664,
+    "temporal_delta_max": 0.08333333333333333,
+    "enable_audio_film": false,
+    "audio_film_hidden": 32,
+    "audio_film_scale": 1.0,
+    "enable_audio_gate": false,
+    "audio_gate_scale": 1.0,
+    "clip_model": "ViT-B/16",
+    "log_interval": 50
+  }
+}

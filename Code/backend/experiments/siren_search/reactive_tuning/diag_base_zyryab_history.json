@@ -1,0 +1,119 @@
+{
+  "run_name": "diag_base_zyryab",
+  "prompt": "cosmic galaxy",
+  "best_similarity": 0.2734375,
+  "history": [
+    {
+      "step": 50,
+      "clip_loss": -0.229248046875,
+      "temp_loss": 0.05397183448076248,
+      "tv_loss": 0.006969909183681011,
+      "range_loss": 0.0,
+      "similarity": 0.229248046875,
+      "best_similarity": 0.244384765625
+    },
+    {
+      "step": 100,
+      "clip_loss": -0.2467041015625,
+      "temp_loss": 0.0124298594892025,
+      "tv_loss": 0.005233047530055046,
+      "range_loss": 0.0,
+      "similarity": 0.2467041015625,
+      "best_similarity": 0.250732421875
+    },
+    {
+      "step": 150,
+      "clip_loss": -0.258056640625,
+      "temp_loss": 0.014156877063214779,
+      "tv_loss": 0.00464627193287015,
+      "range_loss": 0.0,
+      "similarity": 0.258056640625,
+      "best_similarity": 0.2607421875
+    },
+    {
+      "step": 200,
+      "clip_loss": -0.264404296875,
+      "temp_loss": 0.002049846574664116,
+      "tv_loss": 0.0043371738865971565,
+      "range_loss": 0.0,
+      "similarity": 0.264404296875,
+      "best_similarity": 0.26611328125
+    },
+    {
+      "step": 250,
+      "clip_loss": -0.265380859375,
+      "temp_loss": 0.0015408264007419348,
+      "tv_loss": 0.0043974751606583595,
+      "range_loss": 0.0,
+      "similarity": 0.265380859375,
+      "best_similarity": 0.26904296875
+    },
+    {
+      "step": 300,
+      "clip_loss": -0.268310546875,
+      "temp_loss": 0.002587805734947324,
+      "tv_loss": 0.004863291047513485,
+      "range_loss": 0.0,
+      "similarity": 0.268310546875,
+      "best_similarity": 0.27099609375
+    },
+    {
+      "step": 350,
+      "clip_loss": -0.26953125,
+      "temp_loss": 0.0008064370485953987,
+      "tv_loss": 0.0044775428250432014,
+      "range_loss": 0.0,
+      "similarity": 0.26953125,
+      "best_similarity": 0.2734375
+    },
+    {
+      "step": 400,
+      "clip_loss": -0.2685546875,
+      "temp_loss": 0.0022591424640268087,
+      "tv_loss": 0.004793659783899784,
+      "range_loss": 0.0,
+      "similarity": 0.2685546875,
+      "best_similarity": 0.2734375
+    }
+  ],
+  "config": {
+    "prompt": "cosmic galaxy",
+    "audio": "c:/Users/aitor/audiovisual/audiovisuals/docs/Audio/Zyryab.mp3",
+    "output_dir": "c:/Users/aitor/audiovisual/audiovisuals/Code/backend/experiments/siren_search/reactive_tuning",
+    "run_name": "diag_base_zyryab",
+    "depth": 3,
+    "width": 12,
+    "w0_first": 40.0,
+    "w0_hidden": 6.0,
+    "w0_time": 3.0,
+    "film_hidden": 64,
+    "output_activation": "tanh",
+    "no_bias": false,
+    "steps": 400,
+    "train_resolution": 256,
+    "lr": 0.0001,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "amp": false,
+    "device": "cuda",
+    "fps": 30,
+    "duration": 0.0,
+    "audio_scale": 0.05,
+    "clip_weight": 1.6,
+    "temp_weight": 0.5,
+    "tv_weight": 5e-05,
+    "range_weight": 0.0002,
+    "num_crops": 8,
+    "crop_min_scale": 0.5,
+    "crop_max_scale": 1.0,
+    "temporal_delta_min": 0.041666666666666664,
+    "temporal_delta_max": 0.08333333333333333,
+    "enable_audio_film": false,
+    "audio_film_hidden": 32,
+    "audio_film_scale": 1.0,
+    "enable_audio_gate": false,
+    "audio_gate_scale": 1.0,
+    "clip_model": "ViT-B/16",
+    "log_interval": 50
+  }
+}

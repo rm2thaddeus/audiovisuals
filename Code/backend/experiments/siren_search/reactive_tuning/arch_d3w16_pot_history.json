@@ -1,0 +1,110 @@
+{
+  "run_name": "arch_d3w16_pot",
+  "prompt": "galaxy filled with dense points, starfield particles, high particle count",
+  "best_similarity": 0.2666015625,
+  "history": [
+    {
+      "step": 50,
+      "clip_loss": -0.2457275390625,
+      "temp_loss": 0.007830982096493244,
+      "tv_loss": 0.003294940572232008,
+      "range_loss": 0.0,
+      "similarity": 0.2457275390625,
+      "best_similarity": 0.2457275390625
+    },
+    {
+      "step": 100,
+      "clip_loss": -0.25439453125,
+      "temp_loss": 0.005664330907166004,
+      "tv_loss": 0.0030900989659130573,
+      "range_loss": 0.0,
+      "similarity": 0.25439453125,
+      "best_similarity": 0.254638671875
+    },
+    {
+      "step": 150,
+      "clip_loss": -0.2548828125,
+      "temp_loss": 0.003638693829998374,
+      "tv_loss": 0.002510461490601301,
+      "range_loss": 0.0,
+      "similarity": 0.2548828125,
+      "best_similarity": 0.263916015625
+    },
+    {
+      "step": 200,
+      "clip_loss": -0.2548828125,
+      "temp_loss": 0.005867875646799803,
+      "tv_loss": 0.0028310746420174837,
+      "range_loss": 0.0,
+      "similarity": 0.2548828125,
+      "best_similarity": 0.263916015625
+    },
+    {
+      "step": 250,
+      "clip_loss": -0.26123046875,
+      "temp_loss": 0.0024349777959287167,
+      "tv_loss": 0.002916482510045171,
+      "range_loss": 0.0,
+      "similarity": 0.26123046875,
+      "best_similarity": 0.26611328125
+    },
+    {
+      "step": 300,
+      "clip_loss": -0.26513671875,
+      "temp_loss": 0.0012517789145931602,
+      "tv_loss": 0.002509558107703924,
+      "range_loss": 0.0,
+      "similarity": 0.26513671875,
+      "best_similarity": 0.2666015625
+    },
+    {
+      "step": 320,
+      "clip_loss": -0.262451171875,
+      "temp_loss": 0.0013565949629992247,
+      "tv_loss": 0.0035985750146210194,
+      "range_loss": 0.0,
+      "similarity": 0.262451171875,
+      "best_similarity": 0.2666015625
+    }
+  ],
+  "config": {
+    "prompt": "galaxy filled with dense points, starfield particles, high particle count",
+    "audio": "docs/Audio/TOOL - The Pot (Audio).mp3",
+    "output_dir": "Code/backend/experiments/siren_search/reactive_tuning",
+    "run_name": "arch_d3w16_pot",
+    "depth": 3,
+    "width": 16,
+    "w0_first": 50.0,
+    "w0_hidden": 8.0,
+    "w0_time": 2.0,
+    "film_hidden": 64,
+    "output_activation": "tanh",
+    "no_bias": false,
+    "steps": 320,
+    "train_resolution": 256,
+    "lr": 0.0001,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "amp": false,
+    "device": "cuda",
+    "fps": 30,
+    "duration": 0.0,
+    "audio_scale": 0.05,
+    "clip_weight": 1.6,
+    "temp_weight": 0.5,
+    "tv_weight": 5e-05,
+    "range_weight": 0.0002,
+    "num_crops": 8,
+    "crop_min_scale": 0.5,
+    "crop_max_scale": 1.0,
+    "temporal_delta_min": 0.041666666666666664,
+    "temporal_delta_max": 0.08333333333333333,
+    "enable_audio_film": false,
+    "audio_film_hidden": 32,
+    "audio_film_scale": 1.0,
+    "enable_audio_gate": false,
+    "audio_gate_scale": 1.0,
+    "clip_model": "ViT-B/16",
+    "log_interval": 50
+  }
+}

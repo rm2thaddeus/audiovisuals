@@ -1,0 +1,119 @@
+{
+  "run_name": "diag_base_cosmic_particles",
+  "prompt": "galaxy filled with dense points, starfield particles, high particle count",
+  "best_similarity": 0.270263671875,
+  "history": [
+    {
+      "step": 50,
+      "clip_loss": -0.2420654296875,
+      "temp_loss": 0.004872252233326435,
+      "tv_loss": 0.005847420543432236,
+      "range_loss": 0.0,
+      "similarity": 0.2420654296875,
+      "best_similarity": 0.2420654296875
+    },
+    {
+      "step": 100,
+      "clip_loss": -0.242919921875,
+      "temp_loss": 0.005479137413203716,
+      "tv_loss": 0.00655578076839447,
+      "range_loss": 0.0,
+      "similarity": 0.242919921875,
+      "best_similarity": 0.2474365234375
+    },
+    {
+      "step": 150,
+      "clip_loss": -0.2471923828125,
+      "temp_loss": 0.0020309253595769405,
+      "tv_loss": 0.005940093658864498,
+      "range_loss": 0.0,
+      "similarity": 0.2471923828125,
+      "best_similarity": 0.253662109375
+    },
+    {
+      "step": 200,
+      "clip_loss": -0.25927734375,
+      "temp_loss": 0.008147470653057098,
+      "tv_loss": 0.006190115585923195,
+      "range_loss": 0.0,
+      "similarity": 0.25927734375,
+      "best_similarity": 0.259521484375
+    },
+    {
+      "step": 250,
+      "clip_loss": -0.25927734375,
+      "temp_loss": 0.0036269836127758026,
+      "tv_loss": 0.0059334635734558105,
+      "range_loss": 0.0,
+      "similarity": 0.25927734375,
+      "best_similarity": 0.261962890625
+    },
+    {
+      "step": 300,
+      "clip_loss": -0.264404296875,
+      "temp_loss": 0.0024944667238742113,
+      "tv_loss": 0.006163857877254486,
+      "range_loss": 0.0,
+      "similarity": 0.264404296875,
+      "best_similarity": 0.267578125
+    },
+    {
+      "step": 350,
+      "clip_loss": -0.261962890625,
+      "temp_loss": 0.0010668749455362558,
+      "tv_loss": 0.006644865032285452,
+      "range_loss": 0.0,
+      "similarity": 0.261962890625,
+      "best_similarity": 0.269287109375
+    },
+    {
+      "step": 400,
+      "clip_loss": -0.26708984375,
+      "temp_loss": 0.003634677268564701,
+      "tv_loss": 0.007251619361341,
+      "range_loss": 0.0,
+      "similarity": 0.26708984375,
+      "best_similarity": 0.270263671875
+    }
+  ],
+  "config": {
+    "prompt": "galaxy filled with dense points, starfield particles, high particle count",
+    "audio": "docs/Audio/TOOL - The Pot (Audio).mp3",
+    "output_dir": "Code/backend/experiments/siren_search/reactive_tuning",
+    "run_name": "diag_base_cosmic_particles",
+    "depth": 3,
+    "width": 12,
+    "w0_first": 40.0,
+    "w0_hidden": 6.0,
+    "w0_time": 3.0,
+    "film_hidden": 64,
+    "output_activation": "tanh",
+    "no_bias": false,
+    "steps": 400,
+    "train_resolution": 256,
+    "lr": 0.0001,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "amp": false,
+    "device": "cuda",
+    "fps": 30,
+    "duration": 0.0,
+    "audio_scale": 0.05,
+    "clip_weight": 1.6,
+    "temp_weight": 0.5,
+    "tv_weight": 5e-05,
+    "range_weight": 0.0002,
+    "num_crops": 8,
+    "crop_min_scale": 0.5,
+    "crop_max_scale": 1.0,
+    "temporal_delta_min": 0.041666666666666664,
+    "temporal_delta_max": 0.08333333333333333,
+    "enable_audio_film": false,
+    "audio_film_hidden": 32,
+    "audio_film_scale": 1.0,
+    "enable_audio_gate": false,
+    "audio_gate_scale": 1.0,
+    "clip_model": "ViT-B/16",
+    "log_interval": 50
+  }
+}

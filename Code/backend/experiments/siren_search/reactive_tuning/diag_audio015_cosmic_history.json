@@ -1,0 +1,119 @@
+{
+  "run_name": "diag_audio015_cosmic",
+  "prompt": "cosmic galaxy",
+  "best_similarity": 0.254638671875,
+  "history": [
+    {
+      "step": 50,
+      "clip_loss": -0.2279052734375,
+      "temp_loss": 0.05106017738580704,
+      "tv_loss": 0.008993366733193398,
+      "range_loss": 0.0,
+      "similarity": 0.2279052734375,
+      "best_similarity": 0.232666015625
+    },
+    {
+      "step": 100,
+      "clip_loss": -0.227783203125,
+      "temp_loss": 0.023805081844329834,
+      "tv_loss": 0.00844978541135788,
+      "range_loss": 0.0,
+      "similarity": 0.227783203125,
+      "best_similarity": 0.232666015625
+    },
+    {
+      "step": 150,
+      "clip_loss": -0.2274169921875,
+      "temp_loss": 0.04015524685382843,
+      "tv_loss": 0.006092897150665522,
+      "range_loss": 0.0,
+      "similarity": 0.2274169921875,
+      "best_similarity": 0.2354736328125
+    },
+    {
+      "step": 200,
+      "clip_loss": -0.239013671875,
+      "temp_loss": 0.05822772905230522,
+      "tv_loss": 0.0067878346890211105,
+      "range_loss": 0.0,
+      "similarity": 0.239013671875,
+      "best_similarity": 0.2410888671875
+    },
+    {
+      "step": 250,
+      "clip_loss": -0.239013671875,
+      "temp_loss": 0.003044983372092247,
+      "tv_loss": 0.005531898699700832,
+      "range_loss": 0.0,
+      "similarity": 0.239013671875,
+      "best_similarity": 0.2476806640625
+    },
+    {
+      "step": 300,
+      "clip_loss": -0.239013671875,
+      "temp_loss": 0.02395138517022133,
+      "tv_loss": 0.0029678212013095617,
+      "range_loss": 0.0,
+      "similarity": 0.239013671875,
+      "best_similarity": 0.25
+    },
+    {
+      "step": 350,
+      "clip_loss": -0.25,
+      "temp_loss": 0.008652052842080593,
+      "tv_loss": 0.004742125049233437,
+      "range_loss": 0.0,
+      "similarity": 0.25,
+      "best_similarity": 0.252685546875
+    },
+    {
+      "step": 400,
+      "clip_loss": -0.2496337890625,
+      "temp_loss": 0.00806779321283102,
+      "tv_loss": 0.004583003930747509,
+      "range_loss": 0.0,
+      "similarity": 0.2496337890625,
+      "best_similarity": 0.254638671875
+    }
+  ],
+  "config": {
+    "prompt": "cosmic galaxy",
+    "audio": "c:/Users/aitor/audiovisual/audiovisuals/docs/Audio/TOOL - The Pot (Audio).mp3",
+    "output_dir": "c:/Users/aitor/audiovisual/audiovisuals/Code/backend/experiments/siren_search/reactive_tuning",
+    "run_name": "diag_audio015_cosmic",
+    "depth": 3,
+    "width": 12,
+    "w0_first": 40.0,
+    "w0_hidden": 6.0,
+    "w0_time": 3.0,
+    "film_hidden": 64,
+    "output_activation": "tanh",
+    "no_bias": false,
+    "steps": 400,
+    "train_resolution": 256,
+    "lr": 0.0001,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "amp": false,
+    "device": "cuda",
+    "fps": 30,
+    "duration": 0.0,
+    "audio_scale": 0.15,
+    "clip_weight": 1.6,
+    "temp_weight": 0.5,
+    "tv_weight": 5e-05,
+    "range_weight": 0.0002,
+    "num_crops": 8,
+    "crop_min_scale": 0.5,
+    "crop_max_scale": 1.0,
+    "temporal_delta_min": 0.041666666666666664,
+    "temporal_delta_max": 0.08333333333333333,
+    "enable_audio_film": true,
+    "audio_film_hidden": 32,
+    "audio_film_scale": 1.0,
+    "enable_audio_gate": true,
+    "audio_gate_scale": 1.0,
+    "clip_model": "ViT-B/16",
+    "log_interval": 50
+  }
+}
